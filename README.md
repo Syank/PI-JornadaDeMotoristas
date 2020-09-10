@@ -10,11 +10,11 @@ Projeto Integrador - Jornada de Motoristas
 
 
 
-- Giovanni dos Santos Alves (Development Team)
+- [Giovanni dos Santos Alves](https://www.linkedin.com/in/giovanni-santos-546412154/ "Giovanni's LinkedIn") (Development Team)
 
 
 
-- Ana Clara Ferreira de Godoy (Development Team)
+- [Ana Clara Ferreira de Godoy](https://www.linkedin.com/in/ana-clara-godoy-2973381b2/ "Ana Clara's LinkedIn") (Development Team)
 
 
 
