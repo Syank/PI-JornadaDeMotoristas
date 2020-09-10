@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControlesTela2">
+   <children>
+      <Label layoutX="83.0" layoutY="92.0" text="Você logou com sucesso!" />
+      <Button fx:id="botaoDeslogar" layoutX="118.0" layoutY="142.0" mnemonicParsing="false" onAction="#deslogar" text="Deslogar" />
+   </children>
+</AnchorPane>
