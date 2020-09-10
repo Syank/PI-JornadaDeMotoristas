@@ -6,7 +6,12 @@ Projeto Integrador - Jornada de Motoristas
 - Rafael Furtado Rodrigues dos Santos (Scrum Master)
 
 
+
 - [Bárbara dos Santos Port](https://www.linkedin.com/in/b%C3%A1rbara-port-402158198/ "Bárbara's LinkedIn") (Product Owner)
+
+
+
+- [Ana Clara Ferreira de Godoy](https://www.linkedin.com/in/ana-clara-godoy-2973381b2/ "Ana Clara's LinkedIn") (Development Team)
 
 
 
