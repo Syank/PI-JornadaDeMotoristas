@@ -20,6 +20,7 @@ repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -33,7 +34,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-gradle-plugin
-	compile group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '5.4.21.Final'
+	implementation 'org.hibernate:hibernate-core:5.4.21.Final'
 	
 	// https://mvnrepository.com/artifact/org.postgresql/postgresql
 	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.16'
@@ -42,5 +43,6 @@ dependencies {
 
 javafx {
     version = "14"
-    modules = [ 'javafx.controls', 'javafx.base', 'javafx.fxml', 'javafx.swing' ]
+	modules = [ 'javafx.controls', 'javafx.fxml' ]
+	//modules = [ 'javafx.controls', 'javafx.base', 'javafx.fxml', 'javafx.swing', 'javafx.graphics' ]
 }
