@@ -22,7 +22,7 @@ Projeto Integrador - Jornada de Motoristas
 
 
 
-- Anna Yukimi Yamada (https://www.linkedin.com/in/anna-yukimi-yamada-6ba23b149/) (Development Team)
+- [Anna Yukimi Yamada](https://www.linkedin.com/in/anna-yukimi-yamada-6ba23b149/ "Anna's LinkedIn") (Development Team)
 
 
 
