@@ -19,10 +19,6 @@ Projeto Integrador - Jornada de Motoristas
 
 
 
-- [Ana Clara Ferreira de Godoy](https://www.linkedin.com/in/ana-clara-godoy-2973381b2/ "Ana Clara's LinkedIn") (Development Team)
-
-
-
 - Ana Carolina da Silva Lima (Development Team)
 
 
