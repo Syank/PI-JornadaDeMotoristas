@@ -32,6 +32,11 @@ dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
     
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-gradle-plugin
+	compile group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '5.4.21.Final'
+	
+	// https://mvnrepository.com/artifact/org.postgresql/postgresql
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.16'
 
 }
 
