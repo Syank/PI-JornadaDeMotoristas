@@ -10,11 +10,11 @@ Projeto Integrador - Jornada de Motoristas
 
 
 
-- Giovanni dos Santos Alves (Development Team)
+- [Giovanni dos Santos Alves](https://www.linkedin.com/in/giovanni-santos-546412154/) (Development Team)
 
 
 
-- Ana Clara Ferreira de Godoy (Development Team)
+- [Ana Clara Ferreira de Godoy](https://www.linkedin.com/in/ana-clara-godoy-2973381b2/) (Development Team)
 
 
 
@@ -22,7 +22,11 @@ Projeto Integrador - Jornada de Motoristas
 
 
 
+<<<<<<< Updated upstream
 - [Anna Yukimi Yamada](https://www.linkedin.com/in/anna-yukimi-yamada-6ba23b149/ "Anna's LinkedIn") (Development Team)
+=======
+- [Anna Yukimi Yamada](https://www.linkedin.com/in/anna-yukimi-yamada-6ba23b149/) (Development Team)
+>>>>>>> Stashed changes
 
 
 
