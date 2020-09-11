@@ -3,7 +3,7 @@ Projeto Integrador - Jornada de Motoristas
 
 
 # Integrantes da equipe
-- [Rafael Furtado Rodrigues dos Santos] (https://www.linkedin.com/in/rafael-furtado-613a9712a/) (Scrum Master)
+- [Rafael Furtado Rodrigues dos Santos](https://www.linkedin.com/in/rafael-furtado-613a9712a/ "Rafael's LinkedIn") (Scrum Master)
 
 
 
