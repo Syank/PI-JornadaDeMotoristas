@@ -3,7 +3,7 @@
   <!-- Unidade de persistencia -->
   <persistence-unit name="RoadTrackerPU">
     <!-- Implementação do JPA -->
-	<provider>org.hibernate.ejb.HibernatePersistence</provider>
+	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <!-- Lista de entidades -->
     <class>model.Funcionario</class>
     <properties>
@@ -11,7 +11,7 @@
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/rtracker"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
-      <property name="javax.persistence.jdbc.password" value="admin"/>
+      <property name="javax.persistence.jdbc.password" value="56248"/>
       <!-- Configurações específicas do Hibernate -->
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>

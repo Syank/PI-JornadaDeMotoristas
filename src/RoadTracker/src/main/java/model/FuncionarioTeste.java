@@ -1,25 +1,27 @@
 package model;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
+import connection.ConnectionFactory;
 
 public class FuncionarioTeste {
 	
 	public static void main(String[] args) {
 		
 		Funcionario funcionario = new Funcionario();
-		funcionario.setNome("Barbara");
+		funcionario.setCpf("12345678900");
+		funcionario.setNome("Bárbara");
+		funcionario.setSenha("precisadecriptografia");
+		funcionario.setCargo(1);
+		funcionario.setFilial("Minha casa");
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("RoadTrackerPU");
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = new ConnectionFactory().getConnection();
 		
 		em.getTransaction().begin();
 		em.persist(funcionario);
 		em.getTransaction().commit();
 		
 		em.close();
-		emf.close();
 	}
 	
 }
