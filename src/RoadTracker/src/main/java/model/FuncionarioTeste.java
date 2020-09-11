@@ -11,7 +11,7 @@ public class FuncionarioTeste {
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNome("Barbara");
 		
-		EntityManagerFactory emf = new Persistence().createEntityManagerFactory("RoadTrackerPU");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("RoadTrackerPU");
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
