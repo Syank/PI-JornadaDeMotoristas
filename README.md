@@ -19,7 +19,7 @@ Projeto Integrador - Jornada de Motoristas
 
 
 
-- [Ana Carolina da Silva Lima](https://www.linkedin.com/mwlite/in/ana-carolina-lima-099955136/ "Ana Carolina's LinkedIn") (Development Team)
+- [Ana Carolina da Silva Lima](https://www.linkedin.com/in/ana-carolina-lima-099955136/ "Ana Carolina's LinkedIn") (Development Team)
 
 
 

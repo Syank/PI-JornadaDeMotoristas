@@ -33,9 +33,12 @@ dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
     
-    // https://mvnrepository.com/artifact/org.hibernate/hibernate-gradle-plugin
-	implementation 'org.hibernate:hibernate-core:5.4.21.Final'
+	// https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.21.Final'
 	
+	// https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api
+	compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final'
+
 	// https://mvnrepository.com/artifact/org.postgresql/postgresql
 	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.16'
 
@@ -43,6 +46,6 @@ dependencies {
 }
 
 javafx {
-    version = "14"
+    version = "14.0.2.1"
 	modules = [ 'javafx.controls', 'javafx.base', 'javafx.fxml', 'javafx.swing', 'javafx.graphics' ]
 }
