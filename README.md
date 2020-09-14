@@ -31,7 +31,6 @@ Projeto Integrador - Jornada de Motoristas
 - [Link para formatação do arquivo READ.me](https://docs.github.com/pt/github/writing-on-github/basic-writing-and-formatting-syntax)
 
 # Versões das bibliotecas
-- JavaFX: 14.0.2.1
 - JDK: 14.0.2.1
 - Hibernate: 5.4.21
 - PostgreSQL JDBC: 42.2.16
