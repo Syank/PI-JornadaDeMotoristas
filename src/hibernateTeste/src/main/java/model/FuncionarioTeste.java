@@ -9,7 +9,7 @@ public class FuncionarioTeste {
 		
 		Funcionario funcionario = new Funcionario();
 		funcionario.setCpf("1234567894");
-		funcionario.setNome("Bárbara2");
+		funcionario.setNome("Rafael");
 		funcionario.setSenha("precisadecriptografia");
 		funcionario.setCargo(1);
 		funcionario.setFilial("Minha casa");
