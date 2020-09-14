@@ -34,4 +34,3 @@ Projeto Integrador - Jornada de Motoristas
 - JDK: 14.0.2.1
 - Hibernate: 5.4.21
 - PostgreSQL JDBC: 42.2.16
-
