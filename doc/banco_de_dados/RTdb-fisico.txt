@@ -28,7 +28,7 @@ CREATE TABLE motorista (
 	motorista_nome VARCHAR(60) NOT NULL,
 	motorista_cpf VARCHAR(11) UNIQUE NOT NULL PRIMARY KEY,
 	motorista_senha VARCHAR(11) NOT NULL,
-	motorista_carga_horaria TIME,
+	motorista_carga_horaria VARCHAR(1),
 	
 	motorista_turno VARCHAR (10)
 );
