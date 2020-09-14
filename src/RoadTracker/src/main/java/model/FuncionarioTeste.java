@@ -8,8 +8,8 @@ public class FuncionarioTeste {
 	public static void main(String[] args) {
 		
 		Funcionario funcionario = new Funcionario();
-		funcionario.setCpf("1234567894");
-		funcionario.setNome("Rafael");
+		funcionario.setCpf("1234517894");
+		funcionario.setNome("Bárbara2");
 		funcionario.setSenha("precisadecriptografia");
 		funcionario.setCargo(1);
 		funcionario.setFilial("Minha casa");
