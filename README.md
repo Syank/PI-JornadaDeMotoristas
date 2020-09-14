@@ -1,4 +1,4 @@
-# PI-JornadaDeMotoristas :computer:
+# PI-JornadaDeMotoristas :truck:
 Projeto Integrador - Jornada de Motoristas
 
 
