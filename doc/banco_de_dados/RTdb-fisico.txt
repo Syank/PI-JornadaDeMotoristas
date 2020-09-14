@@ -28,7 +28,7 @@ CREATE TABLE motorista (
 	motorista_nome VARCHAR(60) NOT NULL,
 	motorista_cpf VARCHAR(11) UNIQUE NOT NULL PRIMARY KEY,
 	motorista_senha VARCHAR(11) NOT NULL,
-	motorista_carga_horaria VARCHAR(1),
+	motorista_carga_horaria TIME,
 	
 	motorista_turno VARCHAR (10)
 );
@@ -54,7 +54,7 @@ ALTER TABLE funcionario
       FOREIGN KEY (fk_filial_id) 
       REFERENCES filial(filial_id);
 
-ALTER TABLE motoristas 
+ALTER TABLE motorista 
       ADD COLUMN fk_id_filial INTEGER, 
       ADD CONSTRAINT fk_id_filial
       FOREIGN KEY (fk_id_filial) 
@@ -64,7 +64,7 @@ ALTER TABLE status
       ADD COLUMN fk_motorista_cpf VARCHAR(11), 
       ADD CONSTRAINT fk_motorista_cpf
       FOREIGN KEY (fk_motorista_cpf) 
-      REFERENCES motorista(cpf);
+      REFERENCES motorista(motorista_cpf);
 
 ALTER TABLE status 
       ADD COLUMN fk_viagem_id INTEGER, 
@@ -72,17 +72,17 @@ ALTER TABLE status
       FOREIGN KEY (fk_viagem_id) 
       REFERENCES viagens(viagem_id);
 
-ALTER TABLE veiculos 
+ALTER TABLE veiculo 
       ADD COLUMN fk_motorista_cpf VARCHAR(11), 
       ADD CONSTRAINT fk_motorista_cpf
       FOREIGN KEY (fk_motorista_cpf) 
-      REFERENCES motorista(cpf);
+      REFERENCES motorista(motorista_cpf);
 
-ALTER TABLE viagens
+ALTER TABLE viagem
       ADD COLUMN fk_motorista_cpf VARCHAR(11), 
       ADD CONSTRAINT fk_motorista_cpf
       FOREIGN KEY (fk_motorista_cpf) 
-      REFERENCES motorista(cpf);
+      REFERENCES motorista(motorista_cpf);
 
 
 INSERT INTO funcionario (nome, cpf, senha, cargo) VALUES ('root', '00000000000', 'root', 'adm');
