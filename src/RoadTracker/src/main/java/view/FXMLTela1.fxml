@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" styleClass="fundoDaJanela" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControlesTela1">
+   <children>
+      <Button fx:id="botaoLimpar" layoutX="195.0" layoutY="145.0" mnemonicParsing="false" onAction="#limparCampos" prefHeight="25.0" prefWidth="60.0" styleClass="customizarBotoes" text="Limpar" textFill="WHITE" />
+      <Button fx:id="botaoLogin" layoutX="106.0" layoutY="145.0" mnemonicParsing="false" onAction="#verificarLogin" prefHeight="25.0" prefWidth="60.0" styleClass="customizarBotoes" text="Login" textFill="WHITE" />
+      <Label fx:id="label" layoutX="115.0" layoutY="42.0" text="Bem vindo!" textFill="#00a8ff">
+         <font>
+            <Font name="MS Outlook" size="14.0" />
+         </font></Label>
+      <TextField fx:id="inputUsuario" layoutX="106.0" layoutY="75.0" promptText="Usuário" styleClass="customizarInputs" />
+      <PasswordField fx:id="inputSenha" layoutX="106.0" layoutY="111.0" promptText="Senha" styleClass="customizarInputs" />
+      <HBox alignment="CENTER_RIGHT" layoutY="-1.0" prefHeight="25.0" prefWidth="300.0" styleClass="barraDeMenu">
+         <children>
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#fecharJanela" prefHeight="28.0" prefWidth="23.0" styleClass="botaoFechar">
+               <graphic>
+                  <ImageView fitHeight="12.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@minimizar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="282.0" layoutY="10.0" mnemonicParsing="false" onAction="#fecharJanela" prefHeight="28.0" prefWidth="23.0" styleClass="botaoFechar">
+               <graphic>
+                  <ImageView fitHeight="12.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@fechar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <ImageView fitHeight="27.0" fitWidth="18.0" layoutX="79.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@usuario.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="21.0" fitWidth="18.0" layoutX="79.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@chave.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

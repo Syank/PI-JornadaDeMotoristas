@@ -1,0 +1,30 @@
+.fundoDaJanela{
+	-fx-background-color: #f5f6fa;
+}
+
+.barraDeMenu{
+	-fx-background-color: transparent;
+}
+
+.botaoFechar{
+	-fx-background-color: transparent;
+}
+.botaoFechar:hover{
+	-fx-background-color: #d90000;
+}
+
+.customizarInputs{
+	-fx-background-color: transparent;
+	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-color: #00a8ff;
+}
+.customizarInputs:focused{
+	-fx-background-color: #DCDDE1;
+}
+
+.customizarBotoes{
+	-fx-background-color: #00a8ff;
+}
+.customizarBotoes:hover{
+	-fx-background-color: #2f3640;
+}

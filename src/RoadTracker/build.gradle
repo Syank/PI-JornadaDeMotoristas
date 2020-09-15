@@ -9,12 +9,25 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
+    id 'eclipse'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.7'
 }
+
+
 
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    mavenCentral()
+}
+
+
+javafx {
+    version = "14.0.2.1"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    mainClassName = "view.Main"
 }
 
 dependencies {
@@ -39,7 +52,5 @@ dependencies {
 	
 	// https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
 	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.21.Final'
-	
-	
 	
 }
