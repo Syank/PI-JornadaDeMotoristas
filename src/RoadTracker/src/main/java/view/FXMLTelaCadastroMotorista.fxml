@@ -28,7 +28,7 @@
       <Button layoutX="253.0" layoutY="338.0" mnemonicParsing="false" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
       <Button layoutX="341.0" layoutY="338.0" mnemonicParsing="false" styleClass="customizarBotoes" text="Limpar" textFill="WHITE" />
       <Button layoutX="32.0" layoutY="338.0" mnemonicParsing="false" styleClass="customizarBotoes" text="Voltar" textFill="WHITE" />
-      <HBox alignment="BOTTOM_RIGHT" layoutX="-3.0" layoutY="-1.0" prefHeight="32.0" prefWidth="607.0" styleClass="barraDeMenu">
+      <HBox alignment="BOTTOM_RIGHT" layoutX="-3.0" layoutY="-1.0" prefHeight="37.0" prefWidth="607.0" styleClass="barraDeMenu">
          <children>
             <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" styleClass="botaoFechar" wrapText="true">
                <graphic>
@@ -39,7 +39,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="576.0" layoutY="10.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="36.0" styleClass="botaoFechar" wrapText="true">
+            <Button fx:id="btnFechar" layoutX="576.0" layoutY="10.0" mnemonicParsing="false" onAction="#fecharJanela" prefHeight="37.0" prefWidth="36.0" styleClass="botaoFechar" wrapText="true">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>

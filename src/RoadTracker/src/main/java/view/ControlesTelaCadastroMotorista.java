@@ -6,13 +6,18 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
 public class ControlesTelaCadastroMotorista implements Initializable{
 
-    //ComboBoxCargo e suas listas primitivas e Observable
+    @FXML
+    private Button btnFechar;
+	
+	//ComboBoxCargo e suas listas primitivas e Observable
     @FXML
     private ComboBox<ListasComboBoxs> comboBoxCargos;
     private List<ListasComboBoxs> listaComboBoxCargos = new ArrayList<>();
@@ -61,5 +66,9 @@ public class ControlesTelaCadastroMotorista implements Initializable{
 		carregarComboBoxs();
 		
 	}
+	@FXML
+    void fecharJanela(ActionEvent event) {
+    	System.exit(0);
+    }
     
 }
