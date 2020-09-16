@@ -10,15 +10,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="fundoDaJanela" stylesheets="@designs.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="fundoDaJanela" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControlesTelaCadastroMotorista">
    <children>
-      <ComboBox fx:id="ComboBoxCargo" layoutX="51.0" layoutY="226.0" prefWidth="150.0" promptText="Cargo" />
+      <ComboBox fx:id="comboBoxCargos" layoutX="51.0" layoutY="226.0" prefWidth="150.0" promptText="Cargo" />
       <TextField layoutX="52.0" layoutY="168.0" promptText="CPF" styleClass="customizarInputs" />
       <TextField layoutX="52.0" layoutY="107.0" promptText="Senha" styleClass="customizarInputs" />
       <TextField layoutX="52.0" layoutY="43.0" promptText="Nome" styleClass="customizarInputs" />
       <TextField layoutX="248.0" layoutY="43.0" promptText="Carga Horária" styleClass="customizarInputs" />
-      <ComboBox fx:id="ComboBoxTurno" layoutX="248.0" layoutY="108.0" prefWidth="150.0" promptText="Turno" />
+      <ComboBox fx:id="comboBoxTurnos" layoutX="248.0" layoutY="108.0" prefWidth="150.0" promptText="Turno" />
       <CheckBox layoutX="475.0" layoutY="116.0" mnemonicParsing="false" text="Segunda" />
       <CheckBox layoutX="475.0" layoutY="145.0" mnemonicParsing="false" text="Terça" />
       <CheckBox layoutX="475.0" layoutY="232.0" mnemonicParsing="false" text="Sexta" />
@@ -31,7 +30,7 @@
       <Button layoutX="32.0" layoutY="338.0" mnemonicParsing="false" styleClass="customizarBotoes" text="Voltar" textFill="WHITE" />
       <HBox alignment="BOTTOM_RIGHT" layoutX="-3.0" layoutY="-1.0" prefHeight="32.0" prefWidth="607.0" styleClass="barraDeMenu">
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="botaoFechar" wrapText="true">
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" styleClass="botaoFechar" wrapText="true">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -40,9 +39,9 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="576.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="botaoFechar" wrapText="true">
+            <Button layoutX="576.0" layoutY="10.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="36.0" styleClass="botaoFechar" wrapText="true">
                <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@fechar.png" />
                      </image>
