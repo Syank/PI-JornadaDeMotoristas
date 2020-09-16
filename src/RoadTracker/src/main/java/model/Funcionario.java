@@ -3,7 +3,6 @@ package model;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Id;
-import javax.persistence.RollbackException;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
@@ -18,8 +17,8 @@ public class Funcionario {
 	private String cpf;
 	private String nome;
 	private String senha;
-	private Integer cargo;
-	private String filial;
+	private String cargo;
+	private Integer fk_filiais_id;
 	
 	public String getCpf() {
 		return cpf;
@@ -39,34 +38,52 @@ public class Funcionario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public String getFilial() {
-		return filial;
-	}
-	public void setFilial(String filial) {
-		this.filial = filial;
-	}
-	public Integer getCargo() {
+	public String getCargo() {
 		return cargo;
 	}
-	public void setCargo(Integer cargo) {
+	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
+	public Integer getFk_filiais_id() {
+		return fk_filiais_id;
+	}
+	public void setFk_filiais_id(Integer fk_filiais_id) {
+		this.fk_filiais_id = fk_filiais_id;
+	}
+	
 	
 	public static int cadastrarMotorista() {
 		EntityManager con = new ConnectionFactory().getConnection();
-		Motorista motorista = new Motorista();
+		Funcionario motorista = new Funcionario();
+		JornadaTrabalho jornada = new JornadaTrabalho();
 		
-		motorista.setCpf("12345678903");
-		motorista.setCarga_horaria("8");
-		/* motorista.setDias_trabalho(); */
-		motorista.setFk_id_filial(1);
+		motorista.setCpf("12548756923");
+		motorista.setFk_filiais_id(1);
 		motorista.setNome("Bárbara");
 		motorista.setSenha("batatarecheada");
-		motorista.setTurno("tarde");
+		motorista.setCargo("Motorista");
+		
+		jornada.setFk_funcionarios_cpf(motorista.getCpf());
+		jornada.setCarga_horaria(8);
+		jornada.setTurno("Noite");
+		jornada.setSeg(true);
+		jornada.setTer(true);
+		jornada.setQua(true);
+		jornada.setQui(true);
+		jornada.setSex(true);
+		jornada.setSab(true);
+		jornada.setDom(false);
 		
 		try {
+			
+			//Mandando os dados do motorista para a tabela de motoristas
 			con.getTransaction().begin();
 			con.persist(motorista);
+			con.getTransaction().commit();
+			
+			//Mandando os dados do trabalho do motorista para a tabela de jornadas de trabalho
+			con.getTransaction().begin();
+			con.persist(jornada);
 			con.getTransaction().commit();
 			
 			con.close();

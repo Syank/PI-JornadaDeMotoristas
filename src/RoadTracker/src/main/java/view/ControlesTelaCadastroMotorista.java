@@ -24,10 +24,6 @@ public class ControlesTelaCadastroMotorista implements Initializable{
     private List<ListasComboBoxs> listaComboBoxTurnos = new ArrayList<>();
     private ObservableList<ListasComboBoxs> obsListComboBoxTurnos;
     
-    
-    
-    
-    
     //Método para criar e carregar o conteúdo das ComboBoxs
     public void carregarComboBoxs() {
     	//Cria os elementos da lista da ComboBox
