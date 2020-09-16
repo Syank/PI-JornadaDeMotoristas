@@ -10,10 +10,9 @@ import javax.swing.JOptionPane;
 @Table(name="funcionarios")
 public class Funcionario {
 	
-//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-//	private Integer id;
 	
 	@Id
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private String cpf;
 	private String nome;
 	private String senha;
@@ -51,13 +50,13 @@ public class Funcionario {
 		this.fk_filiais_id = fk_filiais_id;
 	}
 	
-	
-	public static int cadastrarMotorista() {
+	public Funcionario cadastrarMotorista() {
 		EntityManager con = new ConnectionFactory().getConnection();
 		Funcionario motorista = new Funcionario();
 		JornadaTrabalho jornada = new JornadaTrabalho();
 		
-		motorista.setCpf("12548756923");
+		//dentro do set é onde deve ter o getText(). cuidado com o campo da filial e da carga horária porque são Integer
+		motorista.setCpf("1254875621");
 		motorista.setFk_filiais_id(1);
 		motorista.setNome("Bárbara");
 		motorista.setSenha("batatarecheada");
@@ -86,17 +85,21 @@ public class Funcionario {
 			con.persist(jornada);
 			con.getTransaction().commit();
 			
-			con.close();
-			return 1;
+			
 		}
 		catch(Exception e) {
 			JOptionPane.showMessageDialog(null, "O motorista já existe. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
 		}
 		
-		return 0;
+		return motorista;
+		
 	}
 	
-	public static int cadastrarFilial() {
+	public void cadastrarFilial() {
 		EntityManager con = new ConnectionFactory().getConnection();
 		Filial filial = new Filial();
 		
@@ -109,14 +112,41 @@ public class Funcionario {
 			con.persist(filial);
 			con.getTransaction().commit();
 			
-			con.close();
-			return 1;
 		}
 		catch(Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
 		}
+		finally {
+			con.close();
+		}
 		
-		return 0;
+	}
+	
+	public Funcionario alterarSenhaMotorista() {
+		//lembrando que esse método tá bem simples ainda. não tem verificação de nada
+		EntityManager con = new ConnectionFactory().getConnection();
+		Funcionario motorista = new Funcionario();
+
+		motorista.setCargo(this.cargo);
+		motorista.setCpf(this.cpf);
+		motorista.setFk_filiais_id(this.fk_filiais_id);
+		motorista.setNome(this.nome);
+		motorista.setSenha("123batata"); //pegar senha do TextField
+		try {
+			con.getTransaction().begin();
+			con.merge(motorista);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+		return motorista;
+		
 	}
 	
 }
