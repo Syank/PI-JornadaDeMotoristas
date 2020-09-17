@@ -10,10 +10,7 @@ import javax.swing.JOptionPane;
 @Table(name="funcionarios")
 public class Funcionario {
 	
-<<<<<<< Updated upstream
-	
-=======
->>>>>>> Stashed changes
+
 	@Id
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private String cpf;
@@ -35,31 +32,14 @@ public Funcionario(String cpf, String nome, String senha, String cargo, int k_fi
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 //	private Integer id;
 	
+
 	
-<<<<<<< Updated upstream
-	public Funcionario cadastrarMotorista() {
-=======
-	
-	public int cadastrarMotorista() {
->>>>>>> Stashed changes
+	public void cadastrarMotorista() {
+
 		EntityManager con = new ConnectionFactory().getConnection();
 		//Funcionario motorista = new Funcionario();
 		JornadaTrabalho jornada = new JornadaTrabalho();
 		
-<<<<<<< Updated upstream
-		//dentro do set é onde deve ter o getText(). cuidado com o campo da filial e da carga horária porque são Integer
-		motorista.setCpf("1254875621");
-		motorista.setFk_filiais_id(1);
-		motorista.setNome("Bárbara");
-		motorista.setSenha("batatarecheada");
-		motorista.setCargo("Motorista");
-=======
-		//motorista.setCpf(this.cpf);
-		//motorista.setFk_filiais_id(1);
-		//motorista.setNome("Bárbara");
-		//motorista.setSenha("batatarecheada");
-		//motorista.setCargo("Motorista");
->>>>>>> Stashed changes
 		
 		jornada.setFk_funcionarios_cpf(this.cpf);
 		jornada.setCarga_horaria(8);
@@ -94,7 +74,6 @@ public Funcionario(String cpf, String nome, String senha, String cargo, int k_fi
 			con.close();
 		}
 		
-		return motorista;
 		
 	}
 	
@@ -121,19 +100,15 @@ public Funcionario(String cpf, String nome, String senha, String cargo, int k_fi
 		
 	}
 	
-	public Funcionario alterarSenhaMotorista() {
+	public void alterarSenhaMotorista(String novaSenha) {
 		//lembrando que esse método tá bem simples ainda. não tem verificação de nada
 		EntityManager con = new ConnectionFactory().getConnection();
-		Funcionario motorista = new Funcionario();
-
-		motorista.setCargo(this.cargo);
-		motorista.setCpf(this.cpf);
-		motorista.setFk_filiais_id(this.fk_filiais_id);
-		motorista.setNome(this.nome);
-		motorista.setSenha("123batata"); //pegar senha do TextField
+		
+		this.senha = novaSenha;
+		
 		try {
 			con.getTransaction().begin();
-			con.merge(motorista);
+			con.refresh(this);
 			con.getTransaction().commit();
 		}
 		catch (Exception e) {
@@ -144,7 +119,7 @@ public Funcionario(String cpf, String nome, String senha, String cargo, int k_fi
 			con.close();
 		}
 		
-		return motorista;
+
 		
 	}
 	

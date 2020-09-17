@@ -5,16 +5,15 @@ import model.Funcionario;
 public class Testes {
 
 	public static void main (String[] args) {
-		Funcionario funcionario = new Funcionario();
+		Funcionario funcionario = new Funcionario("0000557789", "Rafael", "abacate", "Motorista", 3);
 		
-		/*funcionario.cadastrarFilial();*/
-		funcionario = funcionario.cadastrarMotorista();
+
+		funcionario.alterarSenhaMotorista("abc");
+		System.out.println("Senha trocada");
+
 		
-		System.out.println("CPF: "+funcionario.getCpf());
-		System.out.println("Nome: "+funcionario.getNome());
-		System.out.println("Senha antiga: "+funcionario.getSenha());
-		funcionario = funcionario.alterarSenhaMotorista();
-		System.out.println("Senha nova: "+funcionario.getSenha());
+		
+		
 		
 	}
 	
