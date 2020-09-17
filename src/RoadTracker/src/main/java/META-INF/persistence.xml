@@ -18,7 +18,11 @@
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/rtracker"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
+<<<<<<< Updated upstream
       <property name="javax.persistence.jdbc.password" value="56248"/>
+=======
+      <property name="javax.persistence.jdbc.password" value="admin"/>
+>>>>>>> Stashed changes
       <!-- Configurações específicas do Hibernate -->
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>

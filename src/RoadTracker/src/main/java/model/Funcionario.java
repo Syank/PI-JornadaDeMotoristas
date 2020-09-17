@@ -10,59 +10,58 @@ import javax.swing.JOptionPane;
 @Table(name="funcionarios")
 public class Funcionario {
 	
+<<<<<<< Updated upstream
 	
+=======
+>>>>>>> Stashed changes
 	@Id
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private String cpf;
 	private String nome;
 	private String senha;
 	private String cargo;
-	private Integer fk_filiais_id;
+	private int fk_filiais_id;
 	
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
+public Funcionario(String cpf, String nome, String senha, String cargo, int k_filiais_id) {
 		this.cpf = cpf;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-	public String getCargo() {
-		return cargo;
-	}
-	public void setCargo(String cargo) {
 		this.cargo = cargo;
-	}
-	public Integer getFk_filiais_id() {
-		return fk_filiais_id;
-	}
-	public void setFk_filiais_id(Integer fk_filiais_id) {
 		this.fk_filiais_id = fk_filiais_id;
+		
+		this.cadastrarMotorista();
 	}
+
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+//	private Integer id;
 	
+	
+<<<<<<< Updated upstream
 	public Funcionario cadastrarMotorista() {
+=======
+	
+	public int cadastrarMotorista() {
+>>>>>>> Stashed changes
 		EntityManager con = new ConnectionFactory().getConnection();
-		Funcionario motorista = new Funcionario();
+		//Funcionario motorista = new Funcionario();
 		JornadaTrabalho jornada = new JornadaTrabalho();
 		
+<<<<<<< Updated upstream
 		//dentro do set é onde deve ter o getText(). cuidado com o campo da filial e da carga horária porque são Integer
 		motorista.setCpf("1254875621");
 		motorista.setFk_filiais_id(1);
 		motorista.setNome("Bárbara");
 		motorista.setSenha("batatarecheada");
 		motorista.setCargo("Motorista");
+=======
+		//motorista.setCpf(this.cpf);
+		//motorista.setFk_filiais_id(1);
+		//motorista.setNome("Bárbara");
+		//motorista.setSenha("batatarecheada");
+		//motorista.setCargo("Motorista");
+>>>>>>> Stashed changes
 		
-		jornada.setFk_funcionarios_cpf(motorista.getCpf());
+		jornada.setFk_funcionarios_cpf(this.cpf);
 		jornada.setCarga_horaria(8);
 		jornada.setTurno("Noite");
 		jornada.setSeg(true);
@@ -77,7 +76,7 @@ public class Funcionario {
 			
 			//Mandando os dados do motorista para a tabela de motoristas
 			con.getTransaction().begin();
-			con.persist(motorista);
+			con.persist(this);
 			con.getTransaction().commit();
 			
 			//Mandando os dados do trabalho do motorista para a tabela de jornadas de trabalho
