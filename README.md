@@ -31,6 +31,3 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 
 ## Diagrama de classes do nosso sistema
 ![diagrama de classes roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/diagrama_de_classes/diagrama_de_classes.png?raw=true)
-
-## *User stories* do nosso sistema
-![user stories roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/user_stories.png?raw=true)
