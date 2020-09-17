@@ -22,3 +22,15 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 - JDK: 14.0.2.1
 - Hibernate: 5.4.21
 - PostgreSQL JDBC: 42.2.16
+
+## Modelo conceitual do nosso banco de dados
+![conceitual rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/banco_de_dados/RTdb-conceitual.png?raw=true)
+
+## Modelo lógico do nosso banco de dados
+![lógico rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/banco_de_dados/RTdb-logico.png?raw=true)
+
+## Diagrama de classes do nosso sistema
+![diagrama de classes roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/diagrama_de_classes/diagrama_de_classes.png?raw=true)
+
+## *User stories* do nosso sistema
+![user stories roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/user_stories.png?raw=true)
