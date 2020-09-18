@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="750.0" styleClass="fundoDaJanela" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControlesTelaLogin">
+<AnchorPane prefHeight="450.0" prefWidth="750.0" styleClass="fundoDaJanela" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="450.0" prefWidth="300.0" styleClass="sombraDaImagemLogin">
          <children>
@@ -23,7 +23,7 @@
          </children></VBox>
       <TextField layoutX="458.0" layoutY="151.0" promptText="Usuário" styleClass="customizarInputs" />
       <PasswordField layoutX="458.0" layoutY="210.0" promptText="Senha" styleClass="customizarInputs" />
-      <Button fx:id="botaoLogin" layoutX="486.0" layoutY="252.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" styleClass="customizarBotoes" text="Entrar" textFill="WHITE" />
+      <Button layoutX="486.0" layoutY="252.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" styleClass="customizarBotoes" text="Entrar" textFill="WHITE" />
       <Label layoutX="432.0" layoutY="294.0" text="Não possui uma conta? Clique aqui" textFill="#00fdc3" underline="true" />
       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="426.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -37,7 +37,7 @@
       </ImageView>
       <HBox alignment="BOTTOM_RIGHT" layoutX="300.0" prefHeight="25.0" prefWidth="450.0">
          <children>
-            <Button fx:id="botaoMinimizar" alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="15.0" styleClass="botaoFechar">
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="15.0" styleClass="botaoFechar">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -46,7 +46,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="20.0" onAction="#botaoSair" prefWidth="20.0" styleClass="botaoFechar">
+            <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" styleClass="botaoFechar">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>

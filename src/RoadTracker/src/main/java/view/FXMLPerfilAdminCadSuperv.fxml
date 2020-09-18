@@ -30,7 +30,7 @@
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@adicionar.png" />
+                        <Image url="@../../../../../../../../../Desktop/add.png" />
                      </image></ImageView>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="59.0" prefWidth="31.0" />
                   <Label text="Cadastrar Funcionário" textFill="WHITE" />
@@ -40,7 +40,7 @@
                <children>
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@funcionarios.png" />
+                        <Image url="@../../../../../../../../../Desktop/func.png" />
                      </image></ImageView>
                   <HBox layoutX="163.0" layoutY="10.0" prefHeight="59.0" prefWidth="30.0" />
                   <Label text="Funcionários" textFill="WHITE" />
@@ -52,7 +52,7 @@
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@truck.png" />
+                        <Image url="@../../../../../../../../../Desktop/truck.png" />
                      </image></ImageView>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <Label text="Histórico de entregas" textFill="WHITE" />
