@@ -51,7 +51,7 @@ public class ControlesTelaCadastroMotorista implements Initializable{
     
     
     
-    //Método para criar e carregar o conteúdo das ComboBoxs
+    //Mï¿½todo para criar e carregar o conteï¿½do das ComboBoxs
     public void carregarComboBoxs() {
     	//Cria os elementos da lista da ComboBox
     	Listas elementoCargos1 = new Listas("1", "Administrador");
@@ -61,9 +61,9 @@ public class ControlesTelaCadastroMotorista implements Initializable{
     	Listas elementoTurnos1 = new Listas("1", "Matutino");
     	Listas elementoTurnos2 = new Listas("2", "Noturno");
     	
-    	Listas elementoFilial1 = new Listas("1", "Caçapava");
-    	Listas elementoFilial2 = new Listas("2", "Jacareí");
-    	Listas elementoFilial3 = new Listas("3", "São José dos Campos");
+    	Listas elementoFilial1 = new Listas("1", "Caï¿½apava");
+    	Listas elementoFilial2 = new Listas("2", "Jacareï¿½");
+    	Listas elementoFilial3 = new Listas("3", "Sï¿½o Josï¿½ dos Campos");
     	
     	
     	//Adiciona os elementos ao array(lista) primitivo
@@ -94,7 +94,7 @@ public class ControlesTelaCadastroMotorista implements Initializable{
     	comboBoxFilial.setItems(obsListComboBoxFilial);
     }
 
-    //initialize é executada automáticamente pelo programa ao iniciar o mesmo
+    //initialize ï¿½ executada automï¿½ticamente pelo programa ao iniciar o mesmo
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		carregarComboBoxs();
@@ -108,17 +108,17 @@ public class ControlesTelaCadastroMotorista implements Initializable{
 	@FXML
 	void realizarCadastro(ActionEvent event) {
 		//Pega o item selecionado nas ComboBoxs, podendo acessar o ID e o Texto
-		Listas seleçaoCargo = comboBoxCargos.getSelectionModel().getSelectedItem();
-		Listas seleçaoFilial = comboBoxFilial.getSelectionModel().getSelectedItem();
+		Listas seleï¿½aoCargo = comboBoxCargos.getSelectionModel().getSelectedItem();
+		Listas seleï¿½aoFilial = comboBoxFilial.getSelectionModel().getSelectedItem();
 		
-		//Cria o objeto Funcionário (quebrei as linhas para caber tudo na tela)
+		//Cria o objeto Funcionï¿½rio (quebrei as linhas para caber tudo na tela)
 		new Funcionario(inputCpf.getText(),
 						inputNome.getText(),
 						inputSenha.getText(),
-						seleçaoCargo.getValor(),
-						seleçaoFilial.getId());
+						seleï¿½aoCargo.getValor(),
+						seleï¿½aoFilial.getId());
 		
-		System.out.println("Cadastro Realizado!");
+//		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial);  
 		
 	}
     

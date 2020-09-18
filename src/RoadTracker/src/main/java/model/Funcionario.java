@@ -32,25 +32,50 @@ public Funcionario(String cpf, String nome, String senha, String cargo, String k
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 //	private Integer id;
 	
-
-	
-	public void cadastrarMotorista() {
-
+	public JornadaTrabalho cadastrarJornadaTrabalho(String funcionario, int carga_horaria, String turno, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
+		
 		EntityManager con = new ConnectionFactory().getConnection();
-		//Funcionario motorista = new Funcionario();
 		JornadaTrabalho jornada = new JornadaTrabalho();
 		
+		jornada.setFk_funcionarios_cpf(funcionario);
+		jornada.setCarga_horaria(carga_horaria);
+		jornada.setTurno(turno);
+		jornada.setSeg(seg);
+		jornada.setTer(ter);
+		jornada.setQua(qua);
+		jornada.setQui(qui);
+		jornada.setSex(sex);
+		jornada.setSab(sab);
+		jornada.setDom(dom);
 		
-		jornada.setFk_funcionarios_cpf(this.cpf);
-		jornada.setCarga_horaria(8);
-		jornada.setTurno("Noite");
-		jornada.setSeg(true);
-		jornada.setTer(true);
-		jornada.setQua(true);
-		jornada.setQui(true);
-		jornada.setSex(true);
-		jornada.setSab(true);
-		jornada.setDom(false);
+		try {
+			//Mandando os dados do trabalho do motorista para a tabela de jornadas de trabalho
+			con.getTransaction().begin();
+			con.persist(jornada);
+			con.getTransaction().commit();
+			
+		}
+		catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Jornada de trabalho. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+		return jornada;
+		
+	}
+	
+	public void cadastrarFuncionario(String nome, String cpf, String senha, String cargo, int filial) {
+
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		this.nome = nome;
+		this.cpf = cpf;
+		this.senha = senha;
+		this.cargo = cargo;
+		this.fk_filiais_id = filial;
 		
 		try {
 			
@@ -59,31 +84,28 @@ public Funcionario(String cpf, String nome, String senha, String cargo, String k
 			con.persist(this);
 			con.getTransaction().commit();
 			
-			//Mandando os dados do trabalho do motorista para a tabela de jornadas de trabalho
-			con.getTransaction().begin();
-			con.persist(jornada);
-			con.getTransaction().commit();
-			
+			if (this.cargo == "motorista") {
+				cadastrarJornadaTrabalho(this.cpf, 8, "manhï¿½", true, true, true, true, true, false, false);
+			}
 			
 		}
 		catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "O motorista já existe. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Funcionï¿½rio. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
 			con.getTransaction().rollback();
 		}
 		finally {
 			con.close();
 		}
 		
-		
 	}
 	
-	public void cadastrarFilial() {
+	public Filial cadastrarFilial(String nome, String cidade, String uf) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		Filial filial = new Filial();
 		
-		filial.setNome("Filial Caçapava");
-		filial.setCidade("Caçapava");
-		filial.setEstado("SP");	
+		filial.setNome(nome);
+		filial.setCidade(cidade);
+		filial.setEstado(uf);	
 		
 		try {
 			con.getTransaction().begin();
@@ -98,17 +120,23 @@ public Funcionario(String cpf, String nome, String senha, String cargo, String k
 			con.close();
 		}
 		
+		return filial;
+		
 	}
 	
-	public void alterarSenhaMotorista(String novaSenha) {
-		//lembrando que esse método tá bem simples ainda. não tem verificação de nada
+	public void alterarDadosFuncionario(String novoNome, String cpfFuncionario, String novaSenha, String novoCargo, int novaFilial) {
+		//lembrando que esse mï¿½todo tï¿½ bem simples ainda. nï¿½o tem verificaï¿½ï¿½o de nada
 		EntityManager con = new ConnectionFactory().getConnection();
 		
+		this.nome = novoNome;
+		this.cpf = cpfFuncionario;
 		this.senha = novaSenha;
+		this.cargo = novoCargo;
+		this.fk_filiais_id = novaFilial;
 		
 		try {
 			con.getTransaction().begin();
-			con.refresh(this);
+			con.merge(this);
 			con.getTransaction().commit();
 		}
 		catch (Exception e) {
@@ -118,8 +146,6 @@ public Funcionario(String cpf, String nome, String senha, String cargo, String k
 		finally {
 			con.close();
 		}
-		
-
 		
 	}
 	
