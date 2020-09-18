@@ -19,7 +19,7 @@ public class Funcionario {
 	private String cargo;
 	private int fk_filiais_id;
 	
-public Funcionario(String cpf, String nome, String senha, String cargo, int k_filiais_id) {
+public Funcionario(String cpf, String nome, String senha, String cargo, String k_filiais_id) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.senha = senha;

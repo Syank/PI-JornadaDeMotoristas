@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,7 +16,7 @@
 
 <AnchorPane prefHeight="450.0" prefWidth="750.0" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="TOP_CENTER" opacity="0.85" prefHeight="450.0" prefWidth="250.0" styleClass="bordaMenu">
+      <VBox alignment="TOP_CENTER" opacity="0.85" prefHeight="450.0" prefWidth="250.0">
          <children>
             <HBox prefHeight="24.0" prefWidth="250.0" />
             <ImageView fitHeight="117.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
@@ -35,7 +40,7 @@
                <children>
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Desktop/new.png" />
+                        <Image url="@../../../../../../../../../Desktop/func.png" />
                      </image></ImageView>
                   <HBox layoutX="163.0" layoutY="10.0" prefHeight="59.0" prefWidth="30.0" />
                   <Label text="Funcionários" textFill="WHITE" />
@@ -54,6 +59,10 @@
                </children>
             </HBox>
          </children>
+         <styleClass>
+            <String fx:value="bordaMenu" />
+            <String fx:value="sombraDaImagemLogin" />
+         </styleClass>
       </VBox>
       <HBox alignment="CENTER_RIGHT" layoutX="250.0" prefHeight="25.0" prefWidth="500.0">
          <children>
@@ -77,14 +86,34 @@
             </Button>
          </children>
       </HBox>
-      <HBox layoutX="272.0" layoutY="47.0" prefHeight="30.0" prefWidth="344.0" styleClass="textoDeMenu">
+      <HBox layoutX="272.0" layoutY="47.0" prefHeight="31.0" prefWidth="387.0" styleClass="textoDeMenu">
          <children>
-            <Label text="Label">
+            <Label text="Cadastrar Funcionário">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
          </children>
       </HBox>
+      <ComboBox layoutX="272.0" layoutY="103.0" prefWidth="150.0" promptText="Escolha o cargo..." styleClass="customizarInputs" />
+      <TextField layoutX="273.0" layoutY="173.0" promptText="Nome" styleClass="customizarInputs" />
+      <TextField layoutX="273.0" layoutY="213.0" promptText="CPF" styleClass="customizarInputs" />
+      <TextField layoutX="510.0" layoutY="173.0" promptText="Carga Horária" styleClass="customizarInputs" />
+      <ComboBox layoutX="509.0" layoutY="103.0" prefWidth="150.0" promptText="Escolha a filial..." styleClass="customizarInputs" />
+      <Button layoutX="273.0" layoutY="386.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="102.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
+      <PasswordField layoutX="273.0" layoutY="257.0" promptText="Senha" styleClass="customizarInputs" />
+      <PasswordField layoutX="273.0" layoutY="302.0" promptText="Confirme a senha" styleClass="customizarInputs" />
+      <VBox layoutX="509.0" layoutY="237.0" prefHeight="123.0" prefWidth="100.0">
+         <children>
+            <CheckBox mnemonicParsing="false" text="Domingo" />
+            <CheckBox mnemonicParsing="false" text="Segunda" />
+            <CheckBox mnemonicParsing="false" text="Terça" />
+            <CheckBox mnemonicParsing="false" text="Quarta" />
+            <CheckBox mnemonicParsing="false" text="Quinta" />
+            <CheckBox mnemonicParsing="false" text="Sexta" />
+            <CheckBox mnemonicParsing="false" text="Sábado" />
+         </children>
+      </VBox>
+      <Label layoutX="509.0" layoutY="217.0" text="Trabalhara em..." />
    </children>
 </AnchorPane>

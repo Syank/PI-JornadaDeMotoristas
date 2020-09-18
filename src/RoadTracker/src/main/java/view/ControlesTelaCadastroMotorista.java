@@ -30,21 +30,21 @@ public class ControlesTelaCadastroMotorista implements Initializable{
 	
 	//ComboBoxCargo e suas listas primitivas e Observable
     @FXML
-    private ComboBox<ListasComboBoxs> comboBoxCargos;
-    private List<ListasComboBoxs> listaComboBoxCargos = new ArrayList<>();
-    private ObservableList<ListasComboBoxs> obsListComboBoxCargos;
+    private ComboBox<Listas> comboBoxCargos;
+    private List<Listas> listaComboBoxCargos = new ArrayList<>();
+    private ObservableList<Listas> obsListComboBoxCargos;
     
     //ComboBoxTurno e suas listas primitivas e Observable
     @FXML
-    private ComboBox<ListasComboBoxs> comboBoxTurnos;
-    private List<ListasComboBoxs> listaComboBoxTurnos = new ArrayList<>();
-    private ObservableList<ListasComboBoxs> obsListComboBoxTurnos;
+    private ComboBox<Listas> comboBoxTurnos;
+    private List<Listas> listaComboBoxTurnos = new ArrayList<>();
+    private ObservableList<Listas> obsListComboBoxTurnos;
     
     //ComboBoxFilial e suas listas primitivas e Observable
     @FXML
-    private ComboBox<ListasComboBoxs> comboBoxFilial;
-    private List<ListasComboBoxs> listaComboBoxFilial = new ArrayList<>();
-    private ObservableList<ListasComboBoxs> obsListComboBoxFilial;
+    private ComboBox<Listas> comboBoxFilial;
+    private List<Listas> listaComboBoxFilial = new ArrayList<>();
+    private ObservableList<Listas> obsListComboBoxFilial;
     
     
     
@@ -54,16 +54,16 @@ public class ControlesTelaCadastroMotorista implements Initializable{
     //Método para criar e carregar o conteúdo das ComboBoxs
     public void carregarComboBoxs() {
     	//Cria os elementos da lista da ComboBox
-    	ListasComboBoxs elementoCargos1 = new ListasComboBoxs(1, "Administrador");
-    	ListasComboBoxs elementoCargos2 = new ListasComboBoxs(2, "Supervisor");
-    	ListasComboBoxs elementoCargos3 = new ListasComboBoxs(3, "Motorista");
+    	Listas elementoCargos1 = new Listas("1", "Administrador");
+    	Listas elementoCargos2 = new Listas("2", "Supervisor");
+    	Listas elementoCargos3 = new Listas("3", "Motorista");
     	
-    	ListasComboBoxs elementoTurnos1 = new ListasComboBoxs(1, "Matutino");
-    	ListasComboBoxs elementoTurnos2 = new ListasComboBoxs(2, "Noturno");
+    	Listas elementoTurnos1 = new Listas("1", "Matutino");
+    	Listas elementoTurnos2 = new Listas("2", "Noturno");
     	
-    	ListasComboBoxs elementoFilial1 = new ListasComboBoxs(1, "Caçapava");
-    	ListasComboBoxs elementoFilial2 = new ListasComboBoxs(2, "Jacareí");
-    	ListasComboBoxs elementoFilial3 = new ListasComboBoxs(3, "São José dos Campos");
+    	Listas elementoFilial1 = new Listas("1", "Caçapava");
+    	Listas elementoFilial2 = new Listas("2", "Jacareí");
+    	Listas elementoFilial3 = new Listas("3", "São José dos Campos");
     	
     	
     	//Adiciona os elementos ao array(lista) primitivo
@@ -108,14 +108,14 @@ public class ControlesTelaCadastroMotorista implements Initializable{
 	@FXML
 	void realizarCadastro(ActionEvent event) {
 		//Pega o item selecionado nas ComboBoxs, podendo acessar o ID e o Texto
-		ListasComboBoxs seleçaoCargo = comboBoxCargos.getSelectionModel().getSelectedItem();
-		ListasComboBoxs seleçaoFilial = comboBoxFilial.getSelectionModel().getSelectedItem();
+		Listas seleçaoCargo = comboBoxCargos.getSelectionModel().getSelectedItem();
+		Listas seleçaoFilial = comboBoxFilial.getSelectionModel().getSelectedItem();
 		
 		//Cria o objeto Funcionário (quebrei as linhas para caber tudo na tela)
 		new Funcionario(inputCpf.getText(),
 						inputNome.getText(),
 						inputSenha.getText(),
-						seleçaoCargo.getCargo(),
+						seleçaoCargo.getValor(),
 						seleçaoFilial.getId());
 		
 		System.out.println("Cadastro Realizado!");

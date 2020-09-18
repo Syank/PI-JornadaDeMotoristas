@@ -9,6 +9,7 @@
 .botaoFechar{
 	-fx-background-color: transparent;
 }
+
 .botaoFechar:hover{
 	-fx-background-color: #d90000;
 }
@@ -25,12 +26,13 @@
 .customizarBotoes{
 	-fx-background-color: #00a8ff;
 }
+
 .customizarBotoes:hover{
 	-fx-background-color: #2f3640;
 }
 
 .sombraDaImagemLogin{
-	-fx-effect: dropshadow(gaussian, #000000, 10, 10, 10, 10);
+	-fx-effect: dropshadow(gaussian, #000000, 10, 0.5, 0, 1);
 }
 
 .bordaMenu{
@@ -45,4 +47,22 @@
 .caixasDeSelecao1{
 	-fx-border-width: 0px 0px 2px 0px;
 	-fx-border-color: #FFFFFF;
+}
+
+.textoDeMenu{
+	-fx-border-width: 0px 0px 1px 0px;
+	-fx-border-color: #00a8ff;
+}
+
+.checkBoxs{
+	-fx-background-color: transparent;
+	-fx-border-width: 0px 0px 1px 0px;
+	-fx-border-color: #00a8ff;
+}
+
+.botaoPesquisar{
+	-fx-background-color: transparent;
+}
+.botaoPesquisar:hover{
+	-fx-background-color: #2f3640;
 }
