@@ -5,14 +5,14 @@ import model.Funcionario;
 public class Testes {
 
 	public static void main (String[] args) {
-		Funcionario funcionario = new Funcionario("0000557789", "Rafael", "abacate", "Motorista", 3);
+		Funcionario funcionario = new Funcionario();
 		
+//		funcionario.cadastrarFilial("Filial Bárbara S.A. São José dos Campos", "São José dos Campos", "SP");
+		
+//		funcionario.cadastrarFuncionario("Ceciília Santos", "45832145692", "barbara234", "adm", 2);
+		
+		funcionario.alterarDadosFuncionario("Cecília Oliveira", "45832145692", "barbara147", "adm", 2); //não pode mudar o cpf, senão não encontra o registro
 
-		funcionario.alterarSenhaMotorista("abc");
-		System.out.println("Senha trocada");
-
-		
-		
 		
 		
 	}

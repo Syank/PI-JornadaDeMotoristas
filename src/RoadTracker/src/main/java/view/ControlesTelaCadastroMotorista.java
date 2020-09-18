@@ -112,13 +112,9 @@ public class ControlesTelaCadastroMotorista implements Initializable{
 		ListasComboBoxs seleçaoFilial = comboBoxFilial.getSelectionModel().getSelectedItem();
 		
 		//Cria o objeto Funcionário (quebrei as linhas para caber tudo na tela)
-		new Funcionario(inputCpf.getText(),
-						inputNome.getText(),
-						inputSenha.getText(),
-						seleçaoCargo.getCargo(),
-						seleçaoFilial.getId());
+		Funcionario funcionario = new Funcionario();
 		
-		System.out.println("Cadastro Realizado!");
+//		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial);  
 		
 	}
     
