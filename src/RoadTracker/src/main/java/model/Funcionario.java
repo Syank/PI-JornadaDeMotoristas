@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 @Entity
 @Table(name="funcionarios")
 public class Funcionario {
+	
 
 	@Id
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -18,13 +19,14 @@ public class Funcionario {
 	private String cargo;
 	private int fk_filiais_id;
 	
-	public Funcionario() {
+public Funcionario(String cpf, String nome, String senha, String cargo, String k_filiais_id) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.senha = senha;
 		this.cargo = cargo;
 		this.fk_filiais_id = fk_filiais_id;
 		
+		this.cadastrarMotorista();
 	}
 
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -65,16 +67,14 @@ public class Funcionario {
 		
 	}
 	
-	public void cadastrarFuncionario(String nome, String cpf, String senha, String cargo, int filial) {
+	public void cadastrarMotorista() {
+
 		EntityManager con = new ConnectionFactory().getConnection();
 		
-		this.cpf = cpf;
-		this.nome = nome;
-		this.cargo = cargo;
-		this.senha = senha;
-		this.fk_filiais_id = filial;
 		
 		try {
+			
+			//Mandando os dados do motorista para a tabela de motoristas
 			con.getTransaction().begin();
 			con.persist(this);
 			con.getTransaction().commit();
@@ -85,7 +85,7 @@ public class Funcionario {
 			
 		}
 		catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro no cadastro do funcionário. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Funcionário. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
 			con.getTransaction().rollback();
 		}
 		finally {
@@ -143,24 +143,5 @@ public class Funcionario {
 		}
 		
 	}
-
-	public void encontrarFuncionario(String cpf) {
-		EntityManager con = new ConnectionFactory().getConnection();
-		
-		try {
-			Funcionario funcionario = con.find(model.Funcionario.class, cpf);
-			System.out.println("Nome: " + funcionario.nome);
-			System.out.println("CPF: " + funcionario.cpf);
-			System.out.println("Senha: " + funcionario.senha);
-			System.out.println("Cargo: " + funcionario.cargo);
-			System.out.println("Filial: " + funcionario.fk_filiais_id);
-		}
-		catch (Exception e){
-			System.err.println(e);
-		}
-		finally {
-			con.close();
-		}
-		
-	}
+	
 }
