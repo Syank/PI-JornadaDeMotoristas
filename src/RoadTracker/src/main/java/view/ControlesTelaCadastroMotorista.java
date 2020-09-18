@@ -50,7 +50,6 @@ public class ControlesTelaCadastroMotorista implements Initializable{
     
     
     
-    
     //Mï¿½todo para criar e carregar o conteï¿½do das ComboBoxs
     public void carregarComboBoxs() {
     	//Cria os elementos da lista da ComboBox
@@ -108,15 +107,15 @@ public class ControlesTelaCadastroMotorista implements Initializable{
 	@FXML
 	void realizarCadastro(ActionEvent event) {
 		//Pega o item selecionado nas ComboBoxs, podendo acessar o ID e o Texto
-		Listas seleï¿½aoCargo = comboBoxCargos.getSelectionModel().getSelectedItem();
-		Listas seleï¿½aoFilial = comboBoxFilial.getSelectionModel().getSelectedItem();
+		Listas seleçaoCargo = comboBoxCargos.getSelectionModel().getSelectedItem();
+		Listas seleçaoFilial = comboBoxFilial.getSelectionModel().getSelectedItem();
 		
 		//Cria o objeto Funcionï¿½rio (quebrei as linhas para caber tudo na tela)
 		new Funcionario(inputCpf.getText(),
 						inputNome.getText(),
 						inputSenha.getText(),
-						seleï¿½aoCargo.getValor(),
-						seleï¿½aoFilial.getId());
+						seleçaoCargo.getValor(),
+						seleçaoFilial.getId());
 		
 //		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial);  
 		

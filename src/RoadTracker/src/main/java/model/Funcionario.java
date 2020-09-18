@@ -67,15 +67,10 @@ public Funcionario(String cpf, String nome, String senha, String cargo, String k
 		
 	}
 	
-	public void cadastrarFuncionario(String nome, String cpf, String senha, String cargo, int filial) {
+	public void cadastrarMotorista() {
 
 		EntityManager con = new ConnectionFactory().getConnection();
 		
-		this.nome = nome;
-		this.cpf = cpf;
-		this.senha = senha;
-		this.cargo = cargo;
-		this.fk_filiais_id = filial;
 		
 		try {
 			
@@ -85,12 +80,12 @@ public Funcionario(String cpf, String nome, String senha, String cargo, String k
 			con.getTransaction().commit();
 			
 			if (this.cargo == "motorista") {
-				cadastrarJornadaTrabalho(this.cpf, 8, "manhï¿½", true, true, true, true, true, false, false);
+				cadastrarJornadaTrabalho(this.cpf, 8, "manhã", true, true, true, true, true, false, false);
 			}
 			
 		}
 		catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "Funcionï¿½rio. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Funcionário. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
 			con.getTransaction().rollback();
 		}
 		finally {
