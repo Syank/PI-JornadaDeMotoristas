@@ -20,16 +20,16 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws IOException {
 		stage = primaryStage;
 		
-		primaryStage.setTitle("Teste de janelitas");  // Muda o título da janela
+		primaryStage.setTitle("RoadTracker");  // Muda o título da janela
 		primaryStage.initStyle(StageStyle.UNDECORATED);  // Tira a borda padrão do SO da janela
 		
 		// Carrega as telas
-		Pane fxmlTela1 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminFuncionarios.fxml"));
+		Pane fxmlTela1 = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
 		tela1 = new Scene(fxmlTela1);
 	
-		//Pane fxmlTela2 = FXMLLoader.load(getClass().getResource("FXMLTela2.fxml"));
-		//tela2 = new Scene(fxmlTela2);
-		
+		Pane fxmlTela2 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminFuncionarios.fxml"));
+		tela2 = new Scene(fxmlTela2);
+		 
 		// Seta a janela atual e a exibe
 		primaryStage.setScene(tela1);
 		primaryStage.show();
@@ -39,7 +39,7 @@ public class Main extends Application {
 
 	public static void trocarTela(String escolha) {
 		switch (escolha) {
-			case "Tela 1":
+			case "Tela Login":
 				stage.setScene(tela1);
 				break;
 			case "Tela 2":

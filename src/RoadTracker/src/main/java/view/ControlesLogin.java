@@ -1,0 +1,38 @@
+package view;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
+public class ControlesLogin {
+	
+    @FXML
+    private TextField inputUsuario;
+
+    @FXML
+    private PasswordField inputSenha;
+
+    @FXML
+    private Button botaoEntrar;
+	
+	
+	
+	
+    @FXML
+    void verificarLogin(ActionEvent event) {
+    	if(inputUsuario.getText().contains("oi") && inputSenha.getText().contains("123")) {
+    		System.out.println("Deu certo");
+    		
+    		Main.trocarTela("Tela 2");
+    	}
+    }
+	
+    // Função para fechar a janela ao clicar no " x "
+    @FXML
+    void fecharJanela(ActionEvent event) {
+    	System.exit(0);
+    }
+
+}

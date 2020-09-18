@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -70,6 +71,12 @@ public class ControlesPerfilAdminFuncionarios implements Initializable {
     	//Adiciona a Obersavable Array na TableView
     	tabelaFuncionarios.setItems(obsList);
 
+    }
+    
+    // Função para fechar a janela ao clicar no " x "
+    @FXML
+    void fecharJanela(ActionEvent event) {
+    	System.exit(0);
     }
     
 	@Override
