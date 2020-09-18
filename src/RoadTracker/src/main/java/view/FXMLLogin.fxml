@@ -1,8 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="450.0" prefWidth="750.0" styleClass="fundoDaJanela" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="450.0" prefWidth="300.0" styleClass="sombraDaImagemLogin">
+         <children>
+            <ImageView fitHeight="450.0" fitWidth="300.0" opacity="0.79" pickOnBounds="true">
+               <image>
+                  <Image url="@estrada.png" />
+               </image>
+            </ImageView>
+         </children></VBox>
+      <TextField layoutX="458.0" layoutY="151.0" promptText="Usuário" styleClass="customizarInputs" />
+      <PasswordField layoutX="458.0" layoutY="210.0" promptText="Senha" styleClass="customizarInputs" />
+      <Button layoutX="486.0" layoutY="252.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" styleClass="customizarBotoes" text="Entrar" textFill="WHITE" />
+      <Label layoutX="432.0" layoutY="294.0" text="Não possui uma conta? Clique aqui" textFill="#00fdc3" underline="true" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="426.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@usuario.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="424.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@chave.png" />
+         </image>
+      </ImageView>
+      <HBox alignment="BOTTOM_RIGHT" layoutX="300.0" prefHeight="25.0" prefWidth="450.0">
+         <children>
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="15.0" styleClass="botaoFechar">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@minimizar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" styleClass="botaoFechar">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@fechar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <Label layoutX="452.0" layoutY="55.0" text="RoadTracker" textFill="#157586">
+         <font>
+            <Font name="System Italic" size="27.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>
-

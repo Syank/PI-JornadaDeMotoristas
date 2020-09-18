@@ -1,5 +1,5 @@
 .fundoDaJanela{
-	-fx-background-color: #f5f6fa;
+	-fx-background-color: #FFFFFF;
 }
 
 .barraDeMenu{
@@ -27,4 +27,22 @@
 }
 .customizarBotoes:hover{
 	-fx-background-color: #2f3640;
+}
+
+.sombraDaImagemLogin{
+	-fx-effect: dropshadow(gaussian, #000000, 10, 10, 10, 10);
+}
+
+.bordaMenu{
+	-fx-background-color: #30306b; 
+}
+
+.caixasDeSelecao{
+	-fx-border-width: 2px 0px 2px 0px;
+	-fx-border-color: #FFFFFF;
+}
+
+.caixasDeSelecao1{
+	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-color: #FFFFFF;
 }

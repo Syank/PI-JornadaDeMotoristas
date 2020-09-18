@@ -24,7 +24,7 @@ public class Main extends Application {
 		primaryStage.initStyle(StageStyle.UNDECORATED);  // Tira a borda padrão do SO da janela
 		
 		// Carrega as telas
-		Pane fxmlTela1 = FXMLLoader.load(getClass().getResource("FXMLTelaCadastroMotorista.fxml"));
+		Pane fxmlTela1 = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
 		tela1 = new Scene(fxmlTela1);
 	
 		Pane fxmlTela2 = FXMLLoader.load(getClass().getResource("FXMLTela2.fxml"));
