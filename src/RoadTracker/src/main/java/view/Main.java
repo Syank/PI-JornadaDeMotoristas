@@ -14,6 +14,7 @@ public class Main extends Application {
 	private static Stage stage;
 	private static Scene tela1;
 	private static Scene tela2;
+	private static Scene tela3;
 	
 	
 	@Override
@@ -29,6 +30,9 @@ public class Main extends Application {
 	
 		Pane fxmlTela2 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminFuncionarios.fxml"));
 		tela2 = new Scene(fxmlTela2);
+		
+		Pane fxmlTela3 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminCadMot.fxml"));
+		tela3 = new Scene(fxmlTela3);
 		 
 		// Seta a janela atual e a exibe
 		primaryStage.setScene(tela1);
@@ -45,6 +49,8 @@ public class Main extends Application {
 			case "Tela 2":
 				stage.setScene(tela2);
 				break;
+			case "Tela 3":
+				stage.setScene(tela3);
 		}
 	}
 	

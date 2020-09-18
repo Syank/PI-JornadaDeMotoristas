@@ -24,7 +24,7 @@
                </image>
             </ImageView>
             <VBox prefHeight="25.0" prefWidth="250.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao">
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#abrirTelaCadFunc" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
@@ -35,7 +35,7 @@
                   <Label text="Cadastrar Funcionário" textFill="WHITE" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" onMouseClicked="#abrirTelaFunc" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -46,7 +46,7 @@
                   <HBox layoutX="106.0" layoutY="10.0" prefHeight="59.0" prefWidth="27.0" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="203.0" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="203.0" onMouseClicked="#abrirTelaHistEntregas" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
@@ -55,6 +55,19 @@
                      </image></ImageView>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <Label text="Histórico de entregas" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="250.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#voltar" prefHeight="40.0" prefWidth="40.0" styleClass="botaoVoltar">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@voltar.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </HBox>
          </children>
@@ -104,7 +117,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="botaoSelecionar" layoutX="650.0" layoutY="200.0" mnemonicParsing="false" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
+      <Button layoutX="650.0" layoutY="200.0" mnemonicParsing="false" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
       <TableView fx:id="tabelaFuncionarios" layoutX="272.0" layoutY="167.0" prefHeight="259.0" prefWidth="344.0">
         <columns>
           <TableColumn fx:id="colunaNome" prefWidth="248.0" text="Nome" />

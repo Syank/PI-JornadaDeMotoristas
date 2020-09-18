@@ -63,6 +63,14 @@
 .botaoPesquisar{
 	-fx-background-color: transparent;
 }
+
 .botaoPesquisar:hover{
 	-fx-background-color: #2f3640;
+}
+
+.botaoVoltar{
+	-fx-background-color: transparent;
+}
+.botaoVoltar:hover{
+	-fx-background-color: #d90000;
 }

@@ -15,6 +15,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+
 
 public class ControlesPerfilAdminFuncionarios implements Initializable {
 
@@ -71,6 +73,29 @@ public class ControlesPerfilAdminFuncionarios implements Initializable {
     	//Adiciona a Obersavable Array na TableView
     	tabelaFuncionarios.setItems(obsList);
 
+    }
+    
+    @FXML
+    void abrirTelaCadFunc(MouseEvent event) {
+    	System.out.println("Clicou em Cadastrar Funcionário");
+    	Main.trocarTela("Tela 3");
+    }
+    
+    @FXML
+    void abrirTelaFunc(MouseEvent event) {
+    	System.out.println("Clicou em Funcionários");
+    }
+
+
+    @FXML
+    void abrirTelaHistEntregas(MouseEvent event) {
+    	System.out.println("Clicou em Histórico de Entregas");
+    }
+    
+
+    @FXML
+    void voltar(ActionEvent event) {
+    	Main.trocarTela("Tela Login");
     }
     
     // Função para fechar a janela ao clicar no " x "
