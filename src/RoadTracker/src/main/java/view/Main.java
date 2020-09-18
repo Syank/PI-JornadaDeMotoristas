@@ -24,14 +24,14 @@ public class Main extends Application {
 		primaryStage.initStyle(StageStyle.UNDECORATED);  // Tira a borda padrão do SO da janela
 		
 		// Carrega as telas
-		Pane fxmlTela1 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminFuncionarios.fxml"));
-		tela1 = new Scene(fxmlTela1);
+		//Pane fxmlTela1 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminFuncionarios.fxml"));
+		//tela1 = new Scene(fxmlTela1);
 	
-		//Pane fxmlTela2 = FXMLLoader.load(getClass().getResource("FXMLTela2.fxml"));
-		//tela2 = new Scene(fxmlTela2);
+		Pane fxmlTela2 = FXMLLoader.load(getClass().getResource("FXMLlogin.fxml"));
+		tela2 = new Scene(fxmlTela2);
 		
 		// Seta a janela atual e a exibe
-		primaryStage.setScene(tela1);
+		primaryStage.setScene(tela2);
 		primaryStage.show();
 
 	}
