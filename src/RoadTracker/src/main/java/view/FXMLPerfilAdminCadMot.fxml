@@ -62,7 +62,7 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#voltar" prefHeight="40.0" prefWidth="40.0" styleClass="botaoVoltar">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@voltar.png" />
                            </image>

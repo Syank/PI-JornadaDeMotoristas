@@ -8,12 +8,14 @@ public class ControlesPerfilAdminCadMot {
 
     @FXML
     void abrirTelaFunc(MouseEvent event) {
-
+    	System.out.println("Clicou em func");
+    	Main.trocarTela("Tela Funcionarios");
     }
 
     @FXML
     void abrirTelaHistEntregas(MouseEvent event) {
-
+    	System.out.println("Clicou em hist ent");
+    	Main.trocarTela("Tela Historico de Entregas");
     }
 
     @FXML

@@ -23,7 +23,7 @@ public class ControlesLogin {
     @FXML
     void verificarLogin(ActionEvent event) {
     	if(inputUsuario.getText().isEmpty() && inputSenha.getText().isEmpty()) {
-    		Main.trocarTela("Tela 2");
+    		Main.trocarTela("Tela Cadastrar Funcionarios");
     	}
     }
 	

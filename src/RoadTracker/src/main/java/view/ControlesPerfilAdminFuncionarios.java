@@ -77,19 +77,14 @@ public class ControlesPerfilAdminFuncionarios implements Initializable {
     
     @FXML
     void abrirTelaCadFunc(MouseEvent event) {
-    	System.out.println("Clicou em Cadastrar Funcionário");
-    	Main.trocarTela("Tela 3");
+    	System.out.println("Clicou em cad fun ");
+    	Main.trocarTela("Tela Cadastrar Funcionarios");
     }
-    
-    @FXML
-    void abrirTelaFunc(MouseEvent event) {
-    	System.out.println("Clicou em Funcionários");
-    }
-
 
     @FXML
     void abrirTelaHistEntregas(MouseEvent event) {
-    	System.out.println("Clicou em Histórico de Entregas");
+    	System.out.println("Clicou em hist ent");
+    	Main.trocarTela("Tela Historico de Entregas");
     }
     
 
