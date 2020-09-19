@@ -109,14 +109,7 @@ public class ControlesTelaCadastroMotorista implements Initializable{
 		//Pega o item selecionado nas ComboBoxs, podendo acessar o ID e o Texto
 		Listas seleçaoCargo = comboBoxCargos.getSelectionModel().getSelectedItem();
 		Listas seleçaoFilial = comboBoxFilial.getSelectionModel().getSelectedItem();
-		
-		//Cria o objeto Funcionï¿½rio (quebrei as linhas para caber tudo na tela)
-		new Funcionario(inputCpf.getText(),
-						inputNome.getText(),
-						inputSenha.getText(),
-						seleçaoCargo.getValor(),
-						seleçaoFilial.getId());
-		
+
 //		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial);  
 		
 	}

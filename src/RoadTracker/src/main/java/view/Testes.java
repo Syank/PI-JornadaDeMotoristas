@@ -8,7 +8,7 @@ public class Testes {
 		// Tem que corrigir os argumentos
 		
 		
-//		Funcionario funcionario = new Funcionario();
+		Funcionario funcionario = new Funcionario();
 		
 //		funcionario.cadastrarFilial("Filial Bárbara S.A. São José dos Campos", "São José dos Campos", "SP");
 		
@@ -16,7 +16,9 @@ public class Testes {
 		
 //		funcionario.alterarDadosFuncionario("Cecília Oliveira", "45832145692", "barbara147", "adm", 2); //não pode mudar o cpf, senão não encontra o registro
 
+//		funcionario.listarFuncionarios();
 		
+//		funcionario.removerFuncionario("00000000000");
 		
 	}
 	

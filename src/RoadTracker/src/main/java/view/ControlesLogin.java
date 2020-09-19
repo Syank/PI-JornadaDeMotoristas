@@ -22,9 +22,7 @@ public class ControlesLogin {
 	
     @FXML
     void verificarLogin(ActionEvent event) {
-    	if(inputUsuario.getText().contains("oi") && inputSenha.getText().contains("123")) {
-    		System.out.println("Deu certo");
-    		
+    	if(inputUsuario.getText().isEmpty() && inputSenha.getText().isEmpty()) {
     		Main.trocarTela("Tela 2");
     	}
     }

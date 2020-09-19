@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Id;
@@ -19,14 +21,13 @@ public class Funcionario {
 	private String cargo;
 	private int fk_filiais_id;
 	
-public Funcionario(String cpf, String nome, String senha, String cargo, String k_filiais_id) {
+public Funcionario() {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.senha = senha;
 		this.cargo = cargo;
 		this.fk_filiais_id = fk_filiais_id;
 		
-		this.cadastrarMotorista();
 	}
 
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -142,6 +143,53 @@ public Funcionario(String cpf, String nome, String senha, String cargo, String k
 			con.close();
 		}
 		
+	}
+	
+	public List<Funcionario> consultarTodosFuncionarios(){
+		EntityManager con = new ConnectionFactory().getConnection();
+		List<Funcionario> funcionarios = null;
+
+		try {
+			funcionarios = con.createQuery("from Funcionario f").getResultList();
+		}
+		catch (Exception e) {
+			System.err.println(e);
+		}
+		finally {
+			con.close();
+		}
+
+		return funcionarios;
+		
+	}
+
+	public void listarFuncionarios(){
+		for (Funcionario f: this.consultarTodosFuncionarios()) {
+			System.out.println("Nome: " + f.nome + ". CPF: " + f.cpf);
+		}
+	}
+	
+	public Funcionario removerFuncionario(String cpf){
+		EntityManager con = new ConnectionFactory().getConnection();
+
+		Funcionario funcionario  = null;
+
+		try {
+			funcionario = con.find(model.Funcionario.class, cpf);		
+
+			con.getTransaction().begin();
+			con.remove(funcionario);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+
+		return funcionario;
 	}
 	
 }
