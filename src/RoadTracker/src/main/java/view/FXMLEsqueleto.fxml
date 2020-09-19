@@ -25,7 +25,7 @@
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Desktop/add.png" />
+                        <Image url="@adicionar.png" />
                      </image></ImageView>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="59.0" prefWidth="31.0" />
                   <Label text="Cadastrar Funcionário" textFill="WHITE" />
@@ -35,7 +35,7 @@
                <children>
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Desktop/new.png" />
+                        <Image url="@funcionarios.png" />
                      </image></ImageView>
                   <HBox layoutX="163.0" layoutY="10.0" prefHeight="59.0" prefWidth="30.0" />
                   <Label text="Funcionários" textFill="WHITE" />
@@ -47,10 +47,23 @@
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Desktop/truck.png" />
+                        <Image url="@truck.png" />
                      </image></ImageView>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <Label text="Histórico de entregas" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="botaoVoltar">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@voltar.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </HBox>
          </children>
@@ -77,7 +90,7 @@
             </Button>
          </children>
       </HBox>
-      <HBox layoutX="272.0" layoutY="47.0" prefHeight="30.0" prefWidth="344.0" styleClass="textoDeMenu">
+      <HBox layoutX="272.0" layoutY="47.0" prefHeight="31.0" prefWidth="400.0" styleClass="textoDeMenu">
          <children>
             <Label text="Label">
                <font>
