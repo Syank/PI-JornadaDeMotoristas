@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import model.Funcionario;
 
 
 public class ControlesPerfilAdminFuncionarios implements Initializable {
@@ -43,25 +44,10 @@ public class ControlesPerfilAdminFuncionarios implements Initializable {
     
     
     public void carregarTableView() {
-    	//Cria os elementos da lista da TableView
-    	//---------------------- OBS: Os dados vindos do banco de dados devem ser inseridos aqui
-    	//de preferência em algo como "for funcionario in tabelaFuncionarios:
-    	//									lista.add(new Listas(funcionario.cpf, funcionario.nome)"
-    	//Qualquer dúvida procurar o Master .-.    ----------------------------------------------------
-    	Listas nome1 = new Listas("1203254679", "Ana Carolina");
-    	Listas nome2 = new Listas("2365894510", "Ana Clara");
-    	Listas nome3 = new Listas("0325698743", "Anna Yukimi");
-    	Listas nome4 = new Listas("8471920481", "Bárbara Port");
-    	Listas nome5 = new Listas("1928340684", "Giovanni Alves");
-    	Listas nome6 = new Listas("3812038456", "Rafael Furtado");
     	
-    	//Adiciona os elementos ao array(lista) primitivo
-    	lista.add(nome1);
-    	lista.add(nome2);
-    	lista.add(nome3);
-    	lista.add(nome4);
-    	lista.add(nome5);
-    	lista.add(nome6);
+    	Funcionario funcionario = new Funcionario();
+    	
+    	lista = funcionario.listarFuncionarios();
     	
     	//Transforma a array primitiva em Observable Array
     	obsList = FXCollections.observableArrayList(lista);

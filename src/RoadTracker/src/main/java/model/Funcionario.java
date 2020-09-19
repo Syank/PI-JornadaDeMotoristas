@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -7,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
+
+import view.Listas;
 
 @Entity
 @Table(name="funcionarios")
@@ -68,9 +71,15 @@ public Funcionario() {
 		
 	}
 	
-	public void cadastrarMotorista() {
+	public void cadastrarFuncionario(String nome, String cpf, String senha, String cargo, int filial) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
+		
+		this.nome = nome;
+		this.cpf = cpf;
+		this.senha = senha;
+		this.cargo = cargo;
+		this.fk_filiais_id = filial;
 		
 		
 		try {
@@ -163,10 +172,19 @@ public Funcionario() {
 		
 	}
 
-	public void listarFuncionarios(){
+	public List<Listas> listarFuncionarios(){
+		
+		List<Listas> lista = new ArrayList<>();
+		
 		for (Funcionario f: this.consultarTodosFuncionarios()) {
-			System.out.println("Nome: " + f.nome + ". CPF: " + f.cpf);
+			
+			Listas nome = new Listas(f.cpf, f.nome);
+			lista.add(nome);
 		}
+		
+		return lista;
+		
+		
 	}
 	
 	public Funcionario removerFuncionario(String cpf){

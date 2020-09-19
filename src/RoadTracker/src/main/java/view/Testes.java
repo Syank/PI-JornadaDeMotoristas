@@ -12,7 +12,7 @@ public class Testes {
 		
 //		funcionario.cadastrarFilial("Filial Bárbara S.A. São José dos Campos", "São José dos Campos", "SP");
 		
-//		funcionario.cadastrarFuncionario("Ceciília Santos", "45832145692", "barbara234", "adm", 2);
+//		funcionario.cadastrarFuncionario("Rafael", "12345678900", "rafael123", "adm", 2);
 		
 //		funcionario.alterarDadosFuncionario("Cecília Oliveira", "45832145692", "barbara147", "adm", 2); //não pode mudar o cpf, senão não encontra o registro
 
