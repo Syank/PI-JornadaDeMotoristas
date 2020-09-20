@@ -5,7 +5,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="750.0" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControlesPerfilAdminCadMot">
+<AnchorPane prefHeight="450.0" prefWidth="750.0" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" opacity="0.85" prefHeight="450.0" prefWidth="250.0">
          <children>
@@ -25,7 +24,7 @@
                </image>
             </ImageView>
             <VBox prefHeight="25.0" prefWidth="250.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao">
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#abrirTelaCadFunc" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
@@ -36,7 +35,7 @@
                   <Label text="Cadastrar Funcionário" textFill="WHITE" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" onMouseClicked="#abrirTelaFunc" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -58,11 +57,11 @@
                   <Label text="Histórico de entregas" textFill="WHITE" />
                </children>
             </HBox>
-            <VBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="250.0">
+            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="250.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#voltar" prefHeight="40.0" prefWidth="40.0" styleClass="botaoVoltar">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@voltar.png" />
                            </image>
@@ -70,7 +69,7 @@
                      </graphic>
                   </Button>
                </children>
-            </VBox>
+            </HBox>
          </children>
          <styleClass>
             <String fx:value="bordaMenu" />
@@ -101,32 +100,77 @@
       </HBox>
       <HBox layoutX="272.0" layoutY="47.0" prefHeight="31.0" prefWidth="387.0" styleClass="textoDeMenu">
          <children>
-            <Label text="Cadastrar Funcionário">
+            <Label text="Informações de Funcionário">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
          </children>
       </HBox>
-      <ComboBox layoutX="272.0" layoutY="103.0" prefWidth="150.0" promptText="Escolha o cargo..." styleClass="customizarInputs" />
-      <TextField layoutX="273.0" layoutY="173.0" promptText="Nome" styleClass="customizarInputs" />
-      <TextField layoutX="273.0" layoutY="213.0" promptText="CPF" styleClass="customizarInputs" />
-      <TextField layoutX="510.0" layoutY="173.0" promptText="Carga Horária" styleClass="customizarInputs" />
-      <ComboBox layoutX="509.0" layoutY="103.0" prefWidth="150.0" promptText="Escolha a filial..." styleClass="customizarInputs" />
-      <Button layoutX="273.0" layoutY="386.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="102.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
-      <PasswordField layoutX="273.0" layoutY="257.0" promptText="Senha" styleClass="customizarInputs" />
-      <PasswordField layoutX="273.0" layoutY="302.0" promptText="Confirme a senha" styleClass="customizarInputs" />
-      <VBox layoutX="509.0" layoutY="237.0" prefHeight="123.0" prefWidth="100.0">
+      <Button fx:id="botaoBuscar" layoutX="677.0" layoutY="93.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="botaoPesquisar" textFill="WHITE" />
+      <VBox layoutX="466.0" layoutY="139.0" prefHeight="117.0" prefWidth="100.0" spacing="5.0">
          <children>
+            <Label text="Dias de trabalho" />
             <CheckBox mnemonicParsing="false" text="Domingo" />
-            <CheckBox mnemonicParsing="false" text="Segunda" />
-            <CheckBox mnemonicParsing="false" text="Terça" />
-            <CheckBox mnemonicParsing="false" text="Quarta" />
-            <CheckBox mnemonicParsing="false" text="Quinta" />
-            <CheckBox mnemonicParsing="false" text="Sexta" />
+            <CheckBox mnemonicParsing="false" text="Segunda-Feira" />
+            <CheckBox mnemonicParsing="false" text="Terça-Feira" />
+            <CheckBox mnemonicParsing="false" text="Quarta-Feira" />
+            <CheckBox mnemonicParsing="false" text="Quinta-Feira" />
+            <CheckBox mnemonicParsing="false" text="Sexta-Feira" />
             <CheckBox mnemonicParsing="false" text="Sábado" />
          </children>
       </VBox>
-      <Label layoutX="509.0" layoutY="217.0" text="Dias de trabalho" />
+      <VBox layoutX="272.0" layoutY="109.0" prefHeight="205.0" prefWidth="148.0" spacing="20.0">
+         <children>
+            <TextField promptText="Nome" styleClass="customizarInputs" />
+            <TextField promptText="CPF" styleClass="customizarInputs" />
+            <TextField promptText="Senha" styleClass="customizarInputs" />
+            <TextField promptText="Carga Horária" styleClass="customizarInputs" />
+            <ComboBox prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
+         </children>
+      </VBox>
+      <Button alignment="CENTER" layoutX="500.0" layoutY="385.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="98.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@salvarAlteracoes.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="272.0" layoutY="385.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="100.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@salvarAlteracoes.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="586.0" layoutY="263.0" mnemonicParsing="false" styleClass="customizarBotoes" text="Excluir funcionário" textFill="WHITE" />
+      <VBox alignment="CENTER" layoutX="563.0" layoutY="93.0" prefHeight="152.0" prefWidth="159.0" spacing="10.0">
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@usuario.png" />
+               </image>
+            </ImageView>
+            <Label text="Nome do Motorista">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" styleClass="customizarBotoes" text="Alterar foto" textFill="WHITE" />
+         </children>
+      </VBox>
+      <Button layoutX="610.0" layoutY="385.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="114.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@salvarAlteracoes.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
