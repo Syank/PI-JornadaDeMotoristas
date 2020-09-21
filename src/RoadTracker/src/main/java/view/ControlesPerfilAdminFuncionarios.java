@@ -37,11 +37,10 @@ public class ControlesPerfilAdminFuncionarios implements Initializable {
     private TableColumn<Listas, String> colunaNome;
     @FXML
     private TableColumn<Listas, String> colunaCpf;
+    
     private List<Listas> lista = new ArrayList<>();
+    
     private ObservableList<Listas> obsList;
-    
-    
-    
     
     public void carregarTableView() {
     	
@@ -58,7 +57,6 @@ public class ControlesPerfilAdminFuncionarios implements Initializable {
     	
     	//Adiciona a Obersavable Array na TableView
     	tabelaFuncionarios.setItems(obsList);
-
     }
     
     @FXML

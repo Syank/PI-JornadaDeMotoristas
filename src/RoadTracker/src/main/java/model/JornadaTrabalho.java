@@ -14,7 +14,6 @@ public class JornadaTrabalho {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 	private String fk_funcionarios_cpf;
-	private String turno;
 	private Integer carga_horaria;
 	private boolean seg;
 	private boolean ter;
@@ -35,12 +34,6 @@ public class JornadaTrabalho {
 	}
 	public void setFk_funcionarios_cpf(String fk_funcionarios_cpf) {
 		this.fk_funcionarios_cpf = fk_funcionarios_cpf;
-	}
-	public String getTurno() {
-		return turno;
-	}
-	public void setTurno(String turno) {
-		this.turno = turno;
 	}
 	public Integer getCarga_horaria() {
 		return carga_horaria;

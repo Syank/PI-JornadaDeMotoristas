@@ -21,7 +21,7 @@
                </image>
             </ImageView>
          </children></VBox>
-      <TextField fx:id="inputUsuario" layoutX="458.0" layoutY="151.0" promptText="Usuário" styleClass="customizarInputs" />
+      <TextField fx:id="inputUsuario" layoutX="458.0" layoutY="151.0" promptText="CPF" styleClass="customizarInputs" />
       <PasswordField fx:id="inputSenha" layoutX="458.0" layoutY="210.0" promptText="Senha" styleClass="customizarInputs" />
       <Button fx:id="botaoEntrar" layoutX="486.0" layoutY="252.0" mnemonicParsing="false" onAction="#verificarLogin" prefHeight="25.0" prefWidth="79.0" styleClass="customizarBotoes" text="Entrar" textFill="WHITE" />
       <Label layoutX="432.0" layoutY="294.0" text="Não possui uma conta? Clique aqui" textFill="#00fdc3" underline="true" />

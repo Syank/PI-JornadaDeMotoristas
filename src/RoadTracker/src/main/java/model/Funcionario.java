@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
+import view.Cargos;
 import view.Listas;
 
 @Entity
@@ -36,14 +37,13 @@ public Funcionario() {
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 //	private Integer id;
 	
-	public JornadaTrabalho cadastrarJornadaTrabalho(String funcionario, int carga_horaria, String turno, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
+	public JornadaTrabalho cadastrarJornadaTrabalho(String funcionario, int carga_horaria, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
 		
 		EntityManager con = new ConnectionFactory().getConnection();
 		JornadaTrabalho jornada = new JornadaTrabalho();
 		
 		jornada.setFk_funcionarios_cpf(funcionario);
 		jornada.setCarga_horaria(carga_horaria);
-		jornada.setTurno(turno);
 		jornada.setSeg(seg);
 		jornada.setTer(ter);
 		jornada.setQua(qua);
@@ -88,11 +88,6 @@ public Funcionario() {
 			con.getTransaction().begin();
 			con.persist(this);
 			con.getTransaction().commit();
-			
-			if (this.cargo == "motorista") {
-				cadastrarJornadaTrabalho(this.cpf, 8, "manhã", true, true, true, true, true, false, false);
-			}
-			
 		}
 		catch(Exception e) {
 			JOptionPane.showMessageDialog(null, "Funcionário. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
@@ -185,6 +180,20 @@ public Funcionario() {
 		return lista;
 		
 		
+	}
+	
+	public List<Cargos> listarCargos(){
+		
+		List<Cargos> cargos = new ArrayList<>();
+		
+		Cargos cargo1 = new Cargos(1, "Motorista");
+		cargos.add(cargo1);
+		Cargos cargo2 = new Cargos(2, "Supervisor");
+		cargos.add(cargo2);
+		Cargos cargo3 = new Cargos(1, "Administrador");
+		cargos.add(cargo3);
+		
+		return cargos;
 	}
 	
 	public Funcionario removerFuncionario(String cpf){
