@@ -190,7 +190,7 @@ public Funcionario() {
 		cargos.add(cargo1);
 		Cargos cargo2 = new Cargos(2, "Supervisor");
 		cargos.add(cargo2);
-		Cargos cargo3 = new Cargos(1, "Administrador");
+		Cargos cargo3 = new Cargos(3, "Administrador");
 		cargos.add(cargo3);
 		
 		return cargos;
