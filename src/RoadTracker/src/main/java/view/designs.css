@@ -49,6 +49,13 @@
 	-fx-border-color: #FFFFFF;
 }
 
+.caixasDeSelecao:hover{
+	-fx-background-color: #0984e3;
+}
+.caixasDeSelecao1:hover{
+	-fx-background-color: #0984e3;
+}
+
 .textoDeMenu{
 	-fx-border-width: 0px 0px 1px 0px;
 	-fx-border-color: #00a8ff;
