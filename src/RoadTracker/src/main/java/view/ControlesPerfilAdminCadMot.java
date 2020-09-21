@@ -30,7 +30,7 @@ public class ControlesPerfilAdminCadMot implements Initializable {
 	@FXML
 	private PasswordField pfSenha2;
 	@FXML
-	private ComboBox cbFilial;
+	private ComboBox<Filiais> cbFilial;
 	@FXML
 	private TextField tfCargaHoraria;
 	@FXML
@@ -50,17 +50,24 @@ public class ControlesPerfilAdminCadMot implements Initializable {
 	
     private List<Cargos> cargos = new ArrayList<>();
     private ObservableList<Cargos> cargosList;
+    
+    private List<Filiais> filiais = new ArrayList<>();
+    private ObservableList<Filiais> filiaisList;
 
-    public void carregarComboBox() {
-    	
+    public void carregarComboBoxCargos() {
     	Funcionario funcionario = new Funcionario();
-
     	cargos = funcionario.listarCargos();
     	cargosList = FXCollections.observableArrayList(cargos);
     	cbCargo.setItems(cargosList);
     }
+    
+    public void carregarComboBoxFiliais() {
+    	Funcionario funcionario = new Funcionario();
+    	filiais = funcionario.listarFiliais();
+    	filiaisList = FXCollections.observableArrayList(filiais);
+    	cbFilial.setItems(filiaisList);
+    }
 	
-
     @FXML
     void abrirTelaFunc(MouseEvent event) {
     	System.out.println("Clicou em func");
@@ -93,8 +100,7 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     	String cpf = tfCpf.getText();
     	String senha = pfSenha1.getText();
     	String senha2 = pfSenha2.getText();
-    	//int filial = Integer.parseInt(cbFilial.getId());
-    	int filial = 1;
+    	int filial = cbFilial.getValue().getId();
     	
     	// Motoristas: Jornada de trabalho
     	int cargaHoraria = Integer.parseInt(tfCargaHoraria.getText());
@@ -107,27 +113,23 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     	boolean sab = cbSabado.isSelected();
     	
     	Funcionario funcionario = new Funcionario();
-    	funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial);
-		funcionario.cadastrarJornadaTrabalho(cpf, cargaHoraria, seg, ter, qua, qui, sex, sab, dom);
 
-/*    	if (senha == senha2) {
-    		System.out.println("Senhas iguais");
+    	if (senha.equals(senha2)) {
+    		System.err.println(filial);
     		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial);
-    		if (cargo == "Motorista") {
-    			System.out.println("Cargo igual");
+    		if (cargo.equals("Motorista")) {
     			funcionario.cadastrarJornadaTrabalho(cpf, cargaHoraria, seg, ter, qua, qui, sex, sab, dom);
     		}
     	}
     	else {
     		System.err.println("Senhas diferentes");
     	}
-*/
-    }
 
+    }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		carregarComboBox();
-		
+		carregarComboBoxCargos();
+		carregarComboBoxFiliais();
 	}
 }

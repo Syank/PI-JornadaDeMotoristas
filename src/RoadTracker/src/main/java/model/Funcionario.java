@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
 import view.Cargos;
+import view.Filiais;
 import view.Listas;
 
 @Entity
@@ -168,18 +169,12 @@ public Funcionario() {
 	}
 
 	public List<Listas> listarFuncionarios(){
-		
 		List<Listas> lista = new ArrayList<>();
-		
 		for (Funcionario f: this.consultarTodosFuncionarios()) {
-			
 			Listas nome = new Listas(f.cpf, f.nome);
 			lista.add(nome);
 		}
-		
 		return lista;
-		
-		
 	}
 	
 	public List<Cargos> listarCargos(){
@@ -194,6 +189,33 @@ public Funcionario() {
 		cargos.add(cargo3);
 		
 		return cargos;
+	}
+	
+	public List<Filial> consultarTodasFiliais(){
+		EntityManager con = new ConnectionFactory().getConnection();
+		List<Filial> filiais = null;
+		try {
+			filiais = con.createQuery("from Filial f").getResultList();
+		}
+		catch (Exception e) {
+			System.err.println(e);
+		}
+		finally {
+			con.close();
+		}
+
+		return filiais;
+	}
+	
+	public List<Filiais> listarFiliais(){	
+		List<Filiais> comboBox = new ArrayList<>();
+		for (Filial f: this.consultarTodasFiliais()) {
+			Filiais filiais = new Filiais(f.getId(), f.getNome());
+			comboBox.add(filiais);
+		}
+		
+		return comboBox;
+		
 	}
 	
 	public Funcionario removerFuncionario(String cpf){
