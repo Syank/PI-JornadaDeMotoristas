@@ -18,11 +18,14 @@ public class Main extends Application {
 	private static Scene tela4;
 	private static Scene tela5;
 	private static Scene tela6;
+
+
 	
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		stage = primaryStage;
+
 		
 		primaryStage.setTitle("RoadTracker");  // Muda o título da janela
 		primaryStage.initStyle(StageStyle.UNDECORATED);  // Tira a borda padrão do SO da janela
@@ -45,15 +48,17 @@ public class Main extends Application {
 		
 		Pane fxmlTela6 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminBoasVindas.fxml"));
 		tela6 = new Scene(fxmlTela6);
+		
+
 		 
 		// Seta a janela atual e a exibe
 		primaryStage.setScene(tela1);
 		primaryStage.show();
-
+		
 	}
 	
 
-	public static void trocarTela(String escolha) {
+	public static void trocarTela(String escolha){
 		switch (escolha) {
 			case "Tela Login":
 				stage.setScene(tela1);
@@ -75,6 +80,7 @@ public class Main extends Application {
 				break;
 		}
 	}
+
 	
 	public static void main(String[] args) {
 		launch(args);
