@@ -62,6 +62,11 @@ public class ControlesPerfilAdminFuncionarios implements Initializable {
     }
     
     @FXML
+    void atualizarLista(ActionEvent event) {
+    	carregarTableView();
+    }
+    
+    @FXML
     void selecionarFuncionario(ActionEvent event) {
     	Listas funcionario = tabelaFuncionarios.getSelectionModel().getSelectedItem();
     	ControlesPerfilAdminFuncionarioSelecionado.carregarInfosFuncionario(funcionario.getId());

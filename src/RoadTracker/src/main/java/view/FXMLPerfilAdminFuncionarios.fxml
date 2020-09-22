@@ -127,5 +127,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <Button layoutX="606.0" layoutY="400.0" mnemonicParsing="false" onAction="#atualizarLista" prefHeight="30.0" prefWidth="102.0" styleClass="customizarBotoes" text="Atualizar lista" textFill="WHITE" />
    </children>
 </AnchorPane>
