@@ -117,7 +117,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="272.0" layoutY="400.0" mnemonicParsing="false" onAction="#selecionarFuncionario" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
+      <Button fx:id="btSelecionarFuncionario" layoutX="272.0" layoutY="400.0" mnemonicParsing="false" onAction="#selecionarFuncionario" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
       <TableView fx:id="tabelaFuncionarios" layoutX="271.0" layoutY="157.0" prefHeight="223.0" prefWidth="441.0">
         <columns>
           <TableColumn fx:id="colunaNome" prefWidth="337.0" text="Nome" />

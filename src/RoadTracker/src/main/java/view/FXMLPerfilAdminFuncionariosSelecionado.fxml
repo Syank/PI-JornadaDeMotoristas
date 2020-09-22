@@ -111,34 +111,34 @@
       <VBox layoutX="617.0" layoutY="93.0" prefHeight="117.0" prefWidth="100.0" spacing="5.0">
          <children>
             <Label text="Dias de trabalho" />
-            <CheckBox mnemonicParsing="false" text="Domingo" />
-            <CheckBox mnemonicParsing="false" text="Segunda-Feira" />
-            <CheckBox mnemonicParsing="false" text="Terça-Feira" />
-            <CheckBox mnemonicParsing="false" text="Quarta-Feira" />
-            <CheckBox mnemonicParsing="false" text="Quinta-Feira" />
-            <CheckBox mnemonicParsing="false" text="Sexta-Feira" />
-            <CheckBox mnemonicParsing="false" text="Sábado" />
+            <CheckBox disable="true" mnemonicParsing="false" text="Domingo" />
+            <CheckBox disable="true" mnemonicParsing="false" text="Segunda-Feira" />
+            <CheckBox disable="true" mnemonicParsing="false" text="Terça-Feira" />
+            <CheckBox disable="true" mnemonicParsing="false" text="Quarta-Feira" />
+            <CheckBox disable="true" mnemonicParsing="false" text="Quinta-Feira" />
+            <CheckBox disable="true" mnemonicParsing="false" text="Sexta-Feira" />
+            <CheckBox disable="true" mnemonicParsing="false" text="Sábado" />
          </children>
       </VBox>
       <VBox layoutX="438.0" layoutY="93.0" prefHeight="205.0" prefWidth="148.0" spacing="20.0">
          <children>
-            <TextField promptText="Nome" styleClass="customizarInputs" />
-            <TextField promptText="CPF" styleClass="customizarInputs" />
-            <TextField promptText="Senha" styleClass="customizarInputs" />
-            <TextField promptText="Carga Horária" styleClass="customizarInputs" />
-            <ComboBox prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
+            <TextField editable="false" promptText="Nome" styleClass="customizarInputs" />
+            <TextField editable="false" promptText="CPF" styleClass="customizarInputs" />
+            <TextField editable="false" promptText="Senha" styleClass="customizarInputs" />
+            <TextField editable="false" promptText="Carga Horária" styleClass="customizarInputs" />
+            <ComboBox editable="true" prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
          </children>
       </VBox>
       <Button alignment="CENTER" layoutX="500.0" layoutY="385.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="98.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE">
          <graphic>
-            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@salvarAlteracoes.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="272.0" layoutY="336.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="100.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE">
+      <Button layoutX="272.0" layoutY="336.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="114.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -147,7 +147,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="272.0" layoutY="394.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="159.0" styleClass="customizarBotoes" text="Excluir funcionário" textFill="WHITE">
+      <Button layoutX="272.0" layoutY="394.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="114.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -167,12 +167,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" styleClass="customizarBotoes" text="Alterar foto" textFill="WHITE" />
+            <Button disable="true" mnemonicParsing="false" styleClass="customizarBotoes" text="Alterar foto" textFill="WHITE" />
          </children>
       </VBox>
       <Button layoutX="610.0" layoutY="385.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="114.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE">
          <graphic>
-            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@salvarAlteracoes.png" />
                </image>

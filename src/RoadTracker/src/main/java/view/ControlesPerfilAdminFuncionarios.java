@@ -55,12 +55,14 @@ public class ControlesPerfilAdminFuncionarios implements Initializable {
     	colunaNome.setCellValueFactory(new PropertyValueFactory<>("valor"));
     	colunaCpf.setCellValueFactory(new PropertyValueFactory<>("id"));
     	
-    	//Adiciona a Obersavable Array na TableView
+    	//Adiciona a Observable Array na TableView
     	tabelaFuncionarios.setItems(obsList);
     }
     
     @FXML
     void selecionarFuncionario(ActionEvent event) {
+    	Listas funcionario = tabelaFuncionarios.getSelectionModel().getSelectedItem();
+    	System.out.println(funcionario.getId());
     	Main.trocarTela("Tela Selecionar Funcionario");
     }
     
