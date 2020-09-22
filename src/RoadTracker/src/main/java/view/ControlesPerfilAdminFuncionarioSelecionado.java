@@ -34,9 +34,17 @@ public class ControlesPerfilAdminFuncionarioSelecionado implements Initializable
     	Main.trocarTela("Tela Login");
     }
     
+    
+    
+    public static void carregarInfosFuncionario(String cpfFuncionario) {
+    	// ---- função para ler as infos do funcionário pelo cpf aqui ---
+    	// --- textField.setText(coisa do funcionario) ---- (uma linha dessas pra cada textField)
+    	//(ainda vou setar para os campos estarem desativados para edição no começo)
+    }
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 	}
 
 }

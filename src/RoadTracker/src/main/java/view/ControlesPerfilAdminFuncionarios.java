@@ -20,6 +20,8 @@ import model.Funcionario;
 
 
 public class ControlesPerfilAdminFuncionarios implements Initializable {
+	
+	public static String cpfFuncionario;
 
     @FXML
     private TextField campoDeBuscaNome;
@@ -62,7 +64,7 @@ public class ControlesPerfilAdminFuncionarios implements Initializable {
     @FXML
     void selecionarFuncionario(ActionEvent event) {
     	Listas funcionario = tabelaFuncionarios.getSelectionModel().getSelectedItem();
-    	System.out.println(funcionario.getId());
+    	ControlesPerfilAdminFuncionarioSelecionado.carregarInfosFuncionario(funcionario.getId());
     	Main.trocarTela("Tela Selecionar Funcionario");
     }
     
