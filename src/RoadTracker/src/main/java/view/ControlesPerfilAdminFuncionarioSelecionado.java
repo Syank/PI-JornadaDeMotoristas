@@ -7,12 +7,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import model.Funcionario;
 
 public class ControlesPerfilAdminFuncionarioSelecionado implements Initializable {
 
     @FXML
     private Button botaoBuscar;
+    
+    @FXML
+    private TextField cpfFuncionario;
 
     @FXML
     void abrirTelaCadFunc(MouseEvent event) {
@@ -30,6 +35,11 @@ public class ControlesPerfilAdminFuncionarioSelecionado implements Initializable
     }
 
     @FXML
+    void minimizarJanela(ActionEvent event) {
+    	Main.minimizar();
+    }
+    
+    @FXML
     void voltar(ActionEvent event) {
     	Main.trocarTela("Tela Login");
     }
@@ -40,6 +50,12 @@ public class ControlesPerfilAdminFuncionarioSelecionado implements Initializable
     	// ---- função para ler as infos do funcionário pelo cpf aqui ---
     	// --- textField.setText(coisa do funcionario) ---- (uma linha dessas pra cada textField)
     	//(ainda vou setar para os campos estarem desativados para edição no começo)
+    }
+    
+    @FXML
+    void excluirFuncionario(ActionEvent event) {
+		Funcionario funcionario = new Funcionario();
+    	funcionario.removerFuncionario(cpfFuncionario.getText());
     }
     
 	@Override

@@ -78,7 +78,7 @@
       </VBox>
       <HBox alignment="CENTER_RIGHT" layoutX="250.0" prefHeight="25.0" prefWidth="500.0">
          <children>
-            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" styleClass="botaoFechar">
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#minimizarJanela" styleClass="botaoFechar">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -108,28 +108,28 @@
          </children>
       </HBox>
       <Button fx:id="botaoBuscar" layoutX="677.0" layoutY="93.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="botaoPesquisar" textFill="WHITE" />
-      <VBox layoutX="617.0" layoutY="93.0" prefHeight="117.0" prefWidth="100.0" spacing="5.0">
+      <VBox disable="true" layoutX="617.0" layoutY="93.0" prefHeight="117.0" prefWidth="100.0" spacing="5.0">
          <children>
             <Label text="Dias de trabalho" />
-            <CheckBox disable="true" mnemonicParsing="false" text="Domingo" />
-            <CheckBox disable="true" mnemonicParsing="false" text="Segunda-Feira" />
-            <CheckBox disable="true" mnemonicParsing="false" text="Terça-Feira" />
-            <CheckBox disable="true" mnemonicParsing="false" text="Quarta-Feira" />
-            <CheckBox disable="true" mnemonicParsing="false" text="Quinta-Feira" />
-            <CheckBox disable="true" mnemonicParsing="false" text="Sexta-Feira" />
-            <CheckBox disable="true" mnemonicParsing="false" text="Sábado" />
+            <CheckBox mnemonicParsing="false" text="Domingo" />
+            <CheckBox mnemonicParsing="false" text="Segunda-Feira" />
+            <CheckBox mnemonicParsing="false" text="Terça-Feira" />
+            <CheckBox mnemonicParsing="false" text="Quarta-Feira" />
+            <CheckBox mnemonicParsing="false" text="Quinta-Feira" />
+            <CheckBox mnemonicParsing="false" text="Sexta-Feira" />
+            <CheckBox mnemonicParsing="false" text="Sábado" />
          </children>
       </VBox>
       <VBox layoutX="438.0" layoutY="93.0" prefHeight="205.0" prefWidth="148.0" spacing="20.0">
          <children>
             <TextField editable="false" promptText="Nome" styleClass="customizarInputs" />
-            <TextField editable="false" promptText="CPF" styleClass="customizarInputs" />
+            <TextField fx:id="cpfFuncionario" editable="false" promptText="CPF" styleClass="customizarInputs" />
             <TextField editable="false" promptText="Senha" styleClass="customizarInputs" />
             <TextField editable="false" promptText="Carga Horária" styleClass="customizarInputs" />
             <ComboBox editable="true" prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
          </children>
       </VBox>
-      <Button alignment="CENTER" layoutX="500.0" layoutY="385.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="98.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE">
+      <Button alignment="CENTER" disable="true" layoutX="500.0" layoutY="385.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="98.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE">
          <graphic>
             <ImageView disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -147,7 +147,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="272.0" layoutY="394.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="114.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE">
+      <Button layoutX="272.0" layoutY="394.0" mnemonicParsing="false" onAction="#excluirFuncionario" prefHeight="40.0" prefWidth="114.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -170,7 +170,7 @@
             <Button disable="true" mnemonicParsing="false" styleClass="customizarBotoes" text="Alterar foto" textFill="WHITE" />
          </children>
       </VBox>
-      <Button layoutX="610.0" layoutY="385.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="114.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE">
+      <Button disable="true" layoutX="610.0" layoutY="385.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="114.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE">
          <graphic>
             <ImageView disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
