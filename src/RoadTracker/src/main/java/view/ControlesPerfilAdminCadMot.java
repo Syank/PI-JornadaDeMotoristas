@@ -47,8 +47,6 @@ public class ControlesPerfilAdminCadMot implements Initializable {
 	@FXML
 	private CheckBox cbSabado;
 
-
-	
     private List<Cargos> cargos = new ArrayList<>();
     private ObservableList<Cargos> cargosList;
     

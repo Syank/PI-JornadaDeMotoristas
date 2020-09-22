@@ -111,22 +111,22 @@
       <VBox disable="true" layoutX="617.0" layoutY="93.0" prefHeight="117.0" prefWidth="100.0" spacing="5.0">
          <children>
             <Label text="Dias de trabalho" />
-            <CheckBox mnemonicParsing="false" text="Domingo" />
-            <CheckBox mnemonicParsing="false" text="Segunda-Feira" />
-            <CheckBox mnemonicParsing="false" text="Terça-Feira" />
-            <CheckBox mnemonicParsing="false" text="Quarta-Feira" />
-            <CheckBox mnemonicParsing="false" text="Quinta-Feira" />
-            <CheckBox mnemonicParsing="false" text="Sexta-Feira" />
-            <CheckBox mnemonicParsing="false" text="Sábado" />
+            <CheckBox fx:id="cbDomingo" mnemonicParsing="false" text="Domingo" />
+            <CheckBox fx:id="cbSegunda" mnemonicParsing="false" text="Segunda-Feira" />
+            <CheckBox fx:id="cbTerca" mnemonicParsing="false" text="Terça-Feira" />
+            <CheckBox fx:id="cbQuarta" mnemonicParsing="false" text="Quarta-Feira" />
+            <CheckBox fx:id="cbQuinta" mnemonicParsing="false" text="Quinta-Feira" />
+            <CheckBox fx:id="cbSexta" mnemonicParsing="false" text="Sexta-Feira" />
+            <CheckBox fx:id="cbSabado" mnemonicParsing="false" text="Sábado" />
          </children>
       </VBox>
       <VBox layoutX="438.0" layoutY="93.0" prefHeight="205.0" prefWidth="148.0" spacing="20.0">
          <children>
-            <TextField editable="false" promptText="Nome" styleClass="customizarInputs" />
-            <TextField fx:id="cpfFuncionario" editable="false" promptText="CPF" styleClass="customizarInputs" />
-            <TextField editable="false" promptText="Senha" styleClass="customizarInputs" />
-            <TextField editable="false" promptText="Carga Horária" styleClass="customizarInputs" />
-            <ComboBox editable="true" prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
+            <TextField fx:id="tfNome" editable="false" promptText="Nome" styleClass="customizarInputs" />
+            <TextField fx:id="tfCpf" editable="false" promptText="CPF" styleClass="customizarInputs" />
+            <TextField fx:id="pfSenha" editable="false" promptText="Senha" styleClass="customizarInputs" />
+            <TextField fx:id="tfCargaHoraria" editable="false" promptText="Carga Horária" styleClass="customizarInputs" />
+            <ComboBox fx:id="cbFilial" editable="true" prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
          </children>
       </VBox>
       <Button alignment="CENTER" disable="true" layoutX="500.0" layoutY="385.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="98.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE">
@@ -162,7 +162,7 @@
                   <Image url="@usuario.png" />
                </image>
             </ImageView>
-            <Label text="Nome do Motorista">
+            <Label fx:id="lblNome" text="Nome do Motorista">
                <font>
                   <Font size="14.0" />
                </font>

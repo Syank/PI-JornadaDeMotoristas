@@ -7,12 +7,55 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import model.Funcionario;
 
 public class ControlesPerfilAdminFuncionarioSelecionado implements Initializable {
 
+
+    @FXML
+    private CheckBox cbDomingo;
+
+    @FXML
+    private CheckBox cbSegunda;
+
+    @FXML
+    private CheckBox cbTerca;
+
+    @FXML
+    private CheckBox cbQuarta;
+
+    @FXML
+    private CheckBox cbQuinta;
+
+    @FXML
+    private CheckBox cbSexta;
+
+    @FXML
+    private CheckBox cbSabado;
+
+    @FXML
+    private TextField tfNome;
+
+    @FXML
+    private TextField tfCpf;
+
+    @FXML
+    private TextField pfSenha;
+
+    @FXML
+    private TextField tfCargaHoraria;
+
+    @FXML
+    private ComboBox<?> cbFilial;
+
+    @FXML
+    private Label lblNome;
+	
     @FXML
     private Button botaoBuscar;
     
@@ -45,11 +88,23 @@ public class ControlesPerfilAdminFuncionarioSelecionado implements Initializable
     }
     
     
+  
+    
+    
+    
+    
     
     public static void carregarInfosFuncionario(String cpfFuncionario) {
-    	// ---- função para ler as infos do funcionário pelo cpf aqui ---
-    	// --- textField.setText(coisa do funcionario) ---- (uma linha dessas pra cada textField)
-    	//(ainda vou setar para os campos estarem desativados para edição no começo)
+    	Funcionario funcionario = new Funcionario();
+    	funcionario = funcionario.encontrarFuncionario(cpfFuncionario);
+    	
+    	System.out.println(funcionario.getNome());
+    	System.out.println(funcionario.getCpf());
+    	System.out.println(funcionario.getCargo());
+    	System.out.println(funcionario.getSenha());
+    	System.out.println(funcionario.getFk_filiais_id());
+    	
+    	
     }
     
     @FXML
