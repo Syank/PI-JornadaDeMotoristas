@@ -41,7 +41,7 @@ public class ControlesPerfilAdminFuncionarioSelecionado implements Initializable
     
     @FXML
     void voltar(ActionEvent event) {
-    	Main.trocarTela("Tela Login");
+    	Main.trocarTela("Tela Funcionarios");
     }
     
     

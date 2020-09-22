@@ -20,6 +20,11 @@ public class ControlesPerfilAdminBoasVindas {
     void abrirTelaHistEntregas(MouseEvent event) {
     	Main.trocarTela("Tela Historico de Entregas");
     }
+    
+    @FXML
+    void minimizarJanela(ActionEvent event) {
+    	Main.minimizar();
+    }
 
     @FXML
     void fecharJanela(ActionEvent event) {

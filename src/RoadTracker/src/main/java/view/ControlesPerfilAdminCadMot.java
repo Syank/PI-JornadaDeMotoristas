@@ -87,6 +87,11 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     	Main.trocarTela("Tela Login");
     }
     
+    @FXML
+    void minimizarJanela(ActionEvent event) {
+    	Main.minimizar();
+    }
+    
     // Função para fechar a janela ao clicar no " x "
     @FXML
     void fecharJanela(ActionEvent event) {

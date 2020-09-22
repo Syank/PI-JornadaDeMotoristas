@@ -37,7 +37,7 @@
       </ImageView>
       <HBox alignment="BOTTOM_RIGHT" layoutX="300.0" prefHeight="25.0" prefWidth="450.0">
          <children>
-            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#minimizarJanela" prefHeight="30.0" prefWidth="15.0" styleClass="botaoFechar">
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#minimizarJanela" prefHeight="30.0" prefWidth="15.0" styleClass="botaoMinimizar">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
