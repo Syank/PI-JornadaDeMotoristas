@@ -68,8 +68,11 @@ public class ControlesPerfilAdminFuncionarios implements Initializable {
     
     @FXML
     void selecionarFuncionario(ActionEvent event) {
-    	Listas funcionario = tabelaFuncionarios.getSelectionModel().getSelectedItem();
-    	ControlesPerfilAdminFuncionarioSelecionado.carregarInfosFuncionario(funcionario.getId());
+    	Listas selecionado = tabelaFuncionarios.getSelectionModel().getSelectedItem();
+    	System.out.println(selecionado.getId());
+    	
+    	ControlesPerfilAdminFuncionarioSelecionado.escolherFuncionario(selecionado.getId());
+    	
     	Main.trocarTela("Tela Selecionar Funcionario");
     }
     

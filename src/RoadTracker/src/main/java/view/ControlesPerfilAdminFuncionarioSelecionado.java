@@ -16,6 +16,7 @@ import model.Funcionario;
 
 public class ControlesPerfilAdminFuncionarioSelecionado implements Initializable {
 
+	private static Funcionario funcionario = new Funcionario();
 
     @FXML
     private CheckBox cbDomingo;
@@ -55,12 +56,7 @@ public class ControlesPerfilAdminFuncionarioSelecionado implements Initializable
 
     @FXML
     private Label lblNome;
-	
-    @FXML
-    private Button botaoBuscar;
-    
-    @FXML
-    private TextField cpfFuncionario;
+
 
     @FXML
     void abrirTelaCadFunc(MouseEvent event) {
@@ -89,33 +85,33 @@ public class ControlesPerfilAdminFuncionarioSelecionado implements Initializable
     
     
   
+    @FXML
+    void mudar(ActionEvent event) {
+    	carregarInfosFuncionario();
+    }
+    
+    
+    public static void escolherFuncionario(String cpf) {
+    	funcionario = funcionario.encontrarFuncionario(cpf);
+
+    }
     
     
     
-    
-    
-    public static void carregarInfosFuncionario(String cpfFuncionario) {
-    	Funcionario funcionario = new Funcionario();
-    	funcionario = funcionario.encontrarFuncionario(cpfFuncionario);
-    	
-    	System.out.println(funcionario.getNome());
-    	System.out.println(funcionario.getCpf());
-    	System.out.println(funcionario.getCargo());
-    	System.out.println(funcionario.getSenha());
-    	System.out.println(funcionario.getFk_filiais_id());
-    	
-    	
+    public void carregarInfosFuncionario() {
+    	tfNome.setText(funcionario.getNome());
+    	tfCpf.setText(funcionario.getCpf());
+
     }
     
     @FXML
     void excluirFuncionario(ActionEvent event) {
-		Funcionario funcionario = new Funcionario();
-    	funcionario.removerFuncionario(cpfFuncionario.getText());
+		funcionario.removerFuncionario(funcionario.getCpf());
     }
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		
 	}
 
 }
