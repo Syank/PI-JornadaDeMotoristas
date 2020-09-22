@@ -3,6 +3,7 @@ package view;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.Scene;
@@ -20,6 +21,8 @@ public class Main extends Application {
 	private static Scene tela6;
 
 
+
+
 	
 	
 	@Override
@@ -29,7 +32,6 @@ public class Main extends Application {
 		
 		primaryStage.setTitle("RoadTracker");  // Muda o título da janela
 		primaryStage.initStyle(StageStyle.UNDECORATED);  // Tira a borda padrão do SO da janela
-		
 		// Carrega as telas
 		Pane fxmlTela1 = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
 		tela1 = new Scene(fxmlTela1);
@@ -48,7 +50,6 @@ public class Main extends Application {
 		
 		Pane fxmlTela6 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminBoasVindas.fxml"));
 		tela6 = new Scene(fxmlTela6);
-		
 
 		 
 		// Seta a janela atual e a exibe
@@ -56,6 +57,7 @@ public class Main extends Application {
 		primaryStage.show();
 		
 	}
+	
 	
 
 	public static void trocarTela(String escolha){
@@ -78,9 +80,14 @@ public class Main extends Application {
 			case "Tela Boas Vindas":
 				stage.setScene(tela6);
 				break;
+
 		}
 	}
 
+	
+	public static void minimizar() {
+		stage.setIconified(true);
+	}
 	
 	public static void main(String[] args) {
 		launch(args);

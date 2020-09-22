@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,6 +46,8 @@ public class ControlesPerfilAdminCadMot implements Initializable {
 	private CheckBox cbSexta;
 	@FXML
 	private CheckBox cbSabado;
+
+
 	
     private List<Cargos> cargos = new ArrayList<>();
     private ObservableList<Cargos> cargosList;
@@ -59,6 +60,7 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     	cargos = funcionario.listarCargos();
     	cargosList = FXCollections.observableArrayList(cargos);
     	cbCargo.setItems(cargosList);
+    	
     }
     
     public void carregarComboBoxFiliais() {
@@ -126,6 +128,7 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     	}
 
     }
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

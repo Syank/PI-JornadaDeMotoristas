@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="750.0" styleClass="fundoDaJanela" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControlesLogin">
+<AnchorPane fx:id="janela" prefHeight="450.0" prefWidth="750.0" styleClass="fundoDaJanela" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControlesLogin">
    <children>
       <VBox prefHeight="450.0" prefWidth="300.0" styleClass="sombraDaImagemLogin">
          <children>
@@ -37,7 +37,7 @@
       </ImageView>
       <HBox alignment="BOTTOM_RIGHT" layoutX="300.0" prefHeight="25.0" prefWidth="450.0">
          <children>
-            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="15.0" styleClass="botaoFechar">
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#minimizarJanela" prefHeight="30.0" prefWidth="15.0" styleClass="botaoFechar">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>

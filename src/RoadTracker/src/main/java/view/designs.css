@@ -11,7 +11,7 @@
 }
 
 .botaoFechar:hover{
-	-fx-background-color: #d90000;
+	-fx-background-color: #e74c3c;
 }
 
 .customizarInputs{
@@ -88,4 +88,30 @@
 }
 .caixasDeSelecaoBoasVindas:hover{
 	-fx-background-color: #0984e3;
+}
+
+.botaoConfirmar{
+	-fx-background-color: #2ecc71;
+}
+.botaoConfirmar:hover{
+	-fx-background-color: #27ae60;
+}
+
+.botaoCancelar{
+	-fx-background-color: #e74c3c;
+}
+.botaoCancelar:hover{
+	-fx-background-color: #c0392b;
+}
+
+.fundoAviso{
+	-fx-background-color: #34495e;
+}
+
+.fundoMenuAviso{
+	-fx-background-color: #2c3e50;
+}
+
+.sombraMenuAviso{
+	-fx-effect: dropshadow(gaussian, #000000, 10, 0.1, 0, 1);
 }
