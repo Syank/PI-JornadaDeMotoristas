@@ -17,6 +17,7 @@ import view.Listas;
 @Table(name="funcionarios")
 public class Funcionario {
 	
+
 	@Id
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private String cpf;
@@ -25,45 +26,17 @@ public class Funcionario {
 	private String cargo;
 	private int fk_filiais_id;
 	
-	public String getCpf() {
-		return cpf;
-	}
-	
-	public void setCpf(String cpf) {
+public Funcionario() {
 		this.cpf = cpf;
-	}
-	
-	public String getNome() {
-		return nome;
-	}
-	
-	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-	
-	public String getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(String cargo) {
 		this.cargo = cargo;
-	}
-
-	public int getFk_filiais_id() {
-		return fk_filiais_id;
-	}
-
-	public void setFk_filiais_id(int fk_filiais_id) {
 		this.fk_filiais_id = fk_filiais_id;
+		
 	}
+
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+//	private Integer id;
 	
 	public JornadaTrabalho cadastrarJornadaTrabalho(String funcionario, int carga_horaria, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
 		
@@ -105,9 +78,9 @@ public class Funcionario {
 		
 		this.nome = nome;
 		this.cpf = cpf;
-		this.setSenha(senha);
-		this.setCargo(cargo);
-		this.setFk_filiais_id(filial);
+		this.senha = senha;
+		this.cargo = cargo;
+		this.fk_filiais_id = filial;
 		
 		
 		try {
@@ -158,9 +131,9 @@ public class Funcionario {
 		
 		this.nome = novoNome;
 		this.cpf = cpfFuncionario;
-		this.setSenha(novaSenha);
-		this.setCargo(novoCargo);
-		this.setFk_filiais_id(novaFilial);
+		this.senha = novaSenha;
+		this.cargo = novoCargo;
+		this.fk_filiais_id = novaFilial;
 		
 		try {
 			con.getTransaction().begin();
@@ -256,25 +229,6 @@ public class Funcionario {
 			con.getTransaction().begin();
 			con.remove(funcionario);
 			con.getTransaction().commit();
-		}
-		catch (Exception e) {
-			System.err.println(e);
-			con.getTransaction().rollback();
-		}
-		finally {
-			con.close();
-		}
-
-		return funcionario;
-	}
-	
-	public Funcionario encontrarFuncionario(String cpf){
-		EntityManager con = new ConnectionFactory().getConnection();
-
-		Funcionario funcionario  = null;
-
-		try {
-			funcionario = con.find(model.Funcionario.class, cpf);		
 		}
 		catch (Exception e) {
 			System.err.println(e);
