@@ -107,8 +107,8 @@
             </Label>
          </children>
       </HBox>
-      <Button fx:id="botaoBuscar" layoutX="677.0" layoutY="93.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="botaoPesquisar" textFill="WHITE" />
-      <VBox disable="true" layoutX="617.0" layoutY="93.0" prefHeight="117.0" prefWidth="100.0" spacing="5.0">
+      <Button layoutX="677.0" layoutY="93.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="botaoPesquisar" textFill="WHITE" />
+      <VBox layoutX="617.0" layoutY="93.0" prefHeight="117.0" prefWidth="100.0" spacing="5.0">
          <children>
             <Label text="Dias de trabalho" />
             <CheckBox mnemonicParsing="false" text="Domingo" />
@@ -122,11 +122,11 @@
       </VBox>
       <VBox layoutX="438.0" layoutY="93.0" prefHeight="205.0" prefWidth="148.0" spacing="20.0">
          <children>
-            <TextField editable="false" promptText="Nome" styleClass="customizarInputs" />
-            <TextField fx:id="cpfFuncionario" editable="false" promptText="CPF" styleClass="customizarInputs" />
-            <TextField editable="false" promptText="Senha" styleClass="customizarInputs" />
-            <TextField editable="false" promptText="Carga Horária" styleClass="customizarInputs" />
-            <ComboBox editable="true" prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
+            <TextField fx:id="tfNome" editable="true" promptText="Nome" styleClass="customizarInputs" />
+            <TextField fx:id="tfCpf" editable="true" promptText="CPF" styleClass="customizarInputs" />
+            <TextField fx:id="pfSenha" editable="true" promptText="Senha" styleClass="customizarInputs" />
+            <TextField fx:id="tfCargaHoraria" editable="true" promptText="Carga Horária" styleClass="customizarInputs" />
+            <ComboBox fx:id="cbFilial" prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
          </children>
       </VBox>
       <Button alignment="CENTER" disable="true" layoutX="500.0" layoutY="385.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="98.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE">
@@ -138,7 +138,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="272.0" layoutY="336.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="114.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE">
+      <Button layoutX="272.0" layoutY="336.0" mnemonicParsing="false" onAction="#mudar" prefHeight="48.0" prefWidth="114.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
