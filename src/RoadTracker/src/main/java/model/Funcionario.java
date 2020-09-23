@@ -23,8 +23,15 @@ public class Funcionario {
 	private String nome;
 	private String senha;
 	private String cargo;
-	private String CargaHoraria;
+	private String cargaHoraria;
 	private int fk_filiais_id;
+	private boolean seg;
+	private boolean ter;
+	private boolean qua;
+	private boolean qui;
+	private boolean sex;
+	private boolean sab;
+	private boolean dom;
 	
 	public String getCpf() {
 		return cpf;
@@ -67,68 +74,95 @@ public class Funcionario {
 	}
 	
 	public String getCargaHoraria() {
-		return CargaHoraria;
+		return cargaHoraria;
 	}
 
 	public void setCargaHoraria(String cargaHoraria) {
-		CargaHoraria = cargaHoraria;
+		this.cargaHoraria = cargaHoraria;
 	}
 	
-	
-	public JornadaTrabalho cadastrarJornadaTrabalho(String funcionario, int carga_horaria, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
-		
-		EntityManager con = new ConnectionFactory().getConnection();
-		JornadaTrabalho jornada = new JornadaTrabalho();
-		
-		jornada.setFk_funcionarios_cpf(funcionario);
-		jornada.setCarga_horaria(carga_horaria);
-		jornada.setSeg(seg);
-		jornada.setTer(ter);
-		jornada.setQua(qua);
-		jornada.setQui(qui);
-		jornada.setSex(sex);
-		jornada.setSab(sab);
-		jornada.setDom(dom);
-		
-		try {
-			//Mandando os dados do trabalho do motorista para a tabela de jornadas de trabalho
-			con.getTransaction().begin();
-			con.persist(jornada);
-			con.getTransaction().commit();
-			
-		}
-		catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "Jornada de trabalho. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
-			con.getTransaction().rollback();
-		}
-		finally {
-			con.close();
-		}
-		
-		return jornada;
-		
+	public boolean isSeg() {
+		return seg;
 	}
 	
-	public void cadastrarFuncionario(String nome, String cpf, String senha, String cargo, int filial) {
+	public void setSeg(boolean seg) {
+		this.seg = seg;
+	}
+	
+	public boolean isTer() {
+		return ter;
+	}
+	
+	public void setTer(boolean ter) {
+		this.ter = ter;
+	}
+	
+	public boolean isQua() {
+		return qua;
+	}
+	
+	public void setQua(boolean qua) {
+		this.qua = qua;
+	}
+	
+	public boolean isQui() {
+		return qui;
+	}
+	
+	public void setQui(boolean qui) {
+		this.qui = qui;
+	}
+	
+	public boolean isSex() {
+		return sex;
+	}
+	
+	public void setSex(boolean sex) {
+		this.sex = sex;
+	}
+	
+	public boolean isSab() {
+		return sab;
+	}
+	
+	public void setSab(boolean sab) {
+		this.sab = sab;
+	}
+	
+	public boolean isDom() {
+		return dom;
+	}
+	
+	public void setDom(boolean dom) {
+		this.dom = dom;
+	}
+	
+	public void cadastrarFuncionario(String nome, String cpf, String senha, String cargo, int filial,
+			String carga_horaria, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
 		
-		this.nome = nome;
-		this.cpf = cpf;
+		this.setNome(nome);
+		this.setCpf(cpf);
 		this.setSenha(senha);
 		this.setCargo(cargo);
 		this.setFk_filiais_id(filial);
-		
+		this.setSeg(seg);
+		this.setCargaHoraria(carga_horaria);
+		this.setTer(ter);
+		this.setQua(qua);
+		this.setQui(qui);
+		this.setSex(sex);
+		this.setSab(sab);
+		this.setDom(dom);
 		
 		try {
-			
-			//Mandando os dados do motorista para a tabela de motoristas
 			con.getTransaction().begin();
 			con.persist(this);
 			con.getTransaction().commit();
 		}
 		catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "Funcionário. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Ocorreu um problema ao cadastrar o funcionário. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
 			con.getTransaction().rollback();
 		}
 		finally {
@@ -162,15 +196,22 @@ public class Funcionario {
 		
 	}
 	
-	public void alterarDadosFuncionario(String novoNome, String cpfFuncionario, String novaSenha, String novoCargo, int novaFilial) {
-		//lembrando que esse mï¿½todo tï¿½ bem simples ainda. nï¿½o tem verificaï¿½ï¿½o de nada
+	public void alterarDadosFuncionario(String novoNome, String cpfFuncionario, String novaSenha, String novoCargo, int novaFilial, String carga, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		this.nome = novoNome;
 		this.cpf = cpfFuncionario;
-		this.setSenha(novaSenha);
-		this.setCargo(novoCargo);
-		this.setFk_filiais_id(novaFilial);
+		this.senha = novaSenha;
+		this.cargo = novoCargo;
+		this.fk_filiais_id = novaFilial;
+		this.cargaHoraria = carga;
+		this.seg = seg;
+		this.ter = ter;
+		this.qua = qua;
+		this.qui = qui;
+		this.sex = sex;
+		this.sab = sab;
+		this.dom = dom;
 		
 		try {
 			con.getTransaction().begin();
@@ -296,5 +337,4 @@ public class Funcionario {
 
 		return funcionario;
 	}
-
 }

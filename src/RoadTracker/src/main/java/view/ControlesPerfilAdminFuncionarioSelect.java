@@ -11,7 +11,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -27,6 +29,31 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
 
     @FXML
     private Pane paneFuncionarioSelecionado;
+    
+    @FXML
+    private CheckBox cbDom;
+
+    @FXML
+    private CheckBox cbSeg;
+
+    @FXML
+    private CheckBox cbTer;
+
+    @FXML
+    private CheckBox cbQua;
+
+    @FXML
+    private CheckBox cbQui;
+
+    @FXML
+    private CheckBox cbSex;
+
+    @FXML
+    private CheckBox cbSab;
+    
+
+    @FXML
+    private Label lblNome;
 
     @FXML
     private Button btnSalvar;
@@ -103,6 +130,7 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     void atualizarLista(ActionEvent event) {
     	carregarTableView();
     }
+    
     @FXML
     void abrirTelaFunc(MouseEvent event) {
     	paneFuncionarios.setVisible(true);
@@ -122,7 +150,6 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	Main.trocarTela("Tela Historico de Entregas");
     }
     
-
     @FXML
     void voltar(ActionEvent event) {
     	if (paneFuncionarios.isVisible()) {
@@ -136,6 +163,7 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	}
     	desabilitarEdicao();
     }
+    
     @FXML
     void minimizarJanela(ActionEvent event) {
     	Main.minimizar();
@@ -147,7 +175,6 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	System.exit(0);
     }
     
-        
     @FXML
     void excluirFuncionario(ActionEvent event) {
 		funcionario.removerFuncionario(funcionario.getCpf());
@@ -166,16 +193,27 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     
     void carregarInfoFuncionario() {
     	funcionario = funcionario.encontrarFuncionario(cpfFuncionario);
+    	
+    	lblNome.setText(funcionario.getNome());
     	tfNome.setText(funcionario.getNome());
     	tfCpf.setText(funcionario.getCpf());
     	pfSenha.setText(funcionario.getSenha());
     	tfCargaHoraria.setText(funcionario.getCargaHoraria());
+    	//setar o default da filial com o que tem no banco
+    	
+    	cbDom.setSelected(funcionario.isDom());
+    	cbSeg.setSelected(funcionario.isSeg());
+    	cbTer.setSelected(funcionario.isTer());
+    	cbQua.setSelected(funcionario.isQua());
+    	cbQui.setSelected(funcionario.isQui());
+    	cbSex.setSelected(funcionario.isSex());
+    	cbSab.setSelected(funcionario.isSab());
     }
     
     @FXML
     void habilitarEdicao(ActionEvent event) {
     	tfNome.setDisable(false);
-    	tfCpf.setDisable(false);
+    	tfCpf.setDisable(true);
     	pfSenha.setDisable(false);
     	cbFilial.setDisable(false);
     	tfCargaHoraria.setDisable(false);
@@ -205,7 +243,9 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     @FXML
     void alterarDados(ActionEvent event) {
     	Funcionario func = new Funcionario();
-    	func.alterarDadosFuncionario(tfNome.getText(), tfCpf.getText(), pfSenha.getText(), funcionario.getCargo(), funcionario.getFk_filiais_id());
+    	func.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(), funcionario.getCargo(),
+    			funcionario.getFk_filiais_id(), tfCargaHoraria.getText(), cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(),
+    			cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
     }
     
 	@Override
