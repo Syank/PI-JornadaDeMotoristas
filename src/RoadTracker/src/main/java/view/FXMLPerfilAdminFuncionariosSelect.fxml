@@ -115,13 +115,13 @@
             <VBox fx:id="chbDias" layoutX="369.0" layoutY="23.0" prefHeight="117.0" prefWidth="100.0" spacing="5.0">
                <children>
                   <Label text="Dias de trabalho" />
-                  <CheckBox mnemonicParsing="false" text="Domingo" />
-                  <CheckBox mnemonicParsing="false" text="Segunda-Feira" />
-                  <CheckBox mnemonicParsing="false" text="Terça-Feira" />
-                  <CheckBox mnemonicParsing="false" text="Quarta-Feira" />
-                  <CheckBox mnemonicParsing="false" text="Quinta-Feira" />
-                  <CheckBox mnemonicParsing="false" text="Sexta-Feira" />
-                  <CheckBox mnemonicParsing="false" text="Sábado" />
+                  <CheckBox fx:id="cbDom" mnemonicParsing="false" text="Domingo" />
+                  <CheckBox fx:id="cbSeg" mnemonicParsing="false" text="Segunda-Feira" />
+                  <CheckBox fx:id="cbTer" mnemonicParsing="false" text="Terça-Feira" />
+                  <CheckBox fx:id="cbQua" mnemonicParsing="false" text="Quarta-Feira" />
+                  <CheckBox fx:id="cbQui" mnemonicParsing="false" text="Quinta-Feira" />
+                  <CheckBox fx:id="cbSex" mnemonicParsing="false" text="Sexta-Feira" />
+                  <CheckBox fx:id="cbSab" mnemonicParsing="false" text="Sábado" />
                </children>
             </VBox>
             <Button fx:id="btnSalvar" alignment="CENTER" layoutX="252.0" layoutY="292.0" mnemonicParsing="false" onAction="#alterarDados" prefHeight="48.0" prefWidth="98.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE">
@@ -167,7 +167,7 @@
                         <Image url="@usuario.png" />
                      </image>
                   </ImageView>
-                  <Label text="Nome do Motorista">
+                  <Label fx:id="lblNome" text="Nome do Motorista">
                      <font>
                         <Font size="14.0" />
                      </font>

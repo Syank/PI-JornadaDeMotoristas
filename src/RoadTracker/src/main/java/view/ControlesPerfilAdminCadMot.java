@@ -46,8 +46,6 @@ public class ControlesPerfilAdminCadMot implements Initializable {
 	private CheckBox cbSexta;
 	@FXML
 	private CheckBox cbSabado;
-
-
 	
     private List<Cargos> cargos = new ArrayList<>();
     private ObservableList<Cargos> cargosList;
@@ -60,7 +58,6 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     	cargos = funcionario.listarCargos();
     	cargosList = FXCollections.observableArrayList(cargos);
     	cbCargo.setItems(cargosList);
-    	
     }
     
     public void carregarComboBoxFiliais() {
@@ -106,9 +103,7 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     	String senha = pfSenha1.getText();
     	String senha2 = pfSenha2.getText();
     	int filial = cbFilial.getValue().getId();
-    	
-    	// Motoristas: Jornada de trabalho
-    	int cargaHoraria = Integer.parseInt(tfCargaHoraria.getText());
+    	String cargaHoraria = tfCargaHoraria.getText();
     	boolean dom = cbDomingo.isSelected();
     	boolean seg = cbSegunda.isSelected();
     	boolean ter = cbTerca.isSelected();
@@ -120,11 +115,7 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     	Funcionario funcionario = new Funcionario();
 
     	if (senha.equals(senha2)) {
-    		System.err.println(filial);
-    		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial);
-    		if (cargo.equals("Motorista")) {
-    			funcionario.cadastrarJornadaTrabalho(cpf, cargaHoraria, seg, ter, qua, qui, sex, sab, dom);
-    		}
+    		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, cargaHoraria, seg, ter, qua, qui, sex, sab, dom);
     	}
     	else {
     		System.err.println("Senhas diferentes");
