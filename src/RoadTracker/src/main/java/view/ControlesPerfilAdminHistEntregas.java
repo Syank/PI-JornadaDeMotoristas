@@ -54,7 +54,7 @@ public class ControlesPerfilAdminHistEntregas {
 
     @FXML
     void voltar(ActionEvent event) {
-    	Main.trocarTela("Tela Login");
+    	Main.trocarTela("Tela Boas Vindas");
     }
     
     @FXML

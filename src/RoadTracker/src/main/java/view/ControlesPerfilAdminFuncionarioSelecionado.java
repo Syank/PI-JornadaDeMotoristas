@@ -66,6 +66,12 @@ public class ControlesPerfilAdminFuncionarioSelecionado implements Initializable
     void abrirTelaHistEntregas(MouseEvent event) {
     	Main.trocarTela("Tela Historico de Entregas");
     }
+    
+    @FXML
+    void abrirTelaFuncionarios(MouseEvent event) {
+    	Main.trocarTela("Tela Funcionarios");
+    }
+
 
     @FXML
     void fecharJanela(ActionEvent event) {
