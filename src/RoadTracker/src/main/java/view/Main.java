@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 public class Main extends Application {
 	// Inicializando váriaveis para guardar as telas
 	private static Stage stage;
+
 	private static Scene tela1;
 	private static Scene tela2;
 	private static Scene tela3;
@@ -47,7 +48,7 @@ public class Main extends Application {
 		Pane fxmlTela6 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminBoasVindas.fxml"));
 		tela6 = new Scene(fxmlTela6);
 
-		 
+		
 		// Seta a janela atual e a exibe
 		primaryStage.setScene(tela1);
 		primaryStage.show();
