@@ -123,3 +123,7 @@
 .sombraMenuAviso{
 	-fx-effect: dropshadow(gaussian, #000000, 10, 0.1, 0, 1);
 }
+
+.sombraDeAviso{
+	-fx-background-color: #000000;
+}
