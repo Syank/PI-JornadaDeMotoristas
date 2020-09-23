@@ -17,9 +17,7 @@ public class Main extends Application {
 	private static Scene tela2;
 	private static Scene tela3;
 	private static Scene tela4;
-	private static Scene tela5;
 	private static Scene tela6;
-
 
 
 
@@ -36,7 +34,7 @@ public class Main extends Application {
 		Pane fxmlTela1 = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
 		tela1 = new Scene(fxmlTela1);
 	
-		Pane fxmlTela2 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminFuncionarios.fxml"));
+		Pane fxmlTela2 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminFuncionariosSelect.fxml"));
 		tela2 = new Scene(fxmlTela2);
 		
 		Pane fxmlTela3 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminCadMot.fxml"));
@@ -44,10 +42,7 @@ public class Main extends Application {
 		
 		Pane fxmlTela4 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminEntregas.fxml"));
 		tela4 = new Scene(fxmlTela4);
-		
-		Pane fxmlTela5 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminFuncionariosSelecionado.fxml"));
-		tela5 = new Scene(fxmlTela5);
-		
+
 		Pane fxmlTela6 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminBoasVindas.fxml"));
 		tela6 = new Scene(fxmlTela6);
 
@@ -73,9 +68,6 @@ public class Main extends Application {
 				break;
 			case "Tela Historico de Entregas":
 				stage.setScene(tela4);
-				break;
-			case "Tela Selecionar Funcionario":
-				stage.setScene(tela5);
 				break;
 			case "Tela Boas Vindas":
 				stage.setScene(tela6);

@@ -23,6 +23,7 @@ public class Funcionario {
 	private String nome;
 	private String senha;
 	private String cargo;
+	private String CargaHoraria;
 	private int fk_filiais_id;
 	
 	public String getCpf() {
@@ -64,6 +65,15 @@ public class Funcionario {
 	public void setFk_filiais_id(int fk_filiais_id) {
 		this.fk_filiais_id = fk_filiais_id;
 	}
+	
+	public String getCargaHoraria() {
+		return CargaHoraria;
+	}
+
+	public void setCargaHoraria(String cargaHoraria) {
+		CargaHoraria = cargaHoraria;
+	}
+	
 	
 	public JornadaTrabalho cadastrarJornadaTrabalho(String funcionario, int carga_horaria, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
 		
@@ -286,5 +296,5 @@ public class Funcionario {
 
 		return funcionario;
 	}
-	
+
 }
