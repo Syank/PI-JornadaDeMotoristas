@@ -169,7 +169,9 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	tfNome.setText(funcionario.getNome());
     	tfCpf.setText(funcionario.getCpf());
     	pfSenha.setText(funcionario.getSenha());
-    	tfCargaHoraria.setText(funcionario.getCargaHoraria());
+    	tfCargaHoraria.setText(funcionario.getCargaHoraria()); // Não há informação de carga horária a ser carregada.
+//    	cbFilial.setPromptText(funcionario.getFk_filiais_id()); // Não está sendo pego informação da filial.
+//    	chbDias.getChildren(funcionario.getDiasTrabalho());
     }
     
     @FXML
@@ -199,13 +201,13 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     void descartarAlteracoes(ActionEvent event) {
     	carregarInfoFuncionario();
     	desabilitarEdicao();
-    	System.out.println("Descartou");
     }
     
     @FXML
     void alterarDados(ActionEvent event) {
     	Funcionario func = new Funcionario();
     	func.alterarDadosFuncionario(tfNome.getText(), tfCpf.getText(), pfSenha.getText(), funcionario.getCargo(), funcionario.getFk_filiais_id());
+// Precisa fazer com que salve a filial a que o funcionário pertence; dias de trabalho também.
     }
     
 	@Override

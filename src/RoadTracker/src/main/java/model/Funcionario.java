@@ -25,6 +25,7 @@ public class Funcionario {
 	private String cargo;
 	private String CargaHoraria;
 	private int fk_filiais_id;
+	private ArrayList<?> diasTrabalho; //Encontrar uma forma de pegar os dias de trabalho do chackbox.
 	
 	public String getCpf() {
 		return cpf;
@@ -73,7 +74,16 @@ public class Funcionario {
 	public void setCargaHoraria(String cargaHoraria) {
 		CargaHoraria = cargaHoraria;
 	}
-	
+
+// Parte não usada
+	public ArrayList getDiasTrabalho() {
+		return diasTrabalho;
+	}
+
+	public void setDiasTrabalho(ArrayList diasTrabalho) {
+		this.diasTrabalho = diasTrabalho;
+	}
+//Fim da parte não usada
 	
 	public JornadaTrabalho cadastrarJornadaTrabalho(String funcionario, int carga_horaria, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
 		
