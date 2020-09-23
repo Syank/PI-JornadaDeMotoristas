@@ -20,6 +20,10 @@ public class Main extends Application {
 	private static Scene tela5;
 	private static Scene tela6;
 
+
+
+
+	
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {

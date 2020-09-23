@@ -16,20 +16,12 @@ public class ControlesPerfilAdminFuncionarioSelecionado implements Initializable
     @FXML
     private Button botaoBuscar;
     
-//    @FXML
-//    private static Label infonome;
-    
     @FXML
     private TextField cpfFuncionario;
 
     @FXML
     void abrirTelaCadFunc(MouseEvent event) {
     	Main.trocarTela("Tela Cadastrar Funcionarios");
-    }
-
-    @FXML
-    void abrirTelaFuncionarios(MouseEvent event) {
-    	Main.trocarTela("Tela Funcionarios");
     }
 
     @FXML
@@ -50,7 +42,9 @@ public class ControlesPerfilAdminFuncionarioSelecionado implements Initializable
     @FXML
     void voltar(ActionEvent event) {
     	Main.trocarTela("Tela Funcionarios");
-    }   
+    }
+    
+    
     
     public static void carregarInfosFuncionario(String cpfFuncionario) {
     	// ---- função para ler as infos do funcionário pelo cpf aqui ---

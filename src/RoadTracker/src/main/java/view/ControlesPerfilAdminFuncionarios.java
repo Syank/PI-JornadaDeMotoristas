@@ -86,7 +86,7 @@ public class ControlesPerfilAdminFuncionarios implements Initializable {
 
     @FXML
     void voltar(ActionEvent event) {
-    	Main.trocarTela("Tela Boas Vindas");
+    	Main.trocarTela("Tela Login");
     }
     @FXML
     void minimizarJanela(ActionEvent event) {

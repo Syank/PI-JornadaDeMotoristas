@@ -35,7 +35,7 @@
                   <Label text="Cadastrar Funcionário" textFill="WHITE" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" onMouseClicked="#abrirTelaFuncionarios" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -162,7 +162,7 @@
                   <Image url="@usuario.png" />
                </image>
             </ImageView>
-            <Label fx:id="infonome" text="Nome do Motorista">
+            <Label text="Nome do Motorista">
                <font>
                   <Font size="14.0" />
                </font>
