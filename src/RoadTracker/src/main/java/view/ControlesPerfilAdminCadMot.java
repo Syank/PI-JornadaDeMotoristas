@@ -11,9 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import model.Funcionario;
 
 public class ControlesPerfilAdminCadMot implements Initializable {
@@ -46,6 +48,22 @@ public class ControlesPerfilAdminCadMot implements Initializable {
 	private CheckBox cbSexta;
 	@FXML
 	private CheckBox cbSabado;
+    @FXML
+    private Pane paneAvisosPrincipal;
+    @FXML
+    private Pane paneAvisosSucesso;
+    @FXML
+    private Label labelAvisosTituloSucesso;
+    @FXML
+    private Label labelAvisosTextoSucesso;
+    @FXML
+    private Pane paneAvisosFalha;
+    @FXML
+    private Label labelAvisosTituloFalha;
+    @FXML
+    private Label labelAvisosTextoFalha;
+    @FXML
+    private Pane paneAvisosSombra;
 	
     private List<Cargos> cargos = new ArrayList<>();
     private ObservableList<Cargos> cargosList;
@@ -116,11 +134,46 @@ public class ControlesPerfilAdminCadMot implements Initializable {
 
     	if (senha.equals(senha2)) {
     		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, cargaHoraria, seg, ter, qua, qui, sex, sab, dom);
+    		notificar("Sucesso de cadastro", "Funcionário cadastrado", "O " + cargo + " " + nome + " foi cadastrado com sucesso!");
     	}
     	else {
+    		notificar("Falha de cadastro", "Falha ao cadastrar", "As senhas estão incorretas, tente novamente");
     		System.err.println("Senhas diferentes");
     	}
 
+    }
+    
+    void notificar(String tipoDeAviso, String titulo, String texto) {
+    	paneAvisosPrincipal.setDisable(false);
+    	paneAvisosPrincipal.setVisible(true);
+    	paneAvisosSombra.setVisible(true);
+    	paneAvisosSombra.setDisable(false);
+    	switch(tipoDeAviso){
+    		case "Sucesso de cadastro":
+    			paneAvisosSucesso.setDisable(false);
+    			paneAvisosSucesso.setVisible(true);
+    			labelAvisosTextoSucesso.setText(texto);
+    			labelAvisosTituloSucesso.setText(titulo);
+    			break;
+    		case "Falha de cadastro":
+    			paneAvisosFalha.setDisable(false);
+    			paneAvisosFalha.setVisible(true);
+    			labelAvisosTextoFalha.setText(texto);
+    			labelAvisosTituloFalha.setText(titulo);
+    			break;
+    	}
+    }
+    
+    @FXML
+    void fecharAviso(ActionEvent event){
+    	paneAvisosPrincipal.setDisable(true);
+    	paneAvisosPrincipal.setVisible(false);
+    	paneAvisosSombra.setVisible(false);
+    	paneAvisosSombra.setDisable(true);
+		paneAvisosSucesso.setDisable(true);
+		paneAvisosSucesso.setVisible(false);
+		paneAvisosFalha.setDisable(true);
+		paneAvisosFalha.setVisible(false);
     }
 
 

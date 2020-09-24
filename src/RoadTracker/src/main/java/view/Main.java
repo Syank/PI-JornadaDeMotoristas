@@ -17,7 +17,7 @@ public class Main extends Application {
 	private static Scene tela2;
 	private static Scene tela3;
 	private static Scene tela4;
-	private static Scene tela6;
+	private static Scene tela5;
 
 
 
@@ -43,8 +43,8 @@ public class Main extends Application {
 		Pane fxmlTela4 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminEntregas.fxml"));
 		tela4 = new Scene(fxmlTela4);
 
-		Pane fxmlTela6 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminBoasVindas.fxml"));
-		tela6 = new Scene(fxmlTela6);
+		Pane fxmlTela5 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminBoasVindas.fxml"));
+		tela5 = new Scene(fxmlTela5);
 
 		 
 		// Seta a janela atual e a exibe
@@ -70,7 +70,7 @@ public class Main extends Application {
 				stage.setScene(tela4);
 				break;
 			case "Tela Boas Vindas":
-				stage.setScene(tela6);
+				stage.setScene(tela5);
 				break;
 
 		}
