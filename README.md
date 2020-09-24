@@ -33,7 +33,7 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 ![lógico rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/banco_de_dados/RTdb-logico.png?raw=true)
 
 ## Modelo físico do nosso banco de dados
-´´´SQL
+~~~SQL
 
 CREATE TABLE filiais (
     cidade VARCHAR(30),
@@ -115,7 +115,7 @@ ALTER TABLE viagens ADD CONSTRAINT FK_viagens_3
     REFERENCES veiculos (id_rastreador)
     ON DELETE RESTRICT;
 
-´´´
+~~~
 
 ## Diagrama de classes do nosso sistema
 ![diagrama de classes roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/diagrama_de_classes/diagrama_de_classes.png?raw=true)
