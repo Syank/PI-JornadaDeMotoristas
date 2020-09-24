@@ -29,79 +29,70 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
 
     @FXML
     private Pane paneFuncionarioSelecionado;
-    
     @FXML
     private CheckBox cbDom;
-
     @FXML
     private CheckBox cbSeg;
-
     @FXML
     private CheckBox cbTer;
-
     @FXML
     private CheckBox cbQua;
-
     @FXML
     private CheckBox cbQui;
-
     @FXML
     private CheckBox cbSex;
-
     @FXML
     private CheckBox cbSab;
-    
-
     @FXML
     private Label lblNome;
-
     @FXML
     private Button btnSalvar;
-
     @FXML
     private Button btnDescartar;
-
     @FXML
     private TextField tfNome;
-
     @FXML
     private TextField tfCpf;
-
     @FXML
     private TextField pfSenha;
-
     @FXML
     private TextField tfCargaHoraria;
-
     @FXML
     private ComboBox<?> cbFilial;
-
     @FXML
     private VBox chbDias;
-    
     @FXML
     private Pane paneFuncionarios;
-
     @FXML
     private Button btSelecionarFuncionario;
-
     @FXML
     private Button botaoBuscar;
-
     @FXML
     private TableView<Listas> tabelaFuncionarios;
-
     @FXML
     private TableColumn<?, ?> colunaNome;
-
     @FXML
     private TableColumn<?, ?> colunaCpf;
-
     @FXML
     private TextField campoDeBuscaNome;
-
     @FXML
     private TextField campoDeBuscaCpf;
+    @FXML
+    private Pane paneAvisosPrincipal;
+    @FXML
+    private Pane paneAvisosSucesso;
+    @FXML
+    private Label labelAvisosTituloSucesso;
+    @FXML
+    private Label labelAvisosTextoSucesso;
+    @FXML
+    private Pane paneAvisosFalha;
+    @FXML
+    private Label labelAvisosTituloFalha;
+    @FXML
+    private Label labelAvisosTextoFalha;
+    @FXML
+    private Pane paneAvisosSombra;
 
     private String cpfFuncionario;
    
@@ -178,6 +169,7 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     @FXML
     void excluirFuncionario(ActionEvent event) {
 		funcionario.removerFuncionario(funcionario.getCpf());
+		notificar("Sucesso", "Funcionário excluído", "O funcionário foi excluído dos registros do banco de dados com sucesso");
     }
     
     @FXML
@@ -246,6 +238,40 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	func.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(), funcionario.getCargo(),
     			funcionario.getFk_filiais_id(), tfCargaHoraria.getText(), cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(),
     			cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
+    	notificar("Sucesso", "Alteração de dados", "Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+    }
+    
+    void notificar(String tipoDeAviso, String titulo, String texto) {
+    	paneAvisosPrincipal.setDisable(false);
+    	paneAvisosPrincipal.setVisible(true);
+    	paneAvisosSombra.setVisible(true);
+    	paneAvisosSombra.setDisable(false);
+    	switch(tipoDeAviso){
+    		case "Sucesso":
+    			paneAvisosSucesso.setDisable(false);
+    			paneAvisosSucesso.setVisible(true);
+    			labelAvisosTextoSucesso.setText(texto);
+    			labelAvisosTituloSucesso.setText(titulo);
+    			break;
+    		case "Falha":
+    			paneAvisosFalha.setDisable(false);
+    			paneAvisosFalha.setVisible(true);
+    			labelAvisosTextoFalha.setText(texto);
+    			labelAvisosTituloFalha.setText(titulo);
+    			break;
+    	}
+    }
+    
+    @FXML
+    void fecharAviso(ActionEvent event){
+    	paneAvisosPrincipal.setDisable(true);
+    	paneAvisosPrincipal.setVisible(false);
+    	paneAvisosSombra.setVisible(false);
+    	paneAvisosSombra.setDisable(true);
+		paneAvisosSucesso.setDisable(true);
+		paneAvisosSucesso.setVisible(false);
+		paneAvisosFalha.setDisable(true);
+		paneAvisosFalha.setVisible(false);
     }
     
 	@Override
