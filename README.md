@@ -119,6 +119,3 @@ ALTER TABLE viagens ADD CONSTRAINT FK_viagens_3
     ON DELETE RESTRICT;
 
 ~~~
-
-## Diagrama de classes do nosso sistema
-![diagrama de classes roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/diagrama_de_classes/diagrama_de_classes.png?raw=true)
