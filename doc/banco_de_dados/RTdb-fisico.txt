@@ -1,97 +1,81 @@
-CREATE DATABASE rtracker;
+/* RTdb-logico: */
 
-CREATE TABLE funcionario (
-	funcionario_nome VARCHAR(60) NOT NULL,
-	funcionario_cpf VARCHAR(11) UNIQUE NOT NULL PRIMARY KEY,
-	funcionario_senha VARCHAR(30) NOT NULL,
-	funcionario_cargo VARCHAR(30) NOT NULL
+CREATE TABLE filiais (
+    cidade VARCHAR(30),
+    id SERIAL PRIMARY KEY,
+    estado VARCHAR(2),
+    nome VARCHAR(30)
 );
 
+CREATE TABLE funcionarios (
+    cargo VARCHAR(13),
+    senha VARCHAR(256),
+    cpf VARCHAR(13) PRIMARY KEY,
+    dom BOOLEAN,
+    sab BOOLEAN,
+    sex BOOLEAN,
+    qui BOOLEAN,
+    ter BOOLEAN,
+    cargahoraria VARCHAR(2),
+    seg BOOLEAN,
+    nome VARCHAR(60),
+    qua BOOLEAN,
+    fk_filiais_id SERIAL
+);
 
-CREATE TABLE filial (
-	filial_id SERIAL UNIQUE NOT NULL PRIMARY KEY,
-	filial_nome VARCHAR(30) NOT NULL,
-	filial_cidade VARCHAR(30) NOT NULL,
-	filial_estado VARCHAR(2) NOT NULL
+CREATE TABLE veiculos (
+    placa VARCHAR(8),
+    versao_rastreador VARCHAR(30),
+    id_rastreador VARCHAR(30) PRIMARY KEY,
+    marca_rastreador VARCHAR(30),
+    fk_funcionarios_cpf VARCHAR(13)
+);
+
+CREATE TABLE viagens (
+    total TIME,
+    fim DATETIME,
+    inicio DATETIME,
+    id SERIAL PRIMARY KEY,
+    fk_funcionarios_cpf VARCHAR(13),
+    fk_veiculos_id_rastreador VARCHAR(30)
 );
 
 CREATE TABLE status (
-	status_id SERIAL UNIQUE NOT NULL PRIMARY KEY,
-	status_inicio TIME,
-	status_fim TIME,
-	status_total TIME,
-	status_tipo VARCHAR (20),
-	status_data DATE
+    tipo VARCHAR(13),
+    inicio DATETIME,
+    fim DATETIME,
+    total TIME,
+    id SERIAL PRIMARY KEY,
+    fk_funcionarios_cpf VARCHAR(13),
+    fk_viagens_id SERIAL
 );
-
-CREATE TABLE motorista (
-	motorista_nome VARCHAR(60) NOT NULL,
-	motorista_cpf VARCHAR(11) UNIQUE NOT NULL PRIMARY KEY,
-	motorista_senha VARCHAR(11) NOT NULL,
-	motorista_carga_horaria TIME,
-	
-	motorista_turno VARCHAR (10)
-);
-
-CREATE TABLE viagem (
-	viagem_id SERIAL UNIQUE NOT NULL PRIMARY KEY,
-	viagem_destino VARCHAR (60) NOT NULL,
-	viagem_inicio TIMESTAMP,
-	viagem_fim TIMESTAMP,
-	viagem_total TIMESTAMP
-);
-
-CREATE TABLE veiculo (
-	veiculo_rastreador_id VARCHAR (30) NOT NULL PRIMARY KEY,
-	veiculo_placa VARCHAR (8) NOT NULL,
-	veiculo_rastreador_versao VARCHAR (30),
-	veiculo_rastreador_marca VARCHAR (30)
-);
-
-ALTER TABLE funcionario 
-      ADD COLUMN fk_filial_id INTEGER, 
-      ADD CONSTRAINT fk_filial_id
-      FOREIGN KEY (fk_filial_id) 
-      REFERENCES filial(filial_id);
-
-ALTER TABLE motorista 
-      ADD COLUMN fk_id_filial INTEGER, 
-      ADD CONSTRAINT fk_id_filial
-      FOREIGN KEY (fk_id_filial) 
-      REFERENCES filial(filial_id);
-
-ALTER TABLE status 
-      ADD COLUMN fk_motorista_cpf VARCHAR(11), 
-      ADD CONSTRAINT fk_motorista_cpf
-      FOREIGN KEY (fk_motorista_cpf) 
-      REFERENCES motorista(motorista_cpf);
-
-ALTER TABLE status 
-      ADD COLUMN fk_viagem_id INTEGER, 
-      ADD CONSTRAINT fk_viagem_id
-      FOREIGN KEY (fk_viagem_id) 
-      REFERENCES viagens(viagem_id);
-
-ALTER TABLE veiculo 
-      ADD COLUMN fk_motorista_cpf VARCHAR(11), 
-      ADD CONSTRAINT fk_motorista_cpf
-      FOREIGN KEY (fk_motorista_cpf) 
-      REFERENCES motorista(motorista_cpf);
-
-ALTER TABLE viagem
-      ADD COLUMN fk_motorista_cpf VARCHAR(11), 
-      ADD CONSTRAINT fk_motorista_cpf
-      FOREIGN KEY (fk_motorista_cpf) 
-      REFERENCES motorista(motorista_cpf);
-
-
-INSERT INTO funcionario (nome, cpf, senha, cargo) VALUES ('root', '00000000000', 'root', 'adm');
-INSERT INTO  motorista (nome, cpf, senha, turno) VALUES ('motorista1', '22222222222', 'teste321', 'noturno');
-INSERT INTO status (cpf, tipo_status) VALUES ('22222222222', 'refeição');
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<<testes>>
-SELECT nome, cpf FROM motorista where turno = 'noturno';
-UPDATE motorista SET senha = '123abc' WHERE senha = 'teste321';
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<< Não tenho certeza do valor que folga e dias_trabalho na tabela motoristas, então nao crie a tabela motoristas ainda>>
+ 
+ALTER TABLE veiculos ADD CONSTRAINT FK_veiculos_2
+    FOREIGN KEY (fk_funcionarios_cpf)
+    REFERENCES funcionarios (cpf)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE status ADD CONSTRAINT FK_status_2
+    FOREIGN KEY (fk_funcionarios_cpf)
+    REFERENCES funcionarios (cpf)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE status ADD CONSTRAINT FK_status_3
+    FOREIGN KEY (fk_viagens_id)
+    REFERENCES viagens (id)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE funcionarios ADD CONSTRAINT FK_funcionarios_2
+    FOREIGN KEY (fk_filiais_id)
+    REFERENCES filiais (id)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE viagens ADD CONSTRAINT FK_viagens_2
+    FOREIGN KEY (fk_funcionarios_cpf)
+    REFERENCES funcionarios (cpf)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE viagens ADD CONSTRAINT FK_viagens_3
+    FOREIGN KEY (fk_veiculos_id_rastreador)
+    REFERENCES veiculos (id_rastreador)
+    ON DELETE RESTRICT;

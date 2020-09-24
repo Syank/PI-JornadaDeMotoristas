@@ -23,7 +23,7 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 - Hibernate: 5.4.21
 - PostgreSQL JDBC: 42.2.16
 
-## User stories do nosso sistema
+## *User stories* do nosso sistema
 ![user stories rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/user_stories.png?raw=true)
 
 ## Modelo conceitual do nosso banco de dados
@@ -31,6 +31,91 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 
 ## Modelo lógico do nosso banco de dados
 ![lógico rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/banco_de_dados/RTdb-logico.png?raw=true)
+
+## Modelo físico do nosso banco de dados
+´´´SQL
+
+CREATE TABLE filiais (
+    cidade VARCHAR(30),
+    id SERIAL PRIMARY KEY,
+    estado VARCHAR(2),
+    nome VARCHAR(30)
+);
+
+CREATE TABLE funcionarios (
+    cargo VARCHAR(13),
+    senha VARCHAR(256),
+    cpf VARCHAR(13) PRIMARY KEY,
+    dom BOOLEAN,
+    sab BOOLEAN,
+    sex BOOLEAN,
+    qui BOOLEAN,
+    ter BOOLEAN,
+    cargahoraria VARCHAR(2),
+    seg BOOLEAN,
+    nome VARCHAR(60),
+    qua BOOLEAN,
+    fk_filiais_id SERIAL
+);
+
+CREATE TABLE veiculos (
+    placa VARCHAR(8),
+    versao_rastreador VARCHAR(30),
+    id_rastreador VARCHAR(30) PRIMARY KEY,
+    marca_rastreador VARCHAR(30),
+    fk_funcionarios_cpf VARCHAR(13)
+);
+
+CREATE TABLE viagens (
+    total TIME,
+    fim DATETIME,
+    inicio DATETIME,
+    id SERIAL PRIMARY KEY,
+    fk_funcionarios_cpf VARCHAR(13),
+    fk_veiculos_id_rastreador VARCHAR(30)
+);
+
+CREATE TABLE status (
+    tipo VARCHAR(13),
+    inicio DATETIME,
+    fim DATETIME,
+    total TIME,
+    id SERIAL PRIMARY KEY,
+    fk_funcionarios_cpf VARCHAR(13),
+    fk_viagens_id SERIAL
+);
+ 
+ALTER TABLE veiculos ADD CONSTRAINT FK_veiculos_2
+    FOREIGN KEY (fk_funcionarios_cpf)
+    REFERENCES funcionarios (cpf)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE status ADD CONSTRAINT FK_status_2
+    FOREIGN KEY (fk_funcionarios_cpf)
+    REFERENCES funcionarios (cpf)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE status ADD CONSTRAINT FK_status_3
+    FOREIGN KEY (fk_viagens_id)
+    REFERENCES viagens (id)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE funcionarios ADD CONSTRAINT FK_funcionarios_2
+    FOREIGN KEY (fk_filiais_id)
+    REFERENCES filiais (id)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE viagens ADD CONSTRAINT FK_viagens_2
+    FOREIGN KEY (fk_funcionarios_cpf)
+    REFERENCES funcionarios (cpf)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE viagens ADD CONSTRAINT FK_viagens_3
+    FOREIGN KEY (fk_veiculos_id_rastreador)
+    REFERENCES veiculos (id_rastreador)
+    ON DELETE RESTRICT;
+
+´´´
 
 ## Diagrama de classes do nosso sistema
 ![diagrama de classes roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/diagrama_de_classes/diagrama_de_classes.png?raw=true)
