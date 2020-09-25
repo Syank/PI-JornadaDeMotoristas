@@ -17,17 +17,21 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 
 - [Anna Yukimi Yamada](https://www.linkedin.com/in/anna-yukimi-yamada-6ba23b149/ "Anna's LinkedIn") (Development Team)
 
-## Versões das bibliotecas utilizadas por nós
-- JavaFX: 14.0.2.1
-- JDK: 14.0.2.1
-- Hibernate: 5.4.21
-- PostgreSQL JDBC: 42.2.16
-
 ## *User stories* do nosso sistema
 ![user stories entrega 1 rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/1.png?raw=true)
 ![user stories entrega 2 rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/2.png?raw=true)
 ![user stories entrega 3 rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/3.png?raw=true)
 ![user stories entrega 4 rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/4.png?raw=true)
+
+## *Wireframes* do RoadTracker
+![tela de login roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/login.jpeg?raw=true)
+![tela de login roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/cadastro_funcionario.jpeg?raw=true)
+![tela de login roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_funcionario_cadastrdo.jpeg?raw=true)
+![tela de login roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_falha_cadastro.jpeg?raw=true)
+![tela de login roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/listagem_funcionarios.jpeg?raw=true)
+![tela de login roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/informações_funcionario.jpeg?raw=true)
+![tela de login roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_usuario_excluido.jpeg?raw=true)
+![tela de login roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_dados_alterados.jpeg?raw=true)
 
 ## Modelo conceitual do nosso banco de dados
 ![conceitual rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/banco_de_dados/RTdb-conceitual.png?raw=true)
@@ -119,3 +123,9 @@ ALTER TABLE viagens ADD CONSTRAINT FK_viagens_3
     ON DELETE RESTRICT;
 
 ~~~
+
+## Versões das bibliotecas utilizadas por nós
+- JavaFX: 14.0.2.1
+- JDK: 14.0.2.1
+- Hibernate: 5.4.21
+- PostgreSQL JDBC: 42.2.16
