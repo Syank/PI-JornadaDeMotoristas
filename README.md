@@ -24,15 +24,15 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 ![user stories entrega 4 rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/4.png?raw=true)
 
 ## *Wireframes* do RoadTracker
-![tela de login roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/login.jpeg?raw=true){style="display:block;margin: 0 auto"}
-![tela de boas vindas roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/boas_vindas.jpeg?raw=true){style="display:block;margin: 0 auto"}
-![tela de cadastro do funcionário roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/cadastro_funcionario.jpeg?raw=true){style="display:block;margin: 0 auto"}
-![tela de usuario cadastrado roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_funcionario_cadastrdo.jpeg?raw=true){style="display:block;margin: 0 auto"}
-![tela de falha no cadastro roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_falha_cadastro.jpeg?raw=true){style="display:block;margin: 0 auto"}
-![tela de listagem de funcionários roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/listagem_funcionarios.jpeg?raw=true){style="display:block;margin: 0 auto"}
-![tela de informações do funcionário roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/informações_funcionario.jpeg?raw=true){style="display:block;margin: 0 auto"}
-![tela de usuário excluído roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_usuario_excluido.jpeg?raw=true){style="display:block;margin: 0 auto"}
-![tela de dados alterados roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_dados_alterados.jpeg?raw=true){style="display:block;margin: 0 auto"}
+![tela de login roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/login.jpeg?raw=true)
+![tela de boas vindas roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/boas_vindas.jpeg?raw=true)
+![tela de cadastro do funcionário roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/cadastro_funcionario.jpeg?raw=true)
+![tela de usuario cadastrado roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_funcionario_cadastrdo.jpeg?raw=true)
+![tela de falha no cadastro roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_falha_cadastro.jpeg?raw=true)
+![tela de listagem de funcionários roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/listagem_funcionarios.jpeg?raw=true)
+![tela de informações do funcionário roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/informações_funcionario.jpeg?raw=true)
+![tela de usuário excluído roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_usuario_excluido.jpeg?raw=true)
+![tela de dados alterados roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_dados_alterados.jpeg?raw=true)
 
 ## Modelo conceitual do nosso banco de dados
 ![conceitual rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/banco_de_dados/RTdb-conceitual.png?raw=true)
