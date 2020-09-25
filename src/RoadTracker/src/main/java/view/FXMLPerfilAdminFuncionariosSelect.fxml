@@ -182,10 +182,10 @@
                   <TextField fx:id="tfCpf" editable="true" promptText="CPF" styleClass="customizarInputs" />
                   <TextField fx:id="pfSenha" editable="true" promptText="Senha" styleClass="customizarInputs" />
                   <TextField fx:id="tfCargaHoraria" editable="true" promptText="Carga Horária" styleClass="customizarInputs" />
-                  <ComboBox fx:id="cbFilial" editable="true" prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
+                  <ComboBox fx:id="cbFilial" prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
                </children>
             </VBox>
-            <ComboBox fx:id="cbCargo" editable="true" layoutX="337.0" layoutY="23.0" prefWidth="150.0" promptText="Cargo" styleClass="customizarInputs" />
+            <ComboBox fx:id="cbCargo" layoutX="337.0" layoutY="23.0" prefWidth="150.0" promptText="Cargo" styleClass="customizarInputs" />
          </children>
       </Pane>
       <Pane fx:id="paneFuncionarios" layoutX="250.0" layoutY="85.0" prefHeight="365.0" prefWidth="500.0" visible="false">
