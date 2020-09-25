@@ -115,11 +115,11 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     void cadastrarFuncionario(MouseEvent event) {
     	
     	// Todos os funcionários
-    	String cargo = cbCargo.getValue().getCargo();
     	String nome = tfNome.getText();
     	String cpf = tfCpf.getText();
     	String senha = pfSenha1.getText();
     	String senha2 = pfSenha2.getText();
+    	String cargo = cbCargo.getValue().getCargo();
     	int filial = cbFilial.getValue().getId();
     	String cargaHoraria = tfCargaHoraria.getText();
     	boolean dom = cbDomingo.isSelected();

@@ -58,7 +58,9 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     @FXML
     private TextField tfCargaHoraria;
     @FXML
-    private ComboBox<?> cbFilial;
+    private ComboBox<Filiais> cbFilial;
+    @FXML
+    private ComboBox<Cargos> cbCargo;
     @FXML
     private VBox chbDias;
     @FXML
@@ -93,6 +95,12 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     private Label labelAvisosTextoFalha;
     @FXML
     private Pane paneAvisosSombra;
+    
+    private List<Cargos> cargos = new ArrayList<>();
+    private ObservableList<Cargos> cargosList;
+    
+    private List<Filiais> filiais = new ArrayList<>();
+    private ObservableList<Filiais> filiaisList;
 
     private String cpfFuncionario;
    
@@ -166,6 +174,18 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	System.exit(0);
     }
     
+    public void carregarComboBoxCargos() {
+    	cargos = funcionario.listarCargos();
+    	cargosList = FXCollections.observableArrayList(cargos);
+    	cbCargo.setItems(cargosList);
+    }
+    
+    public void carregarComboBoxFiliais() {
+    	filiais = funcionario.listarFiliais();
+    	filiaisList = FXCollections.observableArrayList(filiais);
+    	cbFilial.setItems(filiaisList);
+    }
+    
     @FXML
     void excluirFuncionario(ActionEvent event) {
 		funcionario.removerFuncionario(funcionario.getCpf());
@@ -180,6 +200,8 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	paneFuncionarios.setDisable(true);
     	paneFuncionarioSelecionado.setVisible(true);
     	paneFuncionarioSelecionado.setDisable(false);
+		carregarComboBoxCargos();
+		carregarComboBoxFiliais();
     	carregarInfoFuncionario();
     }   
     
@@ -191,7 +213,9 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	tfCpf.setText(funcionario.getCpf());
     	pfSenha.setText(funcionario.getSenha());
     	tfCargaHoraria.setText(funcionario.getCargaHoraria());
-    	//setar o default da filial com o que tem no banco
+    	
+//    	cbCargo.getSelectionModel().select(cargo);
+//    	cbFilial.getSelectionModel().select(funcionario.getFk_filiais_id());
     	
     	cbDom.setSelected(funcionario.isDom());
     	cbSeg.setSelected(funcionario.isSeg());
@@ -207,6 +231,7 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	tfNome.setDisable(false);
     	tfCpf.setDisable(true);
     	pfSenha.setDisable(false);
+    	cbCargo.setDisable(false);
     	cbFilial.setDisable(false);
     	tfCargaHoraria.setDisable(false);
     	chbDias.setDisable(false);
@@ -218,6 +243,7 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	tfNome.setDisable(true);
     	tfCpf.setDisable(true);
     	pfSenha.setDisable(true);
+    	cbCargo.setDisable(true);
     	cbFilial.setDisable(true);
     	tfCargaHoraria.setDisable(true);
     	chbDias.setDisable(true);
@@ -234,9 +260,9 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     
     @FXML
     void alterarDados(ActionEvent event) {
-    	Funcionario func = new Funcionario();
-    	func.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(), funcionario.getCargo(),
-    			funcionario.getFk_filiais_id(), tfCargaHoraria.getText(), cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(),
+    	
+    	funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(), cbCargo.getValue().getCargo(),
+    			cbFilial.getValue().getId(), tfCargaHoraria.getText(), cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(),
     			cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
     	notificar("Sucesso", "Alteração de dados", "Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
     }
