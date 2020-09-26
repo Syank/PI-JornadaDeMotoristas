@@ -20,6 +20,12 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 
 - [Anna Yukimi Yamada](https://www.linkedin.com/in/anna-yukimi-yamada-6ba23b149/ "Anna's LinkedIn") (Development Team)
 
+## Cards das Sprints(entregas) do sistema
+![Card da Sprint 0](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Card%20Sprint%200.jpeg)
+
+## Nosso sistema em funcionamento até o momento
+![GIF sistema](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Sistema%20Sprint%200.gif)
+
 ## *User stories* do nosso sistema
 ### Primeira entrega :clock12:
 A nossa primeira entrega contará com um CRUD dos funcionários das filais, que poderão ter os cargos de administrador, supervisor e motoristas. Sendo assim as filiais já poderão ter controle dos funcionários que estarão cadastrados e já poderão ter uma visão melhor sobre as jornadas de trabalho de cada funcionário.
