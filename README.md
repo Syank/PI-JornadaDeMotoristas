@@ -1,10 +1,13 @@
 # RoadTracker :truck::computer:
 Seja bem vindo ao repositório do RoadTracker!
 
-## O que é o RoadTracker?
-Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas de trabalho dos motoristas de caminhão, pois muitas vezes não há o controle sobre o expediente desses trabalhadores. Todas as filiais de uma empresa podem se cadastrar e realizar o cadastro de seus motoristas e, consequentemente, realizar o cadastro das jornadas de trabalho deles, o veículo que será utilizado e a viagem a ser realizada. Além disso, a filial terá acesso a várias informações sobre o status do motorista durante a viagem!
+## O nosso desafio 
+Nosso cliente é a empresa IACIT e nos foi solicitado para desenvolver um sistema de gerenciamento de controle de jornada de trabalho de motoristas de forma parametrizável visando a disponibilização de funcionalidades de planejamento, acompanhamento e controle da jornada de trabalho destes trabalhadores. Nosso sistema deverá oferecer cadastro para motoristas (tendo nome, CPF, matrícula e ID do equipamento do caminhão), um cadastro para os dados do veículo (como a placa, a marca e versão do rastreador e o ID do equipamento), escala dos motoristas (turno, carga horária, dias de trabalho e de folga), um cadastro de alertas (contendo ocorrência, sigla, ícone, descrição do alerta e regra/parâmetro), cadastro de status (cadastrar status e regras de negócio de acordo com cada situação ocorrida durante a jornada, ID dos macros/mensagens, status de início e fim de jornada, tempo de trabalho, tempo de espera, tempo de refeição e tempo de descanso).
 
-## Integrantes da equipe
+## O que é o RoadTracker?
+Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas de trabalho de motoristas, pois muitas vezes não há o controle sobre o expediente desses trabalhadores. Todas as filiais de uma empresa ser cadastradas e realizar o cadastro de seus motoristas e, consequentemente, realizar o cadastro das jornadas de trabalho deles, o veículo que será utilizado e a viagem a ser realizada. Além disso, a filial terá acesso a várias informações sobre o status do motorista durante a viagem!
+
+## Integrantes da equipe :girl::boy:
 - [Rafael Furtado Rodrigues dos Santos](https://www.linkedin.com/in/rafael-furtado-613a9712a/ "Rafael's LinkedIn") (Scrum Master)
 
 - [Bárbara dos Santos Port](https://www.linkedin.com/in/b%C3%A1rbara-port-402158198/ "Bárbara's LinkedIn") (Product Owner)
@@ -18,12 +21,23 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 - [Anna Yukimi Yamada](https://www.linkedin.com/in/anna-yukimi-yamada-6ba23b149/ "Anna's LinkedIn") (Development Team)
 
 ## *User stories* do nosso sistema
+### Primeira entrega :clock12:
+A nossa primeira entrega contará com um CRUD dos funcionários das filais, que poderão ter os cargos de administrador, supervisor e motoristas. Sendo assim as filiais já poderão ter controle dos funcionários que estarão cadastrados e já poderão ter uma visão melhor sobre as jornadas de trabalho de cada funcionário.
 ![user stories entrega 1 rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/1.png?raw=true)
+
+### Segunda entrega :clock4:
+Na segunda entrega já será possível o cadastro de filiais, de veículos e viagens. Isso já possibilita o controle dos veículos e as viagens realizadas, proporcionando a escalabilidade de boa parte do sistema.
 ![user stories entrega 2 rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/2.png?raw=true)
+
+### Terceira entrega :clock8:
+Acerca da terceira entrega o motorista cadastrar os status em que ele se encontra (como descanso, espera, alimentação e abastecimento), podendo informar a todos da sua filial sobre qual o seu estado. Essa é uma das principais funcionalidades do sistema, porém depende de outra: cadastro das viagens. Sem uma viagem o motorista não poderá emitir status.
 ![user stories entrega 3 rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/3.png?raw=true)
+
+### Quarta entrega :clock12:
+Finalmente, diante da quarta e última entrega, todos os usuários poderão recuperar a sua senha caso seja necessário. Haverá um perfil para supervisores, que poderão desempenhar algumas funções dos administradores (o que ajuda na agilidade dos processos). Além disso os funcionários poderão enviar avisos a outros funcionários, caso haja algum assunto importante a ser tratado ou caso ocorra alguma emergência.
 ![user stories entrega 4 rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/4.png?raw=true)
 
-## *Wireframes* do RoadTracker
+## *Wireframes* do RoadTracker 
 ![tela de login roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/login.jpeg?raw=true)
 ![tela de boas vindas roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/boas_vindas.jpeg?raw=true)
 ![tela de cadastro do funcionário roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/cadastro_funcionario.jpeg?raw=true)
