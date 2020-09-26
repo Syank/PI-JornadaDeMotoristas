@@ -1,22 +1,4 @@
-/* RTdb-logico: */
-
-CREATE TABLE veiculos (
-    placa VARCHAR(10),
-    versao_rastreador VARCHAR(20),
-    id_rastreador VARCHAR(30) PRIMARY KEY,
-    marca_rastreador VARCHAR(20),
-    fk_funcionarios_cpf VARCHAR(11)
-);
-
-CREATE TABLE status (
-    tipo VARCHAR(20),
-    inicio DATETIME,
-    fim DATETIME,
-    total TIMESTAMP,
-    id SERIAL PRIMARY KEY,
-    fk_funcionarios_cpf VARCHAR(11),
-    fk_viagens_id SERIAL
-);
+CREATE DATABASE rtracker;
 
 CREATE TABLE filiais (
     cidade VARCHAR(50),
@@ -40,6 +22,24 @@ CREATE TABLE funcionarios (
     qua BOOLEAN,
     turno VARCHAR(10),
     fk_filiais_id SERIAL
+);
+
+CREATE TABLE veiculos (
+    placa VARCHAR(10),
+    versao_rastreador VARCHAR(20),
+    id_rastreador VARCHAR(30) PRIMARY KEY,
+    marca_rastreador VARCHAR(20),
+    fk_funcionarios_cpf VARCHAR(11)
+);
+
+CREATE TABLE status (
+    tipo VARCHAR(20),
+    inicio DATETIME,
+    fim DATETIME,
+    total TIMESTAMP,
+    id SERIAL PRIMARY KEY,
+    fk_funcionarios_cpf VARCHAR(11),
+    fk_viagens_id SERIAL
 );
 
 CREATE TABLE viagens (
