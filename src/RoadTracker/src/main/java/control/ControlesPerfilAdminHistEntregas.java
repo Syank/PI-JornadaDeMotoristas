@@ -1,4 +1,4 @@
-package view;
+package control;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import view.*;
 
 public class ControlesPerfilAdminHistEntregas {
 

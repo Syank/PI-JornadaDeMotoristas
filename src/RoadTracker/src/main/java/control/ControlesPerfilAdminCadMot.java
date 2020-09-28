@@ -1,4 +1,4 @@
-package view;
+package control;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -16,7 +16,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import model.Funcionario;
+import model.*;
+import view.*;
 
 public class ControlesPerfilAdminCadMot implements Initializable {
 	

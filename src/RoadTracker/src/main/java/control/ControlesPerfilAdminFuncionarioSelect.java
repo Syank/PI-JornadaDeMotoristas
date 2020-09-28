@@ -1,10 +1,9 @@
-package view;
+package control;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +20,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import model.Funcionario;
+import model.*;
+import view.*;
 
 public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
 	

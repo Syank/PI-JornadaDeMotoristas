@@ -1,8 +1,9 @@
-package view;
+package control;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
+import view.*;
 
 public class ControlesPerfilAdminBoasVindas {
 
