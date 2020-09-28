@@ -21,7 +21,7 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 - [Anna Yukimi Yamada](https://www.linkedin.com/in/anna-yukimi-yamada-6ba23b149/ "Anna's LinkedIn") (Development Team)
 
 ## Cards das Sprints(entregas) do sistema
-![Card da Sprint 0](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Card%20Sprint%200.jpeg)
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Card%20Sprint%200.jpeg" width="425" height="275"/>
 
 ## Nosso sistema em funcionamento até o momento
 ![GIF sistema](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Sistema%20Sprint%200.gif)
@@ -29,30 +29,42 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 ## *User stories* do nosso sistema
 ### Primeira entrega :clock12:
 A nossa primeira entrega contará com um CRUD dos funcionários das filais, que poderão ter os cargos de administrador, supervisor e motoristas. Sendo assim as filiais já poderão ter controle dos funcionários que estarão cadastrados e já poderão ter uma visão melhor sobre as jornadas de trabalho de cada funcionário.
-![user stories entrega 1 rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/1.png?raw=true)
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/1.png" width="500" height="500"/>
 
 ### Segunda entrega :clock4:
 Na segunda entrega já será possível o cadastro de filiais, de veículos e viagens. Isso já possibilita o controle dos veículos e as viagens realizadas, proporcionando a escalabilidade de boa parte do sistema.
-![user stories entrega 2 rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/2.png?raw=true)
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/2.png" width="500" height="550"/>
 
 ### Terceira entrega :clock8:
 Acerca da terceira entrega o motorista cadastrar os status em que ele se encontra (como descanso, espera, alimentação e abastecimento), podendo informar a todos da sua filial sobre qual o seu estado. Essa é uma das principais funcionalidades do sistema, porém depende de outra: cadastro das viagens. Sem uma viagem o motorista não poderá emitir status.
-![user stories entrega 3 rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/3.png?raw=true)
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/3.png" width="500" height="500"/>
 
 ### Quarta entrega :clock12:
 Finalmente, diante da quarta e última entrega, todos os usuários poderão recuperar a sua senha caso seja necessário. Haverá um perfil para supervisores, que poderão desempenhar algumas funções dos administradores (o que ajuda na agilidade dos processos). Além disso os funcionários poderão enviar avisos a outros funcionários, caso haja algum assunto importante a ser tratado ou caso ocorra alguma emergência.
-![user stories entrega 4 rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/4.png?raw=true)
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/4.png" width="500" height="550"/>
 
 ## *Wireframes* do RoadTracker 
-![tela de login roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/login.jpeg?raw=true)
-![tela de boas vindas roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/boas_vindas.jpeg?raw=true)
-![tela de cadastro do funcionário roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/cadastro_funcionario.jpeg?raw=true)
-![tela de usuario cadastrado roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_funcionario_cadastrdo.jpeg?raw=true)
-![tela de falha no cadastro roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_falha_cadastro.jpeg?raw=true)
-![tela de listagem de funcionários roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/listagem_funcionarios.jpeg?raw=true)
-![tela de informações do funcionário roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/informações_funcionario.jpeg?raw=true)
-![tela de usuário excluído roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_usuario_excluido.jpeg?raw=true)
-![tela de dados alterados roadtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_dados_alterados.jpeg?raw=true)
+<div aling="center">
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/login.jpeg" width="400" height="250" hspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/boas_vindas.jpeg" width="400" height="250" hspace="5"/>
+
+
+
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/cadastro_funcionario.jpeg" width="400" height="250" hspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_funcionario_cadastrdo.jpeg" width="400" height="250" hspace="5"/>
+
+
+
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_falha_cadastro.jpeg" width="400" height="250" hspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/listagem_funcionarios.jpeg" width="400" height="250" hspace="5"/>
+
+
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/informações_funcionario.jpeg" width="400" height="250" hspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_usuario_excluido.jpeg" width="400" height="250" hspace="5"/>
+
+
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_dados_alterados.jpeg" width="400" height="250" hspace="5"/>
+</div>
 
 ## Modelo conceitual do nosso banco de dados
 ![conceitual rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/banco_de_dados/RTdb-conceitual.png?raw=true)
