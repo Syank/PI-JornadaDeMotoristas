@@ -21,7 +21,7 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 - [Anna Yukimi Yamada](https://www.linkedin.com/in/anna-yukimi-yamada-6ba23b149/ "Anna's LinkedIn") (Development Team)
 
 ## Cards das Sprints(entregas) do sistema
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Card%20Sprint%200.jpeg" width="425" height="275"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Card%20Sprint%200.jpeg" width="500" height="280"/>
 
 ## Nosso sistema em funcionamento até o momento
 ![GIF sistema](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Sistema%20Sprint%200.gif)
@@ -31,25 +31,25 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 <div>
 A nossa primeira entrega contará com um CRUD dos funcionários das filais, que poderão ter os cargos de administrador, supervisor e motoristas. Sendo assim as filiais já poderão ter controle dos funcionários que estarão cadastrados e já poderão ter uma visão melhor sobre as jornadas de trabalho de cada funcionário.
 </div>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/1.png" width="500" height="500" hspace="5" vspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/1.png" width="700" height="750" hspace="5" vspace="5"/>
 
 ### Segunda entrega :clock4:
 <div>
 Na segunda entrega já será possível o cadastro de filiais, de veículos e viagens. Isso já possibilita o controle dos veículos e as viagens realizadas, proporcionando a escalabilidade de boa parte do sistema.
 </div>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/2.png" width="500" height="550" hspace="5" vspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/2.png" width="700" height="900" hspace="5" vspace="5"/>
 
 ### Terceira entrega :clock8:
 <div>
 Acerca da terceira entrega o motorista cadastrar os status em que ele se encontra (como descanso, espera, alimentação e abastecimento), podendo informar a todos da sua filial sobre qual o seu estado. Essa é uma das principais funcionalidades do sistema, porém depende de outra: cadastro das viagens. Sem uma viagem o motorista não poderá emitir status.
 </div>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/3.png" width="500" height="500" hspace="5" vspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/3.png" width="700" height="750" hspace="5" vspace="5"/>
 
 ### Quarta entrega :clock12:
 <div>
 Finalmente, diante da quarta e última entrega, todos os usuários poderão recuperar a sua senha caso seja necessário. Haverá um perfil para supervisores, que poderão desempenhar algumas funções dos administradores (o que ajuda na agilidade dos processos). Além disso os funcionários poderão enviar avisos a outros funcionários, caso haja algum assunto importante a ser tratado ou caso ocorra alguma emergência.
 </div>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/4.png" width="500" height="550" hspace="5" vspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/4.png" width="700" height="950" hspace="5" vspace="5"/>
 
 ## *Wireframes* do RoadTracker 
 <div aling="center">
