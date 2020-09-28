@@ -28,40 +28,42 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 
 ## *User stories* do nosso sistema
 ### Primeira entrega :clock12:
+<div>
 A nossa primeira entrega contará com um CRUD dos funcionários das filais, que poderão ter os cargos de administrador, supervisor e motoristas. Sendo assim as filiais já poderão ter controle dos funcionários que estarão cadastrados e já poderão ter uma visão melhor sobre as jornadas de trabalho de cada funcionário.
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/1.png" width="500" height="500"/>
+</div>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/1.png" width="500" height="500" hspace="5" vspace="5"/>
 
 ### Segunda entrega :clock4:
+<div>
 Na segunda entrega já será possível o cadastro de filiais, de veículos e viagens. Isso já possibilita o controle dos veículos e as viagens realizadas, proporcionando a escalabilidade de boa parte do sistema.
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/2.png" width="500" height="550"/>
+</div>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/2.png" width="500" height="550" hspace="5" vspace="5"/>
 
 ### Terceira entrega :clock8:
+<div>
 Acerca da terceira entrega o motorista cadastrar os status em que ele se encontra (como descanso, espera, alimentação e abastecimento), podendo informar a todos da sua filial sobre qual o seu estado. Essa é uma das principais funcionalidades do sistema, porém depende de outra: cadastro das viagens. Sem uma viagem o motorista não poderá emitir status.
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/3.png" width="500" height="500"/>
+</div>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/3.png" width="500" height="500" hspace="5" vspace="5"/>
 
 ### Quarta entrega :clock12:
+<div>
 Finalmente, diante da quarta e última entrega, todos os usuários poderão recuperar a sua senha caso seja necessário. Haverá um perfil para supervisores, que poderão desempenhar algumas funções dos administradores (o que ajuda na agilidade dos processos). Além disso os funcionários poderão enviar avisos a outros funcionários, caso haja algum assunto importante a ser tratado ou caso ocorra alguma emergência.
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/4.png" width="500" height="550"/>
+</div>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/4.png" width="500" height="550" hspace="5" vspace="5"/>
 
 ## *Wireframes* do RoadTracker 
 <div aling="center">
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/login.jpeg" width="400" height="250" hspace="5"/>
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/boas_vindas.jpeg" width="400" height="250" hspace="5"/>
 
-
-
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/cadastro_funcionario.jpeg" width="400" height="250" hspace="5"/>
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_funcionario_cadastrdo.jpeg" width="400" height="250" hspace="5"/>
-
-
 
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_falha_cadastro.jpeg" width="400" height="250" hspace="5"/>
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/listagem_funcionarios.jpeg" width="400" height="250" hspace="5"/>
 
-
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/informações_funcionario.jpeg" width="400" height="250" hspace="5"/>
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_usuario_excluido.jpeg" width="400" height="250" hspace="5"/>
-
 
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_dados_alterados.jpeg" width="400" height="250" hspace="5"/>
 </div>
