@@ -10,26 +10,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="status")
-public class Status {
-
+@Table(name="avisos")
+public class Aviso {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 	private String tipo;
-	private String inicio;
-	private String fim;
-	private String total;
+	private String funcionario_destino;
+	private String mensagem;
+	private boolean visualizado;
 	
-	//um ou mais status pertence a um funcionário
+	//um ou mais avisos correspondem a um funcionario
 	@ManyToOne
 	@JoinColumn(name = "funcionario", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_cpf")) //coluna da tabela pai
 	private Funcionario funcionario = new Funcionario();
-	
-	//um ou mais status pertence a uma viagem
-	@ManyToOne
-	@JoinColumn(name = "viagem", nullable = false, foreignKey = @ForeignKey(name = "fk_viagens_id")) //coluna da tabela pai
-	private Viagem viagem = new Viagem();
 	
 	public Integer getId() {
 		return id;
@@ -43,23 +38,29 @@ public class Status {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public String getInicio() {
-		return inicio;
+	public String getFuncionario_destino() {
+		return funcionario_destino;
 	}
-	public void setInicio(String inicio) {
-		this.inicio = inicio;
+	public void setFuncionario_destino(String funcionario_destino) {
+		this.funcionario_destino = funcionario_destino;
 	}
-	public String getFim() {
-		return fim;
+	public String getMensagem() {
+		return mensagem;
 	}
-	public void setFim(String fim) {
-		this.fim = fim;
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
 	}
-	public String getTotal() {
-		return total;
+	public boolean isVisualizado() {
+		return visualizado;
 	}
-	public void setTotal(String total) {
-		this.total = total;
+	public void setVisualizado(boolean visualizado) {
+		this.visualizado = visualizado;
 	}
-	
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
 }

@@ -1,31 +1,48 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="viagens")
 public class Viagem {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
-	private String fk_funcionarios_id;
-	private Integer fk_veiculos_id_rastreador;
 	private String inicio;
 	private String fim;
 	private String total;
+	
+	//muitas viagens possuem um funcionário
+	@ManyToOne
+	@JoinColumn(name = "funcionario", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_cpf")) //coluna da tabela pai
+	private Funcionario funcionario = new Funcionario();
+	
+	//uma viagem possui um ou mais status
+	@OneToMany(mappedBy = "viagem") //nome do campo na tabela filha
+	private List<Status> status = new ArrayList<Status>();
+	
+	//uma ou muitas viagens correspondem a um veículo
+	@ManyToOne
+	@JoinColumn(name = "veiculo", nullable = false, foreignKey = @ForeignKey(name = "fk_veiculos_id_rastreador")) //coluna da tabela pai
+	private Veiculo veiculo = new Veiculo();
 	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public String getFk_funcionarios_id() {
-		return fk_funcionarios_id;
-	}
-	public void setFk_funcionarios_id(String fk_funcionarios_id) {
-		this.fk_funcionarios_id = fk_funcionarios_id;
-	}
-	public Integer getFk_veiculos_id_rastreador() {
-		return fk_veiculos_id_rastreador;
-	}
-	public void setFk_veiculos_id_rastreador(Integer fk_veiculos_id_rastreador) {
-		this.fk_veiculos_id_rastreador = fk_veiculos_id_rastreador;
 	}
 	public String getInicio() {
 		return inicio;

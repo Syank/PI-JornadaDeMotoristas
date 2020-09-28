@@ -5,7 +5,11 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
@@ -24,7 +28,7 @@ public class Funcionario {
 	private String senha;
 	private String cargo;
 	private String cargaHoraria;
-	private int fk_filiais_id;
+	private String turno;
 	private boolean seg;
 	private boolean ter;
 	private boolean qua;
@@ -33,6 +37,67 @@ public class Funcionario {
 	private boolean sab;
 	private boolean dom;
 	
+	//um ou mais funcionários correspondem a uma filial
+	@ManyToOne
+	@JoinColumn(name = "filial", nullable = false, foreignKey = @ForeignKey(name = "fk_filiais_id")) //coluna da tabela pai
+	private Filial filial = new Filial();
+
+	//um funcionario possui um ou mais avisos
+	@OneToMany(mappedBy = "funcionario") //nome do campo na tabela filha
+	private List<Aviso> avisos = new ArrayList<Aviso>();
+	
+	//um funcionario possui um ou mais status
+	@OneToMany(mappedBy = "funcionario") //nome do campo na tabela filha
+	private List<Status> status = new ArrayList<Status>();
+	
+	//um funcionario possui um ou mais veiculos
+	@OneToMany(mappedBy = "funcionario") //nome do campo na tabela filha
+	private List<Veiculo> veiculos = new ArrayList<Veiculo>();
+	
+	//um funcionario possui um ou mais viagens
+	@OneToMany(mappedBy = "funcionario") //nome do campo na tabela filha
+	private List<Viagem> viagens = new ArrayList<Viagem>();
+	
+	public List<Aviso> getAvisos() {
+		return avisos;
+	}
+
+	public void setAvisos(List<Aviso> avisos) {
+		this.avisos = avisos;
+	}
+
+	public List<Status> getStatus() {
+		return status;
+	}
+
+	public void setStatus(List<Status> status) {
+		this.status = status;
+	}
+
+	public List<Veiculo> getVeiculos() {
+		return veiculos;
+	}
+
+	public void setVeiculos(List<Veiculo> veiculos) {
+		this.veiculos = veiculos;
+	}
+
+	public List<Viagem> getViagens() {
+		return viagens;
+	}
+
+	public void setViagens(List<Viagem> viagens) {
+		this.viagens = viagens;
+	}
+	
+	public Filial getFilial() {
+		return filial;
+	}
+
+	public void setFilial(Filial filial) {
+		this.filial = filial;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -63,14 +128,6 @@ public class Funcionario {
 
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
-	}
-
-	public int getFk_filiais_id() {
-		return fk_filiais_id;
-	}
-
-	public void setFk_filiais_id(int fk_filiais_id) {
-		this.fk_filiais_id = fk_filiais_id;
 	}
 	
 	public String getCargaHoraria() {
@@ -137,7 +194,15 @@ public class Funcionario {
 		this.dom = dom;
 	}
 	
-	public void cadastrarFuncionario(String nome, String cpf, String senha, String cargo, int filial,
+	public String getTurno() {
+		return turno;
+	}
+
+	public void setTurno(String turno) {
+		this.turno = turno;
+	}
+	
+	public void cadastrarFuncionario(String nome, String cpf, String senha, String cargo, int filial_func,
 			String carga_horaria, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
@@ -146,7 +211,6 @@ public class Funcionario {
 		this.setCpf(cpf);
 		this.setSenha(senha);
 		this.setCargo(cargo);
-		this.setFk_filiais_id(filial);
 		this.setSeg(seg);
 		this.setCargaHoraria(carga_horaria);
 		this.setTer(ter);
@@ -155,6 +219,9 @@ public class Funcionario {
 		this.setSex(sex);
 		this.setSab(sab);
 		this.setDom(dom);
+		
+		filial.setId(filial_func);
+		this.setFilial(filial);
 		
 		try {
 			con.getTransaction().begin();
@@ -203,7 +270,10 @@ public class Funcionario {
 		this.cpf = cpfFuncionario;
 		this.senha = novaSenha;
 		this.cargo = novoCargo;
-		this.fk_filiais_id = novaFilial;
+		
+		filial.setId(novaFilial);
+		this.setFilial(filial);
+		
 		this.cargaHoraria = carga;
 		this.seg = seg;
 		this.ter = ter;

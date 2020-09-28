@@ -1,24 +1,40 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="veiculos")
 public class Veiculo {
 	
+	@Id
 	private Integer id_rastreador;
-	private String fk_funcionarios_cpf;
 	private String placa;
 	private String marca_rastreador;
 	private String versao_rastreador;
+	
+	//um ou mais funcionarios possuem um veículo
+	@ManyToOne
+	@JoinColumn(name = "funcionario", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_cpf")) //coluna da tabela pai
+	private Funcionario funcionario = new Funcionario();
+	
+	//um veiculo possui uma ou mais viagens
+	@OneToMany(mappedBy = "veiculo")
+	private List<Viagem> viagens = new ArrayList<Viagem>();
 	
 	public Integer getId_rastreador() {
 		return id_rastreador;
 	}
 	public void setId_rastreador(Integer id_rastreador) {
 		this.id_rastreador = id_rastreador;
-	}
-	public String getFk_funcionarios_cpf() {
-		return fk_funcionarios_cpf;
-	}
-	public void setFk_funcionarios_cpf(String fk_funcionarios_cpf) {
-		this.fk_funcionarios_cpf = fk_funcionarios_cpf;
 	}
 	public String getPlaca() {
 		return placa;
