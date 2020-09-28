@@ -65,6 +65,22 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     private Label labelAvisosTextoFalha;
     @FXML
     private Pane paneAvisosSombra;
+    @FXML
+    private Pane paneCadastrarFuncionarios;
+    
+    //Elementos da pane de cadastro de filiais
+    @FXML
+    private Pane paneCadastrarFiliais;
+    @FXML
+    private TextField textFieldNomeFilial;
+    @FXML
+    private TextField textFieldCidadeFilial;
+    @FXML
+    private TextField textFieldEstadoFilial;
+    @FXML
+    private TextField textFieldIDFilial;
+    // -----------------------------------
+    
 	
     private List<Cargos> cargos = new ArrayList<>();
     private ObservableList<Cargos> cargosList;
