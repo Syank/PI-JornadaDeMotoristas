@@ -21,6 +21,29 @@ import view.*;
 
 public class ControlesPerfilAdminCadMot implements Initializable {
 	
+	//Elementos da pane de avisos
+    @FXML
+    private Pane paneAvisosPrincipal;
+    @FXML
+    private Pane paneAvisosSucesso;
+    @FXML
+    private Label labelAvisosTituloSucesso;
+    @FXML
+    private Label labelAvisosTextoSucesso;
+    @FXML
+    private Pane paneAvisosFalha;
+    @FXML
+    private Label labelAvisosTituloFalha;
+    @FXML
+    private Label labelAvisosTextoFalha;
+    @FXML
+    private Pane paneAvisosSombra;
+    // ---------------------------
+    
+    
+    //Elementos da pane de cadastro de funcionários
+    @FXML
+    private Pane paneCadastrarFuncionarios;
 	@FXML
 	private ComboBox<Cargos> cbCargo;
 	@FXML
@@ -49,25 +72,15 @@ public class ControlesPerfilAdminCadMot implements Initializable {
 	private CheckBox cbSexta;
 	@FXML
 	private CheckBox cbSabado;
-    @FXML
-    private Pane paneAvisosPrincipal;
-    @FXML
-    private Pane paneAvisosSucesso;
-    @FXML
-    private Label labelAvisosTituloSucesso;
-    @FXML
-    private Label labelAvisosTextoSucesso;
-    @FXML
-    private Pane paneAvisosFalha;
-    @FXML
-    private Label labelAvisosTituloFalha;
-    @FXML
-    private Label labelAvisosTextoFalha;
-    @FXML
-    private Pane paneAvisosSombra;
-    @FXML
-    private Pane paneCadastrarFuncionarios;
+	
+    private List<Cargos> cargos = new ArrayList<>();
+    private ObservableList<Cargos> cargosList;
     
+    private List<Filiais> filiais = new ArrayList<>();
+    private ObservableList<Filiais> filiaisList;
+    // --------------------------------------------
+    
+	
     //Elementos da pane de cadastro de filiais
     @FXML
     private Pane paneCadastrarFiliais;
@@ -79,22 +92,35 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     private TextField textFieldEstadoFilial;
     @FXML
     private TextField textFieldIDFilial;
-    // -----------------------------------
+    // ---------------------------------------
     
-	
-    private List<Cargos> cargos = new ArrayList<>();
-    private ObservableList<Cargos> cargosList;
     
-    private List<Filiais> filiais = new ArrayList<>();
-    private ObservableList<Filiais> filiaisList;
+    //Elementos da pane de cadastro de veículos
+    @FXML
+    private Pane paneCadastrarVeiculos;
+    // ----------------------------------------
+    
+    
+    //Elementos da pane de cadastro de viagens
+    @FXML
+    private Pane paneCadastrarViagens;
+    // ----------------------------------------
+    
+    
+    //Elementos da pane para escolher tipo de cadastro
+    @FXML
+    private Pane paneEscolherTipoDeCadastro;
+    // ----------------------------------------
+    
 
+    
+    //Métodos da pane de cadastrar funcionário
     public void carregarComboBoxCargos() {
     	Funcionario funcionario = new Funcionario();
     	cargos = funcionario.listarCargos();
     	cargosList = FXCollections.observableArrayList(cargos);
     	cbCargo.setItems(cargosList);
-    }
-    
+    } 
     public void carregarComboBoxFiliais() {
     	Funcionario funcionario = new Funcionario();
     	filiais = funcionario.listarFiliais();
@@ -102,35 +128,9 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     	cbFilial.setItems(filiaisList);
     }
 	
-    @FXML
-    void abrirTelaFunc(MouseEvent event) {
-    	Main.trocarTela("Tela Funcionarios");
-    }
-
-    @FXML
-    void abrirTelaHistEntregas(MouseEvent event) {
-    	Main.trocarTela("Tela Historico de Entregas");
-    }
-
-    @FXML
-    void voltar(ActionEvent event) {
-    	Main.trocarTela("Tela Boas Vindas");
-    }
-    
-    @FXML
-    void minimizarJanela(ActionEvent event) {
-    	Main.minimizar();
-    }
-    
-    // Função para fechar a janela ao clicar no " x "
-    @FXML
-    void fecharJanela(ActionEvent event) {
-    	System.exit(0);
-    }
     
     @FXML
     void cadastrarFuncionario(MouseEvent event) {
-    	
     	// Todos os funcionários
     	String nome = tfNome.getText();
     	String cpf = tfCpf.getText();
@@ -159,6 +159,106 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     	}
 
     }
+    // -----------------------------------
+
+    
+    // Métodos gerais
+    @FXML
+    void abrirTelaFunc(MouseEvent event) {
+    	Main.trocarTela("Tela Funcionarios");
+    }
+    @FXML
+    void abrirTelaHistEntregas(MouseEvent event) {
+    	Main.trocarTela("Tela Historico de Entregas");
+    }
+    @FXML
+    void voltar(ActionEvent event) {
+    	if(paneEscolherTipoDeCadastro.isVisible()) {
+    	Main.trocarTela("Tela Boas Vindas");
+    	}else {
+    		voltarParaTelaDeEscolhas(event);
+    	}
+    }
+    @FXML
+    void minimizarJanela(ActionEvent event) {
+    	Main.minimizar();
+    }
+    @FXML
+    void fecharJanela(ActionEvent event) {
+    	System.exit(0);
+    }
+    
+    @FXML
+    void abrirTelaCadastrarFuncionarios(MouseEvent event){
+    	paneCadastrarVeiculos.setVisible(false);
+    	paneCadastrarFiliais.setVisible(false);
+    	paneCadastrarViagens.setVisible(false);
+    	paneCadastrarFuncionarios.setVisible(true);
+    	paneEscolherTipoDeCadastro.setVisible(false);
+    	
+    	paneCadastrarVeiculos.setDisable(true);
+    	paneCadastrarFiliais.setDisable(true);
+    	paneCadastrarViagens.setDisable(true);
+    	paneCadastrarFuncionarios.setDisable(false);
+    	paneEscolherTipoDeCadastro.setDisable(true);
+    }
+    @FXML
+    void abrirTelaCadastrarFiliais(MouseEvent event){
+    	paneCadastrarVeiculos.setVisible(false);
+    	paneCadastrarFiliais.setVisible(true);
+    	paneCadastrarViagens.setVisible(false);
+    	paneCadastrarFuncionarios.setVisible(false);
+    	paneEscolherTipoDeCadastro.setVisible(false);
+    	
+    	paneCadastrarVeiculos.setDisable(true);
+    	paneCadastrarFiliais.setDisable(false);
+    	paneCadastrarViagens.setDisable(true);
+    	paneCadastrarFuncionarios.setDisable(true);
+    	paneEscolherTipoDeCadastro.setDisable(true);
+    }
+    @FXML
+    void abrirTelaCadastrarVeiculos(MouseEvent event){
+    	paneCadastrarVeiculos.setVisible(true);
+    	paneCadastrarFiliais.setVisible(false);
+    	paneCadastrarViagens.setVisible(false);
+    	paneCadastrarFuncionarios.setVisible(false);
+    	paneEscolherTipoDeCadastro.setVisible(false);
+    	
+    	paneCadastrarVeiculos.setDisable(false);
+    	paneCadastrarFiliais.setDisable(true);
+    	paneCadastrarViagens.setDisable(true);
+    	paneCadastrarFuncionarios.setDisable(true);
+    	paneEscolherTipoDeCadastro.setDisable(true);
+    }
+    @FXML
+    void abrirTelaCadastrarViagens(MouseEvent event){
+    	paneCadastrarVeiculos.setVisible(false);
+    	paneCadastrarFiliais.setVisible(false);
+    	paneCadastrarViagens.setVisible(true);
+    	paneCadastrarFuncionarios.setVisible(false);
+    	paneEscolherTipoDeCadastro.setVisible(false);
+    	
+    	paneCadastrarVeiculos.setDisable(true);
+    	paneCadastrarFiliais.setDisable(true);
+    	paneCadastrarViagens.setDisable(false);
+    	paneCadastrarFuncionarios.setDisable(true);
+    	paneEscolherTipoDeCadastro.setDisable(true);
+    }
+    @FXML
+    void voltarParaTelaDeEscolhas(ActionEvent event) {
+    	paneCadastrarVeiculos.setVisible(false);
+    	paneCadastrarFiliais.setVisible(false);
+    	paneCadastrarViagens.setVisible(false);
+    	paneCadastrarFuncionarios.setVisible(false);
+    	paneEscolherTipoDeCadastro.setVisible(true);
+    	
+    	paneCadastrarVeiculos.setDisable(true);
+    	paneCadastrarFiliais.setDisable(true);
+    	paneCadastrarViagens.setDisable(true);
+    	paneCadastrarFuncionarios.setDisable(true);
+    	paneEscolherTipoDeCadastro.setDisable(false);
+    }
+    
     
     void notificar(String tipoDeAviso, String titulo, String texto) {
     	paneAvisosPrincipal.setDisable(false);
@@ -180,7 +280,6 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     			break;
     	}
     }
-    
     @FXML
     void fecharAviso(ActionEvent event){
     	paneAvisosPrincipal.setDisable(true);
@@ -192,7 +291,6 @@ public class ControlesPerfilAdminCadMot implements Initializable {
 		paneAvisosFalha.setDisable(true);
 		paneAvisosFalha.setVisible(false);
     }
-
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
