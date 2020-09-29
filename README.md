@@ -25,7 +25,6 @@
 <li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#modelo-conceitual-do-nosso-banco-de-dados">Modelo conceitual do nosso banco de dados</a></li>
 <li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#modelo-l%C3%B3gico-do-nosso-banco-de-dados">Modelo lógico do nosso banco de dados</a></li>
 <li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#modelo-f%C3%ADsico-do-nosso-banco-de-dados">Modelo físico do nosso banco de dados</a></li>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#vers%C3%B5es-das-bibliotecas-utilizadas-por-n%C3%B3s">Versões das bibliotecas utilizadas por nós</a></li>
 </ul>
 </nav>
 </section>
