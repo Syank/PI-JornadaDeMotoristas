@@ -16,25 +16,25 @@
             <p><h3>## O nosso desafio </h3></p>
             <p>Nosso cliente é a empresa IACIT e nos foi solicitado para desenvolver um sistema de gerenciamento de controle de jornada de trabalho de motoristas de forma parametrizável visando a disponibilização de funcionalidades de planejamento, acompanhamento e controle da jornada de trabalho destes trabalhadores. Nosso sistema deverá oferecer cadastro para motoristas (tendo nome, CPF, matrícula e ID do equipamento do caminhão), um cadastro para os dados do veículo (como a placa, a marca e versão do rastreador e o ID do equipamento), escala dos motoristas (turno, carga horária, dias de trabalho e de folga), um cadastro de alertas (contendo ocorrência, sigla, ícone, descrição do alerta e regra/parâmetro), cadastro de status (cadastrar status e regras de negócio de acordo com cada situação ocorrida durante a jornada, ID dos macros/mensagens, status de início e fim de jornada, tempo de trabalho, tempo de espera, tempo de refeição e tempo de descanso).</p>
     <ul>
-<li><a href="https://github.com/giovannialves01/PI-JornadaDeMotoristas#-o-que-%C3%A9-o-roadtracker">## O que é o RoadTracker?</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#-o-que-%C3%A9-o-roadtracker">## O que é o RoadTracker?</a></li>
 
-<li><a href="https://github.com/giovannialves01/PI-JornadaDeMotoristas#-integrantes-da-equipe-girlboy">## Integrantes da equipe</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#-integrantes-da-equipe-girlboy">## Integrantes da equipe</a></li>
 
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/README.md#cards-das-sprintsentregas-do-sistema">## Cards das Sprints(entregas) do sistema</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#-cards-das-sprintsentregas-do-sistema">## Cards das Sprints(entregas) do sistema</a></li>
 
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/README.md#nosso-sistema-em-funcionamento-at%C3%A9-o-momento">##Nosso sistema em funcionamento até o momento</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#nosso-sistema-em-funcionamento-at%C3%A9-o-momento">##Nosso sistema em funcionamento até o momento</a></li>
 
-<li><a href="https://github.com/giovannialves01/PI-JornadaDeMotoristas#-user-stories-do-nosso-sistema">## User stories do nosso sistema</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#-user-stories-do-nosso-sistema">## User stories do nosso sistema</a></li>
 
-<li><a href="https://github.com/giovannialves01/PI-JornadaDeMotoristas/blob/master/README.md#-wireframes-do-roadtracker-">## Wireframes do RoadTracker</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#-wireframes-do-roadtracker-">## Wireframes do RoadTracker</a></li>
 
-<li><a href="https://github.com/giovannialves01/PI-JornadaDeMotoristas/blob/master/README.md#modelo-conceitual-do-nosso-banco-de-dados">## Modelo conceitual do nosso banco de dados</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#modelo-conceitual-do-nosso-banco-de-dados">## Modelo conceitual do nosso banco de dados</a></li>
 
-<li><a href="https://github.com/giovannialves01/PI-JornadaDeMotoristas/blob/master/README.md#modelo-l%C3%B3gico-do-nosso-banco-de-dados">## Modelo lógico do nosso banco de dados</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#modelo-l%C3%B3gico-do-nosso-banco-de-dados">## Modelo lógico do nosso banco de dados</a></li>
 
-<li><a href="https://github.com/giovannialves01/PI-JornadaDeMotoristas/blob/master/README.md#modelo-f%C3%ADsico-do-nosso-banco-de-dados">## Modelo físico do nosso banco de dados</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#modelo-f%C3%ADsico-do-nosso-banco-de-dados">## Modelo físico do nosso banco de dados</a></li>
 
-<li><a href="https://github.com/giovannialves01/PI-JornadaDeMotoristas/blob/master/README.md#vers%C3%B5es-das-bibliotecas-utilizadas-por-n%C3%B3s">## Versões das bibliotecas utilizadas por nós</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#vers%C3%B5es-das-bibliotecas-utilizadas-por-n%C3%B3s">## Versões das bibliotecas utilizadas por nós</a></li>
 
 
   </ul>
@@ -228,9 +228,11 @@ ALTER TABLE avisos ADD CONSTRAINT FK_avisos_2
 ~~~
 
 <section id="versoes">
+    <ul>
 <h3>Versões das bibliotecas utilizadas por nós</h3>
-<p>- JavaFX: 14.0.2.1</p>
-<p>- JDK: 14.0.2.1</p>
-<p>- Hibernate: 5.4.21</p>
-<p>- PostgreSQL JDBC: 42.2.16</p>
+<li><p>- JavaFX: 14.0.2.1</p></li>
+<li><p>- JDK: 14.0.2.1</p></li>
+<li><p>- Hibernate: 5.4.21</p></li>
+<li><p>- PostgreSQL JDBC: 42.2.16</p></li>
+   </ul>
 </section>
