@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -54,5 +55,35 @@ public class Veiculo {
 	public void setVersao_rastreador(String versao_rastreador) {
 		this.versao_rastreador = versao_rastreador;
 	}
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+	
+	public void cadastrarVeiculo(Integer id_rastreador, String placa, String versao, String marca_rastreador, String cpf_funcionario){
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		funcionario.setCpf(cpf_funcionario);
+	
+		this.setFuncionario(funcionario);
+		this.setId_rastreador(id_rastreador);
+		this.setPlaca(placa);
+		this.setVersao_rastreador(versao);
+		this.setMarca_rastreador(marca_rastreador);
 
+		try {
+			con.getTransaction().begin();
+			con.persist(this);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+}
 }

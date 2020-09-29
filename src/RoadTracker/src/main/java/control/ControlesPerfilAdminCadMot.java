@@ -165,7 +165,41 @@ public class ControlesPerfilAdminCadMot implements Initializable {
 
     }
     // -----------------------------------
+    
+    // Método da pane para cadastro da filial 
+    @FXML
+    void cadastrarFilial(ActionEvent event) {
+    	
+    	Filial f = new Filial();
+    	
+    	String nome = tfNomeFilial.getText();
+    	String cidade = tfCidadeFilial.getText();
+    	String estado = tfEstadoFilial.getText();
+    	
+    	f.cadastrarFilial(nome, cidade, estado);
+    }
+    //--------------------------------------
+    
+    // Método para de cadastro de veículos
+    //@FXML
+    //void cadastrarVeiculo(ActionEvent event) {
+        	
+        //Veiculo veic = new Veiculo();
+        	
+        //String id_rastreador = tfIdRatreador.getText();
+        //String placa = tfPlaca.getText();
+        //String versao = tfVersaoRastreador.getText();
+        //String marca_rastreador = tfMarcaRastreador.getText();
+        	
+        //veic.cadastrarVeiculo(id_rastreador, placa, versao, marca_rastreador);
+    	
+    //}
 
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		carregarComboBoxCargos();
+		carregarComboBoxFiliais();
+	}
     
     // Métodos gerais
     @FXML
@@ -297,22 +331,5 @@ public class ControlesPerfilAdminCadMot implements Initializable {
 		paneAvisosFalha.setVisible(false);
     }
     
-    @FXML
-    void cadastrarFilial(ActionEvent event) {
-    	
-    	Filial f = new Filial();
-    	
-    	String nome = tfNomeFilial.getText();
-    	String cidade = tfCidadeFilial.getText();
-    	String estado = tfEstadoFilial.getText();
-    	
-    	f.cadastrarFilial(nome, cidade, estado);
-    	
-    }
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		carregarComboBoxCargos();
-		carregarComboBoxFiliais();
-	}
 }

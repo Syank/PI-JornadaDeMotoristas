@@ -105,4 +105,26 @@ public class Filial {
 		
 	}
 	
+	public void ExcluirFilial(Integer id) {
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		Filial filial = null;
+		
+		try {
+			filial = con.find(model.Filial.class, id);		
+			
+			con.getTransaction().begin();
+			con.remove(filial);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+	}
+	
 }
