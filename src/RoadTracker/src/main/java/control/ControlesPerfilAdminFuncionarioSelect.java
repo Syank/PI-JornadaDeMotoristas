@@ -26,7 +26,34 @@ import view.*;
 public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
 	
 	private static Funcionario funcionario = new Funcionario();
+	
+    //Elementos das panes de avisos
+    @FXML
+    private Pane paneAvisosPrincipal;
+    @FXML
+    private Pane paneAvisosSucesso;
+    @FXML
+    private Label labelAvisosTituloSucesso;
+    @FXML
+    private Label labelAvisosTextoSucesso;
+    @FXML
+    private Pane paneAvisosFalha;
+    @FXML
+    private Label labelAvisosTituloFalha;
+    @FXML
+    private Label labelAvisosTextoFalha;
+    @FXML
+    private Pane paneAvisosSombra;
+    // ----------------------------------
+    
+    
+    //Elemento da pane de selecionar entidade
+    @FXML
+    private Pane paneSelecionarEntidade;
+    // -------------------------------------
+    
 
+	//Elementos das panes de funcionários
     @FXML
     private Pane paneFuncionarioSelecionado;
     @FXML
@@ -79,22 +106,6 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     private TextField campoDeBuscaNome;
     @FXML
     private TextField campoDeBuscaCpf;
-    @FXML
-    private Pane paneAvisosPrincipal;
-    @FXML
-    private Pane paneAvisosSucesso;
-    @FXML
-    private Label labelAvisosTituloSucesso;
-    @FXML
-    private Label labelAvisosTextoSucesso;
-    @FXML
-    private Pane paneAvisosFalha;
-    @FXML
-    private Label labelAvisosTituloFalha;
-    @FXML
-    private Label labelAvisosTextoFalha;
-    @FXML
-    private Pane paneAvisosSombra;
     
     private List<Cargos> cargos = new ArrayList<>();
     private ObservableList<Cargos> cargosList;
@@ -107,91 +118,66 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     private List<Listas> lista = new ArrayList<>();
     
     private ObservableList<Listas> obsList;
+    // ---------------------------------
     
-    public void carregarTableView() {
-    	
-    	Funcionario funcionario = new Funcionario();
-    	
-    	lista = funcionario.listarFuncionarios();
-    	
-    	//Transforma a array primitiva em Observable Array
-    	obsList = FXCollections.observableArrayList(lista);
-    	
-    	//"Habilita" as colunas da tableView para receber o valor retornado da classe Listas, nos seus métodos get
-    	colunaNome.setCellValueFactory(new PropertyValueFactory<>("valor"));
-    	colunaCpf.setCellValueFactory(new PropertyValueFactory<>("id"));
-    	
-    	//Adiciona a Observable Array na TableView
-    	tabelaFuncionarios.setItems(obsList);
-    }
+  
+    //Elementos das panes de filiais
+    @FXML
+    private Pane paneFiliais;
+    @FXML
+    private TableView<?> tabelaFiliais;
+    @FXML
+    private TableColumn<?, ?> colunaFilial;
+    @FXML
+    private TableColumn<?, ?> colunaEstado;
+    @FXML
+    private TextField campoDeBuscaFilial;
+    @FXML
+    private TextField campoDeBuscaEstado;
     
     @FXML
-    void atualizarLista(ActionEvent event) {
-    	carregarTableView();
-    }
+    private Pane paneFilialSelecionada;
+    
+    // ------------------------------
+    
+    //Elementos das panes de veiculos
+    @FXML
+    private Pane paneVeiculos;
+    @FXML
+    private TableView<?> tabelaVeiculos;
+    @FXML
+    private TableColumn<?, ?> colunaVeiculo;
+    @FXML
+    private TableColumn<?, ?> colunaIDVeiculo;
+    @FXML
+    private TextField campoDeBuscaVeiculo;
+    @FXML
+    private TextField campoDeBuscaIDVeiculo;
     
     @FXML
-    void abrirTelaFunc(MouseEvent event) {
-    	paneFuncionarios.setVisible(true);
-    	paneFuncionarios.setDisable(false);
-    	paneFuncionarioSelecionado.setVisible(false);
-    	paneFuncionarioSelecionado.setDisable(true);
-    	desabilitarEdicao();
-    }
+    private Pane paneVeiculoSelecionado;
     
-    @FXML
-    void abrirTelaCadFunc(MouseEvent event) {
-    	Main.trocarTela("Tela Cadastrar Funcionarios");
-    }
+    // ------------------------------
+    
 
-    @FXML
-    void abrirTelaHistEntregas(MouseEvent event) {
-    	Main.trocarTela("Tela Historico de Entregas");
-    }
     
-    @FXML
-    void voltar(ActionEvent event) {
-    	if (paneFuncionarios.isVisible()) {
-    		Main.trocarTela("Tela Boas Vindas");
-    	}
-    	else {
-        	paneFuncionarios.setVisible(true);
-        	paneFuncionarios.setDisable(false);
-        	paneFuncionarioSelecionado.setVisible(false);
-        	paneFuncionarioSelecionado.setDisable(true);
-    	}
-    	desabilitarEdicao();
-    }
-    
-    @FXML
-    void minimizarJanela(ActionEvent event) {
-    	Main.minimizar();
-    }
-    
-    // Função para fechar a janela ao clicar no " x "
-    @FXML
-    void fecharJanela(ActionEvent event) {
-    	System.exit(0);
-    }
-    
+
+    //Métodos funcionários
     public void carregarComboBoxCargos() {
     	cargos = funcionario.listarCargos();
     	cargosList = FXCollections.observableArrayList(cargos);
     	cbCargo.setItems(cargosList);
     }
-    
-    public void carregarComboBoxFiliais() {
+        public void carregarComboBoxFiliais() {
     	filiais = funcionario.listarFiliais();
     	filiaisList = FXCollections.observableArrayList(filiais);
     	cbFilial.setItems(filiaisList);
     }
-    
     @FXML
     void excluirFuncionario(ActionEvent event) {
 		funcionario.removerFuncionario(funcionario.getCpf());
 		notificar("Sucesso", "Funcionário excluído", "O funcionário foi excluído dos registros do banco de dados com sucesso");
     }
-    
     @FXML
     void selecionarFuncionario(ActionEvent event) {
     	Listas selecionado = tabelaFuncionarios.getSelectionModel().getSelectedItem();
@@ -204,7 +190,6 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
 		carregarComboBoxFiliais();
     	carregarInfoFuncionario();
     }   
-    
     void carregarInfoFuncionario() {
     	funcionario = funcionario.encontrarFuncionario(cpfFuncionario);
     	
@@ -214,8 +199,6 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	pfSenha.setText(funcionario.getSenha());
     	tfCargaHoraria.setText(funcionario.getCargaHoraria());
     	
-//    	cbCargo.getSelectionModel().select(cargo);
-//    	cbFilial.getSelectionModel().select(funcionario.getFk_filiais_id());
     	
     	cbDom.setSelected(funcionario.isDom());
     	cbSeg.setSelected(funcionario.isSeg());
@@ -225,7 +208,125 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	cbSex.setSelected(funcionario.isSex());
     	cbSab.setSelected(funcionario.isSab());
     }
-    
+
+    @FXML
+    void descartarAlteracoes(ActionEvent event) {
+    	carregarInfoFuncionario();
+    	desabilitarEdicao();
+    	System.out.println("Descartou");
+    }
+    @FXML
+    void alterarDados(ActionEvent event) {
+    	
+    	funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(), cbCargo.getValue().getCargo(),
+    			cbFilial.getValue().getId(), tfCargaHoraria.getText(), cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(),
+    			cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
+    	notificar("Sucesso", "Alteração de dados", "Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+    }
+    // -------------------------------
+
+    //Métodos gerais
+    @FXML
+    void abrirTelaFuncionarios(MouseEvent event) {
+    	paneFuncionarios.setVisible(true);
+    	paneFuncionarioSelecionado.setVisible(false);
+    	paneFiliais.setVisible(false);
+    	paneFilialSelecionada.setVisible(false);
+    	paneVeiculos.setVisible(false);
+    	paneVeiculoSelecionado.setVisible(false);
+    	paneSelecionarEntidade.setVisible(false);
+    	
+    	paneFuncionarios.setDisable(false);
+    	paneFuncionarioSelecionado.setDisable(true);
+    	paneFiliais.setDisable(true);
+    	paneFilialSelecionada.setDisable(true);
+    	paneVeiculos.setDisable(true);
+    	paneVeiculoSelecionado.setDisable(true);
+    	paneSelecionarEntidade.setDisable(true);
+    	
+    	desabilitarEdicao();
+    }
+    @FXML
+    void abrirTelaFuncionarioSelecionado(ActionEvent event) {
+    	paneFuncionarios.setVisible(false);
+    	paneFuncionarioSelecionado.setVisible(true);
+    	
+    	paneFuncionarios.setDisable(true);
+    	paneFuncionarioSelecionado.setDisable(false);
+    }
+    @FXML
+    void abrirTelaFiliais(MouseEvent event) {
+    	paneFuncionarios.setVisible(false);
+    	paneFuncionarioSelecionado.setVisible(false);
+    	paneFiliais.setVisible(true);
+    	paneFilialSelecionada.setVisible(false);
+    	paneVeiculos.setVisible(false);
+    	paneVeiculoSelecionado.setVisible(false);
+    	paneSelecionarEntidade.setVisible(false);
+    	
+    	paneFuncionarios.setDisable(true);
+    	paneFuncionarioSelecionado.setDisable(true);
+    	paneFiliais.setDisable(false);
+    	paneFilialSelecionada.setDisable(true);
+    	paneVeiculos.setDisable(true);
+    	paneVeiculoSelecionado.setDisable(true);
+    	paneSelecionarEntidade.setDisable(true);
+    	
+    	desabilitarEdicao();
+    }
+    @FXML
+    void abrirTelaFilialSelecionada(ActionEvent event) {
+    	paneFiliais.setVisible(false);
+    	paneFilialSelecionada.setVisible(true);
+    	
+    	paneFiliais.setDisable(true);
+    	paneFilialSelecionada.setDisable(false);
+    }
+    @FXML
+    void abrirTelaVeiculos(MouseEvent event) {
+    	paneFuncionarios.setVisible(false);
+    	paneFuncionarioSelecionado.setVisible(false);
+    	paneFiliais.setVisible(false);
+    	paneFilialSelecionada.setVisible(false);
+    	paneVeiculos.setVisible(true);
+    	paneVeiculoSelecionado.setVisible(false);
+    	paneSelecionarEntidade.setVisible(false);
+    	
+    	paneFuncionarios.setDisable(true);
+    	paneFuncionarioSelecionado.setDisable(true);
+    	paneFiliais.setDisable(true);
+    	paneFilialSelecionada.setDisable(true);
+    	paneVeiculos.setDisable(false);
+    	paneVeiculoSelecionado.setDisable(true);
+    	paneSelecionarEntidade.setDisable(true);
+    	
+    	desabilitarEdicao();
+    }
+    @FXML
+    void abrirTelaVeiculoSelecionado(ActionEvent event) {
+    	paneVeiculos.setVisible(false);
+    	paneVeiculoSelecionado.setVisible(true);
+    	
+    	paneVeiculos.setDisable(true);
+    	paneVeiculoSelecionado.setDisable(false);
+    }
+    void abrirTelaSelecionarEntidade() {
+    	paneFuncionarios.setVisible(false);
+    	paneFuncionarioSelecionado.setVisible(false);
+    	paneFiliais.setVisible(false);
+    	paneFilialSelecionada.setVisible(false);
+    	paneVeiculos.setVisible(false);
+    	paneVeiculoSelecionado.setVisible(false);
+    	paneSelecionarEntidade.setVisible(true);
+    	
+    	paneFuncionarios.setDisable(true);
+    	paneFuncionarioSelecionado.setDisable(true);
+    	paneFiliais.setDisable(true);
+    	paneFilialSelecionada.setDisable(true);
+    	paneVeiculos.setDisable(true);
+    	paneVeiculoSelecionado.setDisable(true);
+    	paneSelecionarEntidade.setDisable(false);
+    }
     @FXML
     void habilitarEdicao(ActionEvent event) {
     	tfNome.setDisable(false);
@@ -238,7 +339,6 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	btnSalvar.setDisable(false);
     	btnDescartar.setDisable(false);
     }
-    
     void desabilitarEdicao() {
     	tfNome.setDisable(true);
     	tfCpf.setDisable(true);
@@ -249,22 +349,6 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     	chbDias.setDisable(true);
     	btnSalvar.setDisable(true);
     	btnDescartar.setDisable(true);
-    }
-    
-    @FXML
-    void descartarAlteracoes(ActionEvent event) {
-    	carregarInfoFuncionario();
-    	desabilitarEdicao();
-    	System.out.println("Descartou");
-    }
-    
-    @FXML
-    void alterarDados(ActionEvent event) {
-    	
-    	funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(), cbCargo.getValue().getCargo(),
-    			cbFilial.getValue().getId(), tfCargaHoraria.getText(), cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(),
-    			cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
-    	notificar("Sucesso", "Alteração de dados", "Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
     }
     
     void notificar(String tipoDeAviso, String titulo, String texto) {
@@ -287,7 +371,6 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
     			break;
     	}
     }
-    
     @FXML
     void fecharAviso(ActionEvent event){
     	paneAvisosPrincipal.setDisable(true);
@@ -299,13 +382,66 @@ public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
 		paneAvisosFalha.setDisable(true);
 		paneAvisosFalha.setVisible(false);
     }
+    public void carregarTableView() {
+    	
+    	Funcionario funcionario = new Funcionario();
+    	
+    	lista = funcionario.listarFuncionarios();
+    	
+    	//Transforma a array primitiva em Observable Array
+    	obsList = FXCollections.observableArrayList(lista);
+    	
+    	//"Habilita" as colunas da tableView para receber o valor retornado da classe Listas, nos seus métodos get
+    	colunaNome.setCellValueFactory(new PropertyValueFactory<>("valor"));
+    	colunaCpf.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	
+    	//Adiciona a Observable Array na TableView
+    	tabelaFuncionarios.setItems(obsList);
+    }
+    @FXML
+    void atualizarLista(ActionEvent event) {
+    	carregarTableView();
+    }
+    @FXML
+    void abrirTelaCadFunc(MouseEvent event) {
+    	Main.trocarTela("Tela Cadastrar Funcionarios");
+    }
+    @FXML
+    void abrirTelaHistEntregas(MouseEvent event) {
+    	Main.trocarTela("Tela Historico de Entregas");
+    }
+    @FXML
+    void voltar(MouseEvent event) {
+    	if (paneSelecionarEntidade.isVisible()) {
+    		Main.trocarTela("Tela Boas Vindas");
+    	}else {
+    		if (paneFuncionarioSelecionado.isVisible()) {
+    			abrirTelaFuncionarios(event);
+    		}else if (paneFilialSelecionada.isVisible()) {
+    			abrirTelaFiliais(event);
+    		}else if (paneVeiculoSelecionado.isVisible()) {
+    			abrirTelaVeiculos(event);
+    		}else {
+    			abrirTelaSelecionarEntidade();
+    		}
+
+    	}
+    	desabilitarEdicao();
+    }
+    @FXML
+    void minimizarJanela(ActionEvent event) {
+    	Main.minimizar();
+    }
+    @FXML
+    void fecharJanela(ActionEvent event) {
+    	System.exit(0);
+    }
+    
+    // --------------
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-    	paneFuncionarios.setVisible(true);
-    	paneFuncionarios.setDisable(false);
-    	paneFuncionarioSelecionado.setVisible(false);
-    	paneFuncionarioSelecionado.setDisable(true);
+		abrirTelaSelecionarEntidade();
 		carregarTableView();
 		desabilitarEdicao();
 	}

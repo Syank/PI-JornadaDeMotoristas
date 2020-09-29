@@ -36,17 +36,17 @@
                         <Image url="@adicionar.png" />
                      </image></ImageView>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="59.0" prefWidth="31.0" />
-                  <Label text="Cadastrar Funcionário" textFill="WHITE" />
+                  <Label text="Cadastrar Entidades" textFill="WHITE" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" onMouseClicked="#abrirTelaFunc" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@funcionarios.png" />
                      </image></ImageView>
                   <HBox layoutX="163.0" layoutY="10.0" prefHeight="59.0" prefWidth="30.0" />
-                  <Label text="Funcionários" textFill="WHITE" />
+                  <Label text="Entidades" textFill="WHITE" />
                   <HBox layoutX="106.0" layoutY="10.0" prefHeight="59.0" prefWidth="27.0" />
                </children>
             </HBox>
@@ -61,11 +61,23 @@
                   <Label text="Histórico de entregas" textFill="WHITE" />
                </children>
             </HBox>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="250.0">
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="300.0" onMouseClicked="#abrirTelaHistEntregas" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
-                  <Button mnemonicParsing="false" onAction="#voltar" prefHeight="40.0" prefWidth="40.0" styleClass="botaoVoltar">
+                  <HBox prefHeight="59.0" prefWidth="31.0" />
+                  <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@truck.png" />
+                     </image>
+                  </ImageView>
+                  <HBox prefHeight="59.0" prefWidth="31.0" />
+                  <Label text="Avisos" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="45.0" prefWidth="250.0">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#voltar" prefHeight="22.0" prefWidth="21.0" styleClass="botaoVoltar">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@voltar.png" />
                            </image>
@@ -104,14 +116,14 @@
       </HBox>
       <HBox layoutX="272.0" layoutY="47.0" prefHeight="31.0" prefWidth="387.0" styleClass="textoDeMenu">
          <children>
-            <Label text="Funcionários">
+            <Label text="Entidades">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
          </children>
       </HBox>
-      <Pane fx:id="paneFuncionarioSelecionado" layoutX="250.0" layoutY="85.0" prefHeight="365.0" prefWidth="500.0">
+      <Pane fx:id="paneFuncionarioSelecionado" disable="true" layoutX="250.0" layoutY="85.0" prefHeight="365.0" prefWidth="500.0" visible="false">
          <children>
             <VBox fx:id="chbDias" layoutX="362.0" layoutY="67.0" prefHeight="117.0" prefWidth="100.0" spacing="5.0">
                <children>
@@ -263,6 +275,94 @@
                   <Label fx:id="labelAvisosTextoFalha" alignment="TOP_CENTER" layoutX="57.0" layoutY="35.0" prefHeight="63.0" prefWidth="286.0" text="Aviso" textAlignment="CENTER" textFill="#bdc3c7" wrapText="true" />
                </children>
             </Pane>
+         </children>
+      </Pane>
+      <Pane fx:id="paneSelecionarEntidade" layoutX="260.0" layoutY="80.0" prefHeight="365.0" prefWidth="485.0">
+         <children>
+            <HBox alignment="CENTER" layoutX="46.0" layoutY="79.0" onMouseClicked="#abrirTelaFuncionarios" prefHeight="68.0" prefWidth="197.0" styleClass="caixasDeSelecaoBoasVindas">
+               <children>
+                  <ImageView fitHeight="140.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@adicionar.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="61.0" prefWidth="131.0" text="Funcionários" wrapText="true" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="229.0" layoutY="158.0" onMouseClicked="#abrirTelaFiliais" prefHeight="68.0" prefWidth="197.0" styleClass="caixasDeSelecaoBoasVindas">
+               <children>
+                  <Label prefHeight="61.0" prefWidth="131.0" text="Filiais" wrapText="true" />
+                  <ImageView fitHeight="140.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@adicionar.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="46.0" layoutY="251.0" onMouseClicked="#abrirTelaVeiculos" prefHeight="68.0" prefWidth="197.0" styleClass="caixasDeSelecaoBoasVindas">
+               <children>
+                  <ImageView fitHeight="140.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@adicionar.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="61.0" prefWidth="131.0" text="Veículos" wrapText="true" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="paneFiliais" disable="true" layoutX="260.0" layoutY="86.0" prefHeight="353.0" prefWidth="485.0" visible="false">
+         <children>
+            <Button layoutX="22.0" layoutY="315.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
+            <Button layoutX="420.0" layoutY="8.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="botaoPesquisar" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@lupa.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TableView fx:id="tabelaFiliais" layoutX="22.0" layoutY="77.0" prefHeight="223.0" prefWidth="441.0">
+               <columns>
+                  <TableColumn fx:id="colunaFilial" prefWidth="337.0" text="Filial" />
+                  <TableColumn fx:id="colunaEstado" prefWidth="102.0" text="Estado" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <Button layoutX="361.0" layoutY="315.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="102.0" styleClass="customizarBotoes" text="Atualizar lista" textFill="WHITE" />
+            <TextField fx:id="campoDeBuscaFilial" layoutX="14.0" layoutY="19.0" prefHeight="27.0" prefWidth="224.0" promptText="Filial" styleClass="customizarInputs" />
+            <TextField fx:id="campoDeBuscaEstado" layoutX="259.0" layoutY="19.0" prefHeight="27.0" prefWidth="153.0" promptText="Estado" styleClass="customizarInputs" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneFilialSelecionada" disable="true" layoutX="261.0" layoutY="93.0" prefHeight="353.0" prefWidth="485.0" visible="false" />
+      <Pane fx:id="paneVeiculoSelecionado" disable="true" layoutX="259.0" layoutY="81.0" prefHeight="365.0" prefWidth="485.0" visible="false" />
+      <Pane fx:id="paneVeiculos" disable="true" layoutX="258.0" layoutY="86.0" prefHeight="353.0" prefWidth="485.0" visible="false">
+         <children>
+            <Button layoutX="22.0" layoutY="315.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
+            <Button layoutX="420.0" layoutY="8.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="botaoPesquisar" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@lupa.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TableView fx:id="tabelaVeiculos" layoutX="22.0" layoutY="77.0" prefHeight="223.0" prefWidth="441.0">
+               <columns>
+                  <TableColumn fx:id="colunaVeiculo" prefWidth="337.0" text="Filial" />
+                  <TableColumn fx:id="colunaIDVeiculo" prefWidth="102.0" text="Estado" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <Button layoutX="361.0" layoutY="315.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="102.0" styleClass="customizarBotoes" text="Atualizar lista" textFill="WHITE" />
+            <TextField fx:id="campoDeBuscaVeiculo" layoutX="14.0" layoutY="19.0" prefHeight="27.0" prefWidth="224.0" promptText="Filial" styleClass="customizarInputs" />
+            <TextField fx:id="campoDeBuscaIDVeiculo" layoutX="259.0" layoutY="19.0" prefHeight="27.0" prefWidth="153.0" promptText="Estado" styleClass="customizarInputs" />
          </children>
       </Pane>
    </children>

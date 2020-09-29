@@ -72,11 +72,11 @@
                   <Label text="Avisos" textFill="WHITE" />
                </children>
             </HBox>
-            <VBox alignment="BOTTOM_LEFT" prefHeight="38.0" prefWidth="250.0">
+            <VBox alignment="BOTTOM_LEFT" prefHeight="45.0" prefWidth="250.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#voltar" prefHeight="40.0" prefWidth="40.0" styleClass="botaoVoltar">
+                  <Button mnemonicParsing="false" onAction="#voltar" prefHeight="15.0" prefWidth="23.0" styleClass="botaoVoltar">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@voltar.png" />
                            </image>
