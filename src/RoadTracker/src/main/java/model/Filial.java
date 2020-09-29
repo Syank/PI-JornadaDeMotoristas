@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.swing.JOptionPane;
 
 @Entity
 @Table(name="filiais")
@@ -57,5 +59,50 @@ public class Filial {
 		this.estado = estado;
 	}
 	
+	public void cadastrarFilial(String nome, String cidade, String estado) {
 
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		this.setCidade(cidade);
+		this.setEstado(estado);
+		this.setNome(nome);
+		
+		try {
+			con.getTransaction().begin();
+			con.persist(this);
+			con.getTransaction().commit();
+		}
+		catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Ocorreu um problema ao cadastrar a filial. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+	}
+	
+	public void alterarDadosFilial(String novoNome, String novaCidade, String novoEstado, Integer id) {
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		this.id = id;
+		this.cidade = novaCidade;
+		this.estado = novoEstado;
+		this.nome = novoNome;
+		
+		try {
+			con.getTransaction().begin();
+			con.merge(this);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+	}
+	
 }

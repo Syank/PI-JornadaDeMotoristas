@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -84,14 +85,18 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     //Elementos da pane de cadastro de filiais
     @FXML
     private Pane paneCadastrarFiliais;
+    
     @FXML
-    private TextField textFieldNomeFilial;
+    private Button botaoCadastrarFilial;
+
     @FXML
-    private TextField textFieldCidadeFilial;
+    private TextField tfNomeFilial;
+
     @FXML
-    private TextField textFieldEstadoFilial;
+    private TextField tfCidadeFilial;
+
     @FXML
-    private TextField textFieldIDFilial;
+    private TextField tfEstadoFilial;
     // ---------------------------------------
     
     
@@ -290,6 +295,19 @@ public class ControlesPerfilAdminCadMot implements Initializable {
 		paneAvisosSucesso.setVisible(false);
 		paneAvisosFalha.setDisable(true);
 		paneAvisosFalha.setVisible(false);
+    }
+    
+    @FXML
+    void cadastrarFilial(ActionEvent event) {
+    	
+    	Filial f = new Filial();
+    	
+    	String nome = tfNomeFilial.getText();
+    	String cidade = tfCidadeFilial.getText();
+    	String estado = tfEstadoFilial.getText();
+    	
+    	f.cadastrarFilial(nome, cidade, estado);
+    	
     }
 
 	@Override

@@ -199,13 +199,12 @@
       </Pane>
       <Pane fx:id="paneCadastrarFiliais" disable="true" layoutX="265.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
          <children>
-            <Button fx:id="botaoConfirmarFilial" layoutX="19.0" layoutY="310.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="78.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
+            <Button fx:id="botaoCadastrarFilial" layoutX="19.0" layoutY="310.0" mnemonicParsing="false" onAction="#cadastrarFilial" prefHeight="32.0" prefWidth="78.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
             <VBox alignment="TOP_CENTER" layoutX="19.0" layoutY="65.0" prefHeight="183.0" prefWidth="168.0" spacing="25.0">
                <children>
-                  <TextField fx:id="textFieldNomeFilial" promptText="Nome da filial" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldCidadeFilial" promptText="Cidade da filial" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldEstadoFilial" promptText="Estado da filial (Sigla)" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldIDFilial" promptText="id" styleClass="customizarInputs" />
+                  <TextField fx:id="tfNomeFilial" promptText="Nome da filial" styleClass="customizarInputs" />
+                  <TextField fx:id="tfCidadeFilial" promptText="Cidade da filial" styleClass="customizarInputs" />
+                  <TextField fx:id="tfEstadoFilial" promptText="Estado da filial (Sigla)" styleClass="customizarInputs" />
                </children>
             </VBox>
          </children>

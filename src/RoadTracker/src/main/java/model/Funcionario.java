@@ -369,7 +369,7 @@ public class Funcionario {
 	public Funcionario removerFuncionario(String cpf){
 		EntityManager con = new ConnectionFactory().getConnection();
 
-		Funcionario funcionario  = null;
+		Funcionario funcionario = null;
 
 		try {
 			funcionario = con.find(model.Funcionario.class, cpf);		
@@ -390,12 +390,13 @@ public class Funcionario {
 	}
 	
 	public Funcionario encontrarFuncionario(String cpf){
+		
 		EntityManager con = new ConnectionFactory().getConnection();
 
 		Funcionario funcionario  = null;
 
 		try {
-			funcionario = con.find(model.Funcionario.class, cpf);		
+			funcionario = con.find(model.Funcionario.class, cpf);
 		}
 		catch (Exception e) {
 			System.err.println(e);
