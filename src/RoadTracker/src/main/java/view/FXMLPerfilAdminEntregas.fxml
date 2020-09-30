@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -30,9 +31,10 @@
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@adicionar.png" />
-                     </image></ImageView>
+                     </image>
+                  </ImageView>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="59.0" prefWidth="31.0" />
-                  <Label text="Cadastrar Funcionário" textFill="WHITE" />
+                  <Label text="Cadastrar Entidade" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" onMouseClicked="#abrirTelaFunc" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
@@ -40,9 +42,10 @@
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@funcionarios.png" />
-                     </image></ImageView>
-                  <HBox layoutX="163.0" layoutY="10.0" prefHeight="59.0" prefWidth="30.0" />
-                  <Label text="Funcionários" textFill="WHITE" />
+                     </image>
+                  </ImageView>
+                  <HBox layoutX="163.0" layoutY="10.0" prefHeight="59.0" prefWidth="29.0" />
+                  <Label prefWidth="76.0" text="Entidade" textFill="WHITE" />
                   <HBox layoutX="106.0" layoutY="10.0" prefHeight="59.0" prefWidth="27.0" />
                </children>
             </HBox>
@@ -52,16 +55,29 @@
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@truck.png" />
-                     </image></ImageView>
+                     </image>
+                  </ImageView>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <Label text="Histórico de entregas" textFill="WHITE" />
                </children>
             </HBox>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
+               <children>
+                  <HBox prefHeight="59.0" prefWidth="31.0" />
+                  <ImageView fitHeight="52.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@alert.png" />
+                     </image>
+                  </ImageView>
+                  <HBox prefHeight="56.0" prefWidth="47.0" />
+                  <Label text="Avisos" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="45.0" prefWidth="250.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#voltar" prefHeight="40.0" prefWidth="0.0" styleClass="botaoVoltar">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@voltar.png" />
                            </image>
@@ -107,24 +123,74 @@
             </Label>
          </children>
       </HBox>
-      <TextField fx:id="campoDeBuscaNome" layoutX="272.0" layoutY="104.0" prefHeight="27.0" prefWidth="102.0" promptText="ID" styleClass="customizarInputs" />
-      <TextField fx:id="campoDeBuscaCpf" layoutX="389.0" layoutY="104.0" prefHeight="27.0" prefWidth="136.0" promptText="Empresa Destino" styleClass="customizarInputs" />
-      <Button fx:id="botaoBuscar" layoutX="677.0" layoutY="93.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="botaoPesquisar" textFill="WHITE">
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@lupa.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Button fx:id="botaoSelecionar" layoutX="272.0" layoutY="400.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
-      <TableView fx:id="tabela" editable="true" layoutX="271.0" layoutY="157.0" prefHeight="223.0" prefWidth="441.0">
-        <columns>
-          <TableColumn fx:id="colunaId" prefWidth="54.0" text="ID" />
-          <TableColumn fx:id="colunaEmpresaDestino" prefWidth="204.0" text="Empresa Destino" />
-            <TableColumn fx:id="colunaMotorista" prefWidth="200.0" text="Motorista" />
-        </columns>
-      </TableView>
-      <TextField fx:id="campoDeBuscaMotorista" layoutX="539.0" layoutY="104.0" prefHeight="25.0" prefWidth="126.0" promptText="Motorista" styleClass="customizarInputs" />
+      <Pane layoutX="251.0" layoutY="88.0" prefHeight="362.0" prefWidth="500.0">
+         <children>
+            <TextField fx:id="campoDeBuscaNome" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="102.0" promptText="ID" styleClass="customizarInputs" />
+            <TextField fx:id="campoDeBuscaCpf" layoutX="135.0" layoutY="15.0" prefHeight="27.0" prefWidth="136.0" promptText="Empresa Destino" styleClass="customizarInputs" />
+            <Button fx:id="botaoBuscar" layoutX="426.0" layoutY="9.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="botaoPesquisar" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@lupa.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TextField fx:id="campoDeBuscaMotorista" layoutX="292.0" layoutY="14.0" prefHeight="25.0" prefWidth="126.0" promptText="Motorista" styleClass="customizarInputs" />
+            <Button fx:id="botaoSelecionar" layoutX="23.0" layoutY="305.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
+            <TableView fx:id="tabela" editable="true" layoutX="23.0" layoutY="62.0" prefHeight="223.0" prefWidth="441.0">
+              <columns>
+                <TableColumn fx:id="colunaId" prefWidth="54.0" text="ID" />
+                <TableColumn fx:id="colunaEmpresaDestino" prefWidth="204.0" text="Empresa Destino" />
+                  <TableColumn fx:id="colunaMotorista" prefWidth="200.0" text="Motorista" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <Pane disable="true" layoutX="250.0" layoutY="88.0" prefHeight="362.0" prefWidth="500.0" visible="false">
+         <children>
+            <TextField fx:id="rastreador" layoutX="321.0" layoutY="91.0" prefHeight="27.0" prefWidth="136.0" promptText="ID do rastreador" styleClass="customizarInputs" />
+            <TextField fx:id="motorista" layoutX="321.0" layoutY="34.0" prefHeight="27.0" prefWidth="136.0" promptText="Nome do motorista" styleClass="customizarInputs" />
+            <TextField fx:id="viagemInit" layoutX="35.0" layoutY="91.0" prefHeight="27.0" prefWidth="136.0" promptText="Início" styleClass="customizarInputs" />
+            <TextField fx:id="empresaDestino" layoutX="35.0" layoutY="34.0" prefHeight="27.0" prefWidth="136.0" promptText="Empresa de Destino" styleClass="customizarInputs" />
+            <TextField fx:id="viagemFim" layoutX="35.0" layoutY="148.0" prefHeight="27.0" prefWidth="136.0" promptText="Fim" styleClass="customizarInputs" />
+            <Button fx:id="btnSalvar" alignment="CENTER" layoutX="262.0" layoutY="285.0" mnemonicParsing="false" onAction="#alterarDados" prefHeight="48.0" prefWidth="98.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE">
+               <graphic>
+                  <ImageView disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@salvarAlteracoes.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="35.0" layoutY="237.0" mnemonicParsing="false" onAction="#habilitarEdicao" prefHeight="48.0" prefWidth="114.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@salvarAlteracoes.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="35.0" layoutY="295.0" mnemonicParsing="false" onAction="#excluirFuncionario" prefHeight="40.0" prefWidth="114.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@excluir.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnDescartar" layoutX="372.0" layoutY="285.0" mnemonicParsing="false" onAction="#descartarAlteracoes" prefHeight="48.0" prefWidth="114.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE">
+               <graphic>
+                  <ImageView disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@salvarAlteracoes.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

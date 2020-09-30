@@ -59,10 +59,10 @@
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@truck.png" />
+                        <Image url="@alert.png" />
                      </image>
                   </ImageView>
-                  <HBox prefHeight="59.0" prefWidth="31.0" />
+                  <HBox prefHeight="59.0" prefWidth="39.0" />
                   <Label text="Avisos" textFill="WHITE" />
                </children>
             </HBox>
