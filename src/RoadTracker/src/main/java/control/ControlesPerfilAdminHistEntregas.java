@@ -42,13 +42,11 @@ public class ControlesPerfilAdminHistEntregas {
     
     @FXML
     void abrirTelaCadFunc(MouseEvent event) {
-    	System.out.println("Clicou em cad func");
     	Main.trocarTela("Tela Cadastrar Funcionarios");
     }
     
     @FXML
     void abrirTelaFunc(MouseEvent event) {
-    	System.out.println("Clicou em func");
     	Main.trocarTela("Tela Funcionarios");
     }
 

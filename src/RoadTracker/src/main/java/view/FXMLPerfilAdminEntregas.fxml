@@ -34,7 +34,7 @@
                      </image>
                   </ImageView>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="59.0" prefWidth="31.0" />
-                  <Label text="Cadastrar Entidade" textFill="WHITE" />
+                  <Label text="Cadastrar Entidades" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" onMouseClicked="#abrirTelaFunc" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
@@ -45,37 +45,37 @@
                      </image>
                   </ImageView>
                   <HBox layoutX="163.0" layoutY="10.0" prefHeight="59.0" prefWidth="29.0" />
-                  <Label prefWidth="76.0" text="Entidade" textFill="WHITE" />
+                  <Label prefWidth="76.0" text="Entidades" textFill="WHITE" />
                   <HBox layoutX="106.0" layoutY="10.0" prefHeight="59.0" prefWidth="27.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="203.0" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
-                  <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@truck.png" />
+                        <Image url="@viagens.png" />
                      </image>
                   </ImageView>
-                  <HBox prefHeight="59.0" prefWidth="31.0" />
+                  <HBox prefHeight="59.0" prefWidth="40.0" />
                   <Label text="Histórico de entregas" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
-                  <ImageView fitHeight="52.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@alert.png" />
                      </image>
                   </ImageView>
-                  <HBox prefHeight="56.0" prefWidth="47.0" />
+                  <HBox prefHeight="56.0" prefWidth="40.0" />
                   <Label text="Avisos" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="BOTTOM_LEFT" prefHeight="45.0" prefWidth="250.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#voltar" prefHeight="40.0" prefWidth="0.0" styleClass="botaoVoltar">
+                  <Button mnemonicParsing="false" onAction="#voltar" prefHeight="13.0" prefWidth="8.0" styleClass="botaoVoltar">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -149,12 +149,12 @@
       </Pane>
       <Pane disable="true" layoutX="250.0" layoutY="88.0" prefHeight="362.0" prefWidth="500.0" visible="false">
          <children>
-            <TextField fx:id="rastreador" layoutX="321.0" layoutY="91.0" prefHeight="27.0" prefWidth="136.0" promptText="ID do rastreador" styleClass="customizarInputs" />
-            <TextField fx:id="motorista" layoutX="321.0" layoutY="34.0" prefHeight="27.0" prefWidth="136.0" promptText="Nome do motorista" styleClass="customizarInputs" />
-            <TextField fx:id="viagemInit" layoutX="35.0" layoutY="91.0" prefHeight="27.0" prefWidth="136.0" promptText="Início" styleClass="customizarInputs" />
-            <TextField fx:id="empresaDestino" layoutX="35.0" layoutY="34.0" prefHeight="27.0" prefWidth="136.0" promptText="Empresa de Destino" styleClass="customizarInputs" />
-            <TextField fx:id="viagemFim" layoutX="35.0" layoutY="148.0" prefHeight="27.0" prefWidth="136.0" promptText="Fim" styleClass="customizarInputs" />
-            <Button fx:id="btnSalvar" alignment="CENTER" layoutX="262.0" layoutY="285.0" mnemonicParsing="false" onAction="#alterarDados" prefHeight="48.0" prefWidth="98.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE">
+            <TextField layoutX="321.0" layoutY="91.0" prefHeight="27.0" prefWidth="136.0" promptText="ID do rastreador" styleClass="customizarInputs" />
+            <TextField layoutX="321.0" layoutY="34.0" prefHeight="27.0" prefWidth="136.0" promptText="Nome do motorista" styleClass="customizarInputs" />
+            <TextField layoutX="35.0" layoutY="91.0" prefHeight="27.0" prefWidth="136.0" promptText="Início" styleClass="customizarInputs" />
+            <TextField layoutX="35.0" layoutY="34.0" prefHeight="27.0" prefWidth="136.0" promptText="Empresa de Destino" styleClass="customizarInputs" />
+            <TextField layoutX="35.0" layoutY="148.0" prefHeight="27.0" prefWidth="136.0" promptText="Fim" styleClass="customizarInputs" />
+            <Button alignment="CENTER" layoutX="262.0" layoutY="285.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="98.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE">
                <graphic>
                   <ImageView disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -163,7 +163,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="35.0" layoutY="237.0" mnemonicParsing="false" onAction="#habilitarEdicao" prefHeight="48.0" prefWidth="114.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE">
+            <Button layoutX="35.0" layoutY="237.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="114.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -172,7 +172,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="35.0" layoutY="295.0" mnemonicParsing="false" onAction="#excluirFuncionario" prefHeight="40.0" prefWidth="114.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE">
+            <Button layoutX="35.0" layoutY="295.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="114.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="31.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -181,7 +181,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnDescartar" layoutX="372.0" layoutY="285.0" mnemonicParsing="false" onAction="#descartarAlteracoes" prefHeight="48.0" prefWidth="114.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE">
+            <Button layoutX="372.0" layoutY="285.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="114.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE">
                <graphic>
                   <ImageView disable="true" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>

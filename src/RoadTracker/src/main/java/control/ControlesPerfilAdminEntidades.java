@@ -137,6 +137,12 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     
     @FXML
     private Pane paneFilialSelecionada;
+    @FXML
+    private TextField textFieldNomeFilial;
+    @FXML
+    private TextField textFieldCidadeFilial;
+    @FXML
+    private TextField textFieldEstadoFilial;
     
     // ------------------------------
     
@@ -156,7 +162,16 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     
     @FXML
     private Pane paneVeiculoSelecionado;
-    
+    @FXML
+    private TextField textFieldMarcaRastreador;
+    @FXML
+    private TextField textFieldVersaoRastreador;
+    @FXML
+    private TextField textFieldIDRastrador;
+    @FXML
+    private TextField textFieldPlacaVeiculo;
+    @FXML
+    private TextField textFieldFuncionarioVeiculo;
     // ------------------------------
     
 
@@ -224,6 +239,53 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	notificar("Sucesso", "Alteração de dados", "Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
     }
     // -------------------------------
+    
+    
+    //Métodos filial
+    @FXML
+    void habilitarEdicaoFilial(ActionEvent event){
+    	textFieldNomeFilial.setDisable(false);
+    	textFieldCidadeFilial.setDisable(false);
+    	textFieldEstadoFilial.setDisable(false);
+    }
+    @FXML
+    void excluirFilial(ActionEvent event) {
+    	
+    }
+    @FXML
+    void salvarDadosAlteradosFilial(ActionEvent event) {
+    	
+    }
+    @FXML
+    void descartarAlteracoesFilial(ActionEvent event) {
+    	
+    }
+    
+    // -------------------------------------
+    
+    //Métodos veiculo
+    @FXML
+    void habilitarEdicaoVeiculo(ActionEvent event){
+    	textFieldMarcaRastreador.setDisable(false);
+    	textFieldVersaoRastreador.setDisable(false);
+    	textFieldIDRastrador.setDisable(false);
+    	textFieldPlacaVeiculo.setDisable(false);
+    	textFieldFuncionarioVeiculo.setDisable(false);
+    }
+    @FXML
+    void excluirVeiculo(ActionEvent event) {
+    	
+    }
+    @FXML
+    void salvarDadosAlteradosVeiculo(ActionEvent event) {
+    	
+    }
+    @FXML
+    void descartarAlteracoesVeiculo(ActionEvent event) {
+    	
+    }
+    
+    // -------------------------------------
 
     //Métodos gerais
     @FXML
@@ -349,6 +411,10 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	chbDias.setDisable(true);
     	btnSalvar.setDisable(true);
     	btnDescartar.setDisable(true);
+    	
+    	textFieldNomeFilial.setDisable(false);
+    	textFieldCidadeFilial.setDisable(false);
+    	textFieldEstadoFilial.setDisable(false);
     }
     
     void notificar(String tipoDeAviso, String titulo, String texto) {

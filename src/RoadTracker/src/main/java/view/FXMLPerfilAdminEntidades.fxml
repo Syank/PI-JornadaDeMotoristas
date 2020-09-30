@@ -53,23 +53,23 @@
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="203.0" onMouseClicked="#abrirTelaHistEntregas" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
-                  <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@truck.png" />
+                        <Image url="@viagens.png" />
                      </image></ImageView>
-                  <HBox prefHeight="59.0" prefWidth="31.0" />
+                  <HBox prefHeight="59.0" prefWidth="40.0" />
                   <Label text="Histórico de entregas" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="300.0" onMouseClicked="#abrirTelaHistEntregas" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
-                  <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@truck.png" />
+                        <Image url="@alert.png" />
                      </image>
                   </ImageView>
-                  <HBox prefHeight="59.0" prefWidth="31.0" />
+                  <HBox prefHeight="59.0" prefWidth="40.0" />
                   <Label text="Avisos" textFill="WHITE" />
                </children>
             </HBox>
@@ -283,30 +283,30 @@
                <children>
                   <ImageView fitHeight="140.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@adicionar.png" />
+                        <Image url="@funcionarios.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="61.0" prefWidth="131.0" text="Funcionários" wrapText="true" />
+                  <Label prefHeight="76.0" prefWidth="130.0" text="Veja todos os funcionários no sistema e edite suas informações" wrapText="true" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="229.0" layoutY="158.0" onMouseClicked="#abrirTelaFiliais" prefHeight="68.0" prefWidth="197.0" styleClass="caixasDeSelecaoBoasVindas">
                <children>
-                  <Label prefHeight="61.0" prefWidth="131.0" text="Filiais" textAlignment="RIGHT" wrapText="true" />
+                  <Label prefHeight="61.0" prefWidth="131.0" text="Acesse as filiais cadastradas no sistema e veja seus dados" textAlignment="RIGHT" wrapText="true" />
                   <ImageView fitHeight="140.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@adicionar.png" />
+                        <Image url="@filiais.png" />
                      </image>
                   </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="46.0" layoutY="251.0" onMouseClicked="#abrirTelaVeiculos" prefHeight="68.0" prefWidth="197.0" styleClass="caixasDeSelecaoBoasVindas">
+            <HBox alignment="CENTER" layoutX="46.0" layoutY="251.0" onMouseClicked="#abrirTelaVeiculos" prefHeight="68.0" prefWidth="197.0" spacing="5.0" styleClass="caixasDeSelecaoBoasVindas">
                <children>
                   <ImageView fitHeight="140.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@adicionar.png" />
+                        <Image url="@truck.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="61.0" prefWidth="131.0" text="Veículos" wrapText="true" />
+                  <Label prefHeight="61.0" prefWidth="131.0" text="Visualize os veículos cadastrados no banco de dados" wrapText="true" />
                </children>
             </HBox>
          </children>
@@ -339,9 +339,34 @@
       </Pane>
       <Pane fx:id="paneFilialSelecionada" disable="true" layoutX="261.0" layoutY="93.0" prefHeight="353.0" prefWidth="485.0" visible="false">
          <children>
-            <Button layoutX="57.0" layoutY="240.0" mnemonicParsing="false" text="Button" />
+            <Button layoutX="33.0" layoutY="236.0" mnemonicParsing="false" onAction="#habilitarEdicaoFilial" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE" />
+            <VBox layoutX="33.0" layoutY="45.0" prefHeight="132.0" prefWidth="174.0" spacing="20.0">
+               <children>
+                  <TextField fx:id="textFieldNomeFilial" disable="true" promptText="Nome" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldCidadeFilial" disable="true" promptText="Cidade" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldEstadoFilial" disable="true" promptText="Estado" styleClass="customizarInputs" />
+               </children>
+            </VBox>
+            <Button layoutX="33.0" layoutY="286.0" mnemonicParsing="false" onAction="#excluirFilial" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE" />
+            <Button layoutX="289.0" layoutY="286.0" mnemonicParsing="false" onAction="#salvarDadosAlteradosFilial" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE" />
+            <Button layoutX="382.0" layoutY="286.0" mnemonicParsing="false" onAction="#descartarAlteracoesFilial" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE" />
          </children></Pane>
-      <Pane fx:id="paneVeiculoSelecionado" disable="true" layoutX="259.0" layoutY="81.0" prefHeight="365.0" prefWidth="485.0" visible="false" />
+      <Pane fx:id="paneVeiculoSelecionado" disable="true" layoutX="259.0" layoutY="81.0" prefHeight="365.0" prefWidth="485.0" visible="false">
+         <children>
+            <VBox layoutX="20.0" layoutY="51.0" prefHeight="171.0" prefWidth="182.0" spacing="25.0">
+               <children>
+                  <TextField fx:id="textFieldMarcaRastreador" disable="true" promptText="Marca do rastreador" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldVersaoRastreador" disable="true" promptText="Versão do rastreador" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldIDRastreador" disable="true" promptText="ID do rastreador" styleClass="customizarInputs" />
+               </children>
+            </VBox>
+            <Button layoutX="31.0" layoutY="253.0" mnemonicParsing="false" onAction="#habilitarEdicaoVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE" />
+            <Button layoutX="31.0" layoutY="296.0" mnemonicParsing="false" onAction="#excluirVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE" />
+            <Button disable="true" layoutX="293.0" layoutY="296.0" mnemonicParsing="false" onAction="#salvarDadosAlteradosVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE" />
+            <Button disable="true" layoutX="376.0" layoutY="296.0" mnemonicParsing="false" onAction="#descartarAlteracoesVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE" />
+            <TextField fx:id="textFieldFuncionarioVeiculo" disable="true" layoutX="278.0" layoutY="91.0" promptText="Funcionário" styleClass="customizarInputs" />
+            <TextField fx:id="textFieldPlacaVeiculo" disable="true" layoutX="278.0" layoutY="51.0" promptText="Placa" styleClass="customizarInputs" />
+         </children></Pane>
       <Pane fx:id="paneVeiculos" disable="true" layoutX="258.0" layoutY="86.0" prefHeight="353.0" prefWidth="485.0" visible="false">
          <children>
             <Button layoutX="22.0" layoutY="315.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
@@ -356,16 +381,16 @@
             </Button>
             <TableView fx:id="tabelaVeiculos" layoutX="22.0" layoutY="77.0" prefHeight="223.0" prefWidth="441.0">
                <columns>
-                  <TableColumn fx:id="colunaVeiculo" prefWidth="337.0" text="Filial" />
-                  <TableColumn fx:id="colunaIDVeiculo" prefWidth="102.0" text="Estado" />
+                  <TableColumn fx:id="colunaVeiculo" prefWidth="197.0" text="Placa" />
+                  <TableColumn fx:id="colunaIDVeiculo" prefWidth="242.0" text="ID do Rastreador" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
             <Button layoutX="361.0" layoutY="315.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="102.0" styleClass="customizarBotoes" text="Atualizar lista" textFill="WHITE" />
-            <TextField fx:id="campoDeBuscaVeiculo" layoutX="14.0" layoutY="19.0" prefHeight="27.0" prefWidth="224.0" promptText="Filial" styleClass="customizarInputs" />
-            <TextField fx:id="campoDeBuscaIDVeiculo" layoutX="259.0" layoutY="19.0" prefHeight="27.0" prefWidth="153.0" promptText="Estado" styleClass="customizarInputs" />
+            <TextField fx:id="campoDeBuscaVeiculo" layoutX="14.0" layoutY="19.0" prefHeight="27.0" prefWidth="224.0" promptText="Placa" styleClass="customizarInputs" />
+            <TextField fx:id="campoDeBuscaIDVeiculo" layoutX="259.0" layoutY="19.0" prefHeight="27.0" prefWidth="153.0" promptText="ID do Rastreador" styleClass="customizarInputs" />
          </children>
       </Pane>
    </children>

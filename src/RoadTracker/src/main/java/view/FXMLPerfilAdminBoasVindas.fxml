@@ -38,31 +38,31 @@
                      <image>
                         <Image url="@funcionarios.png" />
                      </image></ImageView>
-                  <HBox layoutX="163.0" layoutY="10.0" prefHeight="59.0" prefWidth="30.0" />
-                  <Label text="Entidades" textFill="WHITE" />
+                  <HBox layoutX="163.0" layoutY="10.0" prefHeight="59.0" prefWidth="29.0" />
+                  <Label prefHeight="17.0" prefWidth="76.0" text="Entidades" textFill="WHITE" />
                   <HBox layoutX="106.0" layoutY="10.0" prefHeight="59.0" prefWidth="27.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="203.0" onMouseClicked="#abrirTelaHistEntregas" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
-                  <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@truck.png" />
+                        <Image url="@viagens.png" />
                      </image></ImageView>
-                  <HBox prefHeight="59.0" prefWidth="31.0" />
+                  <HBox prefHeight="56.0" prefWidth="40.0" />
                   <Label text="Histórico de entregas" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="300.0" onMouseClicked="#abrirTelaHistEntregas" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
-                  <HBox prefHeight="59.0" prefWidth="31.0" />
-                  <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                  <HBox prefHeight="56.0" prefWidth="31.0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@alert.png" />
                      </image>
                   </ImageView>
-                  <HBox prefHeight="59.0" prefWidth="39.0" />
+                  <HBox prefHeight="56.0" prefWidth="40.0" />
                   <Label text="Avisos" textFill="WHITE" />
                </children>
             </HBox>
@@ -123,12 +123,12 @@
                   <Image url="@adicionar.png" />
                </image>
             </ImageView>
-            <Label prefHeight="61.0" prefWidth="131.0" text="Cadastre Funcionários, atribuindo a eles cargos e mais" wrapText="true" />
+            <Label prefHeight="61.0" prefWidth="131.0" text="Cadastre Entidaeds, como funcionários, veículos, viagens e mais" wrapText="true" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="487.0" layoutY="202.0" onMouseClicked="#abrirTelaFuncionarios" prefHeight="68.0" prefWidth="231.0" styleClass="caixasDeSelecaoBoasVindas">
          <children>
-            <Label prefHeight="56.0" prefWidth="168.0" text="Visualize todos os funcionários cadastrados e edite suas informações " textAlignment="RIGHT" wrapText="true" />
+            <Label prefHeight="56.0" prefWidth="168.0" text="Visualize todoas as entidades cadastradas e edite suas informações " textAlignment="RIGHT" wrapText="true" />
             <ImageView fitHeight="84.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@funcionarios.png" />
@@ -138,9 +138,9 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="299.0" layoutY="318.0" onMouseClicked="#abrirTelaHistEntregas" prefHeight="68.0" prefWidth="231.0" spacing="10.0" styleClass="caixasDeSelecaoBoasVindas">
          <children>
-            <ImageView fitHeight="53.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="65.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@truck.png" />
+                  <Image url="@viagens.png" />
                </image>
             </ImageView>
             <Label prefHeight="78.0" prefWidth="147.0" text="Veja todas as entregas e viagens realizadas pelos motoristas" wrapText="true" />

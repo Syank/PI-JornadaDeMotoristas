@@ -52,23 +52,23 @@
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="203.0" onMouseClicked="#abrirTelaHistEntregas" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
-                  <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@truck.png" />
+                        <Image url="@viagens.png" />
                      </image></ImageView>
-                  <HBox prefHeight="59.0" prefWidth="31.0" />
+                  <HBox prefHeight="56.0" prefWidth="40.0" />
                   <Label text="Histórico de entregas" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="300.0" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
-                  <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@truck.png" />
+                        <Image url="@alert.png" />
                      </image>
                   </ImageView>
-                  <HBox prefHeight="59.0" prefWidth="31.0" />
+                  <HBox prefHeight="56.0" prefWidth="40.0" />
                   <Label text="Avisos" textFill="WHITE" />
                </children>
             </HBox>
@@ -115,7 +115,7 @@
       </HBox>
       <HBox layoutX="272.0" layoutY="47.0" prefHeight="31.0" prefWidth="387.0" styleClass="textoDeMenu">
          <children>
-            <Label text="Cadastrar">
+            <Label fx:id="labelTipoDeCadastro" text="Cadastrar Entidades">
                <font>
                   <Font size="20.0" />
                </font>
@@ -209,8 +209,28 @@
             </VBox>
          </children>
       </Pane>
-      <Pane fx:id="paneCadastrarVeiculos" disable="true" layoutX="266.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false" />
-      <Pane fx:id="paneCadastrarViagens" disable="true" layoutX="262.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false" />
+      <Pane fx:id="paneCadastrarVeiculos" disable="true" layoutX="266.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
+         <children>
+            <TextField fx:id="textFieldFuncionarioVeiculo" layoutX="274.0" layoutY="105.0" promptText="Funcionário" styleClass="customizarInputs" />
+            <VBox layoutX="21.0" layoutY="50.0" prefHeight="136.0" prefWidth="168.0" spacing="25.0">
+               <children>
+                  <TextField fx:id="textFieldMarcaRastreador" promptText="Marca do Rastreador" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldVersaoRastreador" promptText="Versão do Rastreador" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldIDRastreador" promptText="ID do Rastreador" styleClass="customizarInputs" />
+               </children>
+            </VBox>
+            <TextField fx:id="textFieldPlacaVeiculo" layoutX="274.0" layoutY="50.0" promptText="Placa do Veículo" styleClass="customizarInputs" />
+            <Button layoutX="21.0" layoutY="305.0" mnemonicParsing="false" onAction="#cadastrarVeiculo" prefHeight="30.0" prefWidth="106.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
+         </children></Pane>
+      <Pane fx:id="paneCadastrarViagens" disable="true" layoutX="262.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
+         <children>
+            <TextField fx:id="viagemInit" layoutX="33.0" layoutY="136.0" prefHeight="27.0" prefWidth="136.0" promptText="Início" styleClass="customizarInputs" />
+            <TextField fx:id="empresaDestino" layoutX="33.0" layoutY="77.0" prefHeight="27.0" prefWidth="136.0" promptText="Empresa de Destino" styleClass="customizarInputs" />
+            <Button fx:id="botaoCadastraViagem" layoutX="26.0" layoutY="299.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Cadastrar" textFill="WHITE" />
+            <TextField fx:id="viagemFim" layoutX="33.0" layoutY="184.0" prefHeight="27.0" prefWidth="136.0" promptText="Fim" styleClass="customizarInputs" />
+            <TextField fx:id="rastreador" layoutX="299.0" layoutY="136.0" prefHeight="27.0" prefWidth="136.0" promptText="ID do rastreador" styleClass="customizarInputs" />
+            <TextField fx:id="motorista" layoutX="299.0" layoutY="77.0" prefHeight="27.0" prefWidth="136.0" promptText="Nome do motorista" styleClass="customizarInputs" />
+         </children></Pane>
       <Pane fx:id="paneEscolherTipoDeCadastro" layoutX="265.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0">
          <children>
             <HBox alignment="CENTER" layoutX="24.0" layoutY="30.0" onMouseClicked="#abrirTelaCadastrarFuncionarios" prefHeight="68.0" prefWidth="197.0" styleClass="caixasDeSelecaoBoasVindas">
@@ -225,30 +245,30 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="244.0" layoutY="110.0" onMouseClicked="#abrirTelaCadastrarFiliais" prefHeight="68.0" prefWidth="197.0" styleClass="caixasDeSelecaoBoasVindas">
                <children>
-                  <Label prefHeight="61.0" prefWidth="131.0" text="Cadastre Filiais" wrapText="true" />
+                  <Label prefHeight="74.0" prefWidth="129.0" text="Cadastre Filiais no sistema para serem atribuídas aos funcionários" textAlignment="RIGHT" wrapText="true" />
                   <ImageView fitHeight="140.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@adicionar.png" />
+                        <Image url="@filiais.png" />
                      </image>
                   </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="24.0" layoutY="184.0" onMouseClicked="#abrirTelaCadastrarVeiculos" prefHeight="68.0" prefWidth="197.0" styleClass="caixasDeSelecaoBoasVindas">
+            <HBox alignment="CENTER" layoutX="24.0" layoutY="184.0" onMouseClicked="#abrirTelaCadastrarVeiculos" prefHeight="68.0" prefWidth="197.0" spacing="5.0" styleClass="caixasDeSelecaoBoasVindas">
                <children>
                   <ImageView fitHeight="140.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@adicionar.png" />
+                        <Image url="@truck.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="61.0" prefWidth="131.0" text="Cadastre Veículos" wrapText="true" />
+                  <Label prefHeight="61.0" prefWidth="131.0" text="Cadastre os Veículos que serão utilizados pelos motoristas" wrapText="true" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="244.0" layoutY="263.0" onMouseClicked="#abrirTelaCadastrarViagens" prefHeight="68.0" prefWidth="197.0" styleClass="caixasDeSelecaoBoasVindas">
                <children>
-                  <Label prefHeight="61.0" prefWidth="131.0" text="Cadastre Viagens" wrapText="true" />
+                  <Label prefHeight="61.0" prefWidth="131.0" text="Crie viagens/entregas a serem realizadas pelos motoristas" textAlignment="RIGHT" wrapText="true" />
                   <ImageView fitHeight="140.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@adicionar.png" />
+                        <Image url="@viagens.png" />
                      </image>
                   </ImageView>
                </children>

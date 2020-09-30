@@ -85,16 +85,12 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     //Elementos da pane de cadastro de filiais
     @FXML
     private Pane paneCadastrarFiliais;
-    
     @FXML
     private Button botaoCadastrarFilial;
-
     @FXML
     private TextField tfNomeFilial;
-
     @FXML
     private TextField tfCidadeFilial;
-
     @FXML
     private TextField tfEstadoFilial;
     // ---------------------------------------
@@ -103,6 +99,16 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     //Elementos da pane de cadastro de veículos
     @FXML
     private Pane paneCadastrarVeiculos;
+    @FXML
+    private TextField textFieldMarcaRastreador;
+    @FXML
+    private TextField textFieldVersaoRastreador;
+    @FXML
+    private TextField textFieldIDRastrador;
+    @FXML
+    private TextField textFieldPlacaVeiculo;
+    @FXML
+    private TextField textFieldFuncionarioVeiculo;
     // ----------------------------------------
     
     
@@ -180,21 +186,22 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     }
     //--------------------------------------
     
-    // Método para de cadastro de veículos
-    //@FXML
-    //void cadastrarVeiculo(ActionEvent event) {
+    // Método para cadastro de veículos
+    @FXML
+    void cadastrarVeiculo(ActionEvent event) {
         	
-        //Veiculo veic = new Veiculo();
+        Veiculo veic = new Veiculo();
         	
-        //String id_rastreador = tfIdRatreador.getText();
-        //String placa = tfPlaca.getText();
-        //String versao = tfVersaoRastreador.getText();
-        //String marca_rastreador = tfMarcaRastreador.getText();
-        	
-        //veic.cadastrarVeiculo(id_rastreador, placa, versao, marca_rastreador);
+        String id_rastreador = textFieldIDRastrador.getText();
+        String placa = textFieldPlacaVeiculo.getText();
+        String versao = textFieldVersaoRastreador.getText();
+        String marca_rastreador = textFieldMarcaRastreador.getText();
+        String cpfFuncionario = textFieldFuncionarioVeiculo.getText();
+        
+        veic.cadastrarVeiculo(id_rastreador, placa, versao, marca_rastreador, cpfFuncionario);
     	
-    //}
-
+    }
+    // -------------------------------------------
 
     
     // Métodos gerais
