@@ -33,10 +33,10 @@ public class Main extends Application {
 		Pane fxmlTela1 = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
 		tela1 = new Scene(fxmlTela1);
 	
-		Pane fxmlTela2 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminFuncionariosSelect.fxml"));
+		Pane fxmlTela2 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminEntidades.fxml"));
 		tela2 = new Scene(fxmlTela2);
 		
-		Pane fxmlTela3 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminCadMot.fxml"));
+		Pane fxmlTela3 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminCadastrarEntidades.fxml"));
 		tela3 = new Scene(fxmlTela3);
 		
 		Pane fxmlTela4 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminEntregas.fxml"));

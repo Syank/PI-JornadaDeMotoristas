@@ -41,12 +41,12 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
-                  <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="59.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@funcionarios.png" />
                      </image></ImageView>
-                  <HBox layoutX="163.0" layoutY="10.0" prefHeight="59.0" prefWidth="30.0" />
-                  <Label text="Entidades" textFill="WHITE" />
+                  <HBox layoutX="163.0" layoutY="10.0" prefHeight="59.0" prefWidth="29.0" />
+                  <Label prefHeight="17.0" prefWidth="76.0" text="Entidades" textFill="WHITE" />
                   <HBox layoutX="106.0" layoutY="10.0" prefHeight="59.0" prefWidth="27.0" />
                </children>
             </HBox>
@@ -291,7 +291,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="229.0" layoutY="158.0" onMouseClicked="#abrirTelaFiliais" prefHeight="68.0" prefWidth="197.0" styleClass="caixasDeSelecaoBoasVindas">
                <children>
-                  <Label prefHeight="61.0" prefWidth="131.0" text="Filiais" wrapText="true" />
+                  <Label prefHeight="61.0" prefWidth="131.0" text="Filiais" textAlignment="RIGHT" wrapText="true" />
                   <ImageView fitHeight="140.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@adicionar.png" />
@@ -337,7 +337,10 @@
             <TextField fx:id="campoDeBuscaEstado" layoutX="259.0" layoutY="19.0" prefHeight="27.0" prefWidth="153.0" promptText="Estado" styleClass="customizarInputs" />
          </children>
       </Pane>
-      <Pane fx:id="paneFilialSelecionada" disable="true" layoutX="261.0" layoutY="93.0" prefHeight="353.0" prefWidth="485.0" visible="false" />
+      <Pane fx:id="paneFilialSelecionada" disable="true" layoutX="261.0" layoutY="93.0" prefHeight="353.0" prefWidth="485.0" visible="false">
+         <children>
+            <Button layoutX="57.0" layoutY="240.0" mnemonicParsing="false" text="Button" />
+         </children></Pane>
       <Pane fx:id="paneVeiculoSelecionado" disable="true" layoutX="259.0" layoutY="81.0" prefHeight="365.0" prefWidth="485.0" visible="false" />
       <Pane fx:id="paneVeiculos" disable="true" layoutX="258.0" layoutY="86.0" prefHeight="353.0" prefWidth="485.0" visible="false">
          <children>
