@@ -23,7 +23,7 @@ import javafx.scene.layout.VBox;
 import model.*;
 import view.*;
 
-public class ControlesPerfilAdminFuncionarioSelect implements Initializable {
+public class ControlesPerfilAdminEntidades implements Initializable {
 	
 	private static Funcionario funcionario = new Funcionario();
 	

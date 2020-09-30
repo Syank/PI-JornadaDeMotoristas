@@ -20,7 +20,7 @@ import javafx.scene.layout.Pane;
 import model.*;
 import view.*;
 
-public class ControlesPerfilAdminCadMot implements Initializable {
+public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 	
 	//Elementos da pane de avisos
     @FXML
@@ -195,11 +195,7 @@ public class ControlesPerfilAdminCadMot implements Initializable {
     	
     //}
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		carregarComboBoxCargos();
-		carregarComboBoxFiliais();
-	}
+
     
     // Métodos gerais
     @FXML
@@ -331,5 +327,9 @@ public class ControlesPerfilAdminCadMot implements Initializable {
 		paneAvisosFalha.setVisible(false);
     }
     
-
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		carregarComboBoxCargos();
+		carregarComboBoxFiliais();
+	}
 }
