@@ -105,7 +105,7 @@ public class Filial {
 		
 	}
 	
-	public void ExcluirFilial(Integer id) {
+	public void excluirFilial(Integer id) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		Filial filial = null;

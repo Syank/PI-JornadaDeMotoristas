@@ -11,13 +11,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.swing.JOptionPane;
 
 @Entity
 @Table(name="veiculos")
 public class Veiculo {
 	
 	@Id
-	private Integer id_rastreador;
+	private String id_rastreador;
 	private String placa;
 	private String marca_rastreador;
 	private String versao_rastreador;
@@ -31,10 +32,10 @@ public class Veiculo {
 	@OneToMany(mappedBy = "veiculo")
 	private List<Viagem> viagens = new ArrayList<Viagem>();
 	
-	public Integer getId_rastreador() {
+	public String getId_rastreador() {
 		return id_rastreador;
 	}
-	public void setId_rastreador(Integer id_rastreador) {
+	public void setId_rastreador(String id_rastreador) {
 		this.id_rastreador = id_rastreador;
 	}
 	public String getPlaca() {
@@ -62,7 +63,7 @@ public class Veiculo {
 		this.funcionario = funcionario;
 	}
 	
-	public void cadastrarVeiculo(Integer id_rastreador, String placa, String versao, String marca_rastreador, String cpf_funcionario){
+	public void cadastrarVeiculo(String id_rastreador, String placa, String versao, String marca_rastreador, String cpf_funcionario){
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		funcionario.setCpf(cpf_funcionario);
@@ -85,5 +86,28 @@ public class Veiculo {
 		finally {
 			con.close();
 		}
-}
+	}
+	
+	public void excluirVeiculo(String id) {
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		Veiculo veiculo = null;
+		
+		try {
+			veiculo = con.find(model.Veiculo.class, id);		
+			
+			con.getTransaction().begin();
+			con.remove(veiculo);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+	}
+	
 }
