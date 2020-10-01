@@ -155,8 +155,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	tfCidadeFilial.setText("");
     	tfEstadoFilial.setText("");
     }
-    public void limparCamposCadastrarFuncionarios()
-    {
+    public void limparCamposCadastrarFuncionarios() {
      	tfNome.setText("");
     	tfCpf.setText("");
     	tfCargaHoraria.setText("");
@@ -170,8 +169,15 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	cbSexta.setSelected(false);
     	cbSabado.setSelected(false);
     }
-    public void limparCamposCadastrarViagens()
-    {
+    public void limparCamposCadastrarVeículos() {
+    	textFieldMarcaRastreador.setText("");
+    	textFieldVersaoRastreador.setText("");
+    	textFieldIDRastrador.setText("");
+        textFieldPlacaVeiculo.setText("");
+        textFieldFuncionarioVeiculo.setText("");
+    	
+    }
+    public void limparCamposCadastrarViagens() {
     	tfEmpresaDestino.setText("");
     	tfViagemInit.setText("");
     	tfViagemFim.setText("");
@@ -184,7 +190,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	filiaisList = FXCollections.observableArrayList(filiais);
     	cbFilial.setItems(filiaisList);
     }
-	
     
     @FXML
     void cadastrarFuncionario(MouseEvent event) {
@@ -214,7 +219,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     		notificar("Falha de cadastro", "Falha ao cadastrar", "As senhas estão incorretas, tente novamente");
     		System.err.println("Senhas diferentes");
     	}
-
     }
     // -----------------------------------
     
@@ -257,6 +261,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFuncionarios();
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
+    	limparCamposCadastrarVeículos();
     }
     @FXML
     void abrirTelaHistEntregas(MouseEvent event) {
@@ -264,20 +269,19 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFuncionarios();
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
+    	limparCamposCadastrarVeículos();
     }
     @FXML
-    void voltar(ActionEvent event) {
-    	
+    void voltar(ActionEvent event) {   	
     	if(paneEscolherTipoDeCadastro.isVisible()) {
     	Main.trocarTela("Tela Boas Vindas");
-    	
-    	}else {
-    	
+    	}else {  	
     		voltarParaTelaDeEscolhas(event);
     	}
     	limparCamposCadastrarFuncionarios();
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
+    	limparCamposCadastrarVeículos();
     	
     
     }
@@ -307,6 +311,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFuncionarios();
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
+    	limparCamposCadastrarVeículos();
     }
     @FXML
     void abrirTelaCadastrarFiliais(MouseEvent event){
@@ -324,6 +329,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFuncionarios();
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
+    	limparCamposCadastrarVeículos();
     }
     @FXML
     void abrirTelaCadastrarVeiculos(MouseEvent event){
@@ -341,6 +347,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFuncionarios();
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
+    	limparCamposCadastrarVeículos();
     }
     @FXML
     void abrirTelaCadastrarViagens(MouseEvent event){
@@ -358,6 +365,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFuncionarios();
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
+    	limparCamposCadastrarVeículos();
     }
     @FXML
     void voltarParaTelaDeEscolhas(ActionEvent event) {
@@ -375,6 +383,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFuncionarios();
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
+    	limparCamposCadastrarVeículos();
     }
     
     
@@ -411,6 +420,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 		limparCamposCadastrarFuncionarios();
 		limparCamposCadastrarFiliais();
 		limparCamposCadastrarViagens();
+    	limparCamposCadastrarVeículos();
     }
     
 	@Override
