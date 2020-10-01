@@ -16,26 +16,26 @@
             <p><h2>O nosso desafio</h2></p>
             <p>Nosso cliente é a empresa IACIT e nos foi solicitado para desenvolver um sistema de gerenciamento de controle de jornada de trabalho de motoristas de forma parametrizável visando a disponibilização de funcionalidades de planejamento, acompanhamento e controle da jornada de trabalho destes trabalhadores. Nosso sistema deverá oferecer cadastro para motoristas (tendo nome, CPF, matrícula e ID do equipamento do caminhão), um cadastro para os dados do veículo (como a placa, a marca e versão do rastreador e o ID do equipamento), escala dos motoristas (turno, carga horária, dias de trabalho e de folga), um cadastro de alertas (contendo ocorrência, sigla, ícone, descrição do alerta e regra/parâmetro), cadastro de status (cadastrar status e regras de negócio de acordo com cada situação ocorrida durante a jornada, ID dos macros/mensagens, status de início e fim de jornada, tempo de trabalho, tempo de espera, tempo de refeição e tempo de descanso).</p>
 <ul>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#-o-que-%C3%A9-o-roadtracker"> O que é o RoadTracker?</a></li>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#-integrantes-da-equipe-girlboy"> Integrantes da equipe</a></li>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#-cards-das-sprintsentregas-do-sistema">Cards das Sprints(entregas) do sistema</a></li>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#nosso-sistema-em-funcionamento-at%C3%A9-o-momento">Nosso sistema em funcionamento até o momento</a></li>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#-user-stories-do-nosso-sistema">User stories do nosso sistema</a></li>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#-wireframes-do-roadtracker-">Wireframes do RoadTracker</a></li>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#modelo-conceitual-do-nosso-banco-de-dados">Modelo conceitual do nosso banco de dados</a></li>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#modelo-l%C3%B3gico-do-nosso-banco-de-dados">Modelo lógico do nosso banco de dados</a></li>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#modelo-f%C3%ADsico-do-nosso-banco-de-dados">Modelo físico do nosso banco de dados</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#o_que_e"> O que é o RoadTracker?</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#integrantes"> Integrantes da equipe</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#cards">Cards das Sprints (entregas) do sistema</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#sistema_ate_o_momento">Nosso sistema em funcionamento até o momento</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#user_stories">User stories do nosso sistema</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#Wireframes">Wireframes do RoadTracker</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#ModeloC">Modelo conceitual do nosso banco de dados</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#ModeloL">Modelo lógico do nosso banco de dados</a></li>
+<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#ModeloF">Modelo físico do nosso banco de dados</a></li>
 </ul>
 </nav>
 </section>
 
-<section id="O que é">
+<section id="o_que_e">
             <h3>O que é o RoadTracker?</h3>
             <p>Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas de trabalho de motoristas, pois muitas vezes não há o controle sobre o expediente desses trabalhadores. Todas as filiais de uma empresa ser cadastradas e realizar o cadastro de seus motoristas e, consequentemente, realizar o cadastro das jornadas de trabalho deles, o veículo que será utilizado e a viagem a ser realizada. Além disso, a filial terá acesso a várias informações sobre o status do motorista durante a viagem!</p>
                
 </section>
 
-<section id="Integrantes">
+<section id="integrantes">
             <h3>Integrantes da equipe :girl::boy:</h3>
        <ul>
             <li><p><a href="https://www.linkedin.com/in/rafael-furtado-613a9712a/" target = "_blank">Rafael Furtado Rodrigues dos Santos</a>  (Scrum Master)</p>
@@ -57,7 +57,7 @@
 </section>
     
 
-<section id="User stories">
+<section id="user_stories">
      <h3>User stories do nosso sistema</h3>
      <h4>Primeira entrega :clock12:</h4>
      <p>A nossa primeira entrega contará com um CRUD dos funcionários das filais, que poderão ter os cargos de administrador, supervisor e motoristas. Sendo assim as filiais já poderão ter controle dos funcionários que estarão cadastrados e já poderão ter uma visão melhor sobre as jornadas de trabalho de cada funcionário.</p>
