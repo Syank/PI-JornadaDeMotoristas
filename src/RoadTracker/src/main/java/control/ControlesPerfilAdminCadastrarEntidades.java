@@ -73,6 +73,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 	private CheckBox cbSexta;
 	@FXML
 	private CheckBox cbSabado;
+    @FXML
+    private ComboBox<?> cbTurno;
 	
     private List<Cargos> cargos = new ArrayList<>();
     private ObservableList<Cargos> cargosList;

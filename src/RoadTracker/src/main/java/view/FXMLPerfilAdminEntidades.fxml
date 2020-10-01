@@ -6,6 +6,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -125,8 +126,9 @@
       </HBox>
       <Pane fx:id="paneFuncionarioSelecionado" disable="true" layoutX="250.0" layoutY="85.0" prefHeight="365.0" prefWidth="500.0" visible="false">
          <children>
-            <VBox fx:id="chbDias" layoutX="362.0" layoutY="67.0" prefHeight="117.0" prefWidth="100.0" spacing="5.0">
+            <VBox fx:id="chbDias" layoutX="339.0" layoutY="23.0" prefHeight="262.0" prefWidth="148.0" spacing="5.0">
                <children>
+                  <ComboBox fx:id="cbCargo" prefHeight="27.0" prefWidth="150.0" promptText="Cargo" styleClass="customizarInputs" />
                   <Label text="Dias de trabalho" />
                   <CheckBox fx:id="cbDom" mnemonicParsing="false" text="Domingo" />
                   <CheckBox fx:id="cbSeg" mnemonicParsing="false" text="Segunda-Feira" />
@@ -190,14 +192,14 @@
             </VBox>
             <VBox layoutX="176.0" layoutY="23.0" prefHeight="205.0" prefWidth="148.0" spacing="20.0">
                <children>
-                  <TextField fx:id="tfNome" editable="true" promptText="Nome" styleClass="customizarInputs" />
+                  <TextField fx:id="tfNome" editable="true" prefHeight="27.0" prefWidth="150.0" promptText="Nome" styleClass="customizarInputs" />
                   <TextField fx:id="tfCpf" editable="true" promptText="CPF" styleClass="customizarInputs" />
-                  <TextField fx:id="pfSenha" editable="true" promptText="Senha" styleClass="customizarInputs" />
                   <TextField fx:id="tfCargaHoraria" editable="true" promptText="Carga Horária" styleClass="customizarInputs" />
+                  <PasswordField fx:id="pfSenha" promptText="Senha" styleClass="customizarInputs" />
                   <ComboBox fx:id="cbFilial" prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
+                  <ComboBox fx:id="cbTurno" prefWidth="150.0" promptText="Turno" styleClass="customizarInputs" />
                </children>
             </VBox>
-            <ComboBox fx:id="cbCargo" layoutX="337.0" layoutY="23.0" prefWidth="150.0" promptText="Cargo" styleClass="customizarInputs" />
          </children>
       </Pane>
       <Pane fx:id="paneFuncionarios" layoutX="250.0" layoutY="85.0" prefHeight="365.0" prefWidth="500.0" visible="false">

@@ -195,6 +195,7 @@
                </children>
             </VBox>
             <Button layoutX="14.0" layoutY="311.0" mnemonicParsing="false" onMouseClicked="#cadastrarFuncionario" prefHeight="31.0" prefWidth="102.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
+            <ComboBox fx:id="cbTurno" layoutX="238.0" layoutY="66.0" prefWidth="150.0" promptText="Turno" styleClass="customizarInputs" />
          </children>
       </Pane>
       <Pane fx:id="paneCadastrarFiliais" disable="true" layoutX="265.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">

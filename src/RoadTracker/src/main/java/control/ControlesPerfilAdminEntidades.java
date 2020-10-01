@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -81,7 +82,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     @FXML
     private TextField tfCpf;
     @FXML
-    private TextField pfSenha;
+    private PasswordField pfSenha;
     @FXML
     private TextField tfCargaHoraria;
     @FXML
@@ -106,6 +107,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     private TextField campoDeBuscaNome;
     @FXML
     private TextField campoDeBuscaCpf;
+    @FXML
+    private ComboBox<?> cbTurno;
     
     private List<Cargos> cargos = new ArrayList<>();
     private ObservableList<Cargos> cargosList;
