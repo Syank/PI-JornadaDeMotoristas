@@ -230,7 +230,7 @@
             <Button fx:id="botaoCadastraViagem" layoutX="26.0" layoutY="299.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Cadastrar" textFill="WHITE" />
             <TextField fx:id="tfViagemFim" layoutX="33.0" layoutY="194.0" prefHeight="27.0" prefWidth="136.0" promptText="Fim" styleClass="customizarInputs" />
             <TextField fx:id="tfIDRastreador" layoutX="299.0" layoutY="136.0" prefHeight="27.0" prefWidth="136.0" promptText="ID do rastreador" styleClass="customizarInputs" />
-            <TextField fx:id="tfMoristaViagem" layoutX="299.0" layoutY="77.0" prefHeight="27.0" prefWidth="136.0" promptText="Nome do motorista" styleClass="customizarInputs" />
+            <TextField fx:id="tfMotoristaViagem" layoutX="299.0" layoutY="77.0" prefHeight="27.0" prefWidth="136.0" promptText="Nome do motorista" styleClass="customizarInputs" />
          </children></Pane>
       <Pane fx:id="paneEscolherTipoDeCadastro" layoutX="265.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
          <children>

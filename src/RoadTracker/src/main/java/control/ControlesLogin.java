@@ -31,6 +31,8 @@ public class ControlesLogin {
     void verificarLogin(ActionEvent event) throws IOException {
     	if(!inputUsuario.getText().isEmpty() && !inputSenha.getText().isEmpty()) {
     		Main.trocarTela("Tela Boas Vindas");
+    		inputUsuario.setText("");
+    		inputSenha.setText("");
     	}
     }
 	

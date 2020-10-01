@@ -185,6 +185,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	cargos = funcionario.listarCargos();
     	cargosList = FXCollections.observableArrayList(cargos);
     	cbCargo.setItems(cargosList);
+   
     }
         public void carregarComboBoxFiliais() {
     	filiais = funcionario.listarFiliais();

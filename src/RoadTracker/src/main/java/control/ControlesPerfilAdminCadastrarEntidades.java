@@ -117,6 +117,21 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     //Elementos da pane de cadastro de viagens
     @FXML
     private Pane paneCadastrarViagens;
+    
+    @FXML
+    private TextField tfViagemInit;
+
+    @FXML
+    private TextField tfEmpresaDestino;
+
+    @FXML
+    private TextField tfViagemFim;
+
+    @FXML
+    private TextField tfIDRastreador;
+
+    @FXML
+    private TextField tfMoristaViagem;
     // ----------------------------------------
     
     
@@ -134,6 +149,35 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	cargosList = FXCollections.observableArrayList(cargos);
     	cbCargo.setItems(cargosList);
     } 
+    public void limparCamposCadastrarFiliais() 
+    {
+    	tfNomeFilial.setText("");
+    	tfCidadeFilial.setText("");
+    	tfEstadoFilial.setText("");
+    }
+    public void limparCamposCadastrarFuncionarios()
+    {
+     	tfNome.setText("");
+    	tfCpf.setText("");
+    	tfCargaHoraria.setText("");
+    	pfSenha1.setText("");
+    	pfSenha2.setText("");
+    	cbDomingo.setSelected(false);
+    	cbSegunda.setSelected(false);
+    	cbTerca.setSelected(false);
+    	cbQuarta.setSelected(false);
+    	cbQuinta.setSelected(false);
+    	cbSexta.setSelected(false);
+    	cbSabado.setSelected(false);
+    }
+    public void limparCamposCadastrarViagens()
+    {
+    	tfEmpresaDestino.setText("");
+    	tfViagemInit.setText("");
+    	tfViagemFim.setText("");
+    	tfMoristaViagem.setText("");
+    	tfIDRastreador.setText("");
+    }
     public void carregarComboBoxFiliais() {
     	Funcionario funcionario = new Funcionario();
     	filiais = funcionario.listarFiliais();
@@ -210,19 +254,34 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     @FXML
     void abrirTelaFunc(MouseEvent event) {
     	Main.trocarTela("Tela Funcionarios");
+    	limparCamposCadastrarFuncionarios();
+    	limparCamposCadastrarFiliais();
+    	limparCamposCadastrarViagens();
     }
     @FXML
     void abrirTelaHistEntregas(MouseEvent event) {
     	Main.trocarTela("Tela Historico de Entregas");
+    	limparCamposCadastrarFuncionarios();
+    	limparCamposCadastrarFiliais();
+    	limparCamposCadastrarViagens();
     }
     @FXML
     void voltar(ActionEvent event) {
+    	
     	if(paneEscolherTipoDeCadastro.isVisible()) {
     	Main.trocarTela("Tela Boas Vindas");
+    	
     	}else {
+    	
     		voltarParaTelaDeEscolhas(event);
     	}
+    	limparCamposCadastrarFuncionarios();
+    	limparCamposCadastrarFiliais();
+    	limparCamposCadastrarViagens();
+    	
+    
     }
+    
     @FXML
     void minimizarJanela(ActionEvent event) {
     	Main.minimizar();
@@ -245,6 +304,9 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	paneCadastrarViagens.setDisable(true);
     	paneCadastrarFuncionarios.setDisable(false);
     	paneEscolherTipoDeCadastro.setDisable(true);
+    	limparCamposCadastrarFuncionarios();
+    	limparCamposCadastrarFiliais();
+    	limparCamposCadastrarViagens();
     }
     @FXML
     void abrirTelaCadastrarFiliais(MouseEvent event){
@@ -259,6 +321,9 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	paneCadastrarViagens.setDisable(true);
     	paneCadastrarFuncionarios.setDisable(true);
     	paneEscolherTipoDeCadastro.setDisable(true);
+    	limparCamposCadastrarFuncionarios();
+    	limparCamposCadastrarFiliais();
+    	limparCamposCadastrarViagens();
     }
     @FXML
     void abrirTelaCadastrarVeiculos(MouseEvent event){
@@ -273,6 +338,9 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	paneCadastrarViagens.setDisable(true);
     	paneCadastrarFuncionarios.setDisable(true);
     	paneEscolherTipoDeCadastro.setDisable(true);
+    	limparCamposCadastrarFuncionarios();
+    	limparCamposCadastrarFiliais();
+    	limparCamposCadastrarViagens();
     }
     @FXML
     void abrirTelaCadastrarViagens(MouseEvent event){
@@ -287,6 +355,9 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	paneCadastrarViagens.setDisable(false);
     	paneCadastrarFuncionarios.setDisable(true);
     	paneEscolherTipoDeCadastro.setDisable(true);
+    	limparCamposCadastrarFuncionarios();
+    	limparCamposCadastrarFiliais();
+    	limparCamposCadastrarViagens();
     }
     @FXML
     void voltarParaTelaDeEscolhas(ActionEvent event) {
@@ -301,6 +372,9 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	paneCadastrarViagens.setDisable(true);
     	paneCadastrarFuncionarios.setDisable(true);
     	paneEscolherTipoDeCadastro.setDisable(false);
+    	limparCamposCadastrarFuncionarios();
+    	limparCamposCadastrarFiliais();
+    	limparCamposCadastrarViagens();
     }
     
     
@@ -334,6 +408,9 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 		paneAvisosSucesso.setVisible(false);
 		paneAvisosFalha.setDisable(true);
 		paneAvisosFalha.setVisible(false);
+		limparCamposCadastrarFuncionarios();
+		limparCamposCadastrarFiliais();
+		limparCamposCadastrarViagens();
     }
     
 	@Override
