@@ -198,7 +198,7 @@
             <ComboBox fx:id="cbTurno" layoutX="238.0" layoutY="66.0" prefWidth="150.0" promptText="Turno" styleClass="customizarInputs" />
          </children>
       </Pane>
-      <Pane fx:id="paneCadastrarFiliais" disable="true" layoutX="265.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
+      <Pane fx:id="paneCadastrarFiliais" layoutX="265.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
          <children>
             <Button fx:id="botaoCadastrarFilial" layoutX="19.0" layoutY="310.0" mnemonicParsing="false" onAction="#cadastrarFilial" prefHeight="32.0" prefWidth="78.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
             <VBox alignment="TOP_CENTER" layoutX="19.0" layoutY="65.0" prefHeight="183.0" prefWidth="168.0" spacing="25.0">
@@ -223,16 +223,16 @@
             <TextField fx:id="textFieldPlacaVeiculo" layoutX="274.0" layoutY="50.0" promptText="Placa do Veículo" styleClass="customizarInputs" />
             <Button layoutX="21.0" layoutY="305.0" mnemonicParsing="false" onAction="#cadastrarVeiculo" prefHeight="30.0" prefWidth="106.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
          </children></Pane>
-      <Pane fx:id="paneCadastrarViagens" disable="true" layoutX="262.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
+      <Pane fx:id="paneCadastrarViagens" layoutX="262.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0">
          <children>
-            <TextField fx:id="viagemInit" layoutX="33.0" layoutY="136.0" prefHeight="27.0" prefWidth="136.0" promptText="Início" styleClass="customizarInputs" />
-            <TextField fx:id="empresaDestino" layoutX="33.0" layoutY="77.0" prefHeight="27.0" prefWidth="136.0" promptText="Empresa de Destino" styleClass="customizarInputs" />
+            <TextField fx:id="tfViagemInit" layoutX="33.0" layoutY="136.0" prefHeight="27.0" prefWidth="136.0" promptText="Início" styleClass="customizarInputs" />
+            <TextField fx:id="tfEmpresaDestino" layoutX="33.0" layoutY="77.0" prefHeight="27.0" prefWidth="136.0" promptText="Empresa de Destino" styleClass="customizarInputs" />
             <Button fx:id="botaoCadastraViagem" layoutX="26.0" layoutY="299.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Cadastrar" textFill="WHITE" />
-            <TextField fx:id="viagemFim" layoutX="33.0" layoutY="184.0" prefHeight="27.0" prefWidth="136.0" promptText="Fim" styleClass="customizarInputs" />
-            <TextField fx:id="rastreador" layoutX="299.0" layoutY="136.0" prefHeight="27.0" prefWidth="136.0" promptText="ID do rastreador" styleClass="customizarInputs" />
-            <TextField fx:id="motorista" layoutX="299.0" layoutY="77.0" prefHeight="27.0" prefWidth="136.0" promptText="Nome do motorista" styleClass="customizarInputs" />
+            <TextField fx:id="tfViagemFim" layoutX="33.0" layoutY="194.0" prefHeight="27.0" prefWidth="136.0" promptText="Fim" styleClass="customizarInputs" />
+            <TextField fx:id="tfIDRastreador" layoutX="299.0" layoutY="136.0" prefHeight="27.0" prefWidth="136.0" promptText="ID do rastreador" styleClass="customizarInputs" />
+            <TextField fx:id="tfMoristaViagem" layoutX="299.0" layoutY="77.0" prefHeight="27.0" prefWidth="136.0" promptText="Nome do motorista" styleClass="customizarInputs" />
          </children></Pane>
-      <Pane fx:id="paneEscolherTipoDeCadastro" layoutX="265.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0">
+      <Pane fx:id="paneEscolherTipoDeCadastro" layoutX="265.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
          <children>
             <HBox alignment="CENTER" layoutX="24.0" layoutY="30.0" onMouseClicked="#abrirTelaCadastrarFuncionarios" prefHeight="68.0" prefWidth="197.0" styleClass="caixasDeSelecaoBoasVindas">
                <children>
