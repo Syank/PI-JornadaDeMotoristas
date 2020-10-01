@@ -123,7 +123,7 @@
                   <Image url="@adicionar.png" />
                </image>
             </ImageView>
-            <Label prefHeight="61.0" prefWidth="131.0" text="Cadastre Entidaeds, como funcionários, veículos, viagens e mais" wrapText="true" />
+            <Label prefHeight="61.0" prefWidth="131.0" text="Cadastre Entidades, como funcionários, veículos, viagens e mais" wrapText="true" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="487.0" layoutY="202.0" onMouseClicked="#abrirTelaFuncionarios" prefHeight="68.0" prefWidth="231.0" styleClass="caixasDeSelecaoBoasVindas">

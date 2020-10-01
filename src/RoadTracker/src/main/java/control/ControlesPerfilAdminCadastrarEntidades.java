@@ -106,7 +106,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     @FXML
     private TextField textFieldVersaoRastreador;
     @FXML
-    private TextField textFieldIDRastrador;
+    private TextField textFieldIDRastreador;
     @FXML
     private TextField textFieldPlacaVeiculo;
     @FXML
@@ -131,7 +131,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     private TextField tfIDRastreador;
 
     @FXML
-    private TextField tfMoristaViagem;
+    private TextField tfMotoristaViagem;
     // ----------------------------------------
     
     
@@ -168,11 +168,12 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	cbQuinta.setSelected(false);
     	cbSexta.setSelected(false);
     	cbSabado.setSelected(false);
+    	cbCargo.getSelectionModel().clearSelection();
     }
     public void limparCamposCadastrarVeículos() {
     	textFieldMarcaRastreador.setText("");
     	textFieldVersaoRastreador.setText("");
-    	textFieldIDRastrador.setText("");
+    	textFieldIDRastreador.setText("");
         textFieldPlacaVeiculo.setText("");
         textFieldFuncionarioVeiculo.setText("");
     	
@@ -181,7 +182,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	tfEmpresaDestino.setText("");
     	tfViagemInit.setText("");
     	tfViagemFim.setText("");
-    	tfMoristaViagem.setText("");
+    	tfMotoristaViagem.setText("");
     	tfIDRastreador.setText("");
     }
     public void carregarComboBoxFiliais() {
@@ -242,7 +243,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         	
         Veiculo veic = new Veiculo();
         	
-        String id_rastreador = textFieldIDRastrador.getText();
+        String id_rastreador = textFieldIDRastreador.getText();
         String placa = textFieldPlacaVeiculo.getText();
         String versao = textFieldVersaoRastreador.getText();
         String marca_rastreador = textFieldMarcaRastreador.getText();
