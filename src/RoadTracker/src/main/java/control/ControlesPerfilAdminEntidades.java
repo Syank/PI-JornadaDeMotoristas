@@ -28,6 +28,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	
 	private static Funcionario funcionario = new Funcionario();
 	private static Filial filial = new Filial();
+	private static Turnos t = new Turnos(0, null);
 	
     //Elementos das panes de avisos
     @FXML
@@ -109,13 +110,16 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     @FXML
     private TextField campoDeBuscaCpf;
     @FXML
-    private ComboBox<?> cbTurno;
+    private ComboBox<Turnos> cbTurno;
     
     private List<Cargos> cargos = new ArrayList<>();
     private ObservableList<Cargos> cargosList;
     
     private List<Filiais> filiais = new ArrayList<>();
     private ObservableList<Filiais> filiaisList;
+    
+    private List<Turnos> turnos = new ArrayList<>();
+    private ObservableList<Turnos> turnosList;
 
     private String cpfFuncionario;
    
@@ -184,9 +188,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     @FXML
     private TextField textFieldFuncionarioVeiculo;
     // ------------------------------
-    
-
-    
 
     //Métodos funcionários
     public void carregarComboBoxCargos() {
@@ -195,10 +196,15 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	cbCargo.setItems(cargosList);
    
     }
-        public void carregarComboBoxFiliais() {
+    public void carregarComboBoxFiliais() {
     	filiais = filial.listarFiliais();
     	filiaisList = FXCollections.observableArrayList(filiais);
     	cbFilial.setItems(filiaisList);
+    }
+    public void carregarComboBoxTurnos() {
+    	turnos = t.listarTurnos();
+    	turnosList = FXCollections.observableArrayList(turnos);
+    	cbTurno.setItems(turnosList);
     }
     @FXML
     void excluirFuncionario(ActionEvent event) {
@@ -215,6 +221,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	paneFuncionarioSelecionado.setDisable(false);
 		carregarComboBoxCargos();
 		carregarComboBoxFiliais();
+		carregarComboBoxTurnos();
     	carregarInfoFuncionario();
     }   
     void carregarInfoFuncionario() {
@@ -226,6 +233,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	pfSenha.setText(funcionario.getSenha());
     	tfCargaHoraria.setText(funcionario.getCargaHoraria());
     	
+    	// Cargo
     	if (funcionario.getCargo().equals("Motorista")) {
     		cbCargo.getSelectionModel().select(0);
     	}
@@ -236,8 +244,19 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     		cbCargo.getSelectionModel().select(2);
     	}
     	
+    	// Filial
     	cbFilial.getSelectionModel().select(funcionario.getFilial().getId() - 1);
     	
+    	// Turno
+    	if (funcionario.getCargo().equals("Matutino")) {
+    		cbTurno.getSelectionModel().select(0);
+    	}
+    	else if (funcionario.getCargo().equals("Vespertino")){
+    		cbTurno.getSelectionModel().select(1);
+    	}
+    	else {
+    		cbTurno.getSelectionModel().select(2);
+    	}
     	
     	cbDom.setSelected(funcionario.isDom());
     	cbSeg.setSelected(funcionario.isSeg());
@@ -258,7 +277,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     void alterarDados(ActionEvent event) {
     	
     	funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(), cbCargo.getValue().getCargo(),
-    			cbFilial.getValue().getId(), tfCargaHoraria.getText(), cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(),
+    			cbFilial.getValue().getId(), tfCargaHoraria.getText(), cbTurno.getValue().toString(), cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(),
     			cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
     	notificar("Sucesso", "Alteração de dados", "Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
     }
@@ -297,7 +316,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	filial = filial.encontrarFilial(idFilial);
     	System.out.println(idFilial);
     	System.out.println(filial.getNome());
-
     	textFieldCidadeFilial.setText(filial.getCidade());
     	textFieldEstadoFilial.setText(filial.getEstado());
     	textFieldNomeFilial.setText(filial.getNome());
@@ -437,6 +455,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	pfSenha.setDisable(false);
     	cbCargo.setDisable(false);
     	cbFilial.setDisable(false);
+    	cbTurno.setDisable(false);
     	tfCargaHoraria.setDisable(false);
     	chbDias.setDisable(false);
     	btnSalvar.setDisable(false);
@@ -447,6 +466,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	tfCpf.setDisable(true);
     	pfSenha.setDisable(true);
     	cbCargo.setDisable(true);
+    	cbTurno.setDisable(true);
     	cbFilial.setDisable(true);
     	tfCargaHoraria.setDisable(true);
     	chbDias.setDisable(true);
@@ -509,8 +529,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	colunaFilial.setCellValueFactory(new PropertyValueFactory<>("nome"));
     	colunaEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
     	
-    	
-    	
     	//Adiciona a Observable Array na TableView
     	tabelaFuncionarios.setItems(obsListFuncionarios);
     	tabelaFiliais.setItems(obsListFiliais);
@@ -531,17 +549,20 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     void voltar(MouseEvent event) {
     	if (paneSelecionarEntidade.isVisible()) {
     		Main.trocarTela("Tela Boas Vindas");
-    	}else {
+    	}
+    	else {
     		if (paneFuncionarioSelecionado.isVisible()) {
     			abrirTelaFuncionarios(event);
-    		}else if (paneFilialSelecionada.isVisible()) {
+    		}
+    		else if (paneFilialSelecionada.isVisible()) {
     			abrirTelaFiliais(event);
-    		}else if (paneVeiculoSelecionado.isVisible()) {
+    		}
+    		else if (paneVeiculoSelecionado.isVisible()) {
     			abrirTelaVeiculos(event);
-    		}else {
+    		}
+    		else {
     			abrirTelaSelecionarEntidade();
     		}
-
     	}
     	desabilitarEdicao();
     }

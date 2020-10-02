@@ -122,7 +122,7 @@
             </Label>
          </children>
       </HBox>
-      <Pane fx:id="paneAvisosPrincipal" disable="true" prefHeight="450.0" prefWidth="750.0" visible="false">
+      <Pane fx:id="paneAvisosPrincipal" disable="true" prefHeight="450.0" prefWidth="750.0">
          <children>
             <Pane fx:id="paneAvisosSombra" disable="true" prefHeight="450.0" prefWidth="750.0" styleClass="sombraDeAviso" visible="false" />
             <Pane fx:id="paneAvisosSucesso" disable="true" layoutX="175.0" layoutY="116.0" prefHeight="150.0" prefWidth="400.0" styleClass="fundoAviso" visible="false">

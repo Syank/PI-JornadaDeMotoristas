@@ -202,7 +202,7 @@ public class Funcionario {
 	}
 	
 	public void cadastrarFuncionario(String nome, String cpf, String senha, String cargo, int filial_func,
-			String carga_horaria, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
+			String carga_horaria, String turno, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
 		
@@ -212,6 +212,7 @@ public class Funcionario {
 		this.setCargo(cargo);
 		this.setSeg(seg);
 		this.setCargaHoraria(carga_horaria);
+		this.setTurno(turno);
 		this.setTer(ter);
 		this.setQua(qua);
 		this.setQui(qui);
@@ -262,7 +263,7 @@ public class Funcionario {
 		
 	}
 	
-	public void alterarDadosFuncionario(String novoNome, String cpfFuncionario, String novaSenha, String novoCargo, int novaFilial, String carga, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
+	public void alterarDadosFuncionario(String novoNome, String cpfFuncionario, String novaSenha, String novoCargo, int novaFilial, String carga, String novoTurno, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		this.nome = novoNome;
@@ -274,6 +275,7 @@ public class Funcionario {
 		this.setFilial(filial);
 		
 		this.cargaHoraria = carga;
+		this.turno = novoTurno;
 		this.seg = seg;
 		this.ter = ter;
 		this.qua = qua;

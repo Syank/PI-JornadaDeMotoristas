@@ -197,7 +197,7 @@
                   <TextField fx:id="tfCargaHoraria" editable="true" promptText="Carga Horária" styleClass="customizarInputs" />
                   <PasswordField fx:id="pfSenha" promptText="Senha" styleClass="customizarInputs" />
                   <ComboBox fx:id="cbFilial" editable="true" prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
-                  <ComboBox fx:id="cbTurno" editable="true" prefWidth="150.0" promptText="Turno" styleClass="customizarInputs" />
+                  <ComboBox fx:id="cbTurno" disable="true" prefWidth="150.0" promptText="Turno" styleClass="customizarInputs" />
                </children>
             </VBox>
          </children>
@@ -228,7 +228,7 @@
             <TextField fx:id="campoDeBuscaCpf" layoutX="259.0" layoutY="19.0" prefHeight="27.0" prefWidth="153.0" promptText="CPF" styleClass="customizarInputs" />
          </children>
       </Pane>
-      <Pane fx:id="paneAvisosPrincipal" disable="true" prefHeight="450.0" prefWidth="750.0" visible="false">
+      <Pane fx:id="paneAvisosPrincipal" disable="true" prefHeight="450.0" prefWidth="750.0">
          <children>
             <Pane fx:id="paneAvisosSombra" disable="true" prefHeight="450.0" prefWidth="750.0" styleClass="sombraDeAviso" visible="false" />
             <Pane fx:id="paneAvisosSucesso" disable="true" layoutX="175.0" layoutY="116.0" prefHeight="150.0" prefWidth="400.0" styleClass="fundoAviso" visible="false">

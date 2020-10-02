@@ -194,11 +194,12 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	filiaisList = FXCollections.observableArrayList(filiais);
     	cbFilial.setItems(filiaisList);
     }
-//    public void carregarComboBoxTurnos() {
-//    	Turnos t = new Turnos();
-//    	turnosList = FXCollections.observableArrayList(turnos);
-//    	cbTurno.setItems(turnosList);
-//    } 
+    public void carregarComboBoxTurnos() {
+    	Turnos t = new Turnos(0, null);
+    	turnos = t.listarTurnos();
+    	turnosList = FXCollections.observableArrayList(turnos);
+    	cbTurno.setItems(turnosList);
+    } 
     
     @FXML
     void cadastrarFuncionario(MouseEvent event) {
@@ -210,6 +211,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	String cargo = cbCargo.getValue().getCargo();
     	int filial = cbFilial.getValue().getId();
     	String cargaHoraria = tfCargaHoraria.getText();
+    	String turno = cbTurno.getValue().toString();
     	boolean dom = cbDomingo.isSelected();
     	boolean seg = cbSegunda.isSelected();
     	boolean ter = cbTerca.isSelected();
@@ -221,7 +223,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	Funcionario funcionario = new Funcionario();
 
     	if (senha.equals(senha2)) {
-    		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, cargaHoraria, seg, ter, qua, qui, sex, sab, dom);
+    		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, cargaHoraria, turno, seg, ter, qua, qui, sex, sab, dom);
     		notificar("Sucesso de cadastro", "Funcionário cadastrado", "O " + cargo + " " + nome + " foi cadastrado com sucesso!");
     	}
     	else {
@@ -283,16 +285,15 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     @FXML
     void voltar(ActionEvent event) {   	
     	if(paneEscolherTipoDeCadastro.isVisible()) {
-    	Main.trocarTela("Tela Boas Vindas");
-    	}else {  	
+    		Main.trocarTela("Tela Boas Vindas");
+    	}
+    	else {  	
     		voltarParaTelaDeEscolhas(event);
     	}
     	limparCamposCadastrarFuncionarios();
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
-    	
-    
     }
     
     @FXML
@@ -436,6 +437,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		carregarComboBoxCargos();
 		carregarComboBoxFiliais();
-//		carregarComboBoxTurnos();
+		carregarComboBoxTurnos();
 	}
 }
