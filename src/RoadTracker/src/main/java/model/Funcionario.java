@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
 import view.Cargos;
-import view.Filiais;
 import view.Listas;
 
 @Entity
@@ -337,33 +336,6 @@ public class Funcionario {
 		cargos.add(cargo3);
 		
 		return cargos;
-	}
-	
-	public List<Filial> consultarTodasFiliais(){
-		EntityManager con = new ConnectionFactory().getConnection();
-		List<Filial> filiais = null;
-		try {
-			filiais = con.createQuery("from Filial f").getResultList();
-		}
-		catch (Exception e) {
-			System.err.println(e);
-		}
-		finally {
-			con.close();
-		}
-
-		return filiais;
-	}
-	
-	public List<Filiais> listarFiliais(){	
-		List<Filiais> comboBox = new ArrayList<>();
-		for (Filial f: this.consultarTodasFiliais()) {
-			Filiais filiais = new Filiais(f.getId(), f.getNome());
-			comboBox.add(filiais);
-		}
-		
-		return comboBox;
-		
 	}
 	
 	public Funcionario removerFuncionario(String cpf){

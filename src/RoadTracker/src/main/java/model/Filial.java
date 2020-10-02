@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
+import view.Filiais;
+
 @Entity
 @Table(name="filiais")
 public class Filial {
@@ -123,6 +125,33 @@ public class Filial {
 		finally {
 			con.close();
 		}
+		
+	}
+	
+	public List<Filial> consultarTodasFiliais(){
+		EntityManager con = new ConnectionFactory().getConnection();
+		List<Filial> filiais = null;
+		try {
+			filiais = con.createQuery("from Filial f").getResultList();
+		}
+		catch (Exception e) {
+			System.err.println(e);
+		}
+		finally {
+			con.close();
+		}
+
+		return filiais;
+	}
+	
+	public List<Filiais> listarFiliais(){	
+		List<Filiais> comboBox = new ArrayList<>();
+		for (Filial f: this.consultarTodasFiliais()) {
+			Filiais filiais = new Filiais(f.getId(), f.getNome());
+			comboBox.add(filiais);
+		}
+		
+		return comboBox;
 		
 	}
 	

@@ -27,6 +27,7 @@ import view.*;
 public class ControlesPerfilAdminEntidades implements Initializable {
 	
 	private static Funcionario funcionario = new Funcionario();
+	private static Filial filial = new Filial();
 	
     //Elementos das panes de avisos
     @FXML
@@ -188,7 +189,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
    
     }
         public void carregarComboBoxFiliais() {
-    	filiais = funcionario.listarFiliais();
+    	filiais = filial.listarFiliais();
     	filiaisList = FXCollections.observableArrayList(filiais);
     	cbFilial.setItems(filiaisList);
     }
@@ -217,6 +218,18 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	tfCpf.setText(funcionario.getCpf());
     	pfSenha.setText(funcionario.getSenha());
     	tfCargaHoraria.setText(funcionario.getCargaHoraria());
+    	
+    	if (funcionario.getCargo().equals("Motorista")) {
+    		cbCargo.getSelectionModel().select(0);
+    	}
+    	else if (funcionario.getCargo().equals("Supervisor")){
+    		cbCargo.getSelectionModel().select(1);
+    	}
+    	else {
+    		cbCargo.getSelectionModel().select(2);
+    	}
+    	
+    	cbFilial.getSelectionModel().select(funcionario.getFilial().getId() - 1);
     	
     	
     	cbDom.setSelected(funcionario.isDom());

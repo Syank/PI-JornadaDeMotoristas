@@ -74,13 +74,16 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 	@FXML
 	private CheckBox cbSabado;
     @FXML
-    private ComboBox<?> cbTurno;
+    private ComboBox<Turnos> cbTurno;
 	
     private List<Cargos> cargos = new ArrayList<>();
     private ObservableList<Cargos> cargosList;
     
     private List<Filiais> filiais = new ArrayList<>();
     private ObservableList<Filiais> filiaisList;
+    
+    private List<Turnos> turnos = new ArrayList<>();
+    private ObservableList<Turnos> turnosList;
     // --------------------------------------------
     
 	
@@ -186,11 +189,16 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	tfIDRastreador.setText("");
     }
     public void carregarComboBoxFiliais() {
-    	Funcionario funcionario = new Funcionario();
-    	filiais = funcionario.listarFiliais();
+    	Filial filial = new Filial();
+    	filiais = filial.listarFiliais();
     	filiaisList = FXCollections.observableArrayList(filiais);
     	cbFilial.setItems(filiaisList);
     }
+//    public void carregarComboBoxTurnos() {
+//    	Turnos t = new Turnos();
+//    	turnosList = FXCollections.observableArrayList(turnos);
+//    	cbTurno.setItems(turnosList);
+//    } 
     
     @FXML
     void cadastrarFuncionario(MouseEvent event) {
@@ -428,5 +436,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		carregarComboBoxCargos();
 		carregarComboBoxFiliais();
+//		carregarComboBoxTurnos();
 	}
 }

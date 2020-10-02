@@ -128,7 +128,7 @@
          <children>
             <VBox fx:id="chbDias" layoutX="339.0" layoutY="23.0" prefHeight="262.0" prefWidth="148.0" spacing="5.0">
                <children>
-                  <ComboBox fx:id="cbCargo" prefHeight="27.0" prefWidth="150.0" promptText="Cargo" styleClass="customizarInputs" />
+                  <ComboBox fx:id="cbCargo" editable="true" prefHeight="27.0" prefWidth="150.0" promptText="Cargo" styleClass="customizarInputs" />
                   <Label text="Dias de trabalho" />
                   <CheckBox fx:id="cbDom" mnemonicParsing="false" text="Domingo" />
                   <CheckBox fx:id="cbSeg" mnemonicParsing="false" text="Segunda-Feira" />
@@ -196,8 +196,8 @@
                   <TextField fx:id="tfCpf" editable="true" promptText="CPF" styleClass="customizarInputs" />
                   <TextField fx:id="tfCargaHoraria" editable="true" promptText="Carga Horária" styleClass="customizarInputs" />
                   <PasswordField fx:id="pfSenha" promptText="Senha" styleClass="customizarInputs" />
-                  <ComboBox fx:id="cbFilial" prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
-                  <ComboBox fx:id="cbTurno" prefWidth="150.0" promptText="Turno" styleClass="customizarInputs" />
+                  <ComboBox fx:id="cbFilial" editable="true" prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
+                  <ComboBox fx:id="cbTurno" editable="true" prefWidth="150.0" promptText="Turno" styleClass="customizarInputs" />
                </children>
             </VBox>
          </children>
