@@ -145,14 +145,34 @@ public class Filial {
 	}
 	
 	public List<Filiais> listarFiliais(){	
-		List<Filiais> comboBox = new ArrayList<>();
+		List<Filiais> lista = new ArrayList<>();
 		for (Filial f: this.consultarTodasFiliais()) {
-			Filiais filiais = new Filiais(f.getId(), f.getNome());
-			comboBox.add(filiais);
+			Filiais filiais = new Filiais(f.getId(), f.getNome(), f.getEstado());
+			lista.add(filiais);
 		}
 		
-		return comboBox;
+		return lista;
 		
+	}
+	
+	public Filial encontrarFilial(int id){
+		
+		EntityManager con = new ConnectionFactory().getConnection();
+
+		Filial filial = null;
+
+		try {
+			filial = con.find(model.Filial.class, id);
+		}
+		catch (Exception e) {
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+
+		return filial;
 	}
 	
 }

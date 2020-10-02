@@ -119,9 +119,9 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
     private String cpfFuncionario;
    
-    private List<Listas> lista = new ArrayList<>();
+    private List<Listas> listaDeFuncionarios = new ArrayList<>();
     
-    private ObservableList<Listas> obsList;
+    private ObservableList<Listas> obsListFuncionarios;
     // ---------------------------------
     
   
@@ -129,15 +129,21 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     @FXML
     private Pane paneFiliais;
     @FXML
-    private TableView<?> tabelaFiliais;
+    private TableView<Filiais> tabelaFiliais;
     @FXML
     private TableColumn<?, ?> colunaFilial;
     @FXML
     private TableColumn<?, ?> colunaEstado;
     @FXML
+    private TableColumn<?, ?> colunaIDFilial;
+    @FXML
     private TextField campoDeBuscaFilial;
     @FXML
     private TextField campoDeBuscaEstado;
+    
+    private List<Filiais> listaDeFiliais = new ArrayList<>();
+    private ObservableList<Filiais> obsListFiliais;
+    
     
     @FXML
     private Pane paneFilialSelecionada;
@@ -147,6 +153,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     private TextField textFieldCidadeFilial;
     @FXML
     private TextField textFieldEstadoFilial;
+    private int idFilial;
     
     // ------------------------------
     
@@ -277,7 +284,24 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     void descartarAlteracoesFilial(ActionEvent event) {
     	
     }
-    
+    @FXML
+    void selecionarFilial(ActionEvent event) {
+    	Filiais selecionada = tabelaFiliais.getSelectionModel().getSelectedItem();
+    	idFilial = selecionada.getId();
+    	abrirTelaFilialSelecionada(event);
+
+    	carregarInfoFilial();
+    }
+    void carregarInfoFilial() {
+    	Filial filial = new Filial();
+    	filial.encontrarFilial(idFilial);
+    	System.out.println(idFilial);
+    	System.out.println(filial.getNome());
+
+    	textFieldCidadeFilial.setText(filial.getCidade());
+    	textFieldEstadoFilial.setText(filial.getEstado());
+    	textFieldNomeFilial.setText(filial.getNome());
+    }
     // -------------------------------------
     
     //Métodos veiculo
@@ -465,25 +489,35 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		paneAvisosFalha.setDisable(true);
 		paneAvisosFalha.setVisible(false);
     }
-    public void carregarTableView() {
+    public void carregarTableViews() {
     	
     	Funcionario funcionario = new Funcionario();
+    	Filial filial = new Filial();
     	
-    	lista = funcionario.listarFuncionarios();
+    	listaDeFuncionarios = funcionario.listarFuncionarios();
+    	listaDeFiliais = filial.listarFiliais();
     	
     	//Transforma a array primitiva em Observable Array
-    	obsList = FXCollections.observableArrayList(lista);
+    	obsListFuncionarios = FXCollections.observableArrayList(listaDeFuncionarios);
+    	obsListFiliais = FXCollections.observableArrayList(listaDeFiliais);
     	
     	//"Habilita" as colunas da tableView para receber o valor retornado da classe Listas, nos seus métodos get
     	colunaNome.setCellValueFactory(new PropertyValueFactory<>("valor"));
     	colunaCpf.setCellValueFactory(new PropertyValueFactory<>("id"));
     	
+    	colunaIDFilial.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	colunaFilial.setCellValueFactory(new PropertyValueFactory<>("nome"));
+    	colunaEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+    	
+    	
+    	
     	//Adiciona a Observable Array na TableView
-    	tabelaFuncionarios.setItems(obsList);
+    	tabelaFuncionarios.setItems(obsListFuncionarios);
+    	tabelaFiliais.setItems(obsListFiliais);
     }
     @FXML
     void atualizarLista(ActionEvent event) {
-    	carregarTableView();
+    	carregarTableViews();
     }
     @FXML
     void abrirTelaCadFunc(MouseEvent event) {
@@ -525,7 +559,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		abrirTelaSelecionarEntidade();
-		carregarTableView();
+		carregarTableViews();
 		desabilitarEdicao();
 	}
 

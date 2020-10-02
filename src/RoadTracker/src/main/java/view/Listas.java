@@ -24,6 +24,7 @@ public class Listas {
 		this.valor = valor;
 	}
 
+
 	//Método para tratar o conteúdo mostrado na ComboBox
 	@Override
 	public String toString() {
