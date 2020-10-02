@@ -294,7 +294,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     }
     void carregarInfoFilial() {
     	Filial filial = new Filial();
-    	filial.encontrarFilial(idFilial);
+    	filial = filial.encontrarFilial(idFilial);
     	System.out.println(idFilial);
     	System.out.println(filial.getNome());
 
