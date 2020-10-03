@@ -315,14 +315,14 @@
             </VBox>
             <Button layoutX="31.0" layoutY="253.0" mnemonicParsing="false" onAction="#habilitarEdicaoVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE" />
             <Button layoutX="31.0" layoutY="296.0" mnemonicParsing="false" onAction="#excluirVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE" />
-            <Button disable="true" layoutX="293.0" layoutY="296.0" mnemonicParsing="false" onAction="#salvarDadosAlteradosVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE" />
-            <Button disable="true" layoutX="376.0" layoutY="296.0" mnemonicParsing="false" onAction="#descartarAlteracoesVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE" />
+            <Button fx:id="botaoSalvarAlteracoesVeiculo" disable="true" layoutX="293.0" layoutY="296.0" mnemonicParsing="false" onAction="#salvarDadosAlteradosVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE" />
+            <Button fx:id="botaoDescartarAlteracoesVeiculo" disable="true" layoutX="376.0" layoutY="296.0" mnemonicParsing="false" onAction="#descartarAlteracoesVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE" />
             <TextField fx:id="textFieldFuncionarioVeiculo" disable="true" layoutX="278.0" layoutY="91.0" promptText="Funcionário" styleClass="customizarInputs" />
             <TextField fx:id="textFieldPlacaVeiculo" disable="true" layoutX="278.0" layoutY="51.0" promptText="Placa" styleClass="customizarInputs" />
          </children></Pane>
       <Pane fx:id="paneVeiculos" disable="true" layoutX="258.0" layoutY="86.0" prefHeight="353.0" prefWidth="485.0" visible="false">
          <children>
-            <Button layoutX="22.0" layoutY="315.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
+            <Button layoutX="22.0" layoutY="315.0" mnemonicParsing="false" onAction="#selecionarVeiculo" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
             <Button layoutX="420.0" layoutY="8.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="botaoPesquisar" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -334,8 +334,8 @@
             </Button>
             <TableView fx:id="tabelaVeiculos" layoutX="22.0" layoutY="77.0" prefHeight="223.0" prefWidth="441.0">
                <columns>
-                  <TableColumn fx:id="colunaVeiculo" prefWidth="197.0" text="Placa" />
-                  <TableColumn fx:id="colunaIDVeiculo" prefWidth="242.0" text="ID do Rastreador" />
+                  <TableColumn fx:id="colunaPlaca" prefWidth="117.0" text="Placa" />
+                  <TableColumn fx:id="colunaIDVeiculo" prefWidth="322.0" text="ID do Rastreador" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

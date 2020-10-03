@@ -217,8 +217,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     // ----------------------------------------
     
     
-    // Métodos da pane de cadastro de veiculos
-    //--------------------------------------
     
     // Métodos para cadastro de veículos
     @FXML
@@ -233,6 +231,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         String cpfFuncionario = textFieldFuncionarioVeiculo.getText();
         
         veic.cadastrarVeiculo(id_rastreador, placa, versao, marca_rastreador, cpfFuncionario);
+        
+        notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
     	
     }
     // --------------------------------------------
@@ -245,8 +245,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     }
     // ---------------------------------------
     
-    // Métodos gerais
-    // -------------------------------------------
+
 
     
     // Métodos gerais

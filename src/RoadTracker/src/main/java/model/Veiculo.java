@@ -13,13 +13,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
+import view.Filiais;
+import view.Veiculos;
+
 @Entity
 @Table(name="veiculos")
 public class Veiculo {
 	
 	@Id
 	private String placa;
-	private String id_rastreador;
+	private int id_rastreador;
 	private String marca_rastreador;
 	private String versao_rastreador;
 	
@@ -32,10 +35,10 @@ public class Veiculo {
 	@OneToMany(mappedBy = "veiculo")
 	private List<Viagem> viagens = new ArrayList<Viagem>();
 	
-	public String getId_rastreador() {
+	public int getId_rastreador() {
 		return id_rastreador;
 	}
-	public void setId_rastreador(String id_rastreador) {
+	public void setId_rastreador(int id_rastreador) {
 		this.id_rastreador = id_rastreador;
 	}
 	public String getPlaca() {
@@ -64,12 +67,14 @@ public class Veiculo {
 	}
 	
 	public void cadastrarVeiculo(String id_rastreador, String placa, String versao, String marca_rastreador, String cpf_funcionario){
+		int id;
+		id = Integer.parseInt(id_rastreador);
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		funcionario.setCpf(cpf_funcionario);
 		this.setFuncionario(funcionario);
 		
-		this.setId_rastreador(id_rastreador);
+		this.setId_rastreador(id);
 		this.setPlaca(placa);
 		this.setVersao_rastreador(versao);
 		this.setMarca_rastreador(marca_rastreador);
@@ -88,13 +93,37 @@ public class Veiculo {
 		}
 	}
 	
-	public void excluirVeiculo(String id) {
+	public void alterarDadosVeiculo(String placa, String marca_rastreador, String versao_rastreador, Integer id_rastreador, String cpf_funcionario) {
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		this.id_rastreador = id_rastreador;
+		this.placa = placa;
+		this.versao_rastreador = versao_rastreador;
+		this.marca_rastreador = marca_rastreador;
+		this.funcionario = funcionario.encontrarFuncionario(cpf_funcionario);
+		
+		try {
+			con.getTransaction().begin();
+			con.merge(this);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+	}
+	
+	public void excluirVeiculo(String placa) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		Veiculo veiculo = null;
 		
 		try {
-			veiculo = con.find(model.Veiculo.class, id);		
+			veiculo = con.find(model.Veiculo.class, placa);		
 			
 			con.getTransaction().begin();
 			con.remove(veiculo);
@@ -108,6 +137,53 @@ public class Veiculo {
 			con.close();
 		}
 		
+	}
+	
+	public List<Veiculo> consultarTodosVeiculos(){
+		EntityManager con = new ConnectionFactory().getConnection();
+		List<Veiculo> veiculos = null;
+		try {
+			veiculos = con.createQuery("from Veiculo v").getResultList();
+		}
+		catch (Exception e) {
+			System.err.println(e);
+		}
+		finally {
+			con.close();
+		}
+
+		return veiculos;
+	}
+	
+	public List<Veiculos> listarVeiculos(){	
+		List<Veiculos> lista = new ArrayList<>();
+		for (Veiculo vei: this.consultarTodosVeiculos()) {
+			Veiculos veiculos = new Veiculos(vei.getId_rastreador(), vei.getPlaca());
+			lista.add(veiculos);
+		}
+		
+		return lista;
+		
+	}
+	
+	public Veiculo encontrarVeiculo(String placa){
+		
+		EntityManager con = new ConnectionFactory().getConnection();
+
+		Veiculo veiculo = null;
+
+		try {
+			veiculo = con.find(model.Veiculo.class, placa);
+		}
+		catch (Exception e) {
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+
+		return veiculo;
 	}
 	
 }

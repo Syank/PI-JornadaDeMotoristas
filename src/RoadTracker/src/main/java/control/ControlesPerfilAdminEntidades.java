@@ -169,15 +169,20 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     @FXML
     private Pane paneVeiculos;
     @FXML
-    private TableView<?> tabelaVeiculos;
+    private TableView<Veiculos> tabelaVeiculos;
     @FXML
-    private TableColumn<?, ?> colunaVeiculo;
+    private TableColumn<?, ?> colunaPlaca;
     @FXML
     private TableColumn<?, ?> colunaIDVeiculo;
     @FXML
     private TextField campoDeBuscaVeiculo;
     @FXML
     private TextField campoDeBuscaIDVeiculo;
+    private List<Veiculos> listaDeVeiculos = new ArrayList<>();
+    private ObservableList<Veiculos> obsListVeiculos;
+    private String placaVeiculo;
+    
+    
     
     @FXML
     private Pane paneVeiculoSelecionado;
@@ -186,11 +191,15 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     @FXML
     private TextField textFieldVersaoRastreador;
     @FXML
-    private TextField textFieldIDRastrador;
+    private TextField textFieldIDRastreador;
     @FXML
     private TextField textFieldPlacaVeiculo;
     @FXML
     private TextField textFieldFuncionarioVeiculo;
+    @FXML
+	private Button botaoSalvarAlteracoesVeiculo;
+    @FXML
+	private Button botaoDescartarAlteracoesVeiculo;
     // ------------------------------
 
     //Métodos funcionários
@@ -348,21 +357,65 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     void habilitarEdicaoVeiculo(ActionEvent event){
     	textFieldMarcaRastreador.setDisable(false);
     	textFieldVersaoRastreador.setDisable(false);
-    	textFieldIDRastrador.setDisable(false);
+    	textFieldIDRastreador.setDisable(false);
     	textFieldPlacaVeiculo.setDisable(false);
     	textFieldFuncionarioVeiculo.setDisable(false);
+    	
+    	botaoSalvarAlteracoesVeiculo.setDisable(false);
+    	botaoDescartarAlteracoesVeiculo.setDisable(false);
     }
     @FXML
     void excluirVeiculo(ActionEvent event) {
+    	Veiculo veiculo = new Veiculo();
+    	veiculo.excluirVeiculo(placaVeiculo);
     	
+    	desabilitarEdicao();
+    	
+    	notificar("Sucesso", "Veículo excluído", "O veículo foi excluído com sucesso do banco de dados!");
     }
     @FXML
     void salvarDadosAlteradosVeiculo(ActionEvent event) {
+    	Veiculo veiculo = new Veiculo();
+    	veiculo.alterarDadosVeiculo(textFieldPlacaVeiculo.getText(), 
+    								textFieldMarcaRastreador.getText(), 
+    								textFieldVersaoRastreador.getText(),
+    								Integer.parseInt(textFieldIDRastreador.getText()), 
+    								textFieldFuncionarioVeiculo.getText());
     	
+    	notificar("Sucesso", "Dados alterados", "Os dados do veículo de placa " + textFieldPlacaVeiculo.getText() + " foram alterados com sucesso!");
+    	
+    	desabilitarEdicao();
     }
     @FXML
     void descartarAlteracoesVeiculo(ActionEvent event) {
+    	Veiculo veiculo = new Veiculo();
+    	veiculo = veiculo.encontrarVeiculo(placaVeiculo);
     	
+    	textFieldMarcaRastreador.setText(veiculo.getMarca_rastreador());
+    	textFieldVersaoRastreador.setText(veiculo.getVersao_rastreador());
+    	textFieldIDRastreador.setText(String.valueOf(veiculo.getId_rastreador()));
+    	textFieldPlacaVeiculo.setText(veiculo.getPlaca());
+    	textFieldFuncionarioVeiculo.setText(veiculo.getFuncionario().getCpf());
+    	
+    	desabilitarEdicao();
+    }
+    @FXML
+    void selecionarVeiculo(ActionEvent event) {
+    	Veiculos selecionado = tabelaVeiculos.getSelectionModel().getSelectedItem();
+    	placaVeiculo = selecionado.getPlaca();
+    	abrirTelaVeiculoSelecionado(event);
+
+    	carregarInfoVeiculo();
+    }
+    void carregarInfoVeiculo() {
+    	Veiculo veiculo = new Veiculo();
+    	veiculo = veiculo.encontrarVeiculo(placaVeiculo);
+
+    	textFieldMarcaRastreador.setText(veiculo.getMarca_rastreador());
+    	textFieldVersaoRastreador.setText(veiculo.getVersao_rastreador());
+    	textFieldIDRastreador.setText(String.valueOf(veiculo.getId_rastreador()));
+    	textFieldPlacaVeiculo.setText(veiculo.getPlaca());
+    	textFieldFuncionarioVeiculo.setText(veiculo.getFuncionario().getCpf());
     }
     
     // -------------------------------------
@@ -499,6 +552,14 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	textFieldEstadoFilial.setDisable(true);
     	botaoSalvarAlteracoesFilial.setDisable(true);
     	botaoDescartarAlteracoesFilial.setDisable(true);
+    	
+    	textFieldMarcaRastreador.setDisable(true);
+    	textFieldVersaoRastreador.setDisable(true);
+    	textFieldIDRastreador.setDisable(true);
+    	textFieldPlacaVeiculo.setDisable(true);
+    	textFieldFuncionarioVeiculo.setDisable(true);
+    	botaoSalvarAlteracoesVeiculo.setDisable(true);
+    	botaoDescartarAlteracoesVeiculo.setDisable(true);
     }
     
     void notificar(String tipoDeAviso, String titulo, String texto) {
@@ -536,13 +597,16 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	
     	Funcionario funcionario = new Funcionario();
     	Filial filial = new Filial();
+    	Veiculo veiculo = new Veiculo();
     	
     	listaDeFuncionarios = funcionario.listarFuncionarios();
     	listaDeFiliais = filial.listarFiliais();
+    	listaDeVeiculos = veiculo.listarVeiculos();
     	
     	//Transforma a array primitiva em Observable Array
     	obsListFuncionarios = FXCollections.observableArrayList(listaDeFuncionarios);
     	obsListFiliais = FXCollections.observableArrayList(listaDeFiliais);
+    	obsListVeiculos = FXCollections.observableArrayList(listaDeVeiculos);
     	
     	//"Habilita" as colunas da tableView para receber o valor retornado da classe Listas, nos seus métodos get
     	colunaNome.setCellValueFactory(new PropertyValueFactory<>("valor"));
@@ -552,9 +616,13 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	colunaFilial.setCellValueFactory(new PropertyValueFactory<>("nome"));
     	colunaEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
     	
+    	colunaIDVeiculo.setCellValueFactory(new PropertyValueFactory<>("id_rastreador"));
+    	colunaPlaca.setCellValueFactory(new PropertyValueFactory<>("placa"));
+    	
     	//Adiciona a Observable Array na TableView
     	tabelaFuncionarios.setItems(obsListFuncionarios);
     	tabelaFiliais.setItems(obsListFiliais);
+    	tabelaVeiculos.setItems(obsListVeiculos);
     }
     @FXML
     void atualizarLista(ActionEvent event) {
