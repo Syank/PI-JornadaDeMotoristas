@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Query;
 import javax.persistence.Table;
+import javax.swing.JOptionPane;
+import javax.transaction.Transaction;
+import javax.transaction.Transactional;
+
+import view.Filiais;
 
 @Entity
 @Table(name="viagens")
@@ -23,6 +30,8 @@ public class Viagem {
 	private String inicio;
 	private String fim;
 	private String total;
+	private String origem;
+	private String destino;
 	
 	//muitas viagens possuem um funcionário
 	@ManyToOne
@@ -62,5 +71,176 @@ public class Viagem {
 	public void setTotal(String total) {
 		this.total = total;
 	}
+	public String getOrigem() {
+		return origem;
+	}
+	public void setOrigem(String origem) {
+		this.origem = origem;
+	}
+	public String getDestino() {
+		return destino;
+	}
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
+	private void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+	private Funcionario getFuncionario() {
+		return funcionario;
+	}
+	private void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
+	}
+	private Veiculo getVeiculo() {
+		return veiculo;
+	}
+	
+	public void cadastrarViagem(String inicio, String origem, String destino, String cpfFuncionario, String placaVeiculo) {
+
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		this.setInicio(inicio);
+		this.setOrigem(origem);
+		this.setDestino(destino);
+		
+		funcionario.setCpf(cpfFuncionario);
+		this.setFuncionario(funcionario);
+		
+		veiculo.setPlaca(placaVeiculo);
+		this.setVeiculo(veiculo);
+		
+		try {
+			con.getTransaction().begin();
+			con.persist(this);
+			con.getTransaction().commit();
+		}
+		catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Ocorreu um problema ao cadastrar a viagem. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+	}
+	
+
+	public void alterarDadosViagem(String novoInicio, String novaOrigem, String novoDestino, String novoCpfFuncionario, String novoVeiculo, int idViagem) {
+
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		this.setInicio(novoInicio);
+		this.setOrigem(novaOrigem);
+		this.setDestino(novoDestino);
+		
+		funcionario.setCpf(novoCpfFuncionario);
+		this.setFuncionario(funcionario);
+		
+		veiculo.setPlaca(novoVeiculo);
+		this.setVeiculo(veiculo);
+		
+		try {
+			con.getTransaction().begin();
+			
+			
+			Query query = con.createQuery("update Viagem set inicio = :novoInicio, origem = :novaOrigem, destino = :novoDestino, funcionario = :novoFuncionario, veiculo = :novoVeiculo where id = :idViagem");
+			query.setParameter("novoInicio", novoInicio);
+			query.setParameter("novaOrigem", novaOrigem);
+			query.setParameter("novoDestino", novoDestino);
+			query.setParameter("novoFuncionario", this.getFuncionario());
+			query.setParameter("novoVeiculo", this.getVeiculo());
+			query.setParameter("idViagem", idViagem);
+			query.executeUpdate();
+			
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar os dados da viagem: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+	}
+	
+	public void excluirViagem(Integer id) {
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		Viagem viagem = null;
+		
+		try {
+			viagem = con.find(model.Viagem.class, id);		
+			
+			con.getTransaction().begin();
+			con.remove(viagem);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+	}
+	
+	public List<Viagem> consultarTodasViagens(){
+		EntityManager con = new ConnectionFactory().getConnection();
+		List<Viagem> viagens = null;
+		try {
+			viagens = con.createQuery("from Viagem v").getResultList();
+		}
+		catch (Exception e) {
+			System.err.println(e);
+		}
+		finally {
+			con.close();
+		}
+
+		return viagens;
+	}
+	
+	public List<Viagem> listarViagens(){	
+		List<Viagem> lista = new ArrayList<>();
+		
+		for (Viagem v: this.consultarTodasViagens()) {
+			Viagem viagens = new Viagem();
+			
+			viagens.setFuncionario(v.getFuncionario());
+			viagens.setOrigem(v.getOrigem());
+			viagens.setDestino(v.getDestino());
+			viagens.setInicio(v.getInicio());
+			
+			lista.add(viagens);
+		}
+		
+		return lista;
+		
+	}
+	
+	public Viagem encontrarViagem(int id){
+		
+		EntityManager con = new ConnectionFactory().getConnection();
+
+		Viagem viagem = null;
+
+		try {
+			viagem = con.find(model.Viagem.class, id);
+		}
+		catch (Exception e) {
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+
+		return viagem;
+	}
+	
 
 }

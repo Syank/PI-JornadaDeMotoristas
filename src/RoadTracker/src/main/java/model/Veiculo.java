@@ -18,8 +18,8 @@ import javax.swing.JOptionPane;
 public class Veiculo {
 	
 	@Id
-	private String id_rastreador;
 	private String placa;
+	private String id_rastreador;
 	private String marca_rastreador;
 	private String versao_rastreador;
 	
@@ -67,8 +67,8 @@ public class Veiculo {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		funcionario.setCpf(cpf_funcionario);
-	
 		this.setFuncionario(funcionario);
+		
 		this.setId_rastreador(id_rastreador);
 		this.setPlaca(placa);
 		this.setVersao_rastreador(versao);
