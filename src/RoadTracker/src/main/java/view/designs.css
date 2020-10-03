@@ -37,6 +37,7 @@
 
 .customizarBotoes:hover{
 	-fx-background-color: #2f3640;
+	-fx-cursor: hand;
 }
 
 .sombraDaImagemLogin{
@@ -59,9 +60,11 @@
 
 .caixasDeSelecao:hover{
 	-fx-background-color: #0984e3;
+	-fx-cursor: hand;
 }
 .caixasDeSelecao1:hover{
 	-fx-background-color: #0984e3;
+	-fx-cursor: hand;
 }
 
 .textoDeMenu{
@@ -88,6 +91,7 @@
 }
 .botaoVoltar:hover{
 	-fx-background-color: #d90000;
+	-fx-cursor: hand;
 }
 
 .caixasDeSelecaoBoasVindas{
@@ -96,6 +100,7 @@
 }
 .caixasDeSelecaoBoasVindas:hover{
 	-fx-background-color: #0984e3;
+	-fx-cursor: hand;
 }
 
 .botaoConfirmar{
@@ -103,6 +108,7 @@
 }
 .botaoConfirmar:hover{
 	-fx-background-color: #27ae60;
+	-fx-cursor: hand;
 }
 
 .botaoCancelar{
@@ -110,6 +116,7 @@
 }
 .botaoCancelar:hover{
 	-fx-background-color: #c0392b;
+	-fx-cursor: hand;
 }
 
 .fundoAviso{
@@ -127,4 +134,8 @@
 .sombraDeAviso{
 	-fx-background-color: #000000;
 	-fx-opacity: 0.25;
+}
+
+.menuSelecionado{
+	-fx-background-color: #879eae;
 }

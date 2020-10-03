@@ -22,6 +22,9 @@ import view.*;
 
 public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 	
+	@FXML
+	private Label labelTipoDeCadastro;
+	
 	//Elementos da pane de avisos
     @FXML
     private Pane paneAvisosPrincipal;
@@ -152,42 +155,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	cargosList = FXCollections.observableArrayList(cargos);
     	cbCargo.setItems(cargosList);
     } 
-    public void limparCamposCadastrarFiliais() 
-    {
-    	tfNomeFilial.setText("");
-    	tfCidadeFilial.setText("");
-    	tfEstadoFilial.setText("");
-    }
-    public void limparCamposCadastrarFuncionarios() {
-     	tfNome.setText("");
-    	tfCpf.setText("");
-    	tfCargaHoraria.setText("");
-    	pfSenha1.setText("");
-    	pfSenha2.setText("");
-    	cbDomingo.setSelected(false);
-    	cbSegunda.setSelected(false);
-    	cbTerca.setSelected(false);
-    	cbQuarta.setSelected(false);
-    	cbQuinta.setSelected(false);
-    	cbSexta.setSelected(false);
-    	cbSabado.setSelected(false);
-    	cbCargo.getSelectionModel().clearSelection();
-    }
-    public void limparCamposCadastrarVeículos() {
-    	textFieldMarcaRastreador.setText("");
-    	textFieldVersaoRastreador.setText("");
-    	textFieldIDRastreador.setText("");
-        textFieldPlacaVeiculo.setText("");
-        textFieldFuncionarioVeiculo.setText("");
-    	
-    }
-    public void limparCamposCadastrarViagens() {
-    	tfEmpresaDestino.setText("");
-    	tfViagemInit.setText("");
-    	tfViagemFim.setText("");
-    	tfMotoristaViagem.setText("");
-    	tfIDRastreador.setText("");
-    }
+
     public void carregarComboBoxFiliais() {
     	Filial filial = new Filial();
     	filiais = filial.listarFiliais();
@@ -200,7 +168,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	turnosList = FXCollections.observableArrayList(turnos);
     	cbTurno.setItems(turnosList);
     } 
-    
     @FXML
     void cadastrarFuncionario(MouseEvent event) {
     	// Todos os funcionários
@@ -228,12 +195,11 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	}
     	else {
     		notificar("Falha de cadastro", "Falha ao cadastrar", "As senhas estão incorretas, tente novamente");
-    		System.err.println("Senhas diferentes");
     	}
     }
     // -----------------------------------
     
-    // Método da pane para cadastro da filial 
+    // Métodos da pane para cadastro da filial 
     @FXML
     void cadastrarFilial(ActionEvent event) {
     	
@@ -244,10 +210,17 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	String estado = tfEstadoFilial.getText();
     	
     	f.cadastrarFilial(nome, cidade, estado);
+    	
+    	notificar("Sucesso de cadastro", "Filial cadastrada", "A filial " + nome + " foi cadastrada com sucesso!");
     }
+    
+    // ----------------------------------------
+    
+    
+    // Métodos da pane de cadastro de veiculos
     //--------------------------------------
     
-    // Método para cadastro de veículos
+    // Métodos para cadastro de veículos
     @FXML
     void cadastrarVeiculo(ActionEvent event) {
         	
@@ -262,12 +235,24 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         veic.cadastrarVeiculo(id_rastreador, placa, versao, marca_rastreador, cpfFuncionario);
     	
     }
+    // --------------------------------------------
+    
+    
+    // Métodos da pane de cadastro de viagem
+    @FXML
+    void cadastrarViagem(ActionEvent event) {
+    	
+    }
+    // ---------------------------------------
+    
+    // Métodos gerais
     // -------------------------------------------
 
     
     // Métodos gerais
     @FXML
     void abrirTelaFunc(MouseEvent event) {
+    	labelTipoDeCadastro.setText("Cadastrar Entidades");
     	Main.trocarTela("Tela Funcionarios");
     	limparCamposCadastrarFuncionarios();
     	limparCamposCadastrarFiliais();
@@ -276,6 +261,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     }
     @FXML
     void abrirTelaHistEntregas(MouseEvent event) {
+    	labelTipoDeCadastro.setText("Cadastrar Entidades");
     	Main.trocarTela("Tela Historico de Entregas");
     	limparCamposCadastrarFuncionarios();
     	limparCamposCadastrarFiliais();
@@ -284,6 +270,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     }
     @FXML
     void voltar(ActionEvent event) {   	
+    	labelTipoDeCadastro.setText("Cadastrar Entidades");
     	if(paneEscolherTipoDeCadastro.isVisible()) {
     		Main.trocarTela("Tela Boas Vindas");
     	}
@@ -294,8 +281,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
-    }
-    
+    }  
     @FXML
     void minimizarJanela(ActionEvent event) {
     	Main.minimizar();
@@ -303,8 +289,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     @FXML
     void fecharJanela(ActionEvent event) {
     	System.exit(0);
-    }
-    
+    }  
     @FXML
     void abrirTelaCadastrarFuncionarios(MouseEvent event){
     	paneCadastrarVeiculos.setVisible(false);
@@ -322,6 +307,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
+    	
+    	labelTipoDeCadastro.setText("Cadastro de Funncionários");
     }
     @FXML
     void abrirTelaCadastrarFiliais(MouseEvent event){
@@ -340,6 +327,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
+    	
+    	labelTipoDeCadastro.setText("Cadastro de Filiais");
     }
     @FXML
     void abrirTelaCadastrarVeiculos(MouseEvent event){
@@ -358,6 +347,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
+    	
+    	labelTipoDeCadastro.setText("Cadastro de Veículos");
     }
     @FXML
     void abrirTelaCadastrarViagens(MouseEvent event){
@@ -376,6 +367,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
+    	
+    	labelTipoDeCadastro.setText("Cadastro de Viagens");
     }
     @FXML
     void voltarParaTelaDeEscolhas(ActionEvent event) {
@@ -394,6 +387,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
+    	
+    	labelTipoDeCadastro.setText("Cadastrar Entidades");
     }
     
     
@@ -431,6 +426,42 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 		limparCamposCadastrarFiliais();
 		limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
+    }
+    public void limparCamposCadastrarFiliais() 
+    {
+    	tfNomeFilial.setText("");
+    	tfCidadeFilial.setText("");
+    	tfEstadoFilial.setText("");
+    }
+    public void limparCamposCadastrarFuncionarios() {
+     	tfNome.setText("");
+    	tfCpf.setText("");
+    	tfCargaHoraria.setText("");
+    	pfSenha1.setText("");
+    	pfSenha2.setText("");
+    	cbDomingo.setSelected(false);
+    	cbSegunda.setSelected(false);
+    	cbTerca.setSelected(false);
+    	cbQuarta.setSelected(false);
+    	cbQuinta.setSelected(false);
+    	cbSexta.setSelected(false);
+    	cbSabado.setSelected(false);
+    	cbCargo.getSelectionModel().clearSelection();
+    }
+    public void limparCamposCadastrarVeículos() {
+    	textFieldMarcaRastreador.setText("");
+    	textFieldVersaoRastreador.setText("");
+    	textFieldIDRastreador.setText("");
+        textFieldPlacaVeiculo.setText("");
+        textFieldFuncionarioVeiculo.setText("");
+    	
+    }
+    public void limparCamposCadastrarViagens() {
+    	tfEmpresaDestino.setText("");
+    	tfViagemInit.setText("");
+    	tfViagemFim.setText("");
+    	tfMotoristaViagem.setText("");
+    	tfIDRastreador.setText("");
     }
     
 	@Override

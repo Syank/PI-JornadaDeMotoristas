@@ -40,7 +40,7 @@
                   <Label text="Cadastrar Entidades" textFill="WHITE" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" prefHeight="58.0" prefWidth="250.0">
                <children>
                   <ImageView fitHeight="59.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -50,6 +50,10 @@
                   <Label prefHeight="17.0" prefWidth="76.0" text="Entidades" textFill="WHITE" />
                   <HBox layoutX="106.0" layoutY="10.0" prefHeight="59.0" prefWidth="27.0" />
                </children>
+               <styleClass>
+                  <String fx:value="caixasDeSelecao1" />
+                  <String fx:value="menuSelecionado" />
+               </styleClass>
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="203.0" onMouseClicked="#abrirTelaHistEntregas" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
@@ -228,57 +232,6 @@
             <TextField fx:id="campoDeBuscaCpf" layoutX="259.0" layoutY="19.0" prefHeight="27.0" prefWidth="153.0" promptText="CPF" styleClass="customizarInputs" />
          </children>
       </Pane>
-      <Pane fx:id="paneAvisosPrincipal" disable="true" prefHeight="450.0" prefWidth="750.0">
-         <children>
-            <Pane fx:id="paneAvisosSombra" disable="true" prefHeight="450.0" prefWidth="750.0" styleClass="sombraDeAviso" visible="false" />
-            <Pane fx:id="paneAvisosSucesso" disable="true" layoutX="175.0" layoutY="116.0" prefHeight="150.0" prefWidth="400.0" styleClass="fundoAviso" visible="false">
-               <children>
-                  <HBox alignment="TOP_RIGHT" prefHeight="26.0" prefWidth="400.0">
-                     <children>
-                        <HBox prefHeight="26.0" prefWidth="400.0">
-                           <children>
-                              <Label fx:id="labelAvisosTituloSucesso" prefHeight="26.0" prefWidth="202.0" text="Tela de Avisos" textFill="#bdc3c7">
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </children>
-                     <styleClass>
-                        <String fx:value="fundoMenuAviso" />
-                        <String fx:value="sombraMenuAviso" />
-                     </styleClass>
-                  </HBox>
-                  <Button layoutX="161.0" layoutY="104.0" mnemonicParsing="false" onAction="#fecharAviso" prefHeight="32.0" prefWidth="78.0" styleClass="botaoConfirmar" text="Confirmar" textFill="WHITE" />
-                  <Label fx:id="labelAvisosTextoSucesso" alignment="TOP_CENTER" layoutX="57.0" layoutY="35.0" prefHeight="63.0" prefWidth="286.0" text="Aviso" textAlignment="CENTER" textFill="#bdc3c7" wrapText="true" />
-               </children>
-            </Pane>
-            <Pane fx:id="paneAvisosFalha" disable="true" layoutX="185.0" layoutY="126.0" prefHeight="150.0" prefWidth="400.0" styleClass="fundoAviso" visible="false">
-               <children>
-                  <HBox alignment="TOP_RIGHT" prefHeight="26.0" prefWidth="400.0">
-                     <children>
-                        <HBox prefHeight="26.0" prefWidth="400.0">
-                           <children>
-                              <Label fx:id="labelAvisosTituloFalha" prefHeight="26.0" prefWidth="202.0" text="Tela de Avisos" textFill="#bdc3c7">
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </children>
-                     <styleClass>
-                        <String fx:value="fundoMenuAviso" />
-                        <String fx:value="sombraMenuAviso" />
-                     </styleClass>
-                  </HBox>
-                  <Button layoutX="161.0" layoutY="104.0" mnemonicParsing="false" onAction="#fecharAviso" prefHeight="32.0" prefWidth="78.0" styleClass="botaoCancelar" text="Confirmar" textFill="WHITE" />
-                  <Label fx:id="labelAvisosTextoFalha" alignment="TOP_CENTER" layoutX="57.0" layoutY="35.0" prefHeight="63.0" prefWidth="286.0" text="Aviso" textAlignment="CENTER" textFill="#bdc3c7" wrapText="true" />
-               </children>
-            </Pane>
-         </children>
-      </Pane>
       <Pane fx:id="paneSelecionarEntidade" layoutX="260.0" layoutY="80.0" prefHeight="365.0" prefWidth="485.0">
          <children>
             <HBox alignment="CENTER" layoutX="46.0" layoutY="79.0" onMouseClicked="#abrirTelaFuncionarios" prefHeight="68.0" prefWidth="197.0" styleClass="caixasDeSelecaoBoasVindas">
@@ -332,7 +285,7 @@
                   <TableColumn fx:id="colunaEstado" prefWidth="79.0" text="Estado" />
                </columns>
             </TableView>
-            <Button layoutX="361.0" layoutY="315.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="102.0" styleClass="customizarBotoes" text="Atualizar lista" textFill="WHITE" />
+            <Button layoutX="361.0" layoutY="315.0" mnemonicParsing="false" onAction="#atualizarLista" prefHeight="30.0" prefWidth="102.0" styleClass="customizarBotoes" text="Atualizar lista" textFill="WHITE" />
             <TextField fx:id="campoDeBuscaFilial" layoutX="14.0" layoutY="19.0" prefHeight="27.0" prefWidth="224.0" promptText="Filial" styleClass="customizarInputs" />
             <TextField fx:id="campoDeBuscaEstado" layoutX="259.0" layoutY="19.0" prefHeight="27.0" prefWidth="153.0" promptText="Estado" styleClass="customizarInputs" />
          </children>
@@ -348,8 +301,8 @@
                </children>
             </VBox>
             <Button layoutX="33.0" layoutY="286.0" mnemonicParsing="false" onAction="#excluirFilial" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE" />
-            <Button layoutX="289.0" layoutY="286.0" mnemonicParsing="false" onAction="#salvarDadosAlteradosFilial" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE" />
-            <Button layoutX="382.0" layoutY="286.0" mnemonicParsing="false" onAction="#descartarAlteracoesFilial" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE" />
+            <Button fx:id="botaoSalvarAlteracoesFilial" disable="true" layoutX="289.0" layoutY="286.0" mnemonicParsing="false" onAction="#salvarDadosAlteradosFilial" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE" />
+            <Button fx:id="botaoDescartarAlteracoesFilial" disable="true" layoutX="382.0" layoutY="286.0" mnemonicParsing="false" onAction="#descartarAlteracoesFilial" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE" />
          </children></Pane>
       <Pane fx:id="paneVeiculoSelecionado" disable="true" layoutX="259.0" layoutY="81.0" prefHeight="365.0" prefWidth="485.0" visible="false">
          <children>
@@ -388,9 +341,60 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Button layoutX="361.0" layoutY="315.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="102.0" styleClass="customizarBotoes" text="Atualizar lista" textFill="WHITE" />
+            <Button layoutX="361.0" layoutY="315.0" mnemonicParsing="false" onAction="#atualizarLista" prefHeight="30.0" prefWidth="102.0" styleClass="customizarBotoes" text="Atualizar lista" textFill="WHITE" />
             <TextField fx:id="campoDeBuscaVeiculo" layoutX="14.0" layoutY="19.0" prefHeight="27.0" prefWidth="224.0" promptText="Placa" styleClass="customizarInputs" />
             <TextField fx:id="campoDeBuscaIDVeiculo" layoutX="259.0" layoutY="19.0" prefHeight="27.0" prefWidth="153.0" promptText="ID do Rastreador" styleClass="customizarInputs" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneAvisosPrincipal" disable="true" prefHeight="450.0" prefWidth="750.0" visible="false">
+         <children>
+            <Pane fx:id="paneAvisosSombra" disable="true" prefHeight="450.0" prefWidth="750.0" styleClass="sombraDeAviso" visible="false" />
+            <Pane fx:id="paneAvisosSucesso" disable="true" layoutX="175.0" layoutY="116.0" prefHeight="150.0" prefWidth="400.0" styleClass="fundoAviso" visible="false">
+               <children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="26.0" prefWidth="400.0">
+                     <children>
+                        <HBox prefHeight="26.0" prefWidth="400.0">
+                           <children>
+                              <Label fx:id="labelAvisosTituloSucesso" prefHeight="26.0" prefWidth="202.0" text="Tela de Avisos" textFill="#bdc3c7">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <styleClass>
+                        <String fx:value="fundoMenuAviso" />
+                        <String fx:value="sombraMenuAviso" />
+                     </styleClass>
+                  </HBox>
+                  <Button layoutX="161.0" layoutY="104.0" mnemonicParsing="false" onAction="#fecharAviso" prefHeight="32.0" prefWidth="78.0" styleClass="botaoConfirmar" text="Confirmar" textFill="WHITE" />
+                  <Label fx:id="labelAvisosTextoSucesso" alignment="TOP_CENTER" layoutX="57.0" layoutY="35.0" prefHeight="63.0" prefWidth="286.0" text="Aviso" textAlignment="CENTER" textFill="#bdc3c7" wrapText="true" />
+               </children>
+            </Pane>
+            <Pane fx:id="paneAvisosFalha" disable="true" layoutX="185.0" layoutY="126.0" prefHeight="150.0" prefWidth="400.0" styleClass="fundoAviso" visible="false">
+               <children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="26.0" prefWidth="400.0">
+                     <children>
+                        <HBox prefHeight="26.0" prefWidth="400.0">
+                           <children>
+                              <Label fx:id="labelAvisosTituloFalha" prefHeight="26.0" prefWidth="202.0" text="Tela de Avisos" textFill="#bdc3c7">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <styleClass>
+                        <String fx:value="fundoMenuAviso" />
+                        <String fx:value="sombraMenuAviso" />
+                     </styleClass>
+                  </HBox>
+                  <Button layoutX="161.0" layoutY="104.0" mnemonicParsing="false" onAction="#fecharAviso" prefHeight="32.0" prefWidth="78.0" styleClass="botaoCancelar" text="Confirmar" textFill="WHITE" />
+                  <Label fx:id="labelAvisosTextoFalha" alignment="TOP_CENTER" layoutX="57.0" layoutY="35.0" prefHeight="63.0" prefWidth="286.0" text="Aviso" textAlignment="CENTER" textFill="#bdc3c7" wrapText="true" />
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>

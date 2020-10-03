@@ -27,7 +27,7 @@
                </image>
             </ImageView>
             <VBox prefHeight="25.0" prefWidth="250.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao">
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="250.0">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
@@ -37,6 +37,10 @@
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="59.0" prefWidth="31.0" />
                   <Label text="Cadastrar Entidades" textFill="WHITE" />
                </children>
+               <styleClass>
+                  <String fx:value="caixasDeSelecao" />
+                  <String fx:value="menuSelecionado" />
+               </styleClass>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" onMouseClicked="#abrirTelaFunc" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
@@ -149,7 +153,7 @@
       </Pane>
       <Pane fx:id="paneCadastrarFiliais" disable="true" layoutX="265.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
          <children>
-            <Button fx:id="botaoCadastrarFilial" layoutX="19.0" layoutY="310.0" mnemonicParsing="false" onAction="#cadastrarFilial" prefHeight="32.0" prefWidth="78.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
+            <Button layoutX="19.0" layoutY="310.0" mnemonicParsing="false" onAction="#cadastrarFilial" prefHeight="32.0" prefWidth="78.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
             <VBox alignment="TOP_CENTER" layoutX="19.0" layoutY="65.0" prefHeight="183.0" prefWidth="168.0" spacing="25.0">
                <children>
                   <TextField fx:id="tfNomeFilial" promptText="Nome da filial" styleClass="customizarInputs" />
@@ -176,7 +180,7 @@
          <children>
             <TextField fx:id="tfViagemInit" layoutX="33.0" layoutY="136.0" prefHeight="27.0" prefWidth="136.0" promptText="Início" styleClass="customizarInputs" />
             <TextField fx:id="tfEmpresaDestino" layoutX="33.0" layoutY="77.0" prefHeight="27.0" prefWidth="136.0" promptText="Empresa de Destino" styleClass="customizarInputs" />
-            <Button fx:id="botaoCadastraViagem" layoutX="26.0" layoutY="299.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Cadastrar" textFill="WHITE" />
+            <Button layoutX="26.0" layoutY="299.0" mnemonicParsing="false" onAction="#cadastrarViagem" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
             <TextField fx:id="tfViagemFim" layoutX="33.0" layoutY="194.0" prefHeight="27.0" prefWidth="136.0" promptText="Fim" styleClass="customizarInputs" />
             <TextField fx:id="tfIDRastreador" layoutX="299.0" layoutY="136.0" prefHeight="27.0" prefWidth="136.0" promptText="ID do rastreador" styleClass="customizarInputs" />
             <TextField fx:id="tfMotoristaViagem" layoutX="299.0" layoutY="77.0" prefHeight="27.0" prefWidth="136.0" promptText="Nome do motorista" styleClass="customizarInputs" />

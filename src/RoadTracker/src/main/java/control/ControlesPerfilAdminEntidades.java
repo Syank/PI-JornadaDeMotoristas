@@ -157,6 +157,10 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     private TextField textFieldCidadeFilial;
     @FXML
     private TextField textFieldEstadoFilial;
+    @FXML
+    private Button botaoSalvarAlteracoesFilial;
+    @FXML
+    private Button botaoDescartarAlteracoesFilial;
     private int idFilial;
     
     // ------------------------------
@@ -290,18 +294,36 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	textFieldNomeFilial.setDisable(false);
     	textFieldCidadeFilial.setDisable(false);
     	textFieldEstadoFilial.setDisable(false);
+    	
+    	botaoSalvarAlteracoesFilial.setDisable(false);
+    	botaoDescartarAlteracoesFilial.setDisable(false);
     }
     @FXML
     void excluirFilial(ActionEvent event) {
+    	Filial filial = new Filial();
+    	filial.excluirFilial(idFilial);
     	
+    	notificar("Sucesso", "Filial excluída", "A filial foi excluída dos registros do banco de dados com sucesso!");
     }
     @FXML
     void salvarDadosAlteradosFilial(ActionEvent event) {
+    	Filial filial = new Filial();
+    	filial.alterarDadosFilial(textFieldNomeFilial.getText(), textFieldCidadeFilial.getText(), textFieldEstadoFilial.getText(), idFilial);
     	
+    	desabilitarEdicao();
+    	
+    	notificar("Sucesso", "Filial atualizada", "Os dados da filial " + textFieldNomeFilial.getText() + " foram alterados com sucesso!");
     }
     @FXML
     void descartarAlteracoesFilial(ActionEvent event) {
+    	Filial filial = new Filial();
+    	filial = filial.encontrarFilial(idFilial);
     	
+    	textFieldNomeFilial.setText(filial.getNome());
+    	textFieldCidadeFilial.setText(filial.getCidade());
+    	textFieldEstadoFilial.setText(filial.getEstado());
+    	
+
     }
     @FXML
     void selecionarFilial(ActionEvent event) {
@@ -314,8 +336,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     void carregarInfoFilial() {
     	Filial filial = new Filial();
     	filial = filial.encontrarFilial(idFilial);
-    	System.out.println(idFilial);
-    	System.out.println(filial.getNome());
+
     	textFieldCidadeFilial.setText(filial.getCidade());
     	textFieldEstadoFilial.setText(filial.getEstado());
     	textFieldNomeFilial.setText(filial.getNome());
@@ -473,9 +494,11 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	btnSalvar.setDisable(true);
     	btnDescartar.setDisable(true);
     	
-    	textFieldNomeFilial.setDisable(false);
-    	textFieldCidadeFilial.setDisable(false);
-    	textFieldEstadoFilial.setDisable(false);
+    	textFieldNomeFilial.setDisable(true);
+    	textFieldCidadeFilial.setDisable(true);
+    	textFieldEstadoFilial.setDisable(true);
+    	botaoSalvarAlteracoesFilial.setDisable(true);
+    	botaoDescartarAlteracoesFilial.setDisable(true);
     }
     
     void notificar(String tipoDeAviso, String titulo, String texto) {
