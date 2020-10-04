@@ -257,6 +257,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
+    	voltarTelaEscolhas();
     }
     @FXML
     void abrirTelaHistEntregas(MouseEvent event) {
@@ -266,6 +267,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
+    	voltarTelaEscolhas();
     }
     @FXML
     void voltar(ActionEvent event) {   	
@@ -281,6 +283,14 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
     }  
+    @FXML
+    void telaPaneInicial(ActionEvent event) {
+    	voltarParaTelaDeEscolhas(event);
+    	limparCamposCadastrarFuncionarios();
+    	limparCamposCadastrarFiliais();
+    	limparCamposCadastrarViagens();
+    	limparCamposCadastrarVeículos();
+    }
     @FXML
     void minimizarJanela(ActionEvent event) {
     	Main.minimizar();
@@ -390,6 +400,26 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	labelTipoDeCadastro.setText("Cadastrar Entidades");
     }
     
+    public void voltarTelaEscolhas() {
+    	paneCadastrarVeiculos.setVisible(false);
+    	paneCadastrarFiliais.setVisible(false);
+    	paneCadastrarViagens.setVisible(false);
+    	paneCadastrarFuncionarios.setVisible(false);
+    	paneEscolherTipoDeCadastro.setVisible(true);
+    	
+    	paneCadastrarVeiculos.setDisable(true);
+    	paneCadastrarFiliais.setDisable(true);
+    	paneCadastrarViagens.setDisable(true);
+    	paneCadastrarFuncionarios.setDisable(true);
+    	paneEscolherTipoDeCadastro.setDisable(false);
+    	limparCamposCadastrarFuncionarios();
+    	limparCamposCadastrarFiliais();
+    	limparCamposCadastrarViagens();
+    	limparCamposCadastrarVeículos();
+    	
+    	labelTipoDeCadastro.setText("Cadastrar Entidades");
+    }
+    
     
     void notificar(String tipoDeAviso, String titulo, String texto) {
     	paneAvisosPrincipal.setDisable(false);
@@ -426,8 +456,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 		limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
     }
-    public void limparCamposCadastrarFiliais() 
-    {
+    public void limparCamposCadastrarFiliais() {
     	tfNomeFilial.setText("");
     	tfCidadeFilial.setText("");
     	tfEstadoFilial.setText("");

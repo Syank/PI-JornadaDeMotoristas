@@ -631,10 +631,16 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     @FXML
     void abrirTelaCadFunc(MouseEvent event) {
     	Main.trocarTela("Tela Cadastrar Funcionarios");
+    	abrirTelaSelecionarEntidade();
     }
     @FXML
     void abrirTelaHistEntregas(MouseEvent event) {
     	Main.trocarTela("Tela Historico de Entregas");
+    	abrirTelaSelecionarEntidade();
+    }
+    @FXML
+    void abrirTelaEnt(ActionEvent event) {
+    	abrirTelaSelecionarEntidade();
     }
     @FXML
     void voltar(MouseEvent event) {

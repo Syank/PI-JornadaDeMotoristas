@@ -27,7 +27,7 @@
                </image>
             </ImageView>
             <VBox prefHeight="25.0" prefWidth="250.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="250.0">
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#telaPaneInicial" prefHeight="58.0" prefWidth="250.0">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
