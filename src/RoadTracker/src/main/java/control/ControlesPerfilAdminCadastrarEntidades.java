@@ -283,14 +283,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
     }  
-    @FXML
-    void telaPaneInicial(ActionEvent event) {
-    	voltarParaTelaDeEscolhas(event);
-    	limparCamposCadastrarFuncionarios();
-    	limparCamposCadastrarFiliais();
-    	limparCamposCadastrarViagens();
-    	limparCamposCadastrarVeículos();
-    }
+
     @FXML
     void minimizarJanela(ActionEvent event) {
     	Main.minimizar();
@@ -317,7 +310,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
     	
-    	labelTipoDeCadastro.setText("Cadastro de Funncionários");
+    	labelTipoDeCadastro.setText("Cadastro de Funcionários");
     }
     @FXML
     void abrirTelaCadastrarFiliais(MouseEvent event){

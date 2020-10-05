@@ -17,6 +17,7 @@ public class Main extends Application {
 	private static Scene tela3;
 	private static Scene tela4;
 	private static Scene tela5;
+//	private static Scene tela6;
 
 
 
@@ -45,6 +46,8 @@ public class Main extends Application {
 		Pane fxmlTela5 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminBoasVindas.fxml"));
 		tela5 = new Scene(fxmlTela5);
 
+//		Pane fxmlTela6 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminAvisos.fxml"));
+//		tela5 = new Scene(fxmlTela6);
 		 
 		// Seta a janela atual e a exibe
 		primaryStage.setScene(tela1);
@@ -71,10 +74,11 @@ public class Main extends Application {
 			case "Tela Boas Vindas":
 				stage.setScene(tela5);
 				break;
-
+//			case "Tela Avisos":
+//				stage.setScene(tela6);
+//				break;
 		}
 	}
-
 	
 	public static void minimizar() {
 		stage.setIconified(true);
