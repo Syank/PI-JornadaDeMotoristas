@@ -20,6 +20,7 @@ public class Status {
 	private String inicio;
 	private String fim;
 	private String total;
+
 	
 	//um ou mais status pertence a um funcionário
 	@ManyToOne

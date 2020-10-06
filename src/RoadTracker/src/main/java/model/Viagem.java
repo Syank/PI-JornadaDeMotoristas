@@ -28,6 +28,7 @@ public class Viagem {
 	private String total;
 	private String destino;
 	private String carga;
+	private String situacao;
 	
 	//muitas viagens possuem um funcionário
 	@ManyToOne
@@ -40,7 +41,7 @@ public class Viagem {
 	
 	//uma ou muitas viagens correspondem a um veículo
 	@ManyToOne
-	@JoinColumn(name = "veiculo", nullable = false, foreignKey = @ForeignKey(name = "fk_veiculos_id_rastreador")) //coluna da tabela pai
+	@JoinColumn(name = "veiculo", nullable = false, foreignKey = @ForeignKey(name = "fk_veiculos_placa")) //coluna da tabela pai
 	private Veiculo veiculo = new Veiculo();
 	
 	public Integer getId() {
@@ -92,6 +93,17 @@ public class Viagem {
 	public void setCarga(String carga) {
 		this.carga = carga;
 	}
+	public String getSituacao() {
+		return situacao;
+	}
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
+	}
+	
+	
+	
+	
+	
 	public void cadastrarViagem(String inicio, String origem, String destino, String cpfFuncionario, String placaVeiculo) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
