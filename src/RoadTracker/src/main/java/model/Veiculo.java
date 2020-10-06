@@ -25,15 +25,15 @@ public class Veiculo {
 	private int id_rastreador;
 	private String marca_rastreador;
 	private String modelo_rastreador;
-	
-	//um ou mais funcionarios possuem um veículo
+
 	@ManyToOne
-	@JoinColumn(name = "funcionario", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_cpf")) //coluna da tabela pai
-	private Funcionario funcionario = new Funcionario();
-	
-	//um veiculo possui uma ou mais viagens
+	@JoinColumn(name = "filiais", nullable = false, foreignKey = @ForeignKey(name = "fk_filiais_id"))
+	private Filial filial = new Filial();
 	@OneToMany(mappedBy = "veiculo")
 	private List<Viagem> viagens = new ArrayList<Viagem>();
+	
+	
+	
 	
 	public int getId_rastreador() {
 		return id_rastreador;
@@ -53,11 +53,11 @@ public class Veiculo {
 	public void setMarca_rastreador(String marca_rastreador) {
 		this.marca_rastreador = marca_rastreador;
 	}
-	public Funcionario getFuncionario() {
-		return funcionario;
+	public Filial getFuncionario() {
+		return filial;
 	}
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setFuncionario(Filial filial) {
+		this.filial = filial;
 	}
 	public String getModelo_veiculo() {
 		return modelo_veiculo;
@@ -72,13 +72,11 @@ public class Veiculo {
 		this.modelo_rastreador = modelo_rastreador;
 	}
 	
-	public void cadastrarVeiculo(String id_rastreador, String placa, String versao, String marca_rastreador, String cpf_funcionario){
+	public void cadastrarVeiculo(String id_rastreador, String placa, String versao, String marca_rastreador){
 		int id;
 		id = Integer.parseInt(id_rastreador);
 		EntityManager con = new ConnectionFactory().getConnection();
 		
-		funcionario.setCpf(cpf_funcionario);
-		this.setFuncionario(funcionario);
 		
 		this.setId_rastreador(id);
 		this.setPlaca(placa);
@@ -99,14 +97,13 @@ public class Veiculo {
 		}
 	}
 	
-	public void alterarDadosVeiculo(String placa, String marca_rastreador, String versao_rastreador, Integer id_rastreador, String cpf_funcionario) {
+	public void alterarDadosVeiculo(String placa, String marca_rastreador, String versao_rastreador, Integer id_rastreador) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		this.id_rastreador = id_rastreador;
 		this.placa = placa;
 		this.modelo_rastreador = versao_rastreador;
 		this.marca_rastreador = marca_rastreador;
-		this.funcionario = funcionario.encontrarFuncionario(cpf_funcionario);
 		
 		try {
 			con.getTransaction().begin();
