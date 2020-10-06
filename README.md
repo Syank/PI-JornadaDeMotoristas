@@ -48,12 +48,12 @@
 </section>
 <section id="cards">
         <h3>Cards das Sprints (entregas) do sistema</h3>
-        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Card%20Sprint%200.jpeg">
+        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_1/Card%20Sprint%200.jpeg">
    </section>
     
 <section id="sistema_ate_o_momento">
         <h3>Nosso sistema em funcionamento até o momento</h3>
-        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Sistema%20Sprint%200.gif">
+        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_1/Sistema%20Sprint%200.gif">
 </section>
     
 
@@ -100,13 +100,13 @@
 
 <section id="ModeloC">
         <h3>Modelo conceitual do nosso banco de dados</h3>
-        <img src="doc/banco_de_dados/RTdb-conceitual.png" width="800px">
+        <img src="doc/banco_de_dados/RTdbNovo-conceitual.png" width="800px">
     
 </section>
 
 <section id="ModeloL">
         <h3>Modelo lógico do nosso banco de dados</h3>
-        <img src="doc/banco_de_dados/RTdb-logico.png" width="800px">
+        <img src="doc/banco_de_dados/RTdbNovo-logico.png" width="800px">
 
 </section>
 </body>
@@ -119,98 +119,119 @@
 CREATE DATABASE rtracker;
 
 CREATE TABLE filiais (
-    cidade VARCHAR(50),
     id SERIAL PRIMARY KEY,
+    nome VARCHAR(50),
+    cnpj VARCHAR(15),
+    cidade VARCHAR(30),
     estado VARCHAR(2),
-    nome VARCHAR(50)
+    rntrc VARCHAR(8)
 );
 
-CREATE TABLE funcionarios (
-    cargo VARCHAR(20),
-    senha VARCHAR(64),
+CREATE TABLE funcionarios_filiais (
     cpf VARCHAR(11) PRIMARY KEY,
-    dom BOOLEAN,
-    sab BOOLEAN,
-    sex BOOLEAN,
-    qui BOOLEAN,
-    ter BOOLEAN,
-    cargahoraria VARCHAR(3),
-    seg BOOLEAN,
     nome VARCHAR(50),
-    qua BOOLEAN,
-    turno VARCHAR(10),
+    cargo VARCHAR(13),
+    email VARCHAR(50),
+    senha VARCHAR(32),
     fk_filiais_id SERIAL
 );
 
-CREATE TABLE veiculos (
-    placa VARCHAR(10),
-    versao_rastreador VARCHAR(20),
-    id_rastreador VARCHAR(30) PRIMARY KEY,
-    marca_rastreador VARCHAR(20),
-    fk_funcionarios_cpf VARCHAR(11)
-);
-
-CREATE TABLE status (
-    tipo VARCHAR(20),
-    inicio DATETIME,
-    fim DATETIME,
-    total TIMESTAMP,
-    id SERIAL PRIMARY KEY,
-    fk_funcionarios_cpf VARCHAR(11),
-    fk_viagens_id SERIAL
-);
-
-CREATE TABLE viagens (
-    total TIMESTAMP,
-    fim DATETIME,
-    inicio DATETIME,
-    id SERIAL PRIMARY KEY,
-    fk_funcionarios_cpf VARCHAR(11),
-    fk_veiculos_id_rastreador VARCHAR(30)
+CREATE TABLE motoristas (
+    cpf VARCHAR(11) PRIMARY KEY,
+    nome VARCHAR(50),
+    cnh VARCHAR(11),
+    dom BOOLEAN,
+    seg BOOLEAN,
+    ter BOOLEAN,
+    qua BOOLEAN,
+    qui BOOLEAN,
+    sab BOOLEAN,
+    cargahoraria VARCHAR(4),
+    salario VARCHAR(10),
+    sex BOOLEAN,
+    email VARCHAR(50),
+    senha VARCHAR(32),
+    fk_filiais_id SERIAL
 );
 
 CREATE TABLE avisos (
     id SERIAL PRIMARY KEY,
-    tipo VARCHAR(20),
+    tipo VARCHAR(15),
     funcionario_destino VARCHAR(11),
-    mensagem TEXT,
     visualizado BOOLEAN,
-    fk_funcionarios_cpf VARCHAR(11)
+    mensagem TEXT,
+    data DATE,
+    fk_funcionarios_filiais_cpf VARCHAR(11),
+    fk_motoristas_cpf VARCHAR(11)
+);
+
+CREATE TABLE veiculos (
+    placa VARCHAR(8) PRIMARY KEY,
+    id_rastreador VARCHAR(20),
+    marca_rastreador VARCHAR(20),
+    modelo_rastreador VARCHAR(20),
+    modelo_veiculo VARCHAR(20),
+    fk_filiais_id SERIAL
+);
+
+CREATE TABLE viagens (
+    id SERIAL PRIMARY KEY,
+    destino VARCHAR(30),
+    carga VARCHAR(20),
+    inicio TIMESTAMP,
+    fim TIMESTAMP,
+    prazo TIMESTAMP,
+    fk_veiculos_placa VARCHAR(8),
+    fk_motoristas_cpf VARCHAR(11)
+);
+
+CREATE TABLE status (
+    id SERIAL PRIMARY KEY,
+    tipo VARCHAR(20),
+    inicio TIMESTAMP,
+    fim TIMESTAMP,
+    total TIMESTAMP,
+    fk_motoristas_cpf VARCHAR(11)
 );
  
+ALTER TABLE funcionarios_filiais ADD CONSTRAINT FK_funcionarios_filiais_2
+    FOREIGN KEY (fk_filiais_id)
+    REFERENCES filiais (id)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE motoristas ADD CONSTRAINT FK_motoristas_2
+    FOREIGN KEY (fk_filiais_id)
+    REFERENCES filiais (id)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE avisos ADD CONSTRAINT FK_avisos_2
+    FOREIGN KEY (fk_funcionarios_filiais_cpf)
+    REFERENCES funcionarios_filiais (cpf)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE avisos ADD CONSTRAINT FK_avisos_3
+    FOREIGN KEY (fk_motoristas_cpf)
+    REFERENCES motoristas (cpf)
+    ON DELETE RESTRICT;
+ 
 ALTER TABLE veiculos ADD CONSTRAINT FK_veiculos_2
-    FOREIGN KEY (fk_funcionarios_cpf)
-    REFERENCES funcionarios (cpf)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE status ADD CONSTRAINT FK_status_2
-    FOREIGN KEY (fk_funcionarios_cpf)
-    REFERENCES funcionarios (cpf)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE status ADD CONSTRAINT FK_status_3
-    FOREIGN KEY (fk_viagens_id)
-    REFERENCES viagens (id)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE funcionarios ADD CONSTRAINT FK_funcionarios_2
     FOREIGN KEY (fk_filiais_id)
     REFERENCES filiais (id)
     ON DELETE RESTRICT;
  
 ALTER TABLE viagens ADD CONSTRAINT FK_viagens_2
-    FOREIGN KEY (fk_funcionarios_cpf)
-    REFERENCES funcionarios (cpf)
+    FOREIGN KEY (fk_veiculos_placa)
+    REFERENCES veiculos (placa)
     ON DELETE RESTRICT;
  
 ALTER TABLE viagens ADD CONSTRAINT FK_viagens_3
-    FOREIGN KEY (fk_veiculos_id_rastreador)
-    REFERENCES veiculos (id_rastreador)
+    FOREIGN KEY (fk_motoristas_cpf)
+    REFERENCES motoristas (cpf)
     ON DELETE RESTRICT;
  
-ALTER TABLE avisos ADD CONSTRAINT FK_avisos_2
-    FOREIGN KEY (fk_funcionarios_cpf)
-    REFERENCES funcionarios (cpf)
+ALTER TABLE status ADD CONSTRAINT FK_status_2
+    FOREIGN KEY (fk_motoristas_cpf)
+    REFERENCES motoristas (cpf)
     ON DELETE RESTRICT;
 
 ~~~
