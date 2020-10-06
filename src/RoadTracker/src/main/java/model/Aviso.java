@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -20,6 +22,7 @@ public class Aviso {
 	private String funcionario_destino;
 	private String mensagem;
 	private boolean visualizado;
+	private Date data;
 	
 	//um ou mais avisos correspondem a um funcionario
 	@ManyToOne
@@ -62,5 +65,10 @@ public class Aviso {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
 }

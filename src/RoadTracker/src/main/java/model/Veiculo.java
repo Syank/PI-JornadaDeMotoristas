@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
-import view.Filiais;
 import view.Veiculos;
 
 @Entity
@@ -22,9 +21,10 @@ public class Veiculo {
 	
 	@Id
 	private String placa;
+	private String modelo_veiculo;
 	private int id_rastreador;
 	private String marca_rastreador;
-	private String versao_rastreador;
+	private String modelo_rastreador;
 	
 	//um ou mais funcionarios possuem um veículo
 	@ManyToOne
@@ -53,17 +53,23 @@ public class Veiculo {
 	public void setMarca_rastreador(String marca_rastreador) {
 		this.marca_rastreador = marca_rastreador;
 	}
-	public String getVersao_rastreador() {
-		return versao_rastreador;
-	}
-	public void setVersao_rastreador(String versao_rastreador) {
-		this.versao_rastreador = versao_rastreador;
-	}
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
+	}
+	public String getModelo_veiculo() {
+		return modelo_veiculo;
+	}
+	public void setModelo_veiculo(String modelo_veiculo) {
+		this.modelo_veiculo = modelo_veiculo;
+	}
+	public String getModelo_rastreador() {
+		return modelo_rastreador;
+	}
+	public void setModelo_rastreador(String modelo_rastreador) {
+		this.modelo_rastreador = modelo_rastreador;
 	}
 	
 	public void cadastrarVeiculo(String id_rastreador, String placa, String versao, String marca_rastreador, String cpf_funcionario){
@@ -76,7 +82,7 @@ public class Veiculo {
 		
 		this.setId_rastreador(id);
 		this.setPlaca(placa);
-		this.setVersao_rastreador(versao);
+		this.setModelo_rastreador(versao);
 		this.setMarca_rastreador(marca_rastreador);
 
 		try {
@@ -98,7 +104,7 @@ public class Veiculo {
 		
 		this.id_rastreador = id_rastreador;
 		this.placa = placa;
-		this.versao_rastreador = versao_rastreador;
+		this.modelo_rastreador = versao_rastreador;
 		this.marca_rastreador = marca_rastreador;
 		this.funcionario = funcionario.encontrarFuncionario(cpf_funcionario);
 		

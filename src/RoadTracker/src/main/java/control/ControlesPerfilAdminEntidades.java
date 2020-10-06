@@ -392,7 +392,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	veiculo = veiculo.encontrarVeiculo(placaVeiculo);
     	
     	textFieldMarcaRastreador.setText(veiculo.getMarca_rastreador());
-    	textFieldVersaoRastreador.setText(veiculo.getVersao_rastreador());
+    	textFieldVersaoRastreador.setText(veiculo.getModelo_rastreador());
     	textFieldIDRastreador.setText(String.valueOf(veiculo.getId_rastreador()));
     	textFieldPlacaVeiculo.setText(veiculo.getPlaca());
     	textFieldFuncionarioVeiculo.setText(veiculo.getFuncionario().getCpf());
@@ -412,7 +412,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	veiculo = veiculo.encontrarVeiculo(placaVeiculo);
 
     	textFieldMarcaRastreador.setText(veiculo.getMarca_rastreador());
-    	textFieldVersaoRastreador.setText(veiculo.getVersao_rastreador());
+    	textFieldVersaoRastreador.setText(veiculo.getModelo_rastreador());
     	textFieldIDRastreador.setText(String.valueOf(veiculo.getId_rastreador()));
     	textFieldPlacaVeiculo.setText(veiculo.getPlaca());
     	textFieldFuncionarioVeiculo.setText(veiculo.getFuncionario().getCpf());

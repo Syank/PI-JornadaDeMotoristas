@@ -24,6 +24,8 @@ public class Filial {
 	private String nome;
 	private String cidade;
 	private String estado;
+	private String cnpj;
+	private String rntrc;
 	
 	//uma filial possui um ou mais funcionarios
 	@OneToMany(mappedBy = "filial") //nome do campo na tabela filha
@@ -58,6 +60,18 @@ public class Filial {
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	public String getCnpj() {
+		return cnpj;
+	}
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+	public String getRntrc() {
+		return rntrc;
+	}
+	public void setRntrc(String rntrc) {
+		this.rntrc = rntrc;
 	}
 	
 	public void cadastrarFilial(String nome, String cidade, String estado) {

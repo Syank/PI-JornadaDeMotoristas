@@ -15,10 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
-import javax.transaction.Transaction;
-import javax.transaction.Transactional;
-
-import view.Filiais;
 
 @Entity
 @Table(name="viagens")
@@ -30,8 +26,8 @@ public class Viagem {
 	private String inicio;
 	private String fim;
 	private String total;
-	private String origem;
 	private String destino;
+	private String carga;
 	
 	//muitas viagens possuem um funcionário
 	@ManyToOne
@@ -71,12 +67,6 @@ public class Viagem {
 	public void setTotal(String total) {
 		this.total = total;
 	}
-	public String getOrigem() {
-		return origem;
-	}
-	public void setOrigem(String origem) {
-		this.origem = origem;
-	}
 	public String getDestino() {
 		return destino;
 	}
@@ -96,12 +86,17 @@ public class Viagem {
 		return veiculo;
 	}
 	
+	public String getCarga() {
+		return carga;
+	}
+	public void setCarga(String carga) {
+		this.carga = carga;
+	}
 	public void cadastrarViagem(String inicio, String origem, String destino, String cpfFuncionario, String placaVeiculo) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		this.setInicio(inicio);
-		this.setOrigem(origem);
 		this.setDestino(destino);
 		
 		funcionario.setCpf(cpfFuncionario);
@@ -131,7 +126,6 @@ public class Viagem {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		this.setInicio(novoInicio);
-		this.setOrigem(novaOrigem);
 		this.setDestino(novoDestino);
 		
 		funcionario.setCpf(novoCpfFuncionario);
@@ -211,7 +205,6 @@ public class Viagem {
 			Viagem viagens = new Viagem();
 			
 			viagens.setFuncionario(v.getFuncionario());
-			viagens.setOrigem(v.getOrigem());
 			viagens.setDestino(v.getDestino());
 			viagens.setInicio(v.getInicio());
 			
