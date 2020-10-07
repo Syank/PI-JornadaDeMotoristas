@@ -18,6 +18,7 @@
 <ul>
 <li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#o-que-%C3%A9-o-roadtracker"> O que é o RoadTracker?</a></li>
 <li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#integrantes-da-equipe-girlboy"> Integrantes da equipe</a></li>
+       <li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#Branches-de-cada-entrega">Branches de cada entrega</a></li>
 <li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#cards-das-sprints-entregas-do-sistema">Cards das Sprints (entregas) do sistema</a></li>
 <li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#nosso-sistema-em-funcionamento-at%C3%A9-o-momento">Nosso sistema em funcionamento até o momento</a></li>
 <li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#user-stories-do-nosso-sistema">User stories do nosso sistema</a></li>
@@ -45,6 +46,43 @@
             <li><p><a href="https://www.linkedin.com/in/ana-carolina-lima-099955136/" target = "_blank">Ana Carolina da Silva Lima</a> (Development Team)</p>
             <li><p><a href="https://www.linkedin.com/in/anna-yukimi-yamada-6ba23b149/" target = "_blank">Anna Yukimi Yamada</a> (Development Team)</p>
        </ul>
+</section>
+<section id="branches_entregas">
+       <h3>Branches de cada entrega</h3>
+       <table>
+              <thead>
+                     <th width=100px>Entregas</th>
+                     <th>Descrições</th>
+                     <th width=215px>Datas</th>
+                     <th>Links</th>
+              </thead>
+              <tbody>
+                     <tr>
+                            <td>Entrega 1</td>
+                            <td>CRUD do administrador envolvendo os funcionários das filiais</td>
+                            <td>07/09/2020 a 27/09/2020</td>
+                            <td><a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/sprint_0">Visualizar</td>
+                     </tr>
+                     <tr>
+                            <td>Entrega 2</td>
+                            <td>CRUD do administrador englobando filiais, veículos e viagens</td>
+                            <td>28/09/2020 a 18/10/2020</td>
+                            <td>Em breve</td>
+                     </tr>
+                     <tr>
+                            <td>Entrega 3</td>
+                            <td>O motorista poderá inserir dados sobre a viagem e o supervisor poderá visualizar e alterar dados dos motoristas</td>
+                            <td>19/10/2020 a 08/11/2020</td>
+                            <td>Em breve</td>
+                     </tr>
+                      <tr>
+                            <td>Entrega 4</td>
+                            <td>O supervisor poderá visualizar e alterar dados dos veículos e viagens e poderá enviar e receber avisos</td>
+                            <td>09/11/2020 a 29/11/2020</td>
+                            <td>Em breve</td>
+                     </tr>
+              </tbody>
+       </table>
 </section>
 <section id="cards">
         <h3>Cards das Sprints (entregas) do sistema</h3>
