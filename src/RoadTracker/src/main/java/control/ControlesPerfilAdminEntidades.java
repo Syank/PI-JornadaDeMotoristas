@@ -599,10 +599,11 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	public void carregarTableViews() {
 
 		Funcionario funcionario = new Funcionario();
+		Funcionarios funcionarios = new Funcionarios(null, null, null);
 		Filial filial = new Filial();
 		Veiculo veiculo = new Veiculo();
 
-		listaDeFuncionarios = funcionario.listarFuncionarios();
+		listaDeFuncionarios = funcionarios.listarFuncionarios();
 		listaDeFiliais = filial.listarFiliais();
 		listaDeVeiculos = veiculo.listarVeiculos();
 

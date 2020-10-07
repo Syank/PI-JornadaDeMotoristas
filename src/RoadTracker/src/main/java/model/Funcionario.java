@@ -137,11 +137,7 @@ public class Funcionario {
 		List<Funcionario> funcionarios = null;
 
 		try {
-			
 			funcionarios = con.createQuery("from Funcionario f").getResultList();
-			
-//			Query query = con.createNativeQuery("select from funcionarios_filiais join motoristas");
-//			funcionarios = query.getResultList();
 		}
 		catch (Exception e) {
 			System.err.println(e);
@@ -154,12 +150,15 @@ public class Funcionario {
 		
 	}
 
-	public List<Funcionarios> listarFuncionarios(){
-		List<Funcionarios> lista = new ArrayList<>();
+	public List<Funcionario> listarFuncionarios(){
+		List<Funcionario> lista = new ArrayList<>();
 		for (Funcionario f: this.consultarTodosFuncionarios()) {
-			Funcionarios nome = new Funcionarios(f.getCpf(), f.getNome());
+			Funcionario nome = new Funcionario();
+			nome.setCpf(f.cpf);
+			nome.setNome(f.nome);
 			lista.add(nome);
 		}
+		
 		return lista;
 	}
 	

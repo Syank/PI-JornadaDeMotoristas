@@ -33,10 +33,11 @@ public class Motorista {
 	private boolean sex;
 	private boolean sab;
 	private boolean dom;
+	private String cargo = "Motorista";
 	
 	// Mapeamento
 	@ManyToOne
-	@JoinColumn(name = "filiais", nullable = false, foreignKey = @ForeignKey(name = "fk_filiais_id"))
+	@JoinColumn(name = "filial", nullable = false, foreignKey = @ForeignKey(name = "fk_filiais_id"))
 	private Filial filial = new Filial();
 	@OneToMany(mappedBy = "funcionario")
 	private List<Aviso> avisos = new ArrayList<Aviso>();
@@ -153,6 +154,12 @@ public class Motorista {
 	}
 	public void setSalario(String salario) {
 		this.salario = salario;
+	}
+	public String getCargo() {
+		return cargo;
+	}
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 	public int getIdFilial() {
 		return idFilial;
