@@ -9,7 +9,6 @@
     <class>model.ConnectionFactory</class>
     <class>model.Filial</class>
     <class>model.Funcionario</class>
-    <class>model.FuncionarioFilial</class>
     <class>model.Motorista</class>
     <class>model.Status</class>
     <class>model.Veiculo</class>

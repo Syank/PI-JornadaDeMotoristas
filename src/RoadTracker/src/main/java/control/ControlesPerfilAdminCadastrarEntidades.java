@@ -177,20 +177,12 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	String senha2 = pfSenha2.getText();
     	String cargo = cbCargo.getValue().getCargo();
     	int filial = cbFilial.getValue().getId();
-    	String cargaHoraria = tfCargaHoraria.getText();
-    	String turno = cbTurno.getValue().toString();
-    	boolean dom = cbDomingo.isSelected();
-    	boolean seg = cbSegunda.isSelected();
-    	boolean ter = cbTerca.isSelected();
-    	boolean qua = cbQuarta.isSelected();
-    	boolean qui = cbQuinta.isSelected();
-    	boolean sex = cbSexta.isSelected();
-    	boolean sab = cbSabado.isSelected();
+    	String email = "teste";
     	
     	Funcionario funcionario = new Funcionario();
 
     	if (senha.equals(senha2)) {
-    		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial_func, email);
+    		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, email);
     		notificar("Sucesso de cadastro", "Funcionário cadastrado", "O " + cargo + " " + nome + " foi cadastrado com sucesso!");
     	}
     	else {
@@ -230,7 +222,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         String marca_rastreador = textFieldMarcaRastreador.getText();
         String cpfFuncionario = textFieldFuncionarioVeiculo.getText();
         
-        veic.cadastrarVeiculo(id_rastreador, placa, versao, marca_rastreador, cpfFuncionario);
+        veic.cadastrarVeiculo(id_rastreador, placa, versao, marca_rastreador);
         
         notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
     	

@@ -244,7 +244,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	tfNome.setText(funcionario.getNome());
     	tfCpf.setText(funcionario.getCpf());
     	pfSenha.setText(funcionario.getSenha());
-    	tfCargaHoraria.setText(funcionario.getCargaHoraria());
     	
     	// Cargo
     	if (funcionario.getCargo().equals("Motorista")) {
@@ -270,14 +269,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	else {
     		cbTurno.getSelectionModel().select(2);
     	}
-    	
-    	cbDom.setSelected(funcionario.isDom());
-    	cbSeg.setSelected(funcionario.isSeg());
-    	cbTer.setSelected(funcionario.isTer());
-    	cbQua.setSelected(funcionario.isQua());
-    	cbQui.setSelected(funcionario.isQui());
-    	cbSex.setSelected(funcionario.isSex());
-    	cbSab.setSelected(funcionario.isSab());
     }
 
     @FXML
@@ -290,8 +281,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     void alterarDados(ActionEvent event) {
     	
     	funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(), cbCargo.getValue().getCargo(),
-    			cbFilial.getValue().getId(), tfCargaHoraria.getText(), cbTurno.getValue().toString(), cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(),
-    			cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
+    			cbFilial.getValue().getId(), tfCargaHoraria.getText(), cbTurno.getValue().toString());
     	notificar("Sucesso", "Alteração de dados", "Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
     }
     // -------------------------------
@@ -379,8 +369,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	veiculo.alterarDadosVeiculo(textFieldPlacaVeiculo.getText(), 
     								textFieldMarcaRastreador.getText(), 
     								textFieldVersaoRastreador.getText(),
-    								Integer.parseInt(textFieldIDRastreador.getText()), 
-    								textFieldFuncionarioVeiculo.getText());
+    								Integer.parseInt(textFieldIDRastreador.getText()));
     	
     	notificar("Sucesso", "Dados alterados", "Os dados do veículo de placa " + textFieldPlacaVeiculo.getText() + " foram alterados com sucesso!");
     	
@@ -395,7 +384,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	textFieldVersaoRastreador.setText(veiculo.getModelo_rastreador());
     	textFieldIDRastreador.setText(String.valueOf(veiculo.getId_rastreador()));
     	textFieldPlacaVeiculo.setText(veiculo.getPlaca());
-    	textFieldFuncionarioVeiculo.setText(veiculo.getFuncionario().getCpf());
     	
     	desabilitarEdicao();
     }
@@ -415,7 +403,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	textFieldVersaoRastreador.setText(veiculo.getModelo_rastreador());
     	textFieldIDRastreador.setText(String.valueOf(veiculo.getId_rastreador()));
     	textFieldPlacaVeiculo.setText(veiculo.getPlaca());
-    	textFieldFuncionarioVeiculo.setText(veiculo.getFuncionario().getCpf());
     }
     
     // -------------------------------------

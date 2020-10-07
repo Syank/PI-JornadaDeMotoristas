@@ -35,7 +35,7 @@ public class Funcionario {
 	private Filial filial = new Filial();
 	
 	//um funcionario possui um ou mais avisos
-	@OneToMany(mappedBy = "funcionarioFilial") //nome do campo na tabela filha
+	@OneToMany(mappedBy = "funcionario") //nome do campo na tabela filha
 	private List<Aviso> avisos = new ArrayList<Aviso>();
 	
 	public Filial getFilial() {
@@ -135,8 +135,11 @@ public class Funcionario {
 		List<Funcionarios> funcionarios = null;
 
 		try {
-			Query query = con.createNativeQuery("select from funcionarios_filiais join motoristas");
-			funcionarios = query.getResultList();
+			
+			funcionarios = con.createQuery("from Funcionario f").getResultList();
+			
+//			Query query = con.createNativeQuery("select from funcionarios_filiais join motoristas");
+//			funcionarios = query.getResultList();
 		}
 		catch (Exception e) {
 			System.err.println(e);

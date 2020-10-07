@@ -43,8 +43,6 @@ public class Motorista {
 	@OneToMany(mappedBy = "funcionario")
 	private List<Status> status = new ArrayList<Status>();
 	@OneToMany(mappedBy = "funcionario")
-	private List<Veiculo> veiculos = new ArrayList<Veiculo>();
-	@OneToMany(mappedBy = "funcionario")
 	private List<Viagem> viagens = new ArrayList<Viagem>();
 	
 	
@@ -137,12 +135,6 @@ public class Motorista {
 	}
 	public void setStatus(List<Status> status) {
 		this.status = status;
-	}
-	public List<Veiculo> getVeiculos() {
-		return veiculos;
-	}
-	public void setVeiculos(List<Veiculo> veiculos) {
-		this.veiculos = veiculos;
 	}
 	public List<Viagem> getViagens() {
 		return viagens;
