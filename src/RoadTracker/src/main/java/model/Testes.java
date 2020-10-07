@@ -7,11 +7,13 @@ public class Testes {
 
 	public static void main(String[] args) {
 		
-		Date hoje = new Date();
-		SimpleDateFormat df;
-		df = new SimpleDateFormat("dd/MM/yyyy");
+		//Date hoje = new Date();
+	//	SimpleDateFormat df;
+	//	df = new SimpleDateFormat("dd/MM/yyyy");
 		
-		System.out.println(df.format(hoje));
+	//	System.out.println(df.format(hoje));
+		
+		
 	}
 
 }

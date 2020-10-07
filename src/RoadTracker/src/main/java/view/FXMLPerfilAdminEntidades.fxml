@@ -309,16 +309,17 @@
             <VBox layoutX="20.0" layoutY="51.0" prefHeight="171.0" prefWidth="182.0" spacing="25.0">
                <children>
                   <TextField fx:id="textFieldMarcaRastreador" disable="true" promptText="Marca do rastreador" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldVersaoRastreador" disable="true" promptText="Versão do rastreador" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldModeloRastreador" disable="true" promptText="Versão do rastreador" styleClass="customizarInputs" />
                   <TextField fx:id="textFieldIDRastreador" disable="true" promptText="ID do rastreador" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldModeloVeiculo" disable="true" layoutX="10.0" layoutY="114.0" promptText="Modelo do Veículo" styleClass="customizarInputs" />
                </children>
             </VBox>
             <Button layoutX="31.0" layoutY="253.0" mnemonicParsing="false" onAction="#habilitarEdicaoVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE" />
             <Button layoutX="31.0" layoutY="296.0" mnemonicParsing="false" onAction="#excluirVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE" />
             <Button fx:id="botaoSalvarAlteracoesVeiculo" disable="true" layoutX="293.0" layoutY="296.0" mnemonicParsing="false" onAction="#salvarDadosAlteradosVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE" />
             <Button fx:id="botaoDescartarAlteracoesVeiculo" disable="true" layoutX="376.0" layoutY="296.0" mnemonicParsing="false" onAction="#descartarAlteracoesVeiculo" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE" />
-            <TextField fx:id="textFieldFuncionarioVeiculo" disable="true" layoutX="278.0" layoutY="91.0" promptText="Funcionário" styleClass="customizarInputs" />
             <TextField fx:id="textFieldPlacaVeiculo" disable="true" layoutX="278.0" layoutY="51.0" promptText="Placa" styleClass="customizarInputs" />
+            <ComboBox fx:id="comboBoxFilialVeiculo" disable="true" layoutX="277.0" layoutY="107.0" prefWidth="150.0" promptText="Filial do Veículo" styleClass="customizarInputs" />
          </children></Pane>
       <Pane fx:id="paneVeiculos" disable="true" layoutX="258.0" layoutY="86.0" prefHeight="353.0" prefWidth="485.0" visible="false">
          <children>

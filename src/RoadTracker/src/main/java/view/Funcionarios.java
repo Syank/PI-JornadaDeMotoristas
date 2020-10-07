@@ -4,6 +4,10 @@ public class Funcionarios {
 	private String cpf;
 	private String nome;
 	
+	public Funcionarios(String cpf, String nome) {
+		this.cpf = cpf;
+		this.nome = nome;
+	}
 	public String getCpf() {
 		return cpf;
 	}

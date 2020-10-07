@@ -33,55 +33,81 @@ public class Veiculo {
 	private List<Viagem> viagens = new ArrayList<Viagem>();
 	
 	
+
 	
-	
-	public int getId_rastreador() {
-		return id_rastreador;
-	}
-	public void setId_rastreador(int id_rastreador) {
-		this.id_rastreador = id_rastreador;
-	}
 	public String getPlaca() {
 		return placa;
 	}
+
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
-	public String getMarca_rastreador() {
-		return marca_rastreador;
-	}
-	public void setMarca_rastreador(String marca_rastreador) {
-		this.marca_rastreador = marca_rastreador;
-	}
-	public Filial getFuncionario() {
-		return filial;
-	}
-	public void setFuncionario(Filial filial) {
-		this.filial = filial;
-	}
+
 	public String getModelo_veiculo() {
 		return modelo_veiculo;
 	}
+
 	public void setModelo_veiculo(String modelo_veiculo) {
 		this.modelo_veiculo = modelo_veiculo;
 	}
+
+	public int getId_rastreador() {
+		return id_rastreador;
+	}
+
+	public void setId_rastreador(int id_rastreador) {
+		this.id_rastreador = id_rastreador;
+	}
+
+	public String getMarca_rastreador() {
+		return marca_rastreador;
+	}
+
+	public void setMarca_rastreador(String marca_rastreador) {
+		this.marca_rastreador = marca_rastreador;
+	}
+
 	public String getModelo_rastreador() {
 		return modelo_rastreador;
 	}
+
 	public void setModelo_rastreador(String modelo_rastreador) {
 		this.modelo_rastreador = modelo_rastreador;
 	}
+
+	public Filial getFilial() {
+		return filial;
+	}
+
+	public void setFilial(Filial filial) {
+		this.filial = filial;
+	}
+
+	public List<Viagem> getViagens() {
+		return viagens;
+	}
+
+	public void setViagens(List<Viagem> viagens) {
+		this.viagens = viagens;
+	}
+
 	
-	public void cadastrarVeiculo(String id_rastreador, String placa, String versao, String marca_rastreador){
-		int id;
-		id = Integer.parseInt(id_rastreador);
+	
+	
+	public void cadastrarVeiculo(String placa, String modelo_veiculo, String id_rastreador, String marca_rastreador, String modelo_rastreador, int idFilial){
+		int idRastreador;
+		idRastreador = Integer.parseInt(id_rastreador);
 		EntityManager con = new ConnectionFactory().getConnection();
 		
-		
-		this.setId_rastreador(id);
 		this.setPlaca(placa);
-		this.setModelo_rastreador(versao);
+		this.setModelo_veiculo(modelo_veiculo);
+		this.setId_rastreador(idRastreador);
 		this.setMarca_rastreador(marca_rastreador);
+		this.setModelo_rastreador(modelo_rastreador);
+		filial.setId(idFilial);
+		this.setFilial(filial);
+		
+
 
 		try {
 			con.getTransaction().begin();
@@ -97,13 +123,19 @@ public class Veiculo {
 		}
 	}
 	
-	public void alterarDadosVeiculo(String placa, String marca_rastreador, String versao_rastreador, Integer id_rastreador) {
+	public void alterarDadosVeiculo(String placa, String modelo_veiculo, String id_rastreador, String marca_rastreador, String modelo_rastreador, int idFilial) {
+		int idRastreador;
+		idRastreador = Integer.parseInt(id_rastreador);
+		
 		EntityManager con = new ConnectionFactory().getConnection();
 		
-		this.id_rastreador = id_rastreador;
 		this.placa = placa;
-		this.modelo_rastreador = versao_rastreador;
+		this.modelo_veiculo = modelo_veiculo;
+		this.id_rastreador = idRastreador;
 		this.marca_rastreador = marca_rastreador;
+		this.modelo_rastreador = modelo_rastreador;
+		filial.setId(idFilial);
+		this.setFilial(filial);
 		
 		try {
 			con.getTransaction().begin();

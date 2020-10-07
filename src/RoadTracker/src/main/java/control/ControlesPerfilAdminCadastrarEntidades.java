@@ -110,13 +110,15 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     @FXML
     private TextField textFieldMarcaRastreador;
     @FXML
-    private TextField textFieldVersaoRastreador;
+    private TextField textFieldModeloRastreador;
     @FXML
     private TextField textFieldIDRastreador;
     @FXML
     private TextField textFieldPlacaVeiculo;
     @FXML
-    private TextField textFieldFuncionarioVeiculo;
+    private TextField textFieldModeloVeiculo;
+    @FXML
+    private ComboBox<Filiais> comboBoxEscolherFilialVeiculos;
     // ----------------------------------------
     
     
@@ -161,6 +163,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	filiais = filial.listarFiliais();
     	filiaisList = FXCollections.observableArrayList(filiais);
     	cbFilial.setItems(filiaisList);
+    	comboBoxEscolherFilialVeiculos.setItems(filiaisList);
     }
     public void carregarComboBoxTurnos() {
     	Turnos t = new Turnos(0, null);
@@ -216,13 +219,15 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         	
         Veiculo veic = new Veiculo();
         	
-        String id_rastreador = textFieldIDRastreador.getText();
         String placa = textFieldPlacaVeiculo.getText();
-        String versao = textFieldVersaoRastreador.getText();
+        String modelo_veiculo = textFieldModeloVeiculo.getText();
+        String id_rastreador = textFieldIDRastreador.getText();
         String marca_rastreador = textFieldMarcaRastreador.getText();
-        String cpfFuncionario = textFieldFuncionarioVeiculo.getText();
+        String modelo_rastreador = textFieldModeloRastreador.getText();
+    	int filial = comboBoxEscolherFilialVeiculos.getValue().getId();
         
-        veic.cadastrarVeiculo(id_rastreador, placa, versao, marca_rastreador);
+        
+        veic.cadastrarVeiculo(placa, modelo_veiculo, id_rastreador, marca_rastreador, modelo_rastreador, filial);
         
         notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
     	
@@ -463,10 +468,10 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     }
     public void limparCamposCadastrarVeículos() {
     	textFieldMarcaRastreador.setText("");
-    	textFieldVersaoRastreador.setText("");
+    	textFieldModeloRastreador.setText("");
     	textFieldIDRastreador.setText("");
         textFieldPlacaVeiculo.setText("");
-        textFieldFuncionarioVeiculo.setText("");
+        textFieldModeloVeiculo.setText("");
     	
     }
     public void limparCamposCadastrarViagens() {
