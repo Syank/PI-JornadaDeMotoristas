@@ -296,7 +296,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     }
     // -------------------------------
     
-    
+
     //Métodos filial
     @FXML
     void habilitarEdicaoFilial(ActionEvent event){

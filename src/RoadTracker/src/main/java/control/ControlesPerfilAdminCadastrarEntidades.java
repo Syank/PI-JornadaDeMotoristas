@@ -190,7 +190,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	Funcionario funcionario = new Funcionario();
 
     	if (senha.equals(senha2)) {
-    		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, cargaHoraria, turno, seg, ter, qua, qui, sex, sab, dom);
+    		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial_func, email);
     		notificar("Sucesso de cadastro", "Funcionário cadastrado", "O " + cargo + " " + nome + " foi cadastrado com sucesso!");
     	}
     	else {
