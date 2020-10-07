@@ -161,9 +161,6 @@ public class Motorista {
 		this.idFilial = idFilial;
 	}
 	
-	
-	
-	
 	// Métodos
 	public void cadastrarMotorista(String cpf, String nome, String email, String senha, String salario, String cargaHoraria, int idFilial,
 			String turno, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
@@ -184,6 +181,8 @@ public class Motorista {
 		this.setSab(sab);
 		this.setDom(dom);
 		
+		filial.setId(idFilial);
+		this.setFilial(filial);
 		
 		EntityManager con = new ConnectionFactory().getConnection();
 		

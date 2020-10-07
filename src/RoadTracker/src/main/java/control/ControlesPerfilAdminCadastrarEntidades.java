@@ -183,13 +183,36 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	String email = "teste";
     	
     	Funcionario funcionario = new Funcionario();
-
-    	if (senha.equals(senha2)) {
-    		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, email);
-    		notificar("Sucesso de cadastro", "Funcionário cadastrado", "O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+    	
+    	if (cargo.equals("Administrador") || cargo.equals("Supervisor")) {
+        	if (senha.equals(senha2)) {
+        		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, email);
+        		notificar("Sucesso de cadastro", "Funcionário cadastrado", "O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+        	}
+        	else {
+        		notificar("Falha de cadastro", "Falha ao cadastrar", "As senhas estão incorretas, tente novamente");
+        	}
     	}
     	else {
-    		notificar("Falha de cadastro", "Falha ao cadastrar", "As senhas estão incorretas, tente novamente");
+    		
+    		String cargaHoraria = tfCargaHoraria.getText();
+    		String turno = cbTurno.getValue().getTurno();
+    		boolean dom = cbDomingo.isSelected();
+    		boolean seg = cbSegunda.isSelected();
+    		boolean ter = cbTerca.isSelected();
+    		boolean qua = cbQuarta.isSelected();
+    		boolean qui = cbQuinta.isSelected();
+    		boolean sex = cbSexta.isSelected();
+    		boolean sab = cbSabado.isSelected();
+    		
+    		Motorista motorista = new Motorista();
+    		
+        	if (senha.equals(senha2)) {
+        		motorista.cadastrarMotorista(cpf, nome, email, senha, "R$1280,00", cargaHoraria, filial, turno, seg, ter, qua, qui, sex, sab, dom);
+        	}
+        	else {
+        		notificar("Falha de cadastro", "Falha ao cadastrar", "As senhas estão incorretas, tente novamente");
+        	}    		
     	}
     }
     // -----------------------------------
