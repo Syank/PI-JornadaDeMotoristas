@@ -128,27 +128,41 @@
       </HBox>
       <Pane fx:id="paneCadastrarFuncionarios" disable="true" layoutX="266.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
          <children>
-            <VBox layoutX="263.0" layoutY="189.0" prefHeight="123.0" prefWidth="100.0">
+            <Button layoutX="14.0" layoutY="311.0" mnemonicParsing="false" onMouseClicked="#cadastrarFuncionario" prefHeight="31.0" prefWidth="102.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
+            <ComboBox fx:id="cbCargo" layoutX="13.0" layoutY="27.0" onAction="#ajustarEscolhaDoCargo" prefHeight="27.0" prefWidth="159.0" promptText="Escolha o cargo..." styleClass="customizarInputs" />
+            <ComboBox fx:id="cbFilial" layoutX="187.0" layoutY="27.0" prefHeight="27.0" prefWidth="159.0" promptText="Escolha a filial..." styleClass="customizarInputs" />
+            <Pane fx:id="paneInfosExtrasMotorista" disable="true" layoutX="175.0" layoutY="61.0" prefHeight="235.0" prefWidth="295.0" visible="false">
                <children>
-                  <Label text="Dias de trabalho:" />
-                  <CheckBox fx:id="cbDomingo" mnemonicParsing="false" text="Domingo" />
-                  <CheckBox fx:id="cbSegunda" mnemonicParsing="false" text="Segunda" />
-                  <CheckBox fx:id="cbTerca" mnemonicParsing="false" text="Terça" />
-                  <CheckBox fx:id="cbQuarta" mnemonicParsing="false" text="Quarta" />
-                  <CheckBox fx:id="cbQuinta" mnemonicParsing="false" text="Quinta" />
-                  <CheckBox fx:id="cbSexta" mnemonicParsing="false" text="Sexta" />
-                  <CheckBox fx:id="cbSabado" mnemonicParsing="false" text="Sábado" />
+                  <VBox layoutX="180.0" layoutY="14.0" prefHeight="123.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Dias de trabalho:" />
+                        <CheckBox fx:id="cbDomingo" mnemonicParsing="false" text="Domingo" />
+                        <CheckBox fx:id="cbSegunda" mnemonicParsing="false" text="Segunda" />
+                        <CheckBox fx:id="cbTerca" mnemonicParsing="false" text="Terça" />
+                        <CheckBox fx:id="cbQuarta" mnemonicParsing="false" text="Quarta" />
+                        <CheckBox fx:id="cbQuinta" mnemonicParsing="false" text="Quinta" />
+                        <CheckBox fx:id="cbSexta" mnemonicParsing="false" text="Sexta" />
+                        <CheckBox fx:id="cbSabado" mnemonicParsing="false" text="Sábado" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="16.0" layoutY="14.0" prefHeight="156.0" prefWidth="149.0" spacing="15.0">
+                     <children>
+                        <ComboBox fx:id="cbTurno" prefWidth="150.0" promptText="Turno" styleClass="customizarInputs" />
+                        <TextField fx:id="tfCargaHoraria" promptText="Carga Horária" styleClass="customizarInputs" />
+                        <TextField fx:id="textFieldSalario" promptText="Salário" styleClass="customizarInputs" />
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <VBox layoutX="15.0" layoutY="75.0" prefHeight="218.0" prefWidth="159.0" spacing="15.0">
+               <children>
+                  <TextField fx:id="tfNome" promptText="Nome" styleClass="customizarInputs" />
+                  <TextField fx:id="tfCpf" promptText="CPF" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldEmail" promptText="E-mail" styleClass="customizarInputs" />
+                  <PasswordField fx:id="pfSenha1" promptText="Senha" styleClass="customizarInputs" />
+                  <PasswordField fx:id="pfSenha2" promptText="Confirme a senha" styleClass="customizarInputs" />
                </children>
             </VBox>
-            <Button layoutX="14.0" layoutY="311.0" mnemonicParsing="false" onMouseClicked="#cadastrarFuncionario" prefHeight="31.0" prefWidth="102.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
-            <ComboBox fx:id="cbCargo" layoutX="13.0" layoutY="27.0" prefWidth="150.0" promptText="Escolha o cargo..." styleClass="customizarInputs" />
-            <ComboBox fx:id="cbFilial" layoutX="238.0" layoutY="27.0" prefWidth="150.0" promptText="Escolha a filial..." styleClass="customizarInputs" />
-            <TextField fx:id="tfNome" layoutX="14.0" layoutY="102.0" promptText="Nome" styleClass="customizarInputs" />
-            <TextField fx:id="tfCpf" layoutX="14.0" layoutY="148.0" promptText="CPF" styleClass="customizarInputs" />
-            <PasswordField fx:id="pfSenha1" layoutX="14.0" layoutY="189.0" promptText="Senha" styleClass="customizarInputs" />
-            <PasswordField fx:id="pfSenha2" layoutX="14.0" layoutY="238.0" promptText="Confirme a senha" styleClass="customizarInputs" />
-            <TextField fx:id="tfCargaHoraria" layoutX="239.0" layoutY="148.0" promptText="Carga Horária" styleClass="customizarInputs" />
-            <ComboBox fx:id="cbTurno" layoutX="238.0" layoutY="102.0" prefWidth="150.0" promptText="Turno" styleClass="customizarInputs" />
          </children>
       </Pane>
       <Pane fx:id="paneCadastrarFiliais" disable="true" layoutX="265.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">

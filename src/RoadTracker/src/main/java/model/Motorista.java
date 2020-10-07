@@ -162,7 +162,7 @@ public class Motorista {
 	}
 	
 	// Métodos
-	public void cadastrarMotorista(String cpf, String nome, String email, String senha, String salario, String cargaHoraria, int idFilial,
+	public boolean cadastrarMotorista(String cpf, String nome, String email, String senha, String salario, String cargaHoraria, int idFilial,
 			String turno, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
 
 		this.setCpf(cpf);
@@ -192,14 +192,15 @@ public class Motorista {
 			con.getTransaction().commit();
 		}
 		catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "Ocorreu um problema ao cadastrar o motorista. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
 			con.getTransaction().rollback();
+			con.close();
+			return false;
 		}
 		finally {
 			con.close();
 		}
 		
-
+		return true;
 	}
 
 	public void alterarDadosMotorista(String cpf, String nome, String email, String senha, String salario, String cargaHoraria, int idFilial,

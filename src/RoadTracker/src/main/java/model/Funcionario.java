@@ -75,7 +75,7 @@ public class Funcionario {
 		this.cargo = cargo;
 	}
 	
-	public void cadastrarFuncionario(String nome, String cpf, String senha, String cargo, int filial_func, String email) {
+	public boolean cadastrarFuncionario(String nome, String cpf, String senha, String cargo, int filial_func, String email) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
 		
@@ -94,13 +94,15 @@ public class Funcionario {
 			con.getTransaction().commit();
 		}
 		catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "Ocorreu um problema ao cadastrar o funcionário. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
 			con.getTransaction().rollback();
+			con.close();
+			return false;
 		}
 		finally {
 			con.close();
 		}
 		
+		return true;
 	}
 	
 	public void alterarDadosFuncionario(String novoNome, String cpfFuncionario, String novaSenha, String novoCargo, int novaFilial, String carga, String novoEmail) {

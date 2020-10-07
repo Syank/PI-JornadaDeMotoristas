@@ -78,6 +78,12 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 	private CheckBox cbSabado;
     @FXML
     private ComboBox<Turnos> cbTurno;
+    @FXML
+    private TextField textFieldSalario;
+    @FXML
+    private Pane paneInfosExtrasMotorista;
+    @FXML
+    private TextField textFieldEmail;
 	
     private List<Cargos> cargos = new ArrayList<>();
     private ObservableList<Cargos> cargosList;
@@ -180,21 +186,28 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	String senha2 = pfSenha2.getText();
     	String cargo = cbCargo.getValue().getCargo();
     	int filial = cbFilial.getValue().getId();
-    	String email = "teste";
+    	String email = textFieldEmail.getText();
     	
     	Funcionario funcionario = new Funcionario();
     	
+    	
     	if (cargo.equals("Administrador") || cargo.equals("Supervisor")) {
         	if (senha.equals(senha2)) {
-        		funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, email);
-        		notificar("Sucesso de cadastro", "Funcionário cadastrado", "O " + cargo + " " + nome + " foi cadastrado com sucesso!");
-        	}
-        	else {
-        		notificar("Falha de cadastro", "Falha ao cadastrar", "As senhas estão incorretas, tente novamente");
+        		boolean cadastro = funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, email);
+        		
+        		if(cadastro) {
+        			notificar("Sucesso de cadastro", "Funcionário cadastrado", "O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+        		}else {
+        			notificar("Falha de cadastro", "Falha ao cadastrar funcionário", "Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
+        		}
+        	
+        	}else {
+        		notificar("Falha de cadastro", "Falha ao cadastrar funcionário", "Não foi possível realizar a ação de cadastro, os campos da senha estão incorretos.");
         	}
     	}
     	else {
     		
+    		String salario = textFieldSalario.getText();
     		String cargaHoraria = tfCargaHoraria.getText();
     		String turno = cbTurno.getValue().getTurno();
     		boolean dom = cbDomingo.isSelected();
@@ -208,9 +221,14 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     		Motorista motorista = new Motorista();
     		
         	if (senha.equals(senha2)) {
-        		motorista.cadastrarMotorista(cpf, nome, email, senha, "R$1280,00", cargaHoraria, filial, turno, seg, ter, qua, qui, sex, sab, dom);
-        	}
-        	else {
+        		boolean cadastro = motorista.cadastrarMotorista(cpf, nome, email, senha, salario, cargaHoraria, filial, turno, seg, ter, qua, qui, sex, sab, dom);
+        	
+        		if(cadastro) {
+        			notificar("Sucesso de cadastro", "Funcionário cadastrado", "O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+        		}else {
+        			notificar("Falha de cadastro", "Falha ao cadastrar funcionário", "Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
+        		}
+        	}else {
         		notificar("Falha de cadastro", "Falha ao cadastrar", "As senhas estão incorretas, tente novamente");
         	}    		
     	}
@@ -329,6 +347,9 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
+    	
+    	paneInfosExtrasMotorista.setDisable(true);
+    	paneInfosExtrasMotorista.setVisible(false);
     	
     	labelTipoDeCadastro.setText("Cadastro de Funcionários");
     }
@@ -469,6 +490,20 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 		limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
     }
+    
+    @FXML
+    public void ajustarEscolhaDoCargo(ActionEvent event) {
+    	String escolha = cbCargo.getValue().getCargo();
+    	
+    	if(escolha.equals("Motorista")) {
+    		paneInfosExtrasMotorista.setDisable(false);
+    		paneInfosExtrasMotorista.setVisible(true);
+    	}else {
+    		paneInfosExtrasMotorista.setDisable(true);
+    		paneInfosExtrasMotorista.setVisible(false);
+    	}
+    }
+    
     public void limparCamposCadastrarFiliais() {
     	tfNomeFilial.setText("");
     	tfCidadeFilial.setText("");
@@ -487,7 +522,9 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	cbQuinta.setSelected(false);
     	cbSexta.setSelected(false);
     	cbSabado.setSelected(false);
-    	cbCargo.getSelectionModel().clearSelection();
+    	textFieldSalario.setText("");
+    	cbTurno.getSelectionModel().clearSelection();
+    	textFieldEmail.setText("");
     }
     public void limparCamposCadastrarVeículos() {
     	textFieldMarcaRastreador.setText("");
