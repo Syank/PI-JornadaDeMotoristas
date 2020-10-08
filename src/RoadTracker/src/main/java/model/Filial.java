@@ -74,13 +74,15 @@ public class Filial {
 		this.rntrc = rntrc;
 	}
 	
-	public void cadastrarFilial(String nome, String cidade, String estado) {
+	public void cadastrarFilial(String nome, String cidade, String estado, String cnpj, String rntrc) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		this.setCidade(cidade);
 		this.setEstado(estado);
 		this.setNome(nome);
+		this.setCnpj(cnpj);
+		this.setRntrc(rntrc);
 		
 		try {
 			con.getTransaction().begin();
@@ -97,13 +99,16 @@ public class Filial {
 		
 	}
 	
-	public void alterarDadosFilial(String novoNome, String novaCidade, String novoEstado, Integer id) {
+	public void alterarDadosFilial(String novoNome, String novaCidade, String novoEstado, String novoCnpj, String novoRntrc) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
-		this.id = id;
+		this.id = this.getId();
 		this.cidade = novaCidade;
 		this.estado = novoEstado;
 		this.nome = novoNome;
+		this.cnpj = novoCnpj;
+		this.rntrc = novoRntrc;
+				
 		
 		try {
 			con.getTransaction().begin();

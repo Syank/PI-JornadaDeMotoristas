@@ -175,6 +175,8 @@
                   <TextField fx:id="tfEstadoFilial" promptText="Estado da filial (Sigla)" styleClass="customizarInputs" />
                </children>
             </VBox>
+            <TextField fx:id="tfCnpj" layoutX="238.0" layoutY="65.0" promptText="CNPJ" styleClass="customizarInputs" />
+            <TextField fx:id="tfRntrc" layoutX="238.0" layoutY="117.0" promptText="RNTRC" styleClass="customizarInputs" />
          </children>
       </Pane>
       <Pane fx:id="paneCadastrarVeiculos" disable="true" layoutX="266.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">

@@ -35,7 +35,7 @@ public class Motorista {
 	private boolean sex;
 	private boolean sab;
 	private boolean dom;
-	private String cargo = "Motorista";
+	private String cargo;
 	
 	// Mapeamento
 	@ManyToOne
@@ -79,43 +79,43 @@ public class Motorista {
 	public void setTurno(String turno) {
 		this.turno = turno;
 	}
-	public boolean isSeg() {
+	public boolean getSeg() {
 		return seg;
 	}
 	public void setSeg(boolean seg) {
 		this.seg = seg;
 	}
-	public boolean isTer() {
+	public boolean getTer() {
 		return ter;
 	}
 	public void setTer(boolean ter) {
 		this.ter = ter;
 	}
-	public boolean isQua() {
+	public boolean getQua() {
 		return qua;
 	}
 	public void setQua(boolean qua) {
 		this.qua = qua;
 	}
-	public boolean isQui() {
+	public boolean getQui() {
 		return qui;
 	}
 	public void setQui(boolean qui) {
 		this.qui = qui;
 	}
-	public boolean isSex() {
+	public boolean getSex() {
 		return sex;
 	}
 	public void setSex(boolean sex) {
 		this.sex = sex;
 	}
-	public boolean isSab() {
+	public boolean getSab() {
 		return sab;
 	}
 	public void setSab(boolean sab) {
 		this.sab = sab;
 	}
-	public boolean isDom() {
+	public boolean getDom() {
 		return dom;
 	}
 	public void setDom(boolean dom) {
@@ -172,7 +172,7 @@ public class Motorista {
 	
 	// Métodos
 	public boolean cadastrarMotorista(String cpf, String nome, String email, String senha, String salario, String cargaHoraria, int idFilial,
-			String turno, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
+			String turno, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom, String cargo) {
 
 		this.setCpf(cpf);
 		this.setNome(nome);
@@ -189,6 +189,7 @@ public class Motorista {
 		this.setSex(sex);
 		this.setSab(sab);
 		this.setDom(dom);
+		this.setCargo(cargo);
 		
 		filial.setId(idFilial);
 		this.setFilial(filial);
@@ -246,7 +247,7 @@ public class Motorista {
 			con.close();
 		}
 	}
-	public Motorista excluirMotorista() {
+	public Motorista excluirMotorista(String cpf) {
 		EntityManager con = new ConnectionFactory().getConnection();
 
 		Motorista motorista = null;
@@ -272,7 +273,7 @@ public class Motorista {
 	public List<Funcionarios> listarMotoristas() {
 		List<Funcionarios> lista = new ArrayList<>();
 		for (Motorista m: this.consultarTodosMotoristas()) {
-			Funcionarios nome = new Funcionarios(m.cpf, m.nome);
+			Funcionarios nome = new Funcionarios(m.cpf, m.nome, m.cargo);
 			lista.add(nome);
 		}
 		return lista;
@@ -294,7 +295,7 @@ public class Motorista {
 		return motorista;
 	}
 	
-	public Motorista encontrarMotorista() {
+	public Motorista encontrarMotorista(String cpf) {
 		EntityManager con = new ConnectionFactory().getConnection();
 
 		Motorista motorista  = null;

@@ -27,6 +27,7 @@ import view.*;
 public class ControlesPerfilAdminEntidades implements Initializable {
 
 	private static Funcionario funcionario = new Funcionario();
+	private static Motorista motorista = new Motorista();
 	private static Filial filial = new Filial();
 	private static Turnos t = new Turnos(0, null);
 
@@ -90,8 +91,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	@FXML
 	private ComboBox<Cargos> cbCargo;
 	@FXML
-	private VBox chbDias;
-	@FXML
 	private Pane paneFuncionarios;
 	@FXML
 	private Button btSelecionarFuncionario;
@@ -104,11 +103,21 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	@FXML
 	private TableColumn<?, ?> colunaCpf;
 	@FXML
+	private TableColumn<?, ?> colunaCargo;
+	@FXML
 	private TextField campoDeBuscaNome;
 	@FXML
 	private TextField campoDeBuscaCpf;
 	@FXML
 	private ComboBox<Turnos> cbTurno;
+	@FXML
+	private VBox boxInfoExtraMotorista1;
+	@FXML
+	private VBox boxInfoExtraMotorista2;
+	@FXML
+	private TextField textFieldEmail;
+	@FXML
+	private TextField textFieldSalarioMotorista;
 
 	private List<Cargos> cargos = new ArrayList<>();
 	private ObservableList<Cargos> cargosList;
@@ -120,12 +129,15 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private ObservableList<Turnos> turnosList;
 
 	private String cpfFuncionario;
+	private String cargoFuncionario;
 
 	private List<Funcionarios> listaDeFuncionarios = new ArrayList<>();
 	private ObservableList<Funcionarios> obsListFuncionarios;
 	
 	private List<Funcionarios> listaDeMotoristas = new ArrayList<>();
 	private ObservableList<Funcionarios> obsListMotoristas;
+	
+	
 	// ---------------------------------
 
 	// Elementos das panes de filiais
@@ -155,6 +167,10 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private TextField textFieldCidadeFilial;
 	@FXML
 	private TextField textFieldEstadoFilial;
+	@FXML
+	private TextField textFieldCnpj;
+	@FXML
+	private TextField textFieldRntrc;
 	@FXML
 	private Button botaoSalvarAlteracoesFilial;
 	@FXML
@@ -216,19 +232,30 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 	@FXML
 	void excluirFuncionario(ActionEvent event) {
-		funcionario.removerFuncionario(funcionario.getCpf());
-		notificar("Sucesso", "Funcionário excluído",
-				"O funcionário foi excluído dos registros do banco de dados com sucesso");
-	}
+		if(cargoFuncionario.equals("Motorista")) {
+			motorista.excluirMotorista(cpfFuncionario);
 
+			notificar("Sucesso", "Funcionário excluído",
+					"O funcionário foi excluído dos registros do banco de dados com sucesso");
+		}else {
+			funcionario.removerFuncionario(funcionario.getCpf());
+			notificar("Sucesso", "Funcionário excluído",
+					"O funcionário foi excluído dos registros do banco de dados com sucesso");
+		}
+	}
+	
 	@FXML
 	void selecionarFuncionario(ActionEvent event) {
 		Funcionarios selecionado = tabelaFuncionarios.getSelectionModel().getSelectedItem();
+		
 		cpfFuncionario = selecionado.getCpf();
+		cargoFuncionario = selecionado.getCargo();
+
 		paneFuncionarios.setVisible(false);
 		paneFuncionarios.setDisable(true);
 		paneFuncionarioSelecionado.setVisible(true);
 		paneFuncionarioSelecionado.setDisable(false);
+		
 		carregarComboBoxCargos();
 		carregarComboBox();
 		carregarComboBoxTurnos();
@@ -236,32 +263,68 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	}
 
 	void carregarInfoFuncionario() {
-		funcionario = funcionario.encontrarFuncionario(cpfFuncionario);
-
-		lblNome.setText(funcionario.getNome());
-		tfNome.setText(funcionario.getNome());
-		tfCpf.setText(funcionario.getCpf());
-		pfSenha.setText(funcionario.getSenha());
-
-		// Cargo
-		if (funcionario.getCargo().equals("Motorista")) {
+		System.out.println(cargoFuncionario);
+		if(cargoFuncionario.equals("Motorista")) {
+			boxInfoExtraMotorista1.setVisible(true);
+			boxInfoExtraMotorista1.setDisable(true);
+			boxInfoExtraMotorista2.setVisible(true);
+			boxInfoExtraMotorista2.setDisable(true);
+			
+			motorista = motorista.encontrarMotorista(cpfFuncionario);
+			
+			lblNome.setText(motorista.getNome());
+			tfNome.setText(motorista.getNome());
+			tfCpf.setText(motorista.getCpf());
+			pfSenha.setText(motorista.getSenha());
+			tfCargaHoraria.setText(motorista.getCargaHoraria());
+			
+			cbDom.setSelected(motorista.getDom());
+			cbSeg.setSelected(motorista.getSeg());
+			cbTer.setSelected(motorista.getTer());
+			cbQua.setSelected(motorista.getQua());
+			cbQui.setSelected(motorista.getQui());
+			cbSex.setSelected(motorista.getSex());
+			cbSab.setSelected(motorista.getSab());
+			
+			textFieldEmail.setText(motorista.getEmail());
+			textFieldSalarioMotorista.setText(motorista.getSalario());
 			cbCargo.getSelectionModel().select(0);
-		} else if (funcionario.getCargo().equals("Supervisor")) {
-			cbCargo.getSelectionModel().select(1);
-		} else {
-			cbCargo.getSelectionModel().select(2);
-		}
-
-		// Filial
-		cbFilial.getSelectionModel().select(funcionario.getFilial().getId() - 1);
-
-		// Turno
-		if (funcionario.getCargo().equals("Matutino")) {
-			cbTurno.getSelectionModel().select(0);
-		} else if (funcionario.getCargo().equals("Vespertino")) {
-			cbTurno.getSelectionModel().select(1);
-		} else {
-			cbTurno.getSelectionModel().select(2);
+			cbFilial.getSelectionModel().select(motorista.getFilial().getId() - 1);
+			
+			if (motorista.getCargo().equals("Matutino")) {
+				cbTurno.getSelectionModel().select(0);
+			} else if (motorista.getCargo().equals("Vespertino")) {
+				cbTurno.getSelectionModel().select(1);
+			} else {
+				cbTurno.getSelectionModel().select(2);
+			}
+			
+		}else {
+			boxInfoExtraMotorista1.setVisible(false);
+			boxInfoExtraMotorista1.setDisable(true);
+			boxInfoExtraMotorista2.setVisible(false);
+			boxInfoExtraMotorista2.setDisable(true);
+			
+			funcionario = funcionario.encontrarFuncionario(cpfFuncionario);
+	
+			lblNome.setText(funcionario.getNome());
+			tfNome.setText(funcionario.getNome());
+			tfCpf.setText(funcionario.getCpf());
+			pfSenha.setText(funcionario.getSenha());
+			textFieldEmail.setText(funcionario.getEmail());
+			
+			// Cargo
+			if (funcionario.getCargo().equals("Motorista")) {
+				cbCargo.getSelectionModel().select(0);
+			} else if (funcionario.getCargo().equals("Supervisor")) {
+				cbCargo.getSelectionModel().select(1);
+			} else {
+				cbCargo.getSelectionModel().select(2);
+			}
+	
+			// Filial
+			cbFilial.getSelectionModel().select(funcionario.getFilial().getId() - 1);
+	
 		}
 	}
 
@@ -269,17 +332,26 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	void descartarAlteracoes(ActionEvent event) {
 		carregarInfoFuncionario();
 		desabilitarEdicao();
-		System.out.println("Descartou");
 	}
 
 	@FXML
 	void alterarDados(ActionEvent event) {
-
+		if(cargoFuncionario.equals("Motorista")) {
+			motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
+											textFieldEmail.getText(), pfSenha.getText(), 
+											textFieldSalarioMotorista.getText(), tfCargaHoraria.getText(), 
+											cbFilial.getValue().getId(), cbTurno.getValue().getTurno(),
+											cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(), cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
+		
+			notificar("Sucesso", "Alteração de dados",
+					"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+		}else {
 		funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(),
-				cbCargo.getValue().getCargo(), cbFilial.getValue().getId(), tfCargaHoraria.getText(),
-				cbTurno.getValue().toString());
+											cbCargo.getValue().getCargo(), cbFilial.getValue().getId(),
+											textFieldEmail.getText());
 		notificar("Sucesso", "Alteração de dados",
 				"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+		}
 	}
 	// -------------------------------
 
@@ -289,6 +361,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldNomeFilial.setDisable(false);
 		textFieldCidadeFilial.setDisable(false);
 		textFieldEstadoFilial.setDisable(false);
+		textFieldCnpj.setDisable(false);
+		textFieldRntrc.setDisable(false);
 
 		botaoSalvarAlteracoesFilial.setDisable(false);
 		botaoDescartarAlteracoesFilial.setDisable(false);
@@ -306,7 +380,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	void salvarDadosAlteradosFilial(ActionEvent event) {
 		Filial filial = new Filial();
 		filial.alterarDadosFilial(textFieldNomeFilial.getText(), textFieldCidadeFilial.getText(),
-				textFieldEstadoFilial.getText(), idFilial);
+				textFieldEstadoFilial.getText(), textFieldCnpj.getText(), textFieldRntrc.getText());
 
 		desabilitarEdicao();
 
@@ -322,6 +396,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldNomeFilial.setText(filial.getNome());
 		textFieldCidadeFilial.setText(filial.getCidade());
 		textFieldEstadoFilial.setText(filial.getEstado());
+		textFieldCnpj.setText(filial.getCnpj());
+		textFieldRntrc.setText(filial.getRntrc());
 
 
 	}
@@ -342,6 +418,9 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldCidadeFilial.setText(filial.getCidade());
 		textFieldEstadoFilial.setText(filial.getEstado());
 		textFieldNomeFilial.setText(filial.getNome());
+		textFieldCnpj.setText(filial.getCnpj());
+		textFieldRntrc.setText(filial.getRntrc());
+		
 
 	}
 	// -------------------------------------
@@ -535,9 +614,12 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		cbFilial.setDisable(false);
 		cbTurno.setDisable(false);
 		tfCargaHoraria.setDisable(false);
-		chbDias.setDisable(false);
 		btnSalvar.setDisable(false);
 		btnDescartar.setDisable(false);
+		textFieldEmail.setDisable(false);
+		boxInfoExtraMotorista1.setDisable(false);
+		textFieldSalarioMotorista.setDisable(false);
+		boxInfoExtraMotorista2.setDisable(false);
 	}
 
 	void desabilitarEdicao() {
@@ -548,13 +630,18 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		cbTurno.setDisable(true);
 		cbFilial.setDisable(true);
 		tfCargaHoraria.setDisable(true);
-		chbDias.setDisable(true);
 		btnSalvar.setDisable(true);
 		btnDescartar.setDisable(true);
+		textFieldEmail.setDisable(true);
+		textFieldSalarioMotorista.setDisable(true);
+		boxInfoExtraMotorista2.setDisable(true);
+		boxInfoExtraMotorista1.setDisable(true);
 
 		textFieldNomeFilial.setDisable(true);
 		textFieldCidadeFilial.setDisable(true);
 		textFieldEstadoFilial.setDisable(true);
+		textFieldCnpj.setDisable(true);
+		textFieldRntrc.setDisable(true);
 		botaoSalvarAlteracoesFilial.setDisable(true);
 		botaoDescartarAlteracoesFilial.setDisable(true);
 
@@ -622,6 +709,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		// Listas, nos seus métodos get
 		colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		colunaCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		colunaCargo.setCellValueFactory(new PropertyValueFactory<>("cargo"));
 
 		colunaIDFilial.setCellValueFactory(new PropertyValueFactory<>("id"));
 		colunaFilial.setCellValueFactory(new PropertyValueFactory<>("nome"));

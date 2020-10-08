@@ -105,7 +105,7 @@ public class Funcionario {
 		return true;
 	}
 	
-	public void alterarDadosFuncionario(String novoNome, String cpfFuncionario, String novaSenha, String novoCargo, int novaFilial, String carga, String novoEmail) {
+	public void alterarDadosFuncionario(String novoNome, String cpfFuncionario, String novaSenha, String novoCargo, int novaFilial, String novoEmail) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		this.nome = novoNome;
@@ -156,9 +156,10 @@ public class Funcionario {
 	public List<Funcionarios> listarFuncionarios(){
 		List<Funcionarios> lista = new ArrayList<>();
 		for (Funcionario f: this.consultarTodosFuncionarios()) {
-			Funcionarios nomeF = new Funcionarios(f.getCpf(), f.getNome());
+			Funcionarios nomeF = new Funcionarios(f.getCpf(), f.getNome(), f.getCargo());
 			nomeF.setCpf(f.getCpf());
 			nomeF.setNome(f.getNome());
+			nomeF.setCargo(f.getCargo());
 			lista.add(nomeF);
 		}
 		

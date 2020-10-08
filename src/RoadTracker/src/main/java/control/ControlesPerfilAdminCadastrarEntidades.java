@@ -107,6 +107,10 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     private TextField tfCidadeFilial;
     @FXML
     private TextField tfEstadoFilial;
+    @FXML
+    private TextField tfCnpj;
+    @FXML
+    private TextField tfRntrc;
     // ---------------------------------------
     
     
@@ -221,7 +225,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     		Motorista motorista = new Motorista();
     		
         	if (senha.equals(senha2)) {
-        		boolean cadastro = motorista.cadastrarMotorista(cpf, nome, email, senha, salario, cargaHoraria, filial, turno, seg, ter, qua, qui, sex, sab, dom);
+        		boolean cadastro = motorista.cadastrarMotorista(cpf, nome, email, senha, salario, cargaHoraria, filial, turno, seg, ter, qua, qui, sex, sab, dom, cargo);
         	
         		if(cadastro) {
         			notificar("Sucesso de cadastro", "Funcionário cadastrado", "O " + cargo + " " + nome + " foi cadastrado com sucesso!");
@@ -244,8 +248,10 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	String nome = tfNomeFilial.getText();
     	String cidade = tfCidadeFilial.getText();
     	String estado = tfEstadoFilial.getText();
+    	String cnpj = tfCnpj.getText();
+    	String rntrc = tfRntrc.getText();
     	
-    	f.cadastrarFilial(nome, cidade, estado);
+    	f.cadastrarFilial(nome, cidade, estado, cnpj, rntrc);
     	
     	notificar("Sucesso de cadastro", "Filial cadastrada", "A filial " + nome + " foi cadastrada com sucesso!");
     }
