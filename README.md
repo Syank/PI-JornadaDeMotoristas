@@ -7,7 +7,12 @@ Nosso cliente é a empresa IACIT e nos foi solicitado para desenvolver um sistem
 ## O que é o RoadTracker?
 Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas de trabalho de motoristas, pois muitas vezes não há o controle sobre o expediente desses trabalhadores. Todas as filiais de uma empresa ser cadastradas e realizar o cadastro de seus motoristas e, consequentemente, realizar o cadastro das jornadas de trabalho deles, o veículo que será utilizado e a viagem a ser realizada. Além disso, a filial terá acesso a várias informações sobre o status do motorista durante a viagem!
 
-## Card da primeira entrega do nosso sistema
+## *Card* da primeira entrega do nosso sistema
+### O que entregamos
+Entregamos um CRUD, feito para administrador, envolvendo todos os tipos de funcionários do sistema (administrador, supervisor e motorista). O administrador poderá cadastrar motoristas, supervisores e outros administradores, porém ainda não é possível solicitar cadastros (os supervisores deverão solicitar o cadastro de algum outro funcionário, se necessário). Assim que o administrador cadastra um novo funcionário é possível visualizar uma lista com todos os funcionários presentes no sistema. O usuário poderá selecionar um dos funcionários e entrar numa página que exibirá as informações do funcionário escolhido, sendo possível alterá-las (e quando no modo edição é possível descartar essas alterações) ou excluir o funcionário do sistema.
+### Por que fizemos essa escolha?
+Os funcionários são os principais agentes do sistema e dentre eles principalmente o motorista. Sendo assim vimos a oportunidade de impressionar aqueles que estivessem utilizando o sistema proporcionando a organização dos funcionários das filiais em um único local, a disponibilização dos dados destes funcionários para melhor conhecimento de todos que estão presentes na filial e o controle dos dados de cada funcionário para que as informações possam ser atualizadas a qualquer momento de forma rápida e simplificada.
+
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/Card%20Sprint%200.jpeg" width="500" height="280"/>
 
 ## Nosso sistema em funcionamento na primeira entrega
@@ -16,7 +21,7 @@ Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas d
 ## *User stories* do nosso sistema
 ### Primeira entrega :clock12:
 <div>
-A nossa primeira entrega contará com um CRUD dos funcionários das filais, que poderão ter os cargos de administrador, supervisor e motoristas. Sendo assim as filiais já poderão ter controle dos funcionários que estarão cadastrados e já poderão ter uma visão melhor sobre as jornadas de trabalho de cada funcionário.
+A nossa primeira entrega contará com um CRUD dos funcionários das filais, que poderão ter os cargos de administrador, supervisor e motoristas. Sendo assim as filiais já poderão ter controle dos funcionários que estarão cadastrados.
 </div>
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/user_stories/1.png" width="600px"/>
 
