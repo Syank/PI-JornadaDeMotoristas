@@ -133,7 +133,9 @@ public class Funcionario {
 	}
 	
 	public List<Funcionario> consultarTodosFuncionarios(){
+		
 		EntityManager con = new ConnectionFactory().getConnection();
+		
 		List<Funcionario> funcionarios = null;
 
 		try {
@@ -150,13 +152,14 @@ public class Funcionario {
 		
 	}
 
-	public List<Funcionario> listarFuncionarios(){
-		List<Funcionario> lista = new ArrayList<>();
+	
+	public List<Funcionarios> listarFuncionarios(){
+		List<Funcionarios> lista = new ArrayList<>();
 		for (Funcionario f: this.consultarTodosFuncionarios()) {
-			Funcionario nome = new Funcionario();
-			nome.setCpf(f.cpf);
-			nome.setNome(f.nome);
-			lista.add(nome);
+			Funcionarios nomeF = new Funcionarios(f.getCpf(), f.getNome());
+			nomeF.setCpf(f.getCpf());
+			nomeF.setNome(f.getNome());
+			lista.add(nomeF);
 		}
 		
 		return lista;

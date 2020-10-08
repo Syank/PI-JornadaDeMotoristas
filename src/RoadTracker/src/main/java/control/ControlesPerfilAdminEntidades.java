@@ -122,8 +122,10 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private String cpfFuncionario;
 
 	private List<Funcionarios> listaDeFuncionarios = new ArrayList<>();
-
 	private ObservableList<Funcionarios> obsListFuncionarios;
+	
+	private List<Funcionarios> listaDeMotoristas = new ArrayList<>();
+	private ObservableList<Funcionarios> obsListMotoristas;
 	// ---------------------------------
 
 	// Elementos das panes de filiais
@@ -321,6 +323,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldCidadeFilial.setText(filial.getCidade());
 		textFieldEstadoFilial.setText(filial.getEstado());
 
+
 	}
 
 	@FXML
@@ -339,6 +342,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldCidadeFilial.setText(filial.getCidade());
 		textFieldEstadoFilial.setText(filial.getEstado());
 		textFieldNomeFilial.setText(filial.getNome());
+
 	}
 	// -------------------------------------
 
@@ -599,18 +603,20 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	public void carregarTableViews() {
 
 		Funcionario funcionario = new Funcionario();
-		Funcionarios funcionarios = new Funcionarios(null, null, null);
 		Filial filial = new Filial();
 		Veiculo veiculo = new Veiculo();
+		Motorista motorista = new Motorista();
 
-		listaDeFuncionarios = funcionarios.listarFuncionarios();
+		listaDeFuncionarios = funcionario.listarFuncionarios();
 		listaDeFiliais = filial.listarFiliais();
 		listaDeVeiculos = veiculo.listarVeiculos();
+		listaDeMotoristas = motorista.listarMotoristas();
 
 		// Transforma a array primitiva em Observable Array
 		obsListFuncionarios = FXCollections.observableArrayList(listaDeFuncionarios);
 		obsListFiliais = FXCollections.observableArrayList(listaDeFiliais);
 		obsListVeiculos = FXCollections.observableArrayList(listaDeVeiculos);
+		obsListMotoristas = FXCollections.observableArrayList(listaDeMotoristas);
 
 		// "Habilita" as colunas da tableView para receber o valor retornado da classe
 		// Listas, nos seus métodos get
@@ -624,6 +630,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		colunaIDVeiculo.setCellValueFactory(new PropertyValueFactory<>("id_rastreador"));
 		colunaPlaca.setCellValueFactory(new PropertyValueFactory<>("placa"));
 
+		
+		obsListFuncionarios.addAll(obsListMotoristas);
 		// Adiciona a Observable Array na TableView
 		tabelaFuncionarios.setItems(obsListFuncionarios);
 		tabelaFiliais.setItems(obsListFiliais);

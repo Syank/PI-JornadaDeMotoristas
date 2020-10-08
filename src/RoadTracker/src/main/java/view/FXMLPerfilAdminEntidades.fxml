@@ -303,6 +303,8 @@
             <Button layoutX="33.0" layoutY="286.0" mnemonicParsing="false" onAction="#excluirFilial" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE" />
             <Button fx:id="botaoSalvarAlteracoesFilial" disable="true" layoutX="289.0" layoutY="286.0" mnemonicParsing="false" onAction="#salvarDadosAlteradosFilial" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE" />
             <Button fx:id="botaoDescartarAlteracoesFilial" disable="true" layoutX="382.0" layoutY="286.0" mnemonicParsing="false" onAction="#descartarAlteracoesFilial" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE" />
+            <TextField fx:id="textFieldCnpj" disable="true" layoutX="253.0" layoutY="45.0" promptText="CNPJ" styleClass="customizarInputs" />
+            <TextField fx:id="textFieldRntrc" disable="true" layoutX="253.0" layoutY="91.0" promptText="RNTRC" styleClass="customizarInputs" />
          </children></Pane>
       <Pane fx:id="paneVeiculoSelecionado" disable="true" layoutX="259.0" layoutY="81.0" prefHeight="365.0" prefWidth="485.0" visible="false">
          <children>

@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
+
+import view.Funcionarios;
 import view.Listas;
 
 @Entity
@@ -37,7 +39,7 @@ public class Motorista {
 	
 	// Mapeamento
 	@ManyToOne
-	@JoinColumn(name = "filial", nullable = false, foreignKey = @ForeignKey(name = "fk_filiais_id"))
+	@JoinColumn(name = "filiais", nullable = false, foreignKey = @ForeignKey(name = "fk_filiais_id"))
 	private Filial filial = new Filial();
 	@OneToMany(mappedBy = "funcionario")
 	private List<Aviso> avisos = new ArrayList<Aviso>();
@@ -267,10 +269,10 @@ public class Motorista {
 		return motorista;
 	}
 	
-	public List<Listas> listarMotoristas() {
-		List<Listas> lista = new ArrayList<>();
+	public List<Funcionarios> listarMotoristas() {
+		List<Funcionarios> lista = new ArrayList<>();
 		for (Motorista m: this.consultarTodosMotoristas()) {
-			Listas nome = new Listas(m.cpf, m.nome);
+			Funcionarios nome = new Funcionarios(m.cpf, m.nome);
 			lista.add(nome);
 		}
 		return lista;
