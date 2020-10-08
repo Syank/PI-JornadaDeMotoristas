@@ -1,5 +1,5 @@
 # RoadTracker :truck::computer:
-Seja bem vindo ao repositório do RoadTracker!
+Seja bem vindo à branch da primeira entrega do RoadTracker!
 
 ## O nosso desafio 
 Nosso cliente é a empresa IACIT e nos foi solicitado para desenvolver um sistema de gerenciamento de controle de jornada de trabalho de motoristas de forma parametrizável visando a disponibilização de funcionalidades de planejamento, acompanhamento e controle da jornada de trabalho destes trabalhadores. Nosso sistema deverá oferecer cadastro para motoristas (tendo nome, CPF, matrícula e ID do equipamento do caminhão), um cadastro para os dados do veículo (como a placa, a marca e versão do rastreador e o ID do equipamento), escala dos motoristas (turno, carga horária, dias de trabalho e de folga), um cadastro de alertas (contendo ocorrência, sigla, ícone, descrição do alerta e regra/parâmetro), cadastro de status (cadastrar status e regras de negócio de acordo com cada situação ocorrida durante a jornada, ID dos macros/mensagens, status de início e fim de jornada, tempo de trabalho, tempo de espera, tempo de refeição e tempo de descanso).
@@ -7,72 +7,41 @@ Nosso cliente é a empresa IACIT e nos foi solicitado para desenvolver um sistem
 ## O que é o RoadTracker?
 Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas de trabalho de motoristas, pois muitas vezes não há o controle sobre o expediente desses trabalhadores. Todas as filiais de uma empresa ser cadastradas e realizar o cadastro de seus motoristas e, consequentemente, realizar o cadastro das jornadas de trabalho deles, o veículo que será utilizado e a viagem a ser realizada. Além disso, a filial terá acesso a várias informações sobre o status do motorista durante a viagem!
 
-## Integrantes da equipe :girl::boy:
-- [Rafael Furtado Rodrigues dos Santos](https://www.linkedin.com/in/rafael-furtado-613a9712a/ "Rafael's LinkedIn") (Scrum Master)
+## Card da primeira entrega do nosso sistema
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/Card%20Sprint%200.jpeg" width="500" height="280"/>
 
-- [Bárbara dos Santos Port](https://www.linkedin.com/in/b%C3%A1rbara-port-402158198/ "Bárbara's LinkedIn") (Product Owner)
-
-- [Ana Clara Ferreira de Godoy](https://www.linkedin.com/in/ana-clara-godoy-2973381b2/ "Ana Clara's LinkedIn") (Development Team)
-
-- [Giovanni dos Santos Alves](https://www.linkedin.com/in/giovanni-santos-546412154/ "Giovanni's LinkedIn") (Development Team)
-
-- [Ana Carolina da Silva Lima](https://www.linkedin.com/in/ana-carolina-lima-099955136/ "Ana Carolina's LinkedIn") (Development Team)
-
-- [Anna Yukimi Yamada](https://www.linkedin.com/in/anna-yukimi-yamada-6ba23b149/ "Anna's LinkedIn") (Development Team)
-
-## Cards das Sprints(entregas) do sistema
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Card%20Sprint%200.jpeg" width="500" height="280"/>
-
-## Nosso sistema em funcionamento até o momento
-![GIF sistema](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Sistema%20Sprint%200.gif)
+## Nosso sistema em funcionamento na primeira entrega
+![GIF sistema](https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/Sistema%20Sprint%200.gif)
 
 ## *User stories* do nosso sistema
 ### Primeira entrega :clock12:
 <div>
 A nossa primeira entrega contará com um CRUD dos funcionários das filais, que poderão ter os cargos de administrador, supervisor e motoristas. Sendo assim as filiais já poderão ter controle dos funcionários que estarão cadastrados e já poderão ter uma visão melhor sobre as jornadas de trabalho de cada funcionário.
 </div>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/1.png" width="700" height="750" hspace="5" vspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/user_stories/1.png" width="600px"/>
 
-### Segunda entrega :clock4:
-<div>
-Na segunda entrega já será possível o cadastro de filiais, de veículos e viagens. Isso já possibilita o controle dos veículos e as viagens realizadas, proporcionando a escalabilidade de boa parte do sistema.
-</div>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/2.png" width="700" height="900" hspace="5" vspace="5"/>
+## *Wireframes* da primeira entrega do RoadTracker 
+<div align="center">
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/wireframes/login.jpeg" width="400" height="250" hspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/wireframes/boas_vindas.jpeg" width="400" height="250" hspace="5"/>
 
-### Terceira entrega :clock8:
-<div>
-Acerca da terceira entrega o motorista cadastrar os status em que ele se encontra (como descanso, espera, alimentação e abastecimento), podendo informar a todos da sua filial sobre qual o seu estado. Essa é uma das principais funcionalidades do sistema, porém depende de outra: cadastro das viagens. Sem uma viagem o motorista não poderá emitir status.
-</div>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/3.png" width="700" height="750" hspace="5" vspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/wireframes/cadastro_funcionario.jpeg" width="400" height="250" hspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/wireframes/aviso_funcionario_cadastrdo.jpeg" width="400" height="250" hspace="5"/>
 
-### Quarta entrega :clock12:
-<div>
-Finalmente, diante da quarta e última entrega, todos os usuários poderão recuperar a sua senha caso seja necessário. Haverá um perfil para supervisores, que poderão desempenhar algumas funções dos administradores (o que ajuda na agilidade dos processos). Além disso os funcionários poderão enviar avisos a outros funcionários, caso haja algum assunto importante a ser tratado ou caso ocorra alguma emergência.
-</div>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/user_stories/4.png" width="700" height="950" hspace="5" vspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/wireframes/aviso_falha_cadastro.jpeg" width="400" height="250" hspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/wireframes/listagem_funcionarios.jpeg" width="400" height="250" hspace="5"/>
 
-## *Wireframes* do RoadTracker 
-<div aling="center">
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/login.jpeg" width="400" height="250" hspace="5"/>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/boas_vindas.jpeg" width="400" height="250" hspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/wireframes/informações_funcionario.jpeg" width="400" height="250" hspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/wireframes/aviso_usuario_excluido.jpeg" width="400" height="250" hspace="5"/>
 
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/cadastro_funcionario.jpeg" width="400" height="250" hspace="5"/>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_funcionario_cadastrdo.jpeg" width="400" height="250" hspace="5"/>
-
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_falha_cadastro.jpeg" width="400" height="250" hspace="5"/>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/listagem_funcionarios.jpeg" width="400" height="250" hspace="5"/>
-
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/informações_funcionario.jpeg" width="400" height="250" hspace="5"/>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_usuario_excluido.jpeg" width="400" height="250" hspace="5"/>
-
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/aviso_dados_alterados.jpeg" width="400" height="250" hspace="5"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/wireframes/aviso_dados_alterados.jpeg" width="400" height="250" hspace="5"/>
 </div>
 
 ## Modelo conceitual do nosso banco de dados
-![conceitual rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/banco_de_dados/RTdb-conceitual.png?raw=true)
+![conceitual rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/banco_de_dados/RTdb-conceitual.png?raw=true)
 
 ## Modelo lógico do nosso banco de dados
-![lógico rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/banco_de_dados/RTdb-logico.png?raw=true)
+![lógico rtracker](https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/banco_de_dados/RTdb-logico.png?raw=true)
 
 ## Modelo físico do nosso banco de dados
 ~~~SQL
