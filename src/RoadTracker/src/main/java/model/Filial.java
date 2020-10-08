@@ -99,10 +99,10 @@ public class Filial {
 		
 	}
 	
-	public void alterarDadosFilial(String novoNome, String novaCidade, String novoEstado, String novoCnpj, String novoRntrc) {
+	public void alterarDadosFilial(String novoNome, String novaCidade, String novoEstado, String novoCnpj, String novoRntrc, int id) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
-		this.id = this.getId();
+		this.id = id;
 		this.cidade = novaCidade;
 		this.estado = novoEstado;
 		this.nome = novoNome;

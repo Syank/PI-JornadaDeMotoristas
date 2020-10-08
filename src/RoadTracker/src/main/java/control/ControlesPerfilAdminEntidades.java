@@ -172,6 +172,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	@FXML
 	private TextField textFieldRntrc;
 	@FXML
+	private TextField textFieldIdFilial;
+	@FXML
 	private Button botaoSalvarAlteracoesFilial;
 	@FXML
 	private Button botaoDescartarAlteracoesFilial;
@@ -380,7 +382,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	void salvarDadosAlteradosFilial(ActionEvent event) {
 		Filial filial = new Filial();
 		filial.alterarDadosFilial(textFieldNomeFilial.getText(), textFieldCidadeFilial.getText(),
-				textFieldEstadoFilial.getText(), textFieldCnpj.getText(), textFieldRntrc.getText());
+								  textFieldEstadoFilial.getText(), textFieldCnpj.getText(), textFieldRntrc.getText(), 
+								  Integer.parseInt(textFieldIdFilial.getText()));
 
 		desabilitarEdicao();
 
@@ -420,7 +423,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldNomeFilial.setText(filial.getNome());
 		textFieldCnpj.setText(filial.getCnpj());
 		textFieldRntrc.setText(filial.getRntrc());
-		
+		textFieldIdFilial.setText(String.valueOf(filial.getId()));
 
 	}
 	// -------------------------------------
@@ -431,7 +434,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldMarcaRastreador.setDisable(false);
 		textFieldModeloVeiculo.setDisable(false);
 		textFieldIDRastreador.setDisable(false);
-		textFieldPlacaVeiculo.setDisable(false);
+		textFieldModeloRastreador.setDisable(false);
 		comboBoxFilialVeiculo.setDisable(false);
 
 		botaoSalvarAlteracoesVeiculo.setDisable(false);
@@ -492,6 +495,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldIDRastreador.setText(String.valueOf(veiculo.getId_rastreador()));
 		textFieldPlacaVeiculo.setText(veiculo.getPlaca());
 		textFieldModeloRastreador.setText(veiculo.getMarca_rastreador());
+		comboBoxFilialVeiculo.getSelectionModel().select(veiculo.getFilial().getId());;
 	}
 
 	// -------------------------------------
@@ -652,6 +656,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		botaoSalvarAlteracoesVeiculo.setDisable(true);
 		botaoDescartarAlteracoesVeiculo.setDisable(true);
 		comboBoxFilialVeiculo.setDisable(true);
+		textFieldModeloRastreador.setDisable(false);
 	}
 
 	void notificar(String tipoDeAviso, String titulo, String texto) {
