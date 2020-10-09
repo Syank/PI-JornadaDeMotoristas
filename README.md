@@ -103,6 +103,7 @@
      <h4>Segunda entrega :clock4:</h4>
     <p>Na segunda entrega já será possível o cadastro de filiais, de veículos e viagens. Isso já possibilita o controle dos veículos e as viagens realizadas, proporcionando a escalabilidade de boa parte do sistema.</p>
     <img src="doc/user_stories/2.png" width="600px">
+    <img src="doc/user_stories/2-2.png" width="600px">
      <h4>Terceira entrega :clock8:</h4>
      <p>Acerca da terceira entrega o motorista cadastrar os status em que ele se encontra (como descanso, espera, alimentação e abastecimento), podendo informar a todos da sua filial sobre qual o seu estado. Essa é uma das principais funcionalidades do sistema, porém depende de outra: cadastro das viagens. Sem uma viagem o motorista não poderá emitir status.</p>
     <img src="doc/user_stories/3.png" width="600px">
