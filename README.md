@@ -85,8 +85,10 @@
        </table>
 </section>
 <section id="cards">
-        <h3>Cards das Sprints (entregas) do sistema</h3>
-        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_1/Card%20Sprint%200.jpeg">
+       <h3>Cards das Sprints (entregas) do sistema</h3>
+       <h4>Primeira entrega</h4>
+       <p>Os funcionários são os principais agentes do sistema e dentre eles principalmente o motorista. Sendo assim vimos a oportunidade de impressionar aqueles que estivessem utilizando o sistema proporcionando a organização dos funcionários das filiais em um único local, a disponibilização dos dados destes funcionários para melhor conhecimento de todos que estão presentes na filial e o controle dos dados de cada funcionário para que as informações possam ser atualizadas a qualquer momento de forma rápida e simplificada. Quantidade de cards restantes: 28.</p>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_1/Card%20Sprint%200.jpeg">
    </section>
     
 <section id="sistema_ate_o_momento">
