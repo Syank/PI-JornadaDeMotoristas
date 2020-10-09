@@ -1,6 +1,7 @@
 package control;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -135,21 +137,22 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     //Elementos da pane de cadastro de viagens
     @FXML
     private Pane paneCadastrarViagens;
-    
-    @FXML
-    private TextField tfViagemInit;
-
     @FXML
     private TextField tfEmpresaDestino;
-
     @FXML
-    private TextField tfViagemFim;
-
+    private TextField textFieldCarga;
     @FXML
-    private TextField tfIDRastreador;
-
+    private DatePicker datePickerPrazoEntrega;
     @FXML
-    private TextField tfMotoristaViagem;
+    private ComboBox<Veiculos> comboBoxVeiculoViagem;
+    @FXML
+    private ComboBox<Funcionarios> comboBoxMotoristaViagem;
+    
+    private List<Funcionarios> motoristas = new ArrayList<>();
+    private ObservableList<Funcionarios> obsListMotoristas;
+    
+    private List<Veiculos> veiculos = new ArrayList<>();
+    private ObservableList<Veiculos> obsListVeiculos;
     // ----------------------------------------
     
     
@@ -181,6 +184,18 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	turnosList = FXCollections.observableArrayList(turnos);
     	cbTurno.setItems(turnosList);
     } 
+    public void carregarComboBoxMotoristas() {
+    	Motorista motorista = new Motorista();
+    	motoristas = motorista.listarMotoristas();
+    	obsListMotoristas = FXCollections.observableArrayList(motoristas);
+    	comboBoxMotoristaViagem.setItems(obsListMotoristas);
+    }
+    public void carregarComboBoxVeiculos() {
+    	Veiculo veiculo = new Veiculo();
+    	veiculos = veiculo.listarVeiculos();
+    	obsListVeiculos = FXCollections.observableArrayList(veiculos);
+    	comboBoxVeiculoViagem.setItems(obsListVeiculos);
+    }
     @FXML
     void cadastrarFuncionario(MouseEvent event) {
     	// Todos os funcionários
@@ -285,7 +300,19 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     // Métodos da pane de cadastro de viagem
     @FXML
     void cadastrarViagem(ActionEvent event) {
+    	Viagem viagem = new Viagem();
+    	int ano = datePickerPrazoEntrega.getValue().getYear();
+    	int dia = datePickerPrazoEntrega.getValue().getDayOfMonth();
+    	int mes = datePickerPrazoEntrega.getValue().getMonthValue();
+    	String prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
     	
+    	String cpfFuncionario = comboBoxMotoristaViagem.getSelectionModel().getSelectedItem().getCpf();
+    	String placaVeiculo = comboBoxVeiculoViagem.getSelectionModel().getSelectedItem().getPlaca();
+    	
+    	viagem.cadastrarViagem(prazo, tfEmpresaDestino.getText(), 
+    						   cpfFuncionario, placaVeiculo, 
+    						   textFieldCarga.getText());
+    	System.out.println("Clicou no botão de cadastro");
     }
     // ---------------------------------------
     
@@ -542,10 +569,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     }
     public void limparCamposCadastrarViagens() {
     	tfEmpresaDestino.setText("");
-    	tfViagemInit.setText("");
-    	tfViagemFim.setText("");
-    	tfMotoristaViagem.setText("");
-    	tfIDRastreador.setText("");
+    	textFieldCarga.setText("");
+    	datePickerPrazoEntrega.setValue(LocalDate.now());
     }
     
 	@Override
@@ -553,5 +578,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 		carregarComboBoxCargos();
 		carregarComboBoxFiliais();
 		carregarComboBoxTurnos();
+		carregarComboBoxMotoristas();
+		carregarComboBoxVeiculos();
 	}
 }

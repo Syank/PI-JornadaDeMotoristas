@@ -31,4 +31,10 @@ public class Funcionarios {
 		this.cargo = cargo;
 	}
 	
+	
+	//Método para tratar o conteúdo mostrado na ComboBox
+	@Override
+	public String toString() {
+		return getNome();
+	}
 }

@@ -16,6 +16,8 @@ import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
+import view.Viagens;
+
 @Entity
 @Table(name="viagens")
 public class Viagem {
@@ -30,18 +32,13 @@ public class Viagem {
 	private String carga;
 	private String situacao;
 	
-	//muitas viagens possuem um funcionário
+
 	@ManyToOne
-	@JoinColumn(name = "funcionario", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_cpf")) //coluna da tabela pai
-	private Funcionario funcionario = new Funcionario();
+	@JoinColumn(name = "motorista", nullable = false, foreignKey = @ForeignKey(name = "fk_motoristas_cpf"))
+	private Motorista motorista = new Motorista();
 	
-	//uma viagem possui um ou mais status
-	@OneToMany(mappedBy = "viagem") //nome do campo na tabela filha
-	private List<Status> status = new ArrayList<Status>();
-	
-	//uma ou muitas viagens correspondem a um veículo
 	@ManyToOne
-	@JoinColumn(name = "veiculo", nullable = false, foreignKey = @ForeignKey(name = "fk_veiculos_placa")) //coluna da tabela pai
+	@JoinColumn(name = "veiculo", nullable = false, foreignKey = @ForeignKey(name = "fk_veiculos_placa"))
 	private Veiculo veiculo = new Veiculo();
 	
 	public Integer getId() {
@@ -74,19 +71,19 @@ public class Viagem {
 	public void setDestino(String destino) {
 		this.destino = destino;
 	}
-	private void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
-	private Funcionario getFuncionario() {
-		return funcionario;
-	}
-	private void setVeiculo(Veiculo veiculo) {
+	public void setVeiculo(Veiculo veiculo) {
 		this.veiculo = veiculo;
 	}
-	private Veiculo getVeiculo() {
+	public Veiculo getVeiculo() {
 		return veiculo;
 	}
 	
+	public Motorista getMotorista() {
+		return motorista;
+	}
+	public void setMotorista(Motorista motorista) {
+		this.motorista = motorista;
+	}
 	public String getCarga() {
 		return carga;
 	}
@@ -104,18 +101,23 @@ public class Viagem {
 	
 	
 	
-	public void cadastrarViagem(String inicio, String origem, String destino, String cpfFuncionario, String placaVeiculo) {
+	public void cadastrarViagem(String fim, String destino, String cpfFuncionario, String placaVeiculo, String carga) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
 		
-		this.setInicio(inicio);
 		this.setDestino(destino);
+		this.setCarga(carga);
+		this.setFim(fim);
 		
-		funcionario.setCpf(cpfFuncionario);
-		this.setFuncionario(funcionario);
+		motorista.setCpf(cpfFuncionario);
+		this.setMotorista(motorista);
 		
 		veiculo.setPlaca(placaVeiculo);
 		this.setVeiculo(veiculo);
+		
+		this.setInicio("Não iniciado");
+		this.setSituacao("Não iniciado");
+		this.setTotal("00:00:00");
 		
 		try {
 			con.getTransaction().begin();
@@ -133,15 +135,16 @@ public class Viagem {
 	}
 	
 
-	public void alterarDadosViagem(String novoInicio, String novaOrigem, String novoDestino, String novoCpfFuncionario, String novoVeiculo, int idViagem) {
+	public void alterarDadosViagem(String novoPrazo, String novoDestino, String novoCpfFuncionario, String novoVeiculo, String novaCarga, int idViagem) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
 		
-		this.setInicio(novoInicio);
 		this.setDestino(novoDestino);
+		this.setCarga(novaCarga);
+		this.setFim(novoPrazo);
 		
-		funcionario.setCpf(novoCpfFuncionario);
-		this.setFuncionario(funcionario);
+		motorista.setCpf(novoCpfFuncionario);
+		this.setMotorista(motorista);
 		
 		veiculo.setPlaca(novoVeiculo);
 		this.setVeiculo(veiculo);
@@ -150,11 +153,11 @@ public class Viagem {
 			con.getTransaction().begin();
 			
 			
-			Query query = con.createQuery("update Viagem set inicio = :novoInicio, origem = :novaOrigem, destino = :novoDestino, funcionario = :novoFuncionario, veiculo = :novoVeiculo where id = :idViagem");
-			query.setParameter("novoInicio", novoInicio);
-			query.setParameter("novaOrigem", novaOrigem);
+			Query query = con.createQuery("update Viagem set fim = :novoPrazo, carga = :novaCarga, destino = :novoDestino, motorista = :novoFuncionario, veiculo = :novoVeiculo where id = :idViagem");
+			query.setParameter("novoPrazo", novoPrazo);
+			query.setParameter("novaCarga", novaCarga);
 			query.setParameter("novoDestino", novoDestino);
-			query.setParameter("novoFuncionario", this.getFuncionario());
+			query.setParameter("novoFuncionario", this.getMotorista());
 			query.setParameter("novoVeiculo", this.getVeiculo());
 			query.setParameter("idViagem", idViagem);
 			query.executeUpdate();
@@ -210,15 +213,12 @@ public class Viagem {
 		return viagens;
 	}
 	
-	public List<Viagem> listarViagens(){	
-		List<Viagem> lista = new ArrayList<>();
+	public List<Viagens> listarViagens(){	
+		List<Viagens> lista = new ArrayList<>();
 		
 		for (Viagem v: this.consultarTodasViagens()) {
-			Viagem viagens = new Viagem();
-			
-			viagens.setFuncionario(v.getFuncionario());
-			viagens.setDestino(v.getDestino());
-			viagens.setInicio(v.getInicio());
+			Viagens viagens = new Viagens(v.getId(), v.getDestino(), v.getMotorista().getNome());
+		
 			
 			lista.add(viagens);
 		}

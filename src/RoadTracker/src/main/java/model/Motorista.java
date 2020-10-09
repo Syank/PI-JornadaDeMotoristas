@@ -45,8 +45,8 @@ public class Motorista {
 	private List<Aviso> avisos = new ArrayList<Aviso>();
 	@OneToMany(mappedBy = "funcionario")
 	private List<Status> status = new ArrayList<Status>();
-	@OneToMany(mappedBy = "funcionario")
-	private List<Viagem> viagens = new ArrayList<Viagem>();
+	//@OneToMany(mappedBy = "funcionario")
+	//private List<Viagem> viagens = new ArrayList<Viagem>();
 	
 	
 	public String getCpf() {
@@ -138,12 +138,6 @@ public class Motorista {
 	}
 	public void setStatus(List<Status> status) {
 		this.status = status;
-	}
-	public List<Viagem> getViagens() {
-		return viagens;
-	}
-	public void setViagens(List<Viagem> viagens) {
-		this.viagens = viagens;
 	}
 	public String getEmail() {
 		return email;

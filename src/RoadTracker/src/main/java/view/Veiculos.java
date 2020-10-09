@@ -17,24 +17,12 @@ public class Veiculos {
 	public int getId_rastreador() {
 		return id_rastreador;
 	}
-
-
-
-
 	public void setId_rastreador(int id_rastreador) {
 		this.id_rastreador = id_rastreador;
 	}
-
-
-
-
 	public String getPlaca() {
 		return placa;
 	}
-
-
-
-
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}

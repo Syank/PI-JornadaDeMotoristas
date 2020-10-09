@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -195,12 +196,16 @@
          </children></Pane>
       <Pane fx:id="paneCadastrarViagens" disable="true" layoutX="262.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
          <children>
-            <TextField fx:id="tfViagemInit" layoutX="33.0" layoutY="136.0" prefHeight="27.0" prefWidth="136.0" promptText="Início" styleClass="customizarInputs" />
-            <TextField fx:id="tfEmpresaDestino" layoutX="33.0" layoutY="77.0" prefHeight="27.0" prefWidth="136.0" promptText="Empresa de Destino" styleClass="customizarInputs" />
             <Button layoutX="26.0" layoutY="299.0" mnemonicParsing="false" onAction="#cadastrarViagem" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
-            <TextField fx:id="tfViagemFim" layoutX="33.0" layoutY="194.0" prefHeight="27.0" prefWidth="136.0" promptText="Fim" styleClass="customizarInputs" />
-            <TextField fx:id="tfIDRastreador" layoutX="299.0" layoutY="136.0" prefHeight="27.0" prefWidth="136.0" promptText="ID do rastreador" styleClass="customizarInputs" />
-            <TextField fx:id="tfMotoristaViagem" layoutX="299.0" layoutY="77.0" prefHeight="27.0" prefWidth="136.0" promptText="Nome do motorista" styleClass="customizarInputs" />
+            <VBox layoutX="26.0" layoutY="39.0" prefHeight="228.0" prefWidth="149.0" spacing="20.0">
+               <children>
+                  <TextField fx:id="tfEmpresaDestino" prefHeight="27.0" prefWidth="136.0" promptText="Empresa de Destino" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldCarga" promptText="Carga da entrega" styleClass="customizarInputs" />
+                  <ComboBox fx:id="comboBoxMotoristaViagem" prefWidth="150.0" promptText="Motorista" styleClass="customizarInputs" />
+                  <ComboBox fx:id="comboBoxVeiculoViagem" prefWidth="150.0" promptText="Veículo" styleClass="customizarInputs" />
+                  <DatePicker fx:id="datePickerPrazoEntrega" prefHeight="27.0" prefWidth="155.0" promptText="Prazo da entrega" styleClass="customizarInputs" />
+               </children>
+            </VBox>
          </children></Pane>
       <Pane fx:id="paneEscolherTipoDeCadastro" layoutX="265.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0">
          <children>
