@@ -133,7 +133,10 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	carregarTableView();
     }
     
-    private void carregarInfoViagem() {
+    
+    
+    @SuppressWarnings("unlikely-arg-type")
+	private void carregarInfoViagem() {
     	paneSelecionarViagem.setVisible(false);
     	paneSelecionarViagem.setDisable(true);
     	paneViagemSelecionada.setVisible(true);

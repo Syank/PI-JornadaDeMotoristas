@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
@@ -35,6 +36,8 @@ public class Funcionario {
 	//um funcionario possui um ou mais avisos
 	@OneToMany(mappedBy = "funcionario") //nome do campo na tabela filha
 	private List<Aviso> avisos = new ArrayList<Aviso>();
+	
+
 	
 	public Filial getFilial() {
 		return filial;
@@ -209,6 +212,36 @@ public class Funcionario {
 
 		try {
 			funcionario = con.find(model.Funcionario.class, cpf);
+		}
+		catch (Exception e) {
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+
+		return funcionario;
+	}
+	
+	public Funcionario verificarLogin(String email){
+		
+		EntityManager con = new ConnectionFactory().getConnection();
+
+		Funcionario funcionario = null;
+		
+		try {
+			funcionario = con.find(model.Funcionario.class, email);
+			
+			// Precisa da query personalizada aqui para retornar o cpf correspondente ao email e depois chamar a função de encontrar funcionário
+			//Query query = con.createQuery("select cpf from funcionarios_filiais where email = :email");
+			
+			
+			//Query query = con.createNativeQuery("select cpf from funcionarios_filiais where email = :email");
+			//query.setParameter("email", email);
+			
+			//funcionario = funcionario.encontrarFuncionario(query.getParameter(query.getFirstResult()).toString());
+					
 		}
 		catch (Exception e) {
 			System.err.println(e);

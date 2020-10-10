@@ -307,4 +307,23 @@ public class Motorista {
 
 		return motorista;
 	}
+	
+	public Motorista verificarLogin(String email) {
+		EntityManager con = new ConnectionFactory().getConnection();
+
+		Motorista motorista  = null;
+
+		try {
+			motorista = con.find(model.Motorista.class, email);
+		}
+		catch (Exception e) {
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+
+		return motorista;
+	}
 }
