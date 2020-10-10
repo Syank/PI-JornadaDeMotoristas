@@ -10,13 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
 import view.Cargos;
 import view.Funcionarios;
-import view.Listas;
 
 @Entity
 @Table(name="funcionarios_filiais")

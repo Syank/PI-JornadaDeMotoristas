@@ -1,8 +1,11 @@
 package model;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.swing.JOptionPane;
 
 @Entity
 @Table(name="avisos")
@@ -22,7 +26,7 @@ public class Aviso {
 	private String funcionario_destino;
 	private String mensagem;
 	private boolean visualizado;
-	private Date data;
+	private String data;
 	
 	//um ou mais avisos correspondem a um funcionario
 	@ManyToOne
@@ -65,10 +69,92 @@ public class Aviso {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
+	
+	public void cadastrarAviso(String tipo, String funcionario_destino, String mensagem) {
+
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		SimpleDateFormat hoje;
+		hoje = new SimpleDateFormat("dd/MM/yyyy");
+		
+		this.setData(hoje.toString());
+		this.setMensagem(mensagem);
+		this.setFuncionario_destino(funcionario_destino);
+		this.setTipo(tipo);
+		this.setVisualizado(false);
+		
+		try {
+			con.getTransaction().begin();
+			con.persist(this);
+			con.getTransaction().commit();
+		}
+		catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Ocorreu um problema ao enviar o aviso. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+	}
+	
+	public List<Aviso> consultarTodosAvisos(){
+		EntityManager con = new ConnectionFactory().getConnection();
+		List<Aviso> avisos = null;
+		try {
+			avisos = con.createQuery("from Aviso a").getResultList();
+		}
+		catch (Exception e) {
+			System.err.println(e);
+		}
+		finally {
+			con.close();
+		}
+
+		return avisos;
+	}
+	
+	public List<Aviso> listarAvisos(){	
+		List<Aviso> lista = new ArrayList<>();
+		for (Aviso a: this.consultarTodosAvisos()) {
+			Aviso aviso = new Aviso();
+			aviso.getData();
+			aviso.getId();
+			aviso.getFuncionario_destino();
+			aviso.getMensagem();
+			aviso.getTipo();
+			aviso.isVisualizado();
+			lista.add(aviso);
+		}
+		
+		return lista;
+		
+	}
+	
+	public Aviso encontrarAviso(int id){
+		
+		EntityManager con = new ConnectionFactory().getConnection();
+
+		Aviso aviso = null;
+
+		try {
+			aviso = con.find(model.Aviso.class, id);
+		}
+		catch (Exception e) {
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+
+		return aviso;
+	}
+	
 }

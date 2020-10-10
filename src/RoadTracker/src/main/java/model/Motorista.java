@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.ForeignKey;
@@ -13,7 +14,6 @@ import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
 import view.Funcionarios;
-import view.Listas;
 
 @Entity
 @Table(name = "motoristas")

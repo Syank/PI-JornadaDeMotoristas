@@ -180,8 +180,6 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     			break;
     		}
     	}
-
-    	
     	
     }
     private void carregarTableView(){

@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
@@ -31,7 +30,6 @@ public class Viagem {
 	private String destino;
 	private String carga;
 	private String situacao;
-	
 
 	@ManyToOne
 	@JoinColumn(name = "motorista", nullable = false, foreignKey = @ForeignKey(name = "fk_motoristas_cpf"))
@@ -96,10 +94,6 @@ public class Viagem {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-	
-	
-	
-	
 	
 	public void cadastrarViagem(String fim, String destino, String cpfFuncionario, String placaVeiculo, String carga) {
 
