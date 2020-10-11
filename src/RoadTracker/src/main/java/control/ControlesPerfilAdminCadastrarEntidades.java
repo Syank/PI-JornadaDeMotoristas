@@ -367,6 +367,10 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarVeículos();
     	voltarTelaEscolhas();
     }
+	@FXML
+	void abrirTelaAvisos(MouseEvent event) {
+		Main.trocarTela("Tela Avisos");
+	}
     @FXML
     void voltar(ActionEvent event) {   	
     	labelTipoDeCadastro.setText("Cadastrar Entidades");

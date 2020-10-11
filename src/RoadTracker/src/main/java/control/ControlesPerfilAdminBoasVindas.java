@@ -16,6 +16,11 @@ public class ControlesPerfilAdminBoasVindas {
     void abrirTelaFuncionarios(MouseEvent event) {
     	Main.trocarTela("Tela Funcionarios");
     }
+    
+	@FXML
+	void abrirTelaAvisos(MouseEvent event) {
+		Main.trocarTela("Tela Avisos");
+	}
 
     @FXML
     void abrirTelaHistEntregas(MouseEvent event) {

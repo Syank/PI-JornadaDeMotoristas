@@ -28,13 +28,20 @@ public class ControlesPerfilAdminAvisos {
     private Button btSelecionarAviso;
 
     @FXML
+    void abrirTelaCadEnt(MouseEvent event) {
+    	Main.trocarTela("Tela Cadastrar Funcionarios");
+    }
+    
+    @FXML
     void abrirTelaFunc(MouseEvent event) {
     	Main.trocarTela("Tela Funcionarios");
     }
+    
     @FXML
     void abrirTelaHistEntregas(MouseEvent event) {
     	Main.trocarTela("Tela Historico de Entregas");
     }
+    
     @FXML
     void voltar(ActionEvent event) {   	
     		Main.trocarTela("Tela Boas Vindas");

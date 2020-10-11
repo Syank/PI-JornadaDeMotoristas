@@ -24,7 +24,7 @@
                </image>
             </ImageView>
             <VBox prefHeight="25.0" prefWidth="250.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao">
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#abrirTelaCadEnt" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
@@ -78,7 +78,7 @@
             </HBox>
             <VBox alignment="BOTTOM_LEFT" prefHeight="45.0" prefWidth="250.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#voltar" prefHeight="15.0" prefWidth="23.0" styleClass="botaoVoltar">
+                  <Button mnemonicParsing="false" onAction="#voltar" onMouseClicked="#voltar" prefHeight="15.0" prefWidth="23.0" styleClass="botaoVoltar">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -134,7 +134,7 @@
                 <TableColumn prefWidth="100.0" text="Data" />
               </columns>
             </TableView>
-            <Button fx:id="btSelecionarFuncionario" layoutX="14.0" layoutY="305.0" mnemonicParsing="false" onAction="#selecionarAviso" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
+            <Button fx:id="btSelecionarAviso" layoutX="14.0" layoutY="305.0" mnemonicParsing="false" onAction="#selecionarAviso" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
          </children>
       </Pane>
    </children>

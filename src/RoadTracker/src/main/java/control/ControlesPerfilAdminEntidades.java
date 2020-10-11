@@ -869,6 +869,11 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		Main.trocarTela("Tela Historico de Entregas");
 		abrirTelaSelecionarEntidade();
 	}
+	
+	@FXML
+	void abrirTelaAvisos(MouseEvent event) {
+		Main.trocarTela("Tela Avisos");
+	}
 
 	@FXML
 	void abrirTelaEnt(ActionEvent event) {
