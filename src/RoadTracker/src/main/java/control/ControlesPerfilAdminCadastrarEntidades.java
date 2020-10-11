@@ -384,6 +384,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	paneInfosExtrasMotorista.setDisable(true);
     	paneInfosExtrasMotorista.setVisible(false);
     	
+    	carregarComboBoxFiliais();
+    	
     	labelTipoDeCadastro.setText("Cadastro de Funcionários");
     }
     @FXML
@@ -424,6 +426,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
     	
+    	carregarComboBoxFiliais();
+    	
     	labelTipoDeCadastro.setText("Cadastro de Veículos");
     }
     @FXML
@@ -443,6 +447,9 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
+    	
+    	carregarComboBoxVeiculos();
+    	carregarComboBoxMotoristas();
     	
     	labelTipoDeCadastro.setText("Cadastro de Viagens");
     }

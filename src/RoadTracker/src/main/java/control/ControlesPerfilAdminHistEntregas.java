@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -71,7 +72,22 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     private Button botaoSalvar;
     @FXML
     private Button botaoDescartar;
-    
+    @FXML
+    private Pane paneAvisosPrincipal;
+    @FXML
+    private Pane paneAvisosSombra;
+    @FXML
+    private Pane paneAvisosSucesso;
+    @FXML
+    private Label labelAvisosTextoSucesso;
+    @FXML
+    private Label labelAvisosTituloSucesso;
+    @FXML
+    private Pane paneAvisosFalha;
+    @FXML
+    private Label labelAvisosTextoFalha;
+    @FXML
+    private Label labelAvisosTituloFalha;
 	private List<Viagens> listaDeViagens = new ArrayList<>();
 	private ObservableList<Viagens> obsListViagens;
 	
@@ -123,10 +139,15 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     }
 	@FXML
 	private void selecionarViagem(ActionEvent event) {
-		Viagens selecionada = tabela.getSelectionModel().getSelectedItem();
-		idViagem = selecionada.getId();
+		try {
+			Viagens selecionada = tabela.getSelectionModel().getSelectedItem();
+			idViagem = selecionada.getId();
 
-		carregarInfoViagem();
+			carregarInfoViagem();
+		}catch (NullPointerException falha) {
+			notificar("Falha", "Entidade não selecionada", "Nenhuma viagem foi selecionada na lista, por favor selecione uma e tente novamente");
+		}
+
 	}
     @FXML
     private void atualizarLista(ActionEvent event) {
@@ -237,6 +258,37 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	datePickerPrazo.setDisable(true);
     	botaoSalvar.setDisable(true);
     	botaoDescartar.setDisable(true);
+    }
+	void notificar(String tipoDeAviso, String titulo, String texto) {
+		paneAvisosPrincipal.setDisable(false);
+		paneAvisosPrincipal.setVisible(true);
+		paneAvisosSombra.setVisible(true);
+		paneAvisosSombra.setDisable(false);
+		switch (tipoDeAviso) {
+		case "Sucesso":
+			paneAvisosSucesso.setDisable(false);
+			paneAvisosSucesso.setVisible(true);
+			labelAvisosTextoSucesso.setText(texto);
+			labelAvisosTituloSucesso.setText(titulo);
+			break;
+		case "Falha":
+			paneAvisosFalha.setDisable(false);
+			paneAvisosFalha.setVisible(true);
+			labelAvisosTextoFalha.setText(texto);
+			labelAvisosTituloFalha.setText(titulo);
+			break;
+		}
+	}
+    @FXML
+    void fecharAviso(ActionEvent event){
+    	paneAvisosPrincipal.setDisable(true);
+    	paneAvisosPrincipal.setVisible(false);
+    	paneAvisosSombra.setVisible(false);
+    	paneAvisosSombra.setDisable(true);
+		paneAvisosSucesso.setDisable(true);
+		paneAvisosSucesso.setVisible(false);
+		paneAvisosFalha.setDisable(true);
+		paneAvisosFalha.setVisible(false);
     }
     @FXML
     void abrirTelaCadFunc(MouseEvent event) {

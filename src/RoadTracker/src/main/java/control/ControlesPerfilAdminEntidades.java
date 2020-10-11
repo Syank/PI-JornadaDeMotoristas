@@ -248,20 +248,25 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	
 	@FXML
 	void selecionarFuncionario(ActionEvent event) {
-		Funcionarios selecionado = tabelaFuncionarios.getSelectionModel().getSelectedItem();
-		
-		cpfFuncionario = selecionado.getCpf();
-		cargoFuncionario = selecionado.getCargo();
+		try{
+			Funcionarios selecionado = tabelaFuncionarios.getSelectionModel().getSelectedItem();
+			
+			cpfFuncionario = selecionado.getCpf();
+			cargoFuncionario = selecionado.getCargo();
 
-		paneFuncionarios.setVisible(false);
-		paneFuncionarios.setDisable(true);
-		paneFuncionarioSelecionado.setVisible(true);
-		paneFuncionarioSelecionado.setDisable(false);
-		
-		carregarComboBoxCargos();
-		carregarComboBox();
-		carregarComboBoxTurnos();
-		carregarInfoFuncionario();
+			paneFuncionarios.setVisible(false);
+			paneFuncionarios.setDisable(true);
+			paneFuncionarioSelecionado.setVisible(true);
+			paneFuncionarioSelecionado.setDisable(false);
+			
+			carregarComboBoxCargos();
+			carregarComboBox();
+			carregarComboBoxTurnos();
+			carregarInfoFuncionario();
+		}catch (NullPointerException falha) {
+			notificar("Falha", "Entidade não selecionada", "Nenhum funcionário foi selecionado na lista, por favor selecione um e tente novamente");
+		}
+
 	}
 
 	void carregarInfoFuncionario() {
@@ -407,11 +412,16 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 	@FXML
 	void selecionarFilial(ActionEvent event) {
-		Filiais selecionada = tabelaFiliais.getSelectionModel().getSelectedItem();
-		idFilial = selecionada.getId();
-		abrirTelaFilialSelecionada(event);
+		try {
+			Filiais selecionada = tabelaFiliais.getSelectionModel().getSelectedItem();
+			idFilial = selecionada.getId();
+			abrirTelaFilialSelecionada(event);
 
-		carregarInfoFilial();
+			carregarInfoFilial();
+		}catch (NullPointerException falha) {
+			notificar("Falha", "Entidade não selecionada", "Nenhuma filial foi selecionada na lista, por favor selecione uma e tente novamente");
+		}
+
 	}
 
 	void carregarInfoFilial() {
@@ -480,11 +490,16 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 	@FXML
 	void selecionarVeiculo(ActionEvent event) {
-		Veiculos selecionado = tabelaVeiculos.getSelectionModel().getSelectedItem();
-		placaVeiculo = selecionado.getPlaca();
-		abrirTelaVeiculoSelecionado(event);
+		try {
+			Veiculos selecionado = tabelaVeiculos.getSelectionModel().getSelectedItem();
+			placaVeiculo = selecionado.getPlaca();
+			abrirTelaVeiculoSelecionado(event);
 
-		carregarInfoVeiculo();
+			carregarInfoVeiculo();
+		}catch (NullPointerException falha) {
+			notificar("Falha", "Entidade não selecionada", "Nenhum veículo foi selecionado na lista, por favor selecione um e tente novamente");
+		}
+
 	}
 
 	void carregarInfoVeiculo() {
