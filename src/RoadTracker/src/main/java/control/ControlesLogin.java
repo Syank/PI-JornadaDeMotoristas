@@ -39,23 +39,35 @@ public class ControlesLogin implements Initializable{
     	String loginDado = inputUsuario.getText();
     	String senhaDada = inputSenha.getText();
     	
+    	String cpfFunc = funcionario.verificarLogin(loginDado);
+    	String cpfMot = motorista.verificarLogin(loginDado);
+    	
+    	funcionario = funcionario.encontrarFuncionario(cpfFunc);
+    	motorista = motorista.encontrarMotorista(cpfMot);
     	
     	
-    	// O if abaixo verifica se o funcionário com o login fornecido possuí a mesma senha que a senha fornecida
-    	if(funcionario.verificarLogin(loginDado).getSenha().equals(senhaDada)) {
-        	Main.trocarTela("Tela Boas Vindas");
-        	inputUsuario.setText("");
-        	inputSenha.setText("");
-        	System.out.println("logado como admin");
-    	}else 
-    		if(motorista.verificarLogin(loginDado).getSenha().equals(senhaDada)) {
+    	// A sequência de ifs abaixo pode ser um pouco confusa, mas, resumindo, ela verifica se foi encontrado pelo menos 1 dos cpfs,
+    	//se for, então verifica qual tipo de cpf foi logado
+    	if(cpfFunc.equals("Não encontrado") && cpfMot.equals("Não encontrado")){
+    		System.out.println("Não foi encontrado nenhum usuário");
+    	}else {
+    		if(cpfMot.equals("Não encontrado")) {
+    			if(funcionario.getSenha().equals(senhaDada)) {
+                	Main.trocarTela("Tela Boas Vindas");
+                	inputUsuario.setText("");
+                	inputSenha.setText("");
+    		}
+    	}else if (cpfFunc.equals("Não encontrado")) {
+    		if(motorista.getSenha().equals(senhaDada)) {
 	        	Main.trocarTela("Tela Boas Vindas");
 	        	inputUsuario.setText("");
 	        	inputSenha.setText("");
-	        	System.out.println("logado como motorista");
+    			}
     		}
-
+    	}
     }
+
+
     
     @FXML
     void minimizarJanela(ActionEvent event) {

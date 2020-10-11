@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
@@ -308,13 +309,31 @@ public class Motorista {
 		return motorista;
 	}
 	
-	public Motorista verificarLogin(String email) {
+public String verificarLogin(String email){
+		
 		EntityManager con = new ConnectionFactory().getConnection();
-
-		Motorista motorista  = null;
-
+		
+		List<Funcionarios> list = new ArrayList<>();
+		
+		String cpf = "";
+		
 		try {
-			motorista = con.find(model.Motorista.class, email);
+			// Precisa da query personalizada aqui para retornar o cpf correspondente ao email e depois chamar a função de encontrar funcionário
+			Query query = con.createNativeQuery("select cpf from motoristas where email = :email");
+			query.setParameter("email", email);
+
+			list = query.getResultList();
+
+			cpf = list.toString();
+			
+			if(cpf.length() > 3) {
+				cpf = cpf.substring(1, 12);
+			}else {
+				cpf = "Não encontrado";
+			}
+				
+			
+					
 		}
 		catch (Exception e) {
 			System.err.println(e);
@@ -324,6 +343,6 @@ public class Motorista {
 			con.close();
 		}
 
-		return motorista;
+		return cpf;
 	}
 }

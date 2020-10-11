@@ -224,23 +224,28 @@ public class Funcionario {
 		return funcionario;
 	}
 	
-	public Funcionario verificarLogin(String email){
+	public String verificarLogin(String email){
 		
 		EntityManager con = new ConnectionFactory().getConnection();
-
-		Funcionario funcionario = null;
+		
+		List<Funcionarios> list = new ArrayList<>();
+		
+		String cpf = "";
 		
 		try {
-			funcionario = con.find(model.Funcionario.class, email);
-			
 			// Precisa da query personalizada aqui para retornar o cpf correspondente ao email e depois chamar a função de encontrar funcionário
-			//Query query = con.createQuery("select cpf from funcionarios_filiais where email = :email");
+			Query query = con.createNativeQuery("select cpf from funcionarios_filiais where email = :email");
+			query.setParameter("email", email);
+
+			list = query.getResultList();
+
+			cpf = list.toString();
 			
-			
-			//Query query = con.createNativeQuery("select cpf from funcionarios_filiais where email = :email");
-			//query.setParameter("email", email);
-			
-			//funcionario = funcionario.encontrarFuncionario(query.getParameter(query.getFirstResult()).toString());
+			if(cpf.length() > 3) {
+				cpf = cpf.substring(1, 12);
+			}else {
+				cpf = "Não encontrado";
+			}
 					
 		}
 		catch (Exception e) {
@@ -251,7 +256,7 @@ public class Funcionario {
 			con.close();
 		}
 
-		return funcionario;
+		return cpf;
 	}
 	
 }
