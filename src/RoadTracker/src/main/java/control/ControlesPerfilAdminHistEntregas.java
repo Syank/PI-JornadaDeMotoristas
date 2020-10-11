@@ -17,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +29,8 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 
 	Motorista motorista = new Motorista();
 	Veiculo veiculo = new Veiculo();
+	
+	private boolean confirmado = false;
 	
     @FXML
     private TextField campoDeBuscaNome;
@@ -88,6 +91,15 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     private Label labelAvisosTextoFalha;
     @FXML
     private Label labelAvisosTituloFalha;
+    @FXML
+    private Pane paneAvisosConfirmar;
+    @FXML
+    private PasswordField passwordFieldConfirmarSenha;
+    @FXML
+    private Label labelAvisosTextoConfirmar;
+    @FXML
+    private Label labelAvisosTituloConfirmar;
+    
 	private List<Viagens> listaDeViagens = new ArrayList<>();
 	private ObservableList<Viagens> obsListViagens;
 	
@@ -101,33 +113,41 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     
     
     
-	
+	@FXML
+	void requisitarAlteracao(ActionEvent event) {
+		notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar as alterações nos dados");
+	}
 	
     
     @FXML
     private void salvarAlteracoes(ActionEvent event) {
-    	Viagem viagem = new Viagem();
-    	
-    	
-    	int dia = datePickerPrazo.getValue().getDayOfMonth();
-    	int mes = datePickerPrazo.getValue().getMonthValue();
-    	int ano = datePickerPrazo.getValue().getYear();
-    	
-    	String prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
-    	
-    	viagem.alterarDadosViagem(prazo, textFieldDestino.getText(),
-    							  comboBoxMotorista.getSelectionModel().getSelectedItem().getCpf(), 
-    							  comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca(), 
-    							  textFieldCarga.getText(), Integer.parseInt(textFieldId.getText()));
-    	
-    	textFieldDestino.setDisable(false);
-    	textFieldCarga.setDisable(false);
-    	comboBoxMotorista.setDisable(false);
-    	comboBoxVeiculo.setDisable(false);
-    	datePickerPrazo.setDisable(false);
-    	
-    	desabilitarEdicao();
-    	
+    	if(confirmado) {
+    	   	Viagem viagem = new Viagem();
+        	
+        	
+        	int dia = datePickerPrazo.getValue().getDayOfMonth();
+        	int mes = datePickerPrazo.getValue().getMonthValue();
+        	int ano = datePickerPrazo.getValue().getYear();
+        	
+        	String prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+        	
+        	viagem.alterarDadosViagem(prazo, textFieldDestino.getText(),
+        							  comboBoxMotorista.getSelectionModel().getSelectedItem().getCpf(), 
+        							  comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca(), 
+        							  textFieldCarga.getText(), Integer.parseInt(textFieldId.getText()));
+        	
+        	textFieldDestino.setDisable(false);
+        	textFieldCarga.setDisable(false);
+        	comboBoxMotorista.setDisable(false);
+        	comboBoxVeiculo.setDisable(false);
+        	datePickerPrazo.setDisable(false);
+        	
+        	notificar("Sucesso", "Dados alterados", "Os dados da viagem foram alterados com sucesso");
+        	
+        	desabilitarEdicao();
+    	}
+ 
+    	confirmado = false;
     }
     @FXML
     private void excluirViagem(ActionEvent event) {
@@ -259,6 +279,22 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	botaoSalvar.setDisable(true);
     	botaoDescartar.setDisable(true);
     }
+	@FXML
+	void confirmarAlteracao(ActionEvent event) {
+		if(paneAvisosConfirmar.isVisible()) {
+			if(passwordFieldConfirmarSenha.getText().equals(ControlesLogin.senha)) {
+				confirmado = true;
+			}else {
+				confirmado = false;
+			}
+		}
+		
+		fecharAviso(event);
+		
+		salvarAlteracoes(event);
+		
+		
+	}
 	void notificar(String tipoDeAviso, String titulo, String texto) {
 		paneAvisosPrincipal.setDisable(false);
 		paneAvisosPrincipal.setVisible(true);
@@ -276,6 +312,13 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 			paneAvisosFalha.setVisible(true);
 			labelAvisosTextoFalha.setText(texto);
 			labelAvisosTituloFalha.setText(titulo);
+			break;
+		case "Confirmar":
+			paneAvisosConfirmar.setDisable(false);
+			paneAvisosConfirmar.setVisible(true);
+			labelAvisosTextoConfirmar.setText(texto);
+			labelAvisosTituloConfirmar.setText(titulo);
+			passwordFieldConfirmarSenha.setText("");
 			break;
 		}
 	}

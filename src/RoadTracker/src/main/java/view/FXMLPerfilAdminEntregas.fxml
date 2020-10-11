@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -157,7 +158,7 @@
       </Pane>
       <Pane fx:id="paneViagemSelecionada" disable="true" layoutX="250.0" layoutY="88.0" prefHeight="362.0" prefWidth="500.0" visible="false">
          <children>
-            <Button fx:id="botaoSalvar" alignment="CENTER" layoutX="324.0" layoutY="303.0" mnemonicParsing="false" onAction="#salvarAlteracoes" prefHeight="30.0" prefWidth="76.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE" />
+            <Button fx:id="botaoSalvar" alignment="CENTER" layoutX="324.0" layoutY="303.0" mnemonicParsing="false" onAction="#requisitarAlteracao" prefHeight="30.0" prefWidth="76.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE" />
             <Button layoutX="35.0" layoutY="270.0" mnemonicParsing="false" onAction="#habilitarEdicao" prefHeight="30.0" prefWidth="76.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE" />
             <Button layoutX="35.0" layoutY="305.0" mnemonicParsing="false" onAction="#excluirViagem" prefHeight="30.0" prefWidth="76.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE" />
             <Button fx:id="botaoDescartar" layoutX="410.0" layoutY="302.0" mnemonicParsing="false" onAction="#descartarAlteracoes" prefHeight="31.0" prefWidth="76.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE" />
@@ -227,6 +228,30 @@
                   </HBox>
                   <Button layoutX="161.0" layoutY="104.0" mnemonicParsing="false" onAction="#fecharAviso" prefHeight="32.0" prefWidth="78.0" styleClass="botaoCancelar" text="Confirmar" textFill="WHITE" />
                   <Label fx:id="labelAvisosTextoFalha" alignment="TOP_CENTER" layoutX="57.0" layoutY="35.0" prefHeight="63.0" prefWidth="286.0" text="Aviso" textAlignment="CENTER" textFill="#bdc3c7" wrapText="true" />
+               </children>
+            </Pane>
+            <Pane fx:id="paneAvisosConfirmar" disable="true" layoutX="185.0" layoutY="116.0" prefHeight="150.0" prefWidth="400.0" styleClass="fundoAviso" visible="false">
+               <children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="26.0" prefWidth="400.0">
+                     <children>
+                        <HBox prefHeight="26.0" prefWidth="400.0">
+                           <children>
+                              <Label fx:id="labelAvisosTituloConfirmar" prefHeight="26.0" prefWidth="202.0" text="Tela de Avisos" textFill="#bdc3c7">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <styleClass>
+                        <String fx:value="fundoMenuAviso" />
+                        <String fx:value="sombraMenuAviso" />
+                     </styleClass>
+                  </HBox>
+                  <Button layoutX="161.0" layoutY="109.0" mnemonicParsing="false" onAction="#confirmarAlteracao" prefHeight="32.0" prefWidth="78.0" styleClass="botaoConfirmar" text="Confirmar" textFill="WHITE" />
+                  <Label fx:id="labelAvisosTextoConfirmar" alignment="TOP_CENTER" layoutX="14.0" layoutY="35.0" prefHeight="33.0" prefWidth="372.0" text="Aviso" textAlignment="CENTER" textFill="#bdc3c7" wrapText="true" />
+                  <PasswordField fx:id="passwordFieldConfirmarSenha" layoutX="126.0" layoutY="70.0" promptText="Senha" styleClass="customizarInputs" />
                </children>
             </Pane>
          </children>

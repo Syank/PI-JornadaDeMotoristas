@@ -339,7 +339,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	viagem.cadastrarViagem(prazo, tfEmpresaDestino.getText(), 
     						   cpfFuncionario, placaVeiculo, 
     						   textFieldCarga.getText());
-    	System.out.println("Clicou no botão de cadastro");
+        notificar("Sucesso de cadastro", "Viagem cadastrada", "A viagem foi cadastrada no sistema com sucesso!");
     }
     // ---------------------------------------
     

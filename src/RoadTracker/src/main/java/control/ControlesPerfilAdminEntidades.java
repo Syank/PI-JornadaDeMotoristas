@@ -30,8 +30,10 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private static Motorista motorista = new Motorista();
 	private static Filial filial = new Filial();
 	private static Turnos t = new Turnos(0, null);
+	private String funcao;
 
 	// Elementos das panes de avisos
+	private boolean confirmado = false;
 	@FXML
 	private Pane paneAvisosPrincipal;
 	@FXML
@@ -48,6 +50,14 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private Label labelAvisosTextoFalha;
 	@FXML
 	private Pane paneAvisosSombra;
+	@FXML
+	private Pane paneAvisosConfirmar;
+	@FXML
+	private Label labelAvisosTituloConfirmar;
+	@FXML
+	private Label labelAvisosTextoConfirmar;
+	@FXML
+	private PasswordField passwordFieldConfirmarSenha;
 	// ----------------------------------
 
 	// Elemento da pane de selecionar entidade
@@ -342,23 +352,38 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	}
 
 	@FXML
+	void requisitarAlteracaoFuncionario(ActionEvent event) {
+		funcao = "Funcionario";
+		notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar as alterações nos dados");
+	}
+	@FXML
 	void alterarDados(ActionEvent event) {
-		if(cargoFuncionario.equals("Motorista")) {
-			motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
-											textFieldEmail.getText(), pfSenha.getText(), 
-											textFieldSalarioMotorista.getText(), tfCargaHoraria.getText(), 
-											cbFilial.getValue().getId(), cbTurno.getValue().getTurno(),
-											cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(), cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
+			if(confirmado) {
+				if(cargoFuncionario.equals("Motorista")) {
+					motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
+													textFieldEmail.getText(), pfSenha.getText(), 
+													textFieldSalarioMotorista.getText(), tfCargaHoraria.getText(), 
+													cbFilial.getValue().getId(), cbTurno.getValue().getTurno(),
+													cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(), cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
+				
+					notificar("Sucesso", "Alteração de dados",
+							"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+				}else {
+				funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(),
+													cbCargo.getValue().getCargo(), cbFilial.getValue().getId(),
+													textFieldEmail.getText());
+				notificar("Sucesso", "Alteração de dados",
+						"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+				}
+				
+				
+			}else {
+				notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
+			}
+			
+			confirmado = false;
+			funcao = "";
 		
-			notificar("Sucesso", "Alteração de dados",
-					"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
-		}else {
-		funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(),
-											cbCargo.getValue().getCargo(), cbFilial.getValue().getId(),
-											textFieldEmail.getText());
-		notificar("Sucesso", "Alteração de dados",
-				"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
-		}
 	}
 	// -------------------------------
 
@@ -383,17 +408,34 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		notificar("Sucesso", "Filial excluída", "A filial foi excluída dos registros do banco de dados com sucesso!");
 	}
 
+	
+	@FXML
+	void requisitarAlteracaoFilial(ActionEvent event) {
+		funcao = "Filial";
+		notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar as alterações nos dados");
+	}
 	@FXML
 	void salvarDadosAlteradosFilial(ActionEvent event) {
 		Filial filial = new Filial();
-		filial.alterarDadosFilial(textFieldNomeFilial.getText(), textFieldCidadeFilial.getText(),
-								  textFieldEstadoFilial.getText(), textFieldCnpj.getText(), textFieldRntrc.getText(), 
-								  Integer.parseInt(textFieldIdFilial.getText()));
+		
+		if(confirmado) {
+			filial.alterarDadosFilial(textFieldNomeFilial.getText(), textFieldCidadeFilial.getText(),
+									  textFieldEstadoFilial.getText(), textFieldCnpj.getText(), textFieldRntrc.getText(), 
+									  Integer.parseInt(textFieldIdFilial.getText()));
+	
+			desabilitarEdicao();
+	
+			notificar("Sucesso", "Filial atualizada",
+					"Os dados da filial " + textFieldNomeFilial.getText() + " foram alterados com sucesso!");
+			
 
-		desabilitarEdicao();
-
-		notificar("Sucesso", "Filial atualizada",
-				"Os dados da filial " + textFieldNomeFilial.getText() + " foram alterados com sucesso!");
+		}else {
+			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
+		}
+		
+		confirmado = false;
+		funcao = "";
+		
 	}
 
 	@FXML
@@ -461,17 +503,32 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		notificar("Sucesso", "Veículo excluído", "O veículo foi excluído com sucesso do banco de dados!");
 	}
 
+	
+	@FXML
+	void requisitarAlteracaoVeiculo(ActionEvent event) {
+		funcao = "Veiculo";
+		notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar as alterações nos dados");
+	}
 	@FXML
 	void salvarDadosAlteradosVeiculo(ActionEvent event) {
 		Veiculo veiculo = new Veiculo();
-		veiculo.alterarDadosVeiculo(textFieldPlacaVeiculo.getText(), textFieldModeloVeiculo.getText(),
-				textFieldIDRastreador.getText(), textFieldMarcaRastreador.getText(),
-				textFieldModeloRastreador.getText(), comboBoxFilialVeiculo.getValue().getId());
+		
+		if(confirmado) {
+			veiculo.alterarDadosVeiculo(textFieldPlacaVeiculo.getText(), textFieldModeloVeiculo.getText(),
+					textFieldIDRastreador.getText(), textFieldMarcaRastreador.getText(),
+					textFieldModeloRastreador.getText(), comboBoxFilialVeiculo.getValue().getId());
 
-		notificar("Sucesso", "Dados alterados",
-				"Os dados do veículo de placa " + textFieldPlacaVeiculo.getText() + " foram alterados com sucesso!");
+			notificar("Sucesso", "Dados alterados",
+					"Os dados do veículo de placa " + textFieldPlacaVeiculo.getText() + " foram alterados com sucesso!");
 
-		desabilitarEdicao();
+			desabilitarEdicao();
+			
+		}else {
+			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
+		}
+		
+		confirmado = false;
+		funcao = "";
 	}
 
 	@FXML
@@ -682,6 +739,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		paneAvisosPrincipal.setVisible(true);
 		paneAvisosSombra.setVisible(true);
 		paneAvisosSombra.setDisable(false);
+		
 		switch (tipoDeAviso) {
 		case "Sucesso":
 			paneAvisosSucesso.setDisable(false);
@@ -695,11 +753,45 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			labelAvisosTextoFalha.setText(texto);
 			labelAvisosTituloFalha.setText(titulo);
 			break;
+		case "Confirmar":
+			paneAvisosConfirmar.setDisable(false);
+			paneAvisosConfirmar.setVisible(true);
+			labelAvisosTextoConfirmar.setText(texto);
+			labelAvisosTituloConfirmar.setText(titulo);
+			passwordFieldConfirmarSenha.setText("");
+			break;
 		}
+		
 	}
 
+	
 	@FXML
-	void fecharAviso(ActionEvent event) {
+	void confirmarAlteracao(ActionEvent event) {
+		if(paneAvisosConfirmar.isVisible()) {
+			if(passwordFieldConfirmarSenha.getText().equals(ControlesLogin.senha)) {
+				confirmado = true;
+			}else {
+				confirmado = false;
+			}
+		}
+		
+		fecharAviso(event);
+		
+		switch(funcao){
+		case "Funcionario":
+			alterarDados(event);
+			break;
+		case "Veiculo":
+			salvarDadosAlteradosVeiculo(event);
+			break;
+		case "Filial":
+			salvarDadosAlteradosFilial(event);
+			break;
+		}
+		
+	}
+	@FXML
+	void fecharAviso(ActionEvent event) {		
 		paneAvisosPrincipal.setDisable(true);
 		paneAvisosPrincipal.setVisible(false);
 		paneAvisosSombra.setVisible(false);
@@ -708,6 +800,11 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		paneAvisosSucesso.setVisible(false);
 		paneAvisosFalha.setDisable(true);
 		paneAvisosFalha.setVisible(false);
+		paneAvisosConfirmar.setDisable(true);
+		paneAvisosConfirmar.setVisible(false);
+		
+		desabilitarEdicao();
+		
 	}
 
 	public void carregarTableViews() {
