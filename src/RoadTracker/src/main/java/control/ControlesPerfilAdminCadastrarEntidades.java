@@ -210,31 +210,32 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	
     	if(cpf.length() == 11) {
         	Funcionario funcionario = new Funcionario();
-        	
+        	System.out.println(funcionario);
 
     		// Primeiro verifica se o cpf não está sendo usado, depois verifica se o email não está sendo usado
         	if (cargo.equals("Administrador") || cargo.equals("Supervisor")) {
             	if(funcionario.encontrarFuncionario(cpf) == null) {
-                	if(!funcionario.getEmail().equals(email)) {
-                    	if (senha.equals(senha2)) {
-                    		boolean cadastro = funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, email);
-                    		
-                    		if(cadastro) {
-                    			notificar("Sucesso de cadastro", "Funcionário cadastrado", "O " + cargo + " " + nome + " foi cadastrado com sucesso!");
-                    		}else {
-                    			notificar("Falha de cadastro", "Falha ao cadastrar funcionário", "Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
-                    		}
-                    	
-                    	}else {
-                    		notificar("Falha de cadastro", "Falha ao cadastrar funcionário", "Não foi possível realizar a ação de cadastro, os campos da senha estão incorretos.");
-                    	}
-                	}
-            	}else {
-            		notificar("Falha de cadastro", "Falha ao cadastrar funcionário", 
-            				"O CPF informado já está sendo utilizado por outro funcionário, "
-            				+ "por favor verifique o campo ou exclua o funcionário com o CPF em questão");
-            		
-            	}
+					if (senha.equals(senha2)) {
+						boolean cadastro = funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, email);
+
+						if (cadastro) {
+							notificar("Sucesso de cadastro", "Funcionário cadastrado",
+									"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+						} else {
+							notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
+									"Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
+						}
+
+					} else {
+						notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
+								"Não foi possível realizar a ação de cadastro, os campos da senha estão incorretos.");
+					}
+				} else {
+					notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
+							"O CPF informado já está sendo utilizado por outro funcionário, "
+									+ "por favor verifique o campo ou exclua o funcionário com o CPF em questão");
+
+				}
         	}
         	else {
         		
@@ -254,19 +255,22 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 
         		// Primeiro verifica se o cpf não está sendo usado, depois verifica se o email não está sendo usado
         		if(motorista.encontrarMotorista(cpf) == null) {
-            		if(!motorista.getEmail().equals(email)) {
-                    	if (senha.equals(senha2)) {
-                    		boolean cadastro = motorista.cadastrarMotorista(cpf, nome, email, senha, salario, cargaHoraria, filial, turno, seg, ter, qua, qui, sex, sab, dom, cargo);
-                    	
-                    		if(cadastro) {
-                    			notificar("Sucesso de cadastro", "Funcionário cadastrado", "O " + cargo + " " + nome + " foi cadastrado com sucesso!");
-                    		}else {
-                    			notificar("Falha de cadastro", "Falha ao cadastrar funcionário", "Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
-                    		}
-                    	}else {
-                    		notificar("Falha de cadastro", "Falha ao cadastrar", "As senhas estão incorretas, tente novamente");
-                    	}
-            		}
+					if (senha.equals(senha2)) {
+						boolean cadastro = motorista.cadastrarMotorista(cpf, nome, email, senha, salario, cargaHoraria,
+								filial, turno, seg, ter, qua, qui, sex, sab, dom, cargo);
+
+						if (cadastro) {
+							notificar("Sucesso de cadastro", "Funcionário cadastrado",
+									"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+						} else {
+							notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
+									"Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
+						}
+					} else {
+						notificar("Falha de cadastro", "Falha ao cadastrar",
+								"As senhas estão incorretas, tente novamente");
+					}
+            		
         		}else {
             		notificar("Falha de cadastro", "Falha ao cadastrar funcionário", 
             				"O CPF informado já está sendo utilizado por outro motorista, "
