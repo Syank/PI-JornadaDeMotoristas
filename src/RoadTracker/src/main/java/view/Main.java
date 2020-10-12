@@ -2,10 +2,12 @@ package view;
 	
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 
@@ -19,6 +21,8 @@ public class Main extends Application {
 	private static Scene tela5;
 	private static Scene tela6;
 
+	private static double offSetX;
+	private static double offSetY;
 
 
 	
@@ -30,13 +34,15 @@ public class Main extends Application {
 		
 		primaryStage.setTitle("RoadTracker");  // Muda o título da janela
 		primaryStage.initStyle(StageStyle.UNDECORATED);  // Tira a borda padrão do SO da janela
+		
+		
 		// Carrega as telas
 		Pane fxmlTela1 = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
 		tela1 = new Scene(fxmlTela1);
 	
 		Pane fxmlTela2 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminEntidades.fxml"));
 		tela2 = new Scene(fxmlTela2);
-		
+
 		Pane fxmlTela3 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminCadastrarEntidades.fxml"));
 		tela3 = new Scene(fxmlTela3);
 		
@@ -48,10 +54,42 @@ public class Main extends Application {
 
 		Pane fxmlTela6 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminAvisos.fxml"));
 		tela6 = new Scene(fxmlTela6);
+		
+		
+		
+		// Aplicando o método de mover tela para todas as telas
+		Scene[] telas = {tela1, tela2, tela3, tela4, tela5, tela6};
+		
+		for(int i = 0; i < 6; i++) {
+			telas[i].setOnMousePressed(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					offSetX = event.getSceneX();
+					offSetY = event.getSceneY();	
+				}
+			});
+			telas[i].setOnMouseDragged(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					stage.setOpacity(0.5);
+					
+					stage.setX(event.getScreenX() - offSetX);
+					stage.setY(event.getScreenY() - offSetY);
+				}
+			});
+			telas[i].setOnMouseReleased(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					stage.setOpacity(1.0);
+				}
+			});
+		}
+		
 		 
 		// Seta a janela atual e a exibe
 		primaryStage.setScene(tela1);
 		primaryStage.show();
+		
 		
 	}
 	
@@ -83,6 +121,7 @@ public class Main extends Application {
 	public static void minimizar() {
 		stage.setIconified(true);
 	}
+	
 	
 	public static void main(String[] args) {
 		launch(args);

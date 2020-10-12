@@ -18,19 +18,15 @@ public class ControlesLogin implements Initializable{
 	public static String senha;
     @FXML
     private TextField inputUsuario;
-
     @FXML
     private PasswordField inputSenha;
-
     @FXML
     private Button botaoEntrar;
-    
     @FXML
     private AnchorPane janela;
-	
-	
-	
-	
+
+    
+    
     @FXML
     void verificarLogin(ActionEvent event) {
     	Funcionario funcionario = new Funcionario();
