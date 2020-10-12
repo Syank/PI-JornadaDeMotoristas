@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
+import view.Avisos;
+
 @Entity
 @Table(name="avisos")
 public class Aviso {
@@ -120,16 +122,10 @@ public class Aviso {
 		return avisos;
 	}
 	
-	public List<Aviso> listarAvisos(){	
-		List<Aviso> lista = new ArrayList<>();
+	public List<Avisos> listarAvisos(){	
+		List<Avisos> lista = new ArrayList<>();
 		for (Aviso a: this.consultarTodosAvisos()) {
-			Aviso aviso = new Aviso();
-			aviso.getData();
-			aviso.getId();
-			aviso.getFuncionario_destino();
-			aviso.getMensagem();
-			aviso.getTipo();
-			aviso.isVisualizado();
+			Avisos aviso = new Avisos(a.getMensagem(), a.getFuncionario_destino(), getData());
 			lista.add(aviso);
 		}
 		

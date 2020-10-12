@@ -169,6 +169,11 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 		}
 
 	}
+	
+	@FXML
+	void abrirTelaAvisos(MouseEvent event) {
+		Main.trocarTela("Tela Avisos");
+	}
     @FXML
     private void atualizarLista(ActionEvent event) {
     	carregarTableView();

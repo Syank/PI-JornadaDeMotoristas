@@ -370,6 +370,10 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 	@FXML
 	void abrirTelaAvisos(MouseEvent event) {
 		Main.trocarTela("Tela Avisos");
+    	limparCamposCadastrarFuncionarios();
+    	limparCamposCadastrarFiliais();
+    	limparCamposCadastrarViagens();
+    	limparCamposCadastrarVeículos();
 	}
     @FXML
     void voltar(ActionEvent event) {   	
