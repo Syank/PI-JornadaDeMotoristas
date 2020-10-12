@@ -104,10 +104,9 @@ public class Veiculo {
 		this.setId_rastreador(idRastreador);
 		this.setMarca_rastreador(marca_rastreador);
 		this.setModelo_rastreador(modelo_rastreador);
+		
 		filial.setId(idFilial);
 		this.setFilial(filial);
-		
-
 
 		try {
 			con.getTransaction().begin();

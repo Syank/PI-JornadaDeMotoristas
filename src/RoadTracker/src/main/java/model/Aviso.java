@@ -2,6 +2,7 @@ package model;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -34,6 +35,11 @@ public class Aviso {
 	@ManyToOne
 	@JoinColumn(name = "funcionario", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_cpf")) //coluna da tabela pai
 	private Funcionario funcionario = new Funcionario();
+	
+	//um ou mais avisos correspondem a um funcionario
+	@ManyToOne
+	@JoinColumn(name = "motorista", nullable = false, foreignKey = @ForeignKey(name = "fk_motoristas_cpf")) //coluna da tabela pai
+	private Motorista motorista = new Motorista();
 	
 	public Integer getId() {
 		return id;
@@ -78,18 +84,30 @@ public class Aviso {
 		this.data = data;
 	}
 	
-	public void cadastrarAviso(String tipo, String funcionario_destino, String mensagem) {
+	public Motorista getMotorista() {
+		return motorista;
+	}
+	public void setMotorista(Motorista motorista) {
+		this.motorista = motorista;
+	}
+	public void cadastrarAviso(String tipo, String funcionario_destino, String mensagem, String motorista_origem) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
 		
-		SimpleDateFormat hoje;
-		hoje = new SimpleDateFormat("dd/MM/yyyy");
+		Date hoje = new Date();
+		SimpleDateFormat df;
+		df = new SimpleDateFormat("dd/MM/yyyy");
 		
-		this.setData(hoje.toString());
+		this.setData(df.format(hoje));
 		this.setMensagem(mensagem);
-		this.setFuncionario_destino(funcionario_destino);
 		this.setTipo(tipo);
 		this.setVisualizado(false);
+		
+		funcionario.setCpf(funcionario_destino);
+		this.setFuncionario(funcionario);
+		
+		motorista.setCpf(motorista_origem);
+		this.setMotorista(motorista);
 		
 		try {
 			con.getTransaction().begin();
