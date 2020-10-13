@@ -71,7 +71,7 @@ public class Main extends Application {
 			telas[i].setOnMouseDragged(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
-					stage.setOpacity(0.5);
+					stage.setOpacity(0.75);
 					
 					stage.setX(event.getScreenX() - offSetX);
 					stage.setY(event.getScreenY() - offSetY);
