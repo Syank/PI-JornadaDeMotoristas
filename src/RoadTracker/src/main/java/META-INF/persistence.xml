@@ -19,7 +19,7 @@
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/rtracker"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
-      <property name="javax.persistence.jdbc.password" value="030797"/>
+      <property name="javax.persistence.jdbc.password" value="admin"/>
 
 
       <!-- Configurações específicas do Hibernate -->

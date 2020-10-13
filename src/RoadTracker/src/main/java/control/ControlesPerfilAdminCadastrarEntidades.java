@@ -210,7 +210,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	
     	if(cpf.length() == 11) {
         	Funcionario funcionario = new Funcionario();
-        	System.out.println(funcionario);
 
     		// Primeiro verifica se o cpf não está sendo usado, depois verifica se o email não está sendo usado
         	if (cargo.equals("Administrador") || cargo.equals("Supervisor")) {
@@ -291,6 +290,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	
     	Filial f = new Filial();
     	
+    	
     	String nome = tfNomeFilial.getText();
     	String cidade = tfCidadeFilial.getText();
     	String estado = tfEstadoFilial.getText();
@@ -318,25 +318,24 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     void cadastrarVeiculo(ActionEvent event) {
         	
         Veiculo veic = new Veiculo();
+        
+        try {
+            String placa = textFieldPlacaVeiculo.getText();
+            String modelo_veiculo = textFieldModeloVeiculo.getText();
+            String id_rastreador = textFieldIDRastreador.getText();
+            String marca_rastreador = textFieldMarcaRastreador.getText();
+            String modelo_rastreador = textFieldModeloRastreador.getText();
+        	int filial = comboBoxEscolherFilialVeiculos.getValue().getId();
+            
+        	//primeiro verifica se nenhum campo está nulo( NÃO VERIFICA SE FOI SELECIONADO UMA FILIAL)
+        	if(placa.length() > 1 && modelo_veiculo.length() > 1 && id_rastreador.length() > 1 && marca_rastreador.length() > 1 && modelo_rastreador.length() > 1) {
+        		veic.cadastrarVeiculo(placa, modelo_veiculo, id_rastreador, marca_rastreador, modelo_rastreador, filial);
+        		notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
+        	}
+        }catch (NullPointerException falha) {
+        	notificar("Falha de cadastro", "Falha ao cadastrar a filial", "Preencha todos os campos.");	
+        }
         	
-        String placa = textFieldPlacaVeiculo.getText();
-        String modelo_veiculo = textFieldModeloVeiculo.getText();
-        String id_rastreador = textFieldIDRastreador.getText();
-        String marca_rastreador = textFieldMarcaRastreador.getText();
-        String modelo_rastreador = textFieldModeloRastreador.getText();
-    	int filial = comboBoxEscolherFilialVeiculos.getValue().getId();
-        
-    	//primeiro verifica se nenhum campo está nulo( NÃO VERIFICA SE FOI SELECIONADO UMA FILIAL)
-    	if(placa.length() > 1 && modelo_veiculo.length() > 1 && id_rastreador.length() > 1 && marca_rastreador.length() > 1 && modelo_rastreador.length() > 1) {
-    		veic.cadastrarVeiculo(placa, modelo_veiculo, id_rastreador, marca_rastreador, modelo_rastreador, filial);
-    		notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
-    	}else{
-    		notificar("Falha de cadastro", "Falha ao cadastrar a filial", "Preencha todos os campos.");	
-    	}
-        
-        
-        
-    	
     }
     // --------------------------------------------
     
@@ -345,23 +344,31 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     @FXML
     void cadastrarViagem(ActionEvent event) {
     	Viagem viagem = new Viagem();
-    	int ano = datePickerPrazoEntrega.getValue().getYear();
-    	int dia = datePickerPrazoEntrega.getValue().getDayOfMonth();
-    	int mes = datePickerPrazoEntrega.getValue().getMonthValue();
-    	String prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
     	
-    	String cpfFuncionario = comboBoxMotoristaViagem.getSelectionModel().getSelectedItem().getCpf();
-    	String placaVeiculo = comboBoxVeiculoViagem.getSelectionModel().getSelectedItem().getPlaca();
-    	
-    	//Não verifica se as combobox estao vazias
-    	if(prazo.length() > 1 && placaVeiculo.length() > 1 && tfEmpresaDestino.getText().length() > 1 && textFieldCarga.getText().length() > 1) {
-    		viagem.cadastrarViagem(prazo, tfEmpresaDestino.getText(), 
-					   cpfFuncionario, placaVeiculo, 
-					   textFieldCarga.getText());
-    		notificar("Sucesso de cadastro", "Viagem cadastrada", "A viagem foi cadastrada no sistema com sucesso!");
-    	}else{
+    	try {
+        	int ano = datePickerPrazoEntrega.getValue().getYear();
+        	int dia = datePickerPrazoEntrega.getValue().getDayOfMonth();
+        	int mes = datePickerPrazoEntrega.getValue().getMonthValue();
+        	String prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+        	
+        	String cpfFuncionario = comboBoxMotoristaViagem.getSelectionModel().getSelectedItem().getCpf();
+        	String placaVeiculo = comboBoxVeiculoViagem.getSelectionModel().getSelectedItem().getPlaca();
+        	
+        	
+        	//Não verifica se as combobox estao vazias
+        	if(prazo.length() > 1 && placaVeiculo.length() > 1 && tfEmpresaDestino.getText().length() > 1 && textFieldCarga.getText().length() > 1) {
+        		viagem.cadastrarViagem(prazo, tfEmpresaDestino.getText(), 
+    					   cpfFuncionario, placaVeiculo, 
+    					   textFieldCarga.getText());
+        		notificar("Sucesso de cadastro", "Viagem cadastrada", "A viagem foi cadastrada no sistema com sucesso!");
+        	}
+        	
+    	}catch (NullPointerException falha) {
     		notificar("Falha de cadastro", "Falha ao cadastrar a viagem", "Preencha todos os campos.");	
     	}
+
+    	
+
     	
     	
     }
