@@ -1,6 +1,7 @@
 package model;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -93,18 +94,23 @@ public class Aviso {
 	public void cadastrarAviso(String tipo, String funcionario_destino, String mensagem, String motorista_origem) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
+			
+		LocalDate hoje = LocalDate.now();
 		
-		Date hoje = new Date();
-		SimpleDateFormat df;
-		df = new SimpleDateFormat("dd/MM/yyyy");
+    	int ano = hoje.getYear();
+    	int dia = hoje.getDayOfMonth();
+    	int mes = hoje.getMonthValue();
 		
-		this.setData(df.format(hoje));
+    	String data = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+    	
+		this.setData(data);
 		this.setMensagem(mensagem);
 		this.setTipo(tipo);
 		this.setVisualizado(false);
 		
 		funcionario.setCpf(funcionario_destino);
-		this.setFuncionario(funcionario);
+		this.setFuncionario(funcionario.encontrarFuncionario(funcionario_destino));
+		System.out.println(this.getFuncionario().getCpf());
 		
 		motorista.setCpf(motorista_origem);
 		this.setMotorista(motorista);
@@ -144,6 +150,10 @@ public class Aviso {
 		List<Avisos> lista = new ArrayList<>();
 		for (Aviso a: this.consultarTodosAvisos()) {
 			Avisos aviso = new Avisos(a.getMensagem(), a.getFuncionario_destino(), getData());
+			aviso.setDataAviso(a.getData());
+			aviso.setFuncDestino(a.getFuncionario_destino());
+			System.out.println(a.getFuncionario_destino() + " ====================");
+			aviso.setId(a.getId());
 			lista.add(aviso);
 		}
 		

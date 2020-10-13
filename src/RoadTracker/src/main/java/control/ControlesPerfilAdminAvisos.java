@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
@@ -22,58 +23,41 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import model.Aviso;
-import view.Avisos;
-import view.Main;
-import view.Viagens;
+import model.*;
+import view.*;
 
-public class ControlesPerfilAdminAvisos {
+public class ControlesPerfilAdminAvisos implements Initializable{
 
     @FXML
     private Label labelAvisos;
-
     @FXML
     private Pane paneVisualizarAvisos;
-
     @FXML
     private TableView<Avisos> tabelaAvisos;
-
     @FXML
     private TableColumn<?, ?> colunaTituloAviso;
-
     @FXML
     private TableColumn<?, ?> colunaFuncDestino;
-
     @FXML
     private TableColumn<?, ?> colunaDataAviso;
-
     @FXML
     private Button btSelecionarAviso;
-
-    @FXML
-    private Pane paneAvisoSelected;
-
     @FXML
     private TextField campoIDAviso;
-
     @FXML
     private TextField destinatario;
-
     @FXML
     private TextField campoTipoAviso;
-
     @FXML
     private TextArea msg;
-
     @FXML
     private DatePicker dataDoAviso;
-
     @FXML
     private TextField remetente;
-
     @FXML
     private CheckBox visualizado;
-
+    @FXML
+    private Pane paneAvisoSelecionado;
 
 	private List<Avisos> listaAvisos = new ArrayList<>();
 	private ObservableList<Avisos> obsListAvisos;
@@ -100,8 +84,8 @@ public class ControlesPerfilAdminAvisos {
     		Main.trocarTela("Tela Boas Vindas");
     	}
     	else {
-    		paneAvisoSelected.setDisable(true);
-    		paneAvisoSelected.setVisible(false);
+    		paneAvisoSelecionado.setDisable(true);
+    		paneAvisoSelecionado.setVisible(false);
     		paneVisualizarAvisos.setDisable(false);
     		paneVisualizarAvisos.setVisible(true);
     	}
@@ -121,8 +105,8 @@ public class ControlesPerfilAdminAvisos {
 		Avisos selecionado = tabelaAvisos.getSelectionModel().getSelectedItem();
 		idAviso = selecionado.getId();
 		carregarInfoAviso();
-		paneAvisoSelected.setDisable(false);
-		paneAvisoSelected.setVisible(true);
+		paneAvisoSelecionado.setDisable(false);
+		paneAvisoSelecionado.setVisible(true);
 		paneVisualizarAvisos.setDisable(true);
 		paneVisualizarAvisos.setVisible(false);
     }
@@ -159,8 +143,9 @@ public class ControlesPerfilAdminAvisos {
 		tabelaAvisos.setItems(obsListAvisos);
 	}
 	
-    @FXML
-    void initialize() {
-       carregarTableViews();
-    }
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		carregarTableViews();		
+	}
 }
