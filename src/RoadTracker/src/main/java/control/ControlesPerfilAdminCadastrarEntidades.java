@@ -297,9 +297,16 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	String cnpj = tfCnpj.getText();
     	String rntrc = tfRntrc.getText();
     	
-    	f.cadastrarFilial(nome, cidade, estado, cnpj, rntrc);
+    	//primeiro verifica se nenhum campo está nulo
+    	if(nome.length() > 1 && cidade.length() > 1 && estado.length() > 1 && cnpj.length() > 1 && rntrc.length() > 1) {
+    		f.cadastrarFilial(nome, cidade, estado, cnpj, rntrc);
+    		notificar("Sucesso de cadastro", "Filial cadastrada", "A filial " + nome + " foi cadastrada com sucesso!");
+    	}else{
+    		notificar("Falha de cadastro", "Falha ao cadastrar a filial", "Preencha todos os campos.");	
+    		}
     	
-    	notificar("Sucesso de cadastro", "Filial cadastrada", "A filial " + nome + " foi cadastrada com sucesso!");
+    	
+    	
     }
     
     // ----------------------------------------
@@ -319,10 +326,16 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         String modelo_rastreador = textFieldModeloRastreador.getText();
     	int filial = comboBoxEscolherFilialVeiculos.getValue().getId();
         
+    	//primeiro verifica se nenhum campo está nulo( NÃO VERIFICA SE FOI SELECIONADO UMA FILIAL)
+    	if(placa.length() > 1 && modelo_veiculo.length() > 1 && id_rastreador.length() > 1 && marca_rastreador.length() > 1 && modelo_rastreador.length() > 1) {
+    		veic.cadastrarVeiculo(placa, modelo_veiculo, id_rastreador, marca_rastreador, modelo_rastreador, filial);
+    		notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
+    	}else{
+    		notificar("Falha de cadastro", "Falha ao cadastrar a filial", "Preencha todos os campos.");	
+    	}
         
-        veic.cadastrarVeiculo(placa, modelo_veiculo, id_rastreador, marca_rastreador, modelo_rastreador, filial);
         
-        notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
+        
     	
     }
     // --------------------------------------------
@@ -340,10 +353,17 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	String cpfFuncionario = comboBoxMotoristaViagem.getSelectionModel().getSelectedItem().getCpf();
     	String placaVeiculo = comboBoxVeiculoViagem.getSelectionModel().getSelectedItem().getPlaca();
     	
-    	viagem.cadastrarViagem(prazo, tfEmpresaDestino.getText(), 
-    						   cpfFuncionario, placaVeiculo, 
-    						   textFieldCarga.getText());
-        notificar("Sucesso de cadastro", "Viagem cadastrada", "A viagem foi cadastrada no sistema com sucesso!");
+    	//Não verifica se as combobox estao vazias
+    	if(prazo.length() > 1 && placaVeiculo.length() > 1 && tfEmpresaDestino.getText().length() > 1 && textFieldCarga.getText().length() > 1) {
+    		viagem.cadastrarViagem(prazo, tfEmpresaDestino.getText(), 
+					   cpfFuncionario, placaVeiculo, 
+					   textFieldCarga.getText());
+    		notificar("Sucesso de cadastro", "Viagem cadastrada", "A viagem foi cadastrada no sistema com sucesso!");
+    	}else{
+    		notificar("Falha de cadastro", "Falha ao cadastrar a viagem", "Preencha todos os campos.");	
+    	}
+    	
+    	
     }
     // ---------------------------------------
     
@@ -378,6 +398,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	limparCamposCadastrarFiliais();
     	limparCamposCadastrarViagens();
     	limparCamposCadastrarVeículos();
+    	voltarTelaEscolhas();
 	}
     @FXML
     void voltar(ActionEvent event) {   	
