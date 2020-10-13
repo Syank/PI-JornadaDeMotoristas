@@ -16,6 +16,7 @@ import model.*;
 public class ControlesLogin implements Initializable{
 	
 	public static String senha;
+	public static String cpfLogado;
     @FXML
     private TextField inputUsuario;
     @FXML
@@ -50,6 +51,7 @@ public class ControlesLogin implements Initializable{
     		if(cpfMot.equals("Não encontrado")) {
     			if(funcionario.getSenha().equals(senhaDada)) {
     				senha = senhaDada;
+    				cpfLogado = funcionario.getCpf();
                 	Main.trocarTela("Tela Boas Vindas");
                 	inputUsuario.setText("");
                 	inputSenha.setText("");
@@ -57,6 +59,7 @@ public class ControlesLogin implements Initializable{
     	}else if (cpfFunc.equals("Não encontrado")) {
     		if(motorista.getSenha().equals(senhaDada)) {
     			senha = senhaDada;
+    			cpfLogado = motorista.getCpf();
 	        	Main.trocarTela("Tela Boas Vindas");
 	        	inputUsuario.setText("");
 	        	inputSenha.setText("");

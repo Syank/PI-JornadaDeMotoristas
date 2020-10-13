@@ -556,7 +556,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		}catch (NullPointerException falha) {
 			notificar("Falha", "Entidade não selecionada", "Nenhum veículo foi selecionado na lista, por favor selecione um e tente novamente");
 		}
-
 	}
 
 	void carregarInfoVeiculo() {
@@ -873,6 +872,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	@FXML
 	void abrirTelaAvisos(MouseEvent event) {
 		Main.trocarTela("Tela Avisos");
+		abrirTelaSelecionarEntidade();
 	}
 
 	@FXML

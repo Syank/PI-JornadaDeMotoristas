@@ -292,14 +292,11 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 			}else {
 				confirmado = false;
 			}
-		}
-		
-		fecharAviso(event);
-		
-		salvarAlteracoes(event);
-		
-		
+		}		
+		fecharAviso(event);	
+		salvarAlteracoes(event);	
 	}
+	
 	void notificar(String tipoDeAviso, String titulo, String texto) {
 		paneAvisosPrincipal.setDisable(false);
 		paneAvisosPrincipal.setVisible(true);

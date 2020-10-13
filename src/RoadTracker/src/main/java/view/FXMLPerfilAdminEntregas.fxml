@@ -69,7 +69,7 @@
                   <String fx:value="menuSelecionado" />
                </styleClass>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#abrirTelaAvisos" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">

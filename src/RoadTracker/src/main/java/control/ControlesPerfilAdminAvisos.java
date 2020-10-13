@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -58,6 +59,16 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     private CheckBox visualizado;
     @FXML
     private Pane paneAvisoSelecionado;
+    @FXML
+    private Pane escolherAcaoAvisos;
+    @FXML
+    private TextField addDestinatario;
+    @FXML
+    private TextArea addMsg;
+    @FXML
+    private Pane paneCadastrarAviso;
+    @FXML
+    private ComboBox<Aviso> cbTipoAviso;
 
 	private List<Avisos> listaAvisos = new ArrayList<>();
 	private ObservableList<Avisos> obsListAvisos;
@@ -79,9 +90,55 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     }
     
     @FXML
+    void irCadastrarAvisos(MouseEvent event) {
+		paneAvisoSelecionado.setDisable(true);
+		paneAvisoSelecionado.setVisible(false);
+		paneVisualizarAvisos.setDisable(true);
+		paneVisualizarAvisos.setVisible(false);
+		escolherAcaoAvisos.setDisable(true);
+		escolherAcaoAvisos.setVisible(false);
+		paneCadastrarAviso.setDisable(false);
+		paneCadastrarAviso.setVisible(true);
+		limparCampos();
+    }
+
+    @FXML
+    void irVisualizarAvisos(MouseEvent event) {
+		paneAvisoSelecionado.setDisable(true);
+		paneAvisoSelecionado.setVisible(false);
+		paneVisualizarAvisos.setDisable(false);
+		paneVisualizarAvisos.setVisible(true);
+		escolherAcaoAvisos.setDisable(true);
+		escolherAcaoAvisos.setVisible(false);
+		paneCadastrarAviso.setDisable(true);
+		paneCadastrarAviso.setVisible(false);
+		limparCampos();
+    }
+    
+    @FXML
     void voltar(ActionEvent event) {
-    	if (paneVisualizarAvisos.isVisible()) {
+    	if (escolherAcaoAvisos.isVisible()) {
     		Main.trocarTela("Tela Boas Vindas");
+    	}
+    	else if(paneAvisoSelecionado.isVisible()) {
+    		paneAvisoSelecionado.setDisable(true);
+    		paneAvisoSelecionado.setVisible(false);
+    		paneVisualizarAvisos.setDisable(false);
+    		paneVisualizarAvisos.setVisible(true);
+    		escolherAcaoAvisos.setDisable(true);
+    		escolherAcaoAvisos.setVisible(false);
+    		paneCadastrarAviso.setDisable(true);
+    		paneCadastrarAviso.setVisible(false);
+    	}
+    	else if(paneVisualizarAvisos.isVisible()) {
+    		paneAvisoSelecionado.setDisable(true);
+    		paneAvisoSelecionado.setVisible(false);
+    		paneVisualizarAvisos.setDisable(true);
+    		paneVisualizarAvisos.setVisible(false);
+    		escolherAcaoAvisos.setDisable(false);
+    		escolherAcaoAvisos.setVisible(true);
+    		paneCadastrarAviso.setDisable(true);
+    		paneCadastrarAviso.setVisible(false);
     	}
     	else {
     		paneAvisoSelecionado.setDisable(true);
@@ -89,6 +146,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     		paneVisualizarAvisos.setDisable(false);
     		paneVisualizarAvisos.setVisible(true);
     	}
+    	limparCampos();
     }  
 
     @FXML
@@ -111,6 +169,12 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		paneVisualizarAvisos.setVisible(false);
     }
     
+    @FXML
+    public void confirmarAviso(ActionEvent event) {
+    	Aviso aviso = new Aviso();
+    	aviso.cadastrarAviso(cbTipoAviso.getValue().getTipo(), addDestinatario.getText(), addMsg.getText(), ControlesLogin.cpfLogado);
+    }
+    
     public void carregarInfoAviso() {
     	Aviso aviso = new Aviso();
     	aviso = aviso.encontrarAviso(idAviso);
@@ -131,6 +195,12 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 	void excluir(ActionEvent event) {
 		Aviso aviso = new Aviso();
 //		aviso.excluir();
+	}
+	
+	public void limparCampos() {
+		addDestinatario.setText("");
+		addMsg.setText("");
+		cbTipoAviso.getSelectionModel().clearSelection();
 	}
     
 	public void carregarTableViews() {
