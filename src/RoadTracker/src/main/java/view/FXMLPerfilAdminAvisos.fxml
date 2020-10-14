@@ -73,7 +73,7 @@
                      </image>
                   </ImageView>
                   <HBox prefHeight="56.0" prefWidth="40.0" />
-                  <Label text="Avisos" textFill="WHITE" />
+                  <Label onMouseClicked="#abrirTelaAvisos" text="Avisos" textFill="WHITE" />
                </children>
                <styleClass>
                   <String fx:value="caixasDeSelecao1" />
@@ -136,6 +136,7 @@
             <TextArea fx:id="addMsg" layoutX="27.0" layoutY="99.0" prefHeight="164.0" prefWidth="422.0" wrapText="true" />
             <Label layoutX="53.0" layoutY="74.0" text="Mensagem" />
             <Button layoutX="27.0" layoutY="293.0" mnemonicParsing="false" onAction="#confirmarAviso" prefHeight="39.0" prefWidth="85.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
+            <Button layoutX="124.0" layoutY="294.0" mnemonicParsing="false" onAction="#excluir" prefHeight="39.0" prefWidth="85.0" styleClass="customizarBotoes" text="Excluir" textFill="#fffdfd" />
          </children>
       </Pane>
       <Pane fx:id="paneVisualizarAvisos" disable="true" layoutX="252.0" layoutY="87.0" prefHeight="362.0" prefWidth="493.0" visible="false">

@@ -220,8 +220,8 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     
 	@FXML
 	void excluir(ActionEvent event) {
-		Aviso aviso = new Aviso();
-//		aviso.excluir();
+		addDestinatario.setText("");
+		addMsg.setText("");
 	}
 	
 	
