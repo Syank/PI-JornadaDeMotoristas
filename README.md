@@ -87,9 +87,18 @@
 <section id="cards">
        <h3>Cards das Sprints (entregas) do sistema</h3>
        <h4>Primeira entrega</h4>
-       <p>Os funcionários são os principais agentes do sistema e dentre eles principalmente o motorista. Sendo assim vimos a oportunidade de impressionar aqueles que estivessem utilizando o sistema proporcionando a organização dos funcionários das filiais em um único local, a disponibilização dos dados destes funcionários para melhor conhecimento de todos que estão presentes na filial e o controle dos dados de cada funcionário para que as informações possam ser atualizadas a qualquer momento de forma rápida e simplificada. Quantidade de cards restantes: 28.</p>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_1/Card%20Sprint%200.jpeg">
-   </section>
+       <p>Os funcionários são os principais agentes do sistema e dentre eles principalmente o motorista. Sendo assim vimos a oportunidade de impressionar aqueles que estivessem utilizando o sistema proporcionando a organização dos funcionários das filiais em um único local, a disponibilização dos dados destes funcionários para melhor conhecimento de todos que estão presentes na filial e o controle dos dados de cada funcionário para que as informações possam ser atualizadas a qualquer momento de forma rápida e simplificada. Quantidade de story cards restantes: 28.</p>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/card1.png">
+       <h4>Segunda entrega</h4>
+       <p>O projeto pode ser basicamente separado em três partes, de acordo com os perfis de acesso: motorista, supervisor e administrador. Como a entrega anterior já era dentro do perfil do administrador, optamos, para a Sprint 1, por finalizar todas as funcionalidades que esse usuário tem. Sendo assim o usuário já pode ter uma experiência de uso mais concreta do nosso programa, podendo cadastrar todas as entidades, acessar suas informações, editá-las ou apagá-las, se assim desejar. As funcionalidades do administrador são a base para as funcionalidades do supervisor e do motorista. Devido a isso foi necessário terminar tudo relacionado ao administrador primeiro, pois sem um administrador não há filial, sem filial não é possível cadastrar veículos, outros funcionários, sem funcionários não há viagens etc. Para que as próximas entregas sejam coesas é necessário que os cadastros das entidades que são necessárias para que ocorra uma viagem. Quantidade de story cards restantes: 14 </p>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/card2.png">
+       <h4>Terceira entrega</h4>
+       <p></p>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/card3.png">
+       <h4>Quarta entrega</h4>
+       <p></p>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/card4.png">
+</section>
     
 <section id="sistema_ate_o_momento">
         <h3>Nosso sistema em funcionamento até o momento</h3>
