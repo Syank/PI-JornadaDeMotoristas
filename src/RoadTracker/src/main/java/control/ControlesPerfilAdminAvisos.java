@@ -73,16 +73,33 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     @FXML
     void abrirTelaCadEnt(MouseEvent event) {
     	Main.trocarTela("Tela Cadastrar Funcionarios");
+    	limparCampos();
+    	voltarTelaEscolhas();
     }
     
     @FXML
     void abrirTelaFunc(MouseEvent event) {
     	Main.trocarTela("Tela Funcionarios");
+    	limparCampos();
+    	voltarTelaEscolhas();
     }
     
     @FXML
     void abrirTelaHistEntregas(MouseEvent event) {
     	Main.trocarTela("Tela Historico de Entregas");
+    	limparCampos();
+    	voltarTelaEscolhas();
+    }
+    
+    @FXML
+    void abrirTelaAvisos(MouseEvent event) {
+        escolherAcaoAvisos.setVisible(true);
+    	escolherAcaoAvisos.setDisable(false);
+   		paneAvisoSelecionado.setVisible(false);
+   		paneAvisoSelecionado.setDisable(true);
+   		paneCadastrarAviso.setVisible(false);
+   		paneCadastrarAviso.setDisable(true);
+    	limparCampos();
     }
     
     @FXML
@@ -212,6 +229,15 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		addDestinatario.setText("");
 		addMsg.setText("");
 	}
+	
+    public void voltarTelaEscolhas() {
+    	escolherAcaoAvisos.setVisible(true);
+		escolherAcaoAvisos.setDisable(false);
+		paneAvisoSelecionado.setVisible(false);
+		paneAvisoSelecionado.setDisable(true);
+		paneCadastrarAviso.setVisible(false);
+		paneCadastrarAviso.setDisable(true);
+    }
     
 	public void carregarTableViews() {
 		Aviso aviso = new Aviso();
