@@ -1,11 +1,8 @@
 package model;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.ForeignKey;
@@ -16,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
-
 import view.Avisos;
 
 @Entity
@@ -28,6 +24,7 @@ public class Aviso {
 	private Integer id;
 	private String tipo;
 	private String funcionario_destino;
+	private String funcionario_origem;
 	private String mensagem;
 	private boolean visualizado;
 	private String data;
@@ -91,9 +88,22 @@ public class Aviso {
 	public void setMotorista(Motorista motorista) {
 		this.motorista = motorista;
 	}
-	public void cadastrarAviso(String tipo, String funcionario_destino, String mensagem, String motorista_origem) {
+	public String getFuncionario_origem() {
+		return funcionario_origem;
+	}
+	public void setFuncionario_origem(String funcionario_origem) {
+		this.funcionario_origem = funcionario_origem;
+	}
+	
+	
+	
+	
+public void cadastrarAviso(String funcionario_destino, String funcionario_origem, String mensagem) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
+		
+		Funcionario funcionario = new Funcionario();
+		Motorista motorista = new Motorista();
 			
 		LocalDate hoje = LocalDate.now();
 		
@@ -105,15 +115,19 @@ public class Aviso {
     	
 		this.setData(data);
 		this.setMensagem(mensagem);
-		this.setTipo(tipo);
+		this.setTipo("Mensagem");
 		this.setVisualizado(false);
+		this.setFuncionario_destino(funcionario_destino);
+		this.setFuncionario_origem(funcionario_origem);
 		
-		funcionario.setCpf(funcionario_destino);
-		this.setFuncionario(funcionario.encontrarFuncionario(funcionario_destino));
-		System.out.println(this.getFuncionario().getCpf());
 		
-		motorista.setCpf(motorista_origem);
-		this.setMotorista(motorista);
+		
+		funcionario.setCpf(funcionario_origem);
+		this.setFuncionario(funcionario.encontrarFuncionario(funcionario_origem));
+		
+		motorista.setCpf(funcionario_destino);
+		this.setMotorista(motorista.encontrarMotorista(funcionario_destino));
+		
 		
 		try {
 			con.getTransaction().begin();
@@ -152,7 +166,6 @@ public class Aviso {
 			Avisos aviso = new Avisos(a.getMensagem(), a.getFuncionario_destino(), getData());
 			aviso.setDataAviso(a.getData());
 			aviso.setFuncDestino(a.getFuncionario_destino());
-			System.out.println(a.getFuncionario_destino() + " ====================");
 			aviso.setId(a.getId());
 			lista.add(aviso);
 		}

@@ -48,8 +48,6 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     @FXML
     private TextField destinatario;
     @FXML
-    private TextField campoTipoAviso;
-    @FXML
     private TextArea msg;
     @FXML
     private DatePicker dataDoAviso;
@@ -67,8 +65,6 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     private TextArea addMsg;
     @FXML
     private Pane paneCadastrarAviso;
-    @FXML
-    private ComboBox<Aviso> cbTipoAviso;
 
 	private List<Avisos> listaAvisos = new ArrayList<>();
 	private ObservableList<Avisos> obsListAvisos;
@@ -119,33 +115,26 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     void voltar(ActionEvent event) {
     	if (escolherAcaoAvisos.isVisible()) {
     		Main.trocarTela("Tela Boas Vindas");
-    	}
-    	else if(paneAvisoSelecionado.isVisible()) {
-    		paneAvisoSelecionado.setDisable(true);
-    		paneAvisoSelecionado.setVisible(false);
-    		paneVisualizarAvisos.setDisable(false);
+    	}else if (paneAvisoSelecionado.isVisible()) {
     		paneVisualizarAvisos.setVisible(true);
-    		escolherAcaoAvisos.setDisable(true);
-    		escolherAcaoAvisos.setVisible(false);
-    		paneCadastrarAviso.setDisable(true);
-    		paneCadastrarAviso.setVisible(false);
-    	}
-    	else if(paneVisualizarAvisos.isVisible()) {
-    		paneAvisoSelecionado.setDisable(true);
-    		paneAvisoSelecionado.setVisible(false);
-    		paneVisualizarAvisos.setDisable(true);
-    		paneVisualizarAvisos.setVisible(false);
-    		escolherAcaoAvisos.setDisable(false);
+			paneVisualizarAvisos.setDisable(false);
+			
+			paneAvisoSelecionado.setVisible(false);
+			paneAvisoSelecionado.setDisable(true);
+    	}else if (paneVisualizarAvisos.isVisible()) {
     		escolherAcaoAvisos.setVisible(true);
-    		paneCadastrarAviso.setDisable(true);
-    		paneCadastrarAviso.setVisible(false);
+			escolherAcaoAvisos.setDisable(false);
+		
+			paneVisualizarAvisos.setVisible(false);
+			paneVisualizarAvisos.setDisable(true);
+    	}else if (paneCadastrarAviso.isVisible()) {
+    		escolherAcaoAvisos.setVisible(true);
+			escolherAcaoAvisos.setDisable(false);
+			
+			paneCadastrarAviso.setVisible(false);
+			paneCadastrarAviso.setDisable(true);
     	}
-    	else {
-    		paneAvisoSelecionado.setDisable(true);
-    		paneAvisoSelecionado.setVisible(false);
-    		paneVisualizarAvisos.setDisable(false);
-    		paneVisualizarAvisos.setVisible(true);
-    	}
+    	
     	limparCampos();
     }  
 
@@ -172,7 +161,29 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     @FXML
     public void confirmarAviso(ActionEvent event) {
     	Aviso aviso = new Aviso();
-    	aviso.cadastrarAviso(cbTipoAviso.getValue().getTipo(), addDestinatario.getText(), addMsg.getText(), ControlesLogin.cpfLogado);
+    	Motorista motorista = new Motorista();
+    	
+    	String destino = "";
+    	
+    	try {
+    		destino = addDestinatario.getText();		
+    		
+    	}catch (NullPointerException falha) {
+    		System.out.println("Campo de destino incorreto");
+    	}
+    	
+    	if(destino.length() == 11) {
+    		if(motorista.encontrarMotorista(destino) != null) {
+    			aviso.cadastrarAviso(addDestinatario.getText(), ControlesLogin.cpfLogado, addMsg.getText());
+        		System.out.println("Mensagem cadastrada");
+    		}else {
+    			System.out.println("Não existe motorista com esse cpf");
+    		}
+    		
+    	}else {
+    		System.out.println("CPF de destino inválido");
+    	}
+
     }
     
     public void carregarInfoAviso() {
@@ -180,7 +191,6 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     	aviso = aviso.encontrarAviso(idAviso);
 		
 		campoIDAviso.setText(String.valueOf(aviso.getId()));
-		campoTipoAviso.setText(aviso.getTipo());
 		remetente.setText(aviso.getFuncionario().getCpf());
 		destinatario.setText(aviso.getFuncionario_destino());
 		visualizado.setSelected(aviso.isVisualizado());
@@ -197,19 +207,23 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 //		aviso.excluir();
 	}
 	
+	
 	public void limparCampos() {
 		addDestinatario.setText("");
 		addMsg.setText("");
-		cbTipoAviso.getSelectionModel().clearSelection();
 	}
     
 	public void carregarTableViews() {
 		Aviso aviso = new Aviso();
+		
 		listaAvisos = aviso.listarAvisos();
+		
 		obsListAvisos = FXCollections.observableArrayList(listaAvisos);
+		
 		colunaTituloAviso.setCellValueFactory(new PropertyValueFactory<>("tituloAviso"));
 		colunaFuncDestino.setCellValueFactory(new PropertyValueFactory<>("funcDestino"));
 		colunaDataAviso.setCellValueFactory(new PropertyValueFactory<>("dataAviso"));
+		
 		tabelaAvisos.setItems(obsListAvisos);
 	}
 	
