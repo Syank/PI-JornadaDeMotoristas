@@ -99,6 +99,8 @@ public class ControlesPerfilAdminAvisos implements Initializable{
    		paneAvisoSelecionado.setDisable(true);
    		paneCadastrarAviso.setVisible(false);
    		paneCadastrarAviso.setDisable(true);
+		paneVisualizarAvisos.setDisable(true);
+		paneVisualizarAvisos.setVisible(false);
     	limparCampos();
     }
     
@@ -237,6 +239,8 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		paneAvisoSelecionado.setDisable(true);
 		paneCadastrarAviso.setVisible(false);
 		paneCadastrarAviso.setDisable(true);
+		paneVisualizarAvisos.setVisible(false);
+		paneVisualizarAvisos.setDisable(true);
     }
     
 	public void carregarTableViews() {

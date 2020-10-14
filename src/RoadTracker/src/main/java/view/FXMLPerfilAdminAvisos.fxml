@@ -73,7 +73,7 @@
                      </image>
                   </ImageView>
                   <HBox prefHeight="56.0" prefWidth="40.0" />
-                  <Label onMouseClicked="#abrirTelaAvisos" text="Avisos" textFill="WHITE" />
+                  <Label text="Avisos" textFill="WHITE" />
                </children>
                <styleClass>
                   <String fx:value="caixasDeSelecao1" />
