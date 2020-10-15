@@ -706,6 +706,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	tfNomeFilial.setText("");
     	tfCidadeFilial.setText("");
     	tfEstadoFilial.setText("");
+    	tfCnpj.setText("");
     }
     public void limparCamposCadastrarFuncionarios() {
      	tfNome.setText("");
