@@ -505,7 +505,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     		Main.trocarTela("Tela Boas Vindas");
     	}
     	else {  	
-    		voltarParaTelaDeEscolhas(event);
+    		voltarTelaEscolhas();
     	}
     	limparCamposCadastrarFuncionarios();
     	limparCamposCadastrarFiliais();
@@ -612,7 +612,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	labelTipoDeCadastro.setText("Cadastro de Viagens");
     }
     @FXML
-    void voltarParaTelaDeEscolhas(ActionEvent event) {
+    void voltarParaTelaDeEscolhas(MouseEvent event) {
     	paneCadastrarVeiculos.setVisible(false);
     	paneCadastrarFiliais.setVisible(false);
     	paneCadastrarViagens.setVisible(false);
@@ -723,6 +723,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	cbSexta.setSelected(false);
     	cbSabado.setSelected(false);
     	textFieldSalario.setText("");
+    	cbCargo.getSelectionModel().clearSelection();
     	cbTurno.getSelectionModel().clearSelection();
     	textFieldEmail.setText("");
     }
