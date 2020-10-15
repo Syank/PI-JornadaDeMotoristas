@@ -92,7 +92,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 			paneAvisoSelecionado.setVisible(false);
 			paneAvisoSelecionado.setDisable(true);
     	}else if (paneAvisoSelecionado.isVisible()) {
-    		Main.trocarTela("Boas Vindas");
+    		Main.trocarTela("Tela Boas Vindas");
     	}
     }
     
