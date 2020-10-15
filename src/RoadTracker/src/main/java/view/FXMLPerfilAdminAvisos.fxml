@@ -130,7 +130,7 @@
             </Label>
          </children>
       </HBox>
-      <Pane fx:id="paneVisualizarAvisos" disable="true" layoutX="252.0" layoutY="87.0" prefHeight="362.0" prefWidth="493.0" visible="false">
+      <Pane fx:id="paneVisualizarAvisos" layoutX="252.0" layoutY="87.0" prefHeight="362.0" prefWidth="493.0">
          <children>
             <TableView fx:id="tabelaAvisos" layoutX="16.0" layoutY="19.0" prefHeight="268.0" prefWidth="455.0">
               <columns>
@@ -142,7 +142,7 @@
             <Button fx:id="btSelecionarAviso" layoutX="14.0" layoutY="305.0" mnemonicParsing="false" onAction="#selecionarAviso" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
          </children>
       </Pane>
-      <Pane fx:id="paneAvisoSelecionado" layoutX="252.0" layoutY="93.0" prefHeight="352.0" prefWidth="493.0">
+      <Pane fx:id="paneAvisoSelecionado" disable="true" layoutX="252.0" layoutY="93.0" prefHeight="352.0" prefWidth="493.0" visible="false">
          <children>
             <TextField fx:id="campoIDAviso" disable="true" layoutX="301.0" layoutY="23.0" promptText="ID do aviso" styleClass="customizarInputs" />
             <TextArea fx:id="msg" disable="true" layoutX="28.0" layoutY="64.0" prefHeight="179.0" prefWidth="422.0" wrapText="true" />

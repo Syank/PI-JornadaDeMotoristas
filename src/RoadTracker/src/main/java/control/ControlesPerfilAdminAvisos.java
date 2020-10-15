@@ -14,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -79,18 +78,10 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     
     @FXML
     void abrirTelaAvisos(MouseEvent event) {
-   		paneAvisoSelecionado.setVisible(false);
-   		paneAvisoSelecionado.setDisable(true);
-		paneVisualizarAvisos.setDisable(true);
-		paneVisualizarAvisos.setVisible(false);
-    }
-
-    @FXML
-    void irVisualizarAvisos(MouseEvent event) {
+   		paneAvisoSelecionado.setVisible(true);
+   		paneAvisoSelecionado.setDisable(false);
 		paneVisualizarAvisos.setDisable(false);
 		paneVisualizarAvisos.setVisible(true);
-		paneAvisoSelecionado.setDisable(true);
-		paneAvisoSelecionado.setVisible(false);
     }
     
     @FXML
@@ -98,10 +89,16 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     	if (paneAvisoSelecionado.isVisible()) {
     		paneVisualizarAvisos.setVisible(true);
 			paneVisualizarAvisos.setDisable(false);
+			paneAvisoSelecionado.setVisible(false);
+			paneVisualizarAvisos.setDisable(true);
     	}else if (paneVisualizarAvisos.isVisible()) {
     		Main.trocarTela("Boas Vindas");
     	}
-    }  
+    } 
+    
+    @FXML
+    void excluir(ActionEvent event) {
+    }
 
     @FXML
     void minimizarJanela(ActionEvent event) {
@@ -152,7 +149,6 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		obsListAvisos = FXCollections.observableArrayList(listaAvisos);
 		
 		colunaTituloAviso.setCellValueFactory(new PropertyValueFactory<>("tituloAviso"));
-		colunaFuncDestino.setCellValueFactory(new PropertyValueFactory<>("funcDestino"));
 		colunaDataAviso.setCellValueFactory(new PropertyValueFactory<>("dataAviso"));
 		
 		tabelaAvisos.setItems(obsListAvisos);
