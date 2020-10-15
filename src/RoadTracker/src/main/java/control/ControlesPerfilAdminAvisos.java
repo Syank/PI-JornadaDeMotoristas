@@ -90,11 +90,11 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     		paneVisualizarAvisos.setVisible(true);
 			paneVisualizarAvisos.setDisable(false);
 			paneAvisoSelecionado.setVisible(false);
-			paneVisualizarAvisos.setDisable(true);
-    	}else if (paneVisualizarAvisos.isVisible()) {
+			paneAvisoSelecionado.setDisable(true);
+    	}else if (paneAvisoSelecionado.isVisible()) {
     		Main.trocarTela("Boas Vindas");
     	}
-    } 
+    }
     
     @FXML
     void excluir(ActionEvent event) {
