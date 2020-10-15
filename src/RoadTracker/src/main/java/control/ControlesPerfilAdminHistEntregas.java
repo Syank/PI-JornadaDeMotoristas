@@ -30,6 +30,7 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 	Motorista motorista = new Motorista();
 	Veiculo veiculo = new Veiculo();
 	
+	private String funcao = "";
 	private boolean confirmado = false;
 	
     @FXML
@@ -117,6 +118,8 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     
 	@FXML
 	void requisitarAlteracao(ActionEvent event) {
+		funcao = "Veiculo";
+		
 		notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar as alterações nos dados");
 	}
 	
@@ -147,9 +150,12 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
         	notificar("Sucesso", "Dados alterados", "Os dados da viagem foram alterados com sucesso");
         	
         	desabilitarEdicao();
+    	}else {
+    		notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
     	}
  
     	confirmado = false;
+    	funcao = "";
     }
     @FXML
     private void excluirViagem(ActionEvent event) {
@@ -157,7 +163,9 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	
     	viagem.excluirViagem(Integer.parseInt(textFieldId.getText()));
     	
-    	voltar(event);
+    	desabilitarEdicao();
+    	
+		notificar("Sucesso", "Veículo excluído", "O veículo foi excluído com sucesso do banco de dados!");
     }
 	@FXML
 	private void selecionarViagem(ActionEvent event) {
@@ -337,8 +345,14 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 				confirmado = false;
 			}
 		}		
+		
 		fecharAviso(event);	
-		salvarAlteracoes(event);	
+		switch(funcao) {
+		case "Veiculo":
+			salvarAlteracoes(event);
+			break;
+		}
+			
 	}
 	
 	void notificar(String tipoDeAviso, String titulo, String texto) {
@@ -378,6 +392,10 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 		paneAvisosSucesso.setVisible(false);
 		paneAvisosFalha.setDisable(true);
 		paneAvisosFalha.setVisible(false);
+		paneAvisosConfirmar.setDisable(true);
+		paneAvisosConfirmar.setVisible(false);
+		
+		
     }
     @FXML
     void abrirTelaCadFunc(MouseEvent event) {
