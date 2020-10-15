@@ -38,12 +38,10 @@ CREATE TABLE motoristas (
 
 CREATE TABLE avisos (
     id SERIAL PRIMARY KEY,
-    tipo VARCHAR(15),
-    funcionario_destino VARCHAR(11),
-    visualizado BOOLEAN,
     mensagem TEXT,
     data DATE,
-    fk_funcionarios_filiais_cpf VARCHAR(11),
+    resolvido BOOLEAN,
+    nomenclatura VARCHAR(15),
     fk_motoristas_cpf VARCHAR(11)
 );
 
@@ -87,11 +85,6 @@ ALTER TABLE motoristas ADD CONSTRAINT FK_motoristas_2
     ON DELETE RESTRICT;
  
 ALTER TABLE avisos ADD CONSTRAINT FK_avisos_2
-    FOREIGN KEY (fk_funcionarios_filiais_cpf)
-    REFERENCES funcionarios_filiais (cpf)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE avisos ADD CONSTRAINT FK_avisos_3
     FOREIGN KEY (fk_motoristas_cpf)
     REFERENCES motoristas (cpf)
     ON DELETE RESTRICT;

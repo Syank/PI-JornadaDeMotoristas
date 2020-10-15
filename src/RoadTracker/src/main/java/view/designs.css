@@ -139,3 +139,10 @@
 .menuSelecionado{
 	-fx-background-color: #879eae;
 }
+
+.dicaFlutuante{
+	-fx-background-color: #f7d794;
+	-fx-border-color: #303952;
+	-fx-border-width: 1px;
+	-fx-opacity: 0.7;
+}

@@ -65,7 +65,7 @@
                      </tr>
                      <tr>
                             <td>Entrega 2</td>
-                            <td>CRUD do administrador englobando filiais, veículos e viagens. Envio e leitura de avisos.</td>
+                            <td>CRUD do administrador englobando filiais, veículos e viagens. Leitura de avisos por parte dos supervisores e administradores.</td>
                             <td>28/09/2020 a 18/10/2020</td>
                             <td>Em breve</td>
                      </tr>
@@ -89,7 +89,7 @@
 <section id="cards">
        <h3>Cards das Sprints (entregas) do sistema</h3>
        <h4>Primeira entrega</h4>
-       <p>Os funcionários são os principais agentes do sistema e dentre eles principalmente o motorista. Sendo assim vimos a oportunidade de impressionar aqueles que estivessem utilizando o sistema proporcionando a organização dos funcionários das filiais em um único local, a disponibilização dos dados destes funcionários para melhor conhecimento de todos que estão presentes na filial e o controle dos dados de cada funcionário para que as informações possam ser atualizadas a qualquer momento de forma rápida e simplificada. Quantidade de story cards restantes: 28.</p>
+       <p>Os funcionários são os principais agentes do sistema e dentre eles principalmente o motorista. Sendo assim vimos a oportunidade de impressionar aqueles que estivessem utilizando o sistema proporcionando a organização dos funcionários das filiais em um único local, a disponibilização dos dados destes funcionários para melhor conhecimento de todos que estão presentes na filial e o controle dos dados de cada funcionário para que as informações possam ser atualizadas a qualquer momento de forma rápida e simplificada. Quantidade de story cards restantes: 29.</p>
        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/card1.png">
        <h4>Segunda entrega</h4>
        <p>O projeto pode ser basicamente separado em três partes, de acordo com os perfis de acesso: motorista, supervisor e administrador. Como a entrega anterior focava no perfil do administrador, optamos, para a sprint 1, por finalizar todas as funcionalidades que esse usuário tem. Sendo assim o usuário já pode ter uma experiência de uso mais concreta do nosso sistema, podendo cadastrar todas as entidades, acessar suas informações, editá-las ou apagá-las, se assim desejar. As funcionalidades do administrador são a base para as funcionalidades do supervisor e do motorista. Devido a isso foi necessário terminar tudo relacionado ao administrador primeiro, pois sem um administrador não há filial, sem filial não é possível cadastrar veículos e outros funcionários, sem funcionários não há viagens etc. Para que as próximas entregas sejam coesas é necessário que existam os cadastros das entidades que são necessárias para que ocorra uma viagem. Quantidade de story cards restantes: 14 </p>

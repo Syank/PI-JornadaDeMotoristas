@@ -99,6 +99,8 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     private Label labelAvisosTextoConfirmar;
     @FXML
     private Label labelAvisosTituloConfirmar;
+    @FXML
+    private Label labelDicaFlutuante;
     
 	private List<Viagens> listaDeViagens = new ArrayList<>();
 	private ObservableList<Viagens> obsListViagens;
@@ -231,6 +233,48 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	}
     	
     }
+    
+    
+    @FXML
+    void exibirDicaFlutuante(MouseEvent event) {
+    	if (event.getTarget().toString().contains("textFieldId")) {
+        	labelDicaFlutuante.setText("ID");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldInicio")) {
+        	labelDicaFlutuante.setText("Início");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldTotal")) {
+        	labelDicaFlutuante.setText("Total");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("datePickerPrazo")) {
+        	labelDicaFlutuante.setText("Prazo");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldDestino")) {
+        	labelDicaFlutuante.setText("Destino");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldCarga")) {
+        	labelDicaFlutuante.setText("Carga");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldSituacao")) {
+        	labelDicaFlutuante.setText("Situação");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("comboBoxMotorista")) {
+        	labelDicaFlutuante.setText("Motorista");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("comboBoxVeiculo")) {
+        	labelDicaFlutuante.setText("Veículo");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	
+    	labelDicaFlutuante.setLayoutX(event.getSceneX());
+    	labelDicaFlutuante.setLayoutY(event.getSceneY());
+    }
+    @FXML
+    void esconderDicaFlutuante(MouseEvent event) {
+    	labelDicaFlutuante.setVisible(false);
+    	
+    }
+    
     private void carregarTableView(){
     	Viagem viagem = new Viagem();
     	

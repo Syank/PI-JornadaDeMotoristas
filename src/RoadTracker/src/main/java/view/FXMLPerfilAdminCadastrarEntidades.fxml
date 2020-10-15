@@ -130,8 +130,8 @@
       <Pane fx:id="paneCadastrarFuncionarios" disable="true" layoutX="266.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
          <children>
             <Button layoutX="14.0" layoutY="311.0" mnemonicParsing="false" onMouseClicked="#cadastrarFuncionario" prefHeight="31.0" prefWidth="102.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
-            <ComboBox fx:id="cbCargo" layoutX="13.0" layoutY="27.0" onAction="#ajustarEscolhaDoCargo" prefHeight="27.0" prefWidth="159.0" promptText="Escolha o cargo..." styleClass="customizarInputs" />
-            <ComboBox fx:id="cbFilial" layoutX="187.0" layoutY="27.0" prefHeight="27.0" prefWidth="159.0" promptText="Escolha a filial..." styleClass="customizarInputs" />
+            <ComboBox fx:id="cbCargo" layoutX="13.0" layoutY="27.0" onAction="#ajustarEscolhaDoCargo" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefHeight="27.0" prefWidth="159.0" promptText="Escolha o cargo..." styleClass="customizarInputs" />
+            <ComboBox fx:id="cbFilial" layoutX="187.0" layoutY="27.0" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefHeight="27.0" prefWidth="159.0" promptText="Escolha a filial..." styleClass="customizarInputs" />
             <Pane fx:id="paneInfosExtrasMotorista" disable="true" layoutX="175.0" layoutY="61.0" prefHeight="235.0" prefWidth="295.0" visible="false">
                <children>
                   <VBox layoutX="180.0" layoutY="14.0" prefHeight="123.0" prefWidth="100.0">
@@ -148,20 +148,20 @@
                   </VBox>
                   <VBox layoutX="16.0" layoutY="14.0" prefHeight="156.0" prefWidth="149.0" spacing="15.0">
                      <children>
-                        <ComboBox fx:id="cbTurno" prefWidth="150.0" promptText="Turno" styleClass="customizarInputs" />
-                        <TextField fx:id="tfCargaHoraria" promptText="Carga Horária" styleClass="customizarInputs" />
-                        <TextField fx:id="textFieldSalario" promptText="Salário" styleClass="customizarInputs" />
+                        <ComboBox fx:id="cbTurno" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefWidth="150.0" promptText="Turno" styleClass="customizarInputs" />
+                        <TextField fx:id="tfCargaHoraria" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Carga Horária" styleClass="customizarInputs" />
+                        <TextField fx:id="textFieldSalario" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Salário" styleClass="customizarInputs" />
                      </children>
                   </VBox>
                </children>
             </Pane>
             <VBox layoutX="15.0" layoutY="75.0" prefHeight="218.0" prefWidth="159.0" spacing="15.0">
                <children>
-                  <TextField fx:id="tfNome" promptText="Nome" styleClass="customizarInputs" />
-                  <TextField fx:id="tfCpf" promptText="CPF" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldEmail" promptText="E-mail" styleClass="customizarInputs" />
-                  <PasswordField fx:id="pfSenha1" promptText="Senha" styleClass="customizarInputs" />
-                  <PasswordField fx:id="pfSenha2" promptText="Confirme a senha" styleClass="customizarInputs" />
+                  <TextField fx:id="tfNome" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Nome" styleClass="customizarInputs" />
+                  <TextField fx:id="tfCpf" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CPF" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldEmail" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="E-mail" styleClass="customizarInputs" />
+                  <PasswordField fx:id="pfSenha1" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Senha" styleClass="customizarInputs" />
+                  <PasswordField fx:id="pfSenha2" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Confirme a senha" styleClass="customizarInputs" />
                </children>
             </VBox>
          </children>
@@ -171,39 +171,39 @@
             <Button layoutX="19.0" layoutY="310.0" mnemonicParsing="false" onAction="#cadastrarFilial" prefHeight="32.0" prefWidth="78.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
             <VBox alignment="TOP_CENTER" layoutX="19.0" layoutY="65.0" prefHeight="183.0" prefWidth="168.0" spacing="25.0">
                <children>
-                  <TextField fx:id="tfNomeFilial" promptText="Nome da filial" styleClass="customizarInputs" />
-                  <TextField fx:id="tfCidadeFilial" promptText="Cidade da filial" styleClass="customizarInputs" />
-                  <TextField fx:id="tfEstadoFilial" promptText="Estado da filial (Sigla)" styleClass="customizarInputs" />
+                  <TextField fx:id="tfNomeFilial" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Nome da filial" styleClass="customizarInputs" />
+                  <TextField fx:id="tfCidadeFilial" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Cidade da filial" styleClass="customizarInputs" />
+                  <TextField fx:id="tfEstadoFilial" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Estado da filial (Sigla)" styleClass="customizarInputs" />
                </children>
             </VBox>
-            <TextField fx:id="tfCnpj" layoutX="238.0" layoutY="65.0" promptText="CNPJ" styleClass="customizarInputs" />
-            <TextField fx:id="tfRntrc" layoutX="238.0" layoutY="117.0" promptText="RNTRC" styleClass="customizarInputs" />
+            <TextField fx:id="tfCnpj" layoutX="238.0" layoutY="65.0" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CNPJ" styleClass="customizarInputs" />
+            <TextField fx:id="tfRntrc" layoutX="238.0" layoutY="117.0" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="RNTRC" styleClass="customizarInputs" />
          </children>
       </Pane>
       <Pane fx:id="paneCadastrarVeiculos" disable="true" layoutX="266.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
          <children>
             <VBox layoutX="21.0" layoutY="14.0" prefHeight="136.0" prefWidth="168.0" spacing="25.0">
                <children>
-                  <TextField fx:id="textFieldMarcaRastreador" promptText="Marca do Rastreador" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldModeloRastreador" promptText="Versão do Rastreador" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldIDRastreador" promptText="ID do Rastreador" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldModeloVeiculo" promptText="Modelo do Veículo" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldPlacaVeiculo" promptText="Placa do Veículo" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldMarcaRastreador" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Marca do Rastreador" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldModeloRastreador" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Versão do Rastreador" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldIDRastreador" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="ID do Rastreador" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldModeloVeiculo" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Modelo do Veículo" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldPlacaVeiculo" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Placa do Veículo" styleClass="customizarInputs" />
                </children>
             </VBox>
             <Button layoutX="21.0" layoutY="305.0" mnemonicParsing="false" onAction="#cadastrarVeiculo" prefHeight="30.0" prefWidth="106.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
-            <ComboBox fx:id="comboBoxEscolherFilialVeiculos" layoutX="250.0" layoutY="13.0" prefWidth="150.0" promptText="Escolha a filial..." styleClass="customizarInputs" />
+            <ComboBox fx:id="comboBoxEscolherFilialVeiculos" layoutX="250.0" layoutY="13.0" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefWidth="150.0" promptText="Escolha a filial..." styleClass="customizarInputs" />
          </children></Pane>
       <Pane fx:id="paneCadastrarViagens" disable="true" layoutX="262.0" layoutY="87.0" prefHeight="356.0" prefWidth="476.0" visible="false">
          <children>
             <Button layoutX="26.0" layoutY="299.0" mnemonicParsing="false" onAction="#cadastrarViagem" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
             <VBox layoutX="26.0" layoutY="39.0" prefHeight="228.0" prefWidth="149.0" spacing="20.0">
                <children>
-                  <TextField fx:id="tfEmpresaDestino" prefHeight="27.0" prefWidth="136.0" promptText="Empresa de Destino" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldCarga" promptText="Carga da entrega" styleClass="customizarInputs" />
-                  <ComboBox fx:id="comboBoxMotoristaViagem" prefWidth="150.0" promptText="Motorista" styleClass="customizarInputs" />
-                  <ComboBox fx:id="comboBoxVeiculoViagem" prefWidth="150.0" promptText="Veículo" styleClass="customizarInputs" />
-                  <DatePicker fx:id="datePickerPrazoEntrega" prefHeight="27.0" prefWidth="155.0" promptText="Prazo da entrega" styleClass="customizarInputs" />
+                  <TextField fx:id="tfEmpresaDestino" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefHeight="27.0" prefWidth="136.0" promptText="Empresa de Destino" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldCarga" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Carga da entrega" styleClass="customizarInputs" />
+                  <ComboBox fx:id="comboBoxMotoristaViagem" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefWidth="150.0" promptText="Motorista" styleClass="customizarInputs" />
+                  <ComboBox fx:id="comboBoxVeiculoViagem" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefWidth="150.0" promptText="Veículo" styleClass="customizarInputs" />
+                  <DatePicker fx:id="datePickerPrazoEntrega" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefHeight="27.0" prefWidth="155.0" promptText="Prazo da entrega" styleClass="customizarInputs" />
                </children>
             </VBox>
          </children></Pane>
@@ -251,6 +251,11 @@
             </HBox>
          </children>
       </Pane>
+      <Label fx:id="labelDicaFlutuante" layoutX="648.0" layoutY="38.0" styleClass="dicaFlutuante" text="Dica Flutuante" visible="false">
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </Label>
       <Pane fx:id="paneAvisosPrincipal" disable="true" prefHeight="450.0" prefWidth="750.0" visible="false">
          <children>
             <Pane fx:id="paneAvisosSombra" disable="true" prefHeight="450.0" prefWidth="750.0" styleClass="sombraDeAviso" visible="false" />

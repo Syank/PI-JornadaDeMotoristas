@@ -164,19 +164,19 @@
             <Button fx:id="botaoDescartar" layoutX="410.0" layoutY="302.0" mnemonicParsing="false" onAction="#descartarAlteracoes" prefHeight="31.0" prefWidth="76.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE" />
             <VBox layoutX="35.0" layoutY="32.0" prefHeight="200.0" prefWidth="136.0" spacing="20.0">
                <children>
-                  <TextField fx:id="textFieldId" disable="true" promptText="ID" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldInicio" promptText="Inicio" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldTotal" promptText="Total" styleClass="customizarInputs" />
-                  <DatePicker fx:id="datePickerPrazo" promptText="Prazo" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldId" disable="true" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="ID" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldInicio" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Inicio" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldTotal" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Total" styleClass="customizarInputs" />
+                  <DatePicker fx:id="datePickerPrazo" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Prazo" styleClass="customizarInputs" />
                </children>
             </VBox>
             <VBox layoutX="250.0" layoutY="32.0" prefHeight="253.0" prefWidth="148.0" spacing="20.0">
                <children>
-                  <TextField fx:id="textFieldDestino" promptText="Destino" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldCarga" promptText="Carga" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldSituacao" promptText="Situação" styleClass="customizarInputs" />
-                  <ComboBox fx:id="comboBoxMotorista" prefWidth="150.0" promptText="Motorista" styleClass="customizarInputs" />
-                  <ComboBox fx:id="comboBoxVeiculo" prefWidth="150.0" promptText="Veiculo" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldDestino" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Destino" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldCarga" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Carga" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldSituacao" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Situação" styleClass="customizarInputs" />
+                  <ComboBox fx:id="comboBoxMotorista" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefWidth="150.0" promptText="Motorista" styleClass="customizarInputs" />
+                  <ComboBox fx:id="comboBoxVeiculo" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefWidth="150.0" promptText="Veiculo" styleClass="customizarInputs" />
                </children>
             </VBox>
          </children>
@@ -256,5 +256,10 @@
             </Pane>
          </children>
       </Pane>
+      <Label fx:id="labelDicaFlutuante" layoutX="658.0" layoutY="25.0" styleClass="dicaFlutuante" text="Dica Flutuante" visible="false">
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </Label>
    </children>
 </AnchorPane>
