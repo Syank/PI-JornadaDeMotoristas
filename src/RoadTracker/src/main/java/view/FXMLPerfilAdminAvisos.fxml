@@ -130,15 +130,6 @@
             </Label>
          </children>
       </HBox>
-      <Pane fx:id="paneCadastrarAviso" disable="true" layoutX="259.0" layoutY="87.0" prefHeight="362.0" prefWidth="486.0" visible="false">
-         <children>
-            <TextField fx:id="addDestinatario" layoutX="27.0" layoutY="31.0" promptText="Destinatário" styleClass="customizarInputs" />
-            <TextArea fx:id="addMsg" layoutX="27.0" layoutY="99.0" prefHeight="164.0" prefWidth="422.0" wrapText="true" />
-            <Label layoutX="53.0" layoutY="74.0" text="Mensagem" />
-            <Button layoutX="27.0" layoutY="293.0" mnemonicParsing="false" onAction="#confirmarAviso" prefHeight="39.0" prefWidth="85.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
-            <Button layoutX="124.0" layoutY="294.0" mnemonicParsing="false" onAction="#excluir" prefHeight="39.0" prefWidth="85.0" styleClass="customizarBotoes" text="Excluir" textFill="#fffdfd" />
-         </children>
-      </Pane>
       <Pane fx:id="paneVisualizarAvisos" disable="true" layoutX="252.0" layoutY="87.0" prefHeight="362.0" prefWidth="493.0" visible="false">
          <children>
             <TableView fx:id="tabelaAvisos" layoutX="16.0" layoutY="19.0" prefHeight="268.0" prefWidth="455.0">
@@ -151,37 +142,12 @@
             <Button fx:id="btSelecionarAviso" layoutX="14.0" layoutY="305.0" mnemonicParsing="false" onAction="#selecionarAviso" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
          </children>
       </Pane>
-      <Pane fx:id="escolherAcaoAvisos" layoutX="252.0" layoutY="93.0" prefHeight="352.0" prefWidth="493.0">
+      <Pane fx:id="paneAvisoSelecionado" layoutX="252.0" layoutY="93.0" prefHeight="352.0" prefWidth="493.0">
          <children>
-            <HBox alignment="CENTER_LEFT" layoutX="37.0" layoutY="149.0" onMouseClicked="#irVisualizarAvisos" prefHeight="84.0" prefWidth="200.0" spacing="5.0" styleClass="caixasDeSelecaoBoasVindas">
-               <children>
-                  <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@alert.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="84.0" prefWidth="150.0" text="Visualize os avisos existentes no sistema e a mensagem repassada ao funcionário de destino" wrapText="true" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="207.0" layoutY="53.0" onMouseClicked="#irCadastrarAvisos" prefHeight="74.0" prefWidth="200.0" styleClass="caixasDeSelecaoBoasVindas">
-               <children>
-                  <Label prefHeight="71.0" prefWidth="131.0" text="Crie um novo aviso no sistema, enviando uma mensagem a um funcionário" textAlignment="RIGHT" wrapText="true" />
-                  <ImageView fitHeight="70.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@salvarAlteracoes.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-         </children>
-      </Pane>
-      <Pane fx:id="paneAvisoSelecionado" disable="true" layoutX="252.0" layoutY="93.0" prefHeight="352.0" prefWidth="493.0" visible="false">
-         <children>
-            <TextField fx:id="campoIDAviso" disable="true" layoutX="142.0" layoutY="287.0" promptText="ID do aviso" styleClass="customizarInputs" />
-            <TextField fx:id="destinatario" disable="true" layoutX="301.0" layoutY="251.0" promptText="Destinatário" styleClass="customizarInputs" />
+            <TextField fx:id="campoIDAviso" disable="true" layoutX="301.0" layoutY="23.0" promptText="ID do aviso" styleClass="customizarInputs" />
             <TextArea fx:id="msg" disable="true" layoutX="28.0" layoutY="64.0" prefHeight="179.0" prefWidth="422.0" wrapText="true" />
             <Label layoutX="30.0" layoutY="36.0" text="Mensagem" />
-            <DatePicker fx:id="dataDoAviso" disable="true" layoutX="301.0" layoutY="287.0" prefHeight="27.0" prefWidth="149.0" styleClass="customizarInputs" />
+            <DatePicker fx:id="dataDoAviso" disable="true" layoutX="301.0" layoutY="251.0" prefHeight="27.0" prefWidth="149.0" styleClass="customizarInputs" />
             <TextField fx:id="remetente" disable="true" layoutX="142.0" layoutY="251.0" promptText="Remetente" styleClass="customizarInputs" />
             <CheckBox fx:id="visualizado" disable="true" layoutX="30.0" layoutY="256.0" mnemonicParsing="false" text="Visualizado" />
             <Button layoutX="28.0" layoutY="284.0" mnemonicParsing="false" onAction="#excluir" prefHeight="33.0" prefWidth="63.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE" />

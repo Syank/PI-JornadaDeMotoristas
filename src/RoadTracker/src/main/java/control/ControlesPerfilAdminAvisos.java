@@ -46,26 +46,15 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     @FXML
     private TextField campoIDAviso;
     @FXML
-    private TextField destinatario;
+    private TextField remetente;
+    @FXML
+    private CheckBox visualizado;
     @FXML
     private TextArea msg;
     @FXML
     private DatePicker dataDoAviso;
     @FXML
-    private TextField remetente;
-    @FXML
-    private CheckBox visualizado;
-    @FXML
     private Pane paneAvisoSelecionado;
-    @FXML
-    private Pane escolherAcaoAvisos;
-    @FXML
-    private TextField addDestinatario;
-    @FXML
-    private TextArea addMsg;
-    @FXML
-    private Pane paneCadastrarAviso;
-
 	private List<Avisos> listaAvisos = new ArrayList<>();
 	private ObservableList<Avisos> obsListAvisos;
 	private int idAviso;
@@ -73,88 +62,45 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     @FXML
     void abrirTelaCadEnt(MouseEvent event) {
     	Main.trocarTela("Tela Cadastrar Funcionarios");
-    	limparCampos();
-    	voltarTelaEscolhas();
+    	voltarAvisos();
     }
     
     @FXML
     void abrirTelaFunc(MouseEvent event) {
     	Main.trocarTela("Tela Funcionarios");
-    	limparCampos();
-    	voltarTelaEscolhas();
+    	voltarAvisos();
     }
     
     @FXML
     void abrirTelaHistEntregas(MouseEvent event) {
     	Main.trocarTela("Tela Historico de Entregas");
-    	limparCampos();
-    	voltarTelaEscolhas();
+    	voltarAvisos();
     }
     
     @FXML
     void abrirTelaAvisos(MouseEvent event) {
-        escolherAcaoAvisos.setVisible(true);
-    	escolherAcaoAvisos.setDisable(false);
    		paneAvisoSelecionado.setVisible(false);
    		paneAvisoSelecionado.setDisable(true);
-   		paneCadastrarAviso.setVisible(false);
-   		paneCadastrarAviso.setDisable(true);
 		paneVisualizarAvisos.setDisable(true);
 		paneVisualizarAvisos.setVisible(false);
-    	limparCampos();
-    }
-    
-    @FXML
-    void irCadastrarAvisos(MouseEvent event) {
-		paneAvisoSelecionado.setDisable(true);
-		paneAvisoSelecionado.setVisible(false);
-		paneVisualizarAvisos.setDisable(true);
-		paneVisualizarAvisos.setVisible(false);
-		escolherAcaoAvisos.setDisable(true);
-		escolherAcaoAvisos.setVisible(false);
-		paneCadastrarAviso.setDisable(false);
-		paneCadastrarAviso.setVisible(true);
-		limparCampos();
     }
 
     @FXML
     void irVisualizarAvisos(MouseEvent event) {
-		paneAvisoSelecionado.setDisable(true);
-		paneAvisoSelecionado.setVisible(false);
 		paneVisualizarAvisos.setDisable(false);
 		paneVisualizarAvisos.setVisible(true);
-		escolherAcaoAvisos.setDisable(true);
-		escolherAcaoAvisos.setVisible(false);
-		paneCadastrarAviso.setDisable(true);
-		paneCadastrarAviso.setVisible(false);
-		limparCampos();
+		paneAvisoSelecionado.setDisable(true);
+		paneAvisoSelecionado.setVisible(false);
     }
     
     @FXML
     void voltar(ActionEvent event) {
-    	if (escolherAcaoAvisos.isVisible()) {
-    		Main.trocarTela("Tela Boas Vindas");
-    	}else if (paneAvisoSelecionado.isVisible()) {
+    	if (paneAvisoSelecionado.isVisible()) {
     		paneVisualizarAvisos.setVisible(true);
 			paneVisualizarAvisos.setDisable(false);
-			
-			paneAvisoSelecionado.setVisible(false);
-			paneAvisoSelecionado.setDisable(true);
     	}else if (paneVisualizarAvisos.isVisible()) {
-    		escolherAcaoAvisos.setVisible(true);
-			escolherAcaoAvisos.setDisable(false);
-		
-			paneVisualizarAvisos.setVisible(false);
-			paneVisualizarAvisos.setDisable(true);
-    	}else if (paneCadastrarAviso.isVisible()) {
-    		escolherAcaoAvisos.setVisible(true);
-			escolherAcaoAvisos.setDisable(false);
-			
-			paneCadastrarAviso.setVisible(false);
-			paneCadastrarAviso.setDisable(true);
+    		Main.trocarTela("Boas Vindas");
     	}
-    	
-    	limparCampos();
     }  
 
     @FXML
@@ -177,41 +123,12 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		paneVisualizarAvisos.setVisible(false);
     }
     
-    @FXML
-    public void confirmarAviso(ActionEvent event) {
-    	Aviso aviso = new Aviso();
-    	Motorista motorista = new Motorista();
-    	
-    	String destino = "";
-    	
-    	try {
-    		destino = addDestinatario.getText();		
-    		
-    	}catch (NullPointerException falha) {
-    		System.out.println("Campo de destino incorreto");
-    	}
-    	
-    	if(destino.length() == 11) {
-    		if(motorista.encontrarMotorista(destino) != null) {
-    			aviso.cadastrarAviso(addDestinatario.getText(), ControlesLogin.cpfLogado, addMsg.getText());
-        		System.out.println("Mensagem cadastrada");
-    		}else {
-    			System.out.println("Não existe motorista com esse cpf");
-    		}
-    		
-    	}else {
-    		System.out.println("CPF de destino inválido");
-    	}
-
-    }
-    
     public void carregarInfoAviso() {
     	Aviso aviso = new Aviso();
     	aviso = aviso.encontrarAviso(idAviso);
 		
 		campoIDAviso.setText(String.valueOf(aviso.getId()));
 		remetente.setText(aviso.getFuncionario().getCpf());
-		destinatario.setText(aviso.getFuncionario_destino());
 		visualizado.setSelected(aviso.isVisualizado());
 		msg.setText(aviso.getMensagem());
 
@@ -220,27 +137,11 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     	dataDoAviso.setValue(localDate);
     }
     
-	@FXML
-	void excluir(ActionEvent event) {
-		addDestinatario.setText("");
-		addMsg.setText("");
-	}
-	
-	
-	public void limparCampos() {
-		addDestinatario.setText("");
-		addMsg.setText("");
-	}
-	
-    public void voltarTelaEscolhas() {
-    	escolherAcaoAvisos.setVisible(true);
-		escolherAcaoAvisos.setDisable(false);
+    public void voltarAvisos() {
 		paneAvisoSelecionado.setVisible(false);
 		paneAvisoSelecionado.setDisable(true);
-		paneCadastrarAviso.setVisible(false);
-		paneCadastrarAviso.setDisable(true);
-		paneVisualizarAvisos.setVisible(false);
-		paneVisualizarAvisos.setDisable(true);
+		paneVisualizarAvisos.setVisible(true);
+		paneVisualizarAvisos.setDisable(false);
     }
     
 	public void carregarTableViews() {
