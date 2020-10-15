@@ -58,6 +58,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private Label labelAvisosTextoConfirmar;
 	@FXML
 	private PasswordField passwordFieldConfirmarSenha;
+	@FXML
+	private Label labelDicaFlutuante;
 	// ----------------------------------
 
 	// Elemento da pane de selecionar entidade
@@ -575,6 +577,82 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	
 
 	// Métodos gerais
+    @FXML
+    void exibirDicaFlutuante(MouseEvent event) {
+    	if (event.getTarget().toString().contains("textFieldMarcaRastreador")) {
+        	labelDicaFlutuante.setText("Marca do Rastreador");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldModeloRastreador")) {
+        	labelDicaFlutuante.setText("Versão do Rastreador");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldIDRastreador")) {
+        	labelDicaFlutuante.setText("ID do Rastreador");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldModeloVeiculo")) {
+        	labelDicaFlutuante.setText("Modelo do Veículo");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldPlacaVeiculo")) {
+        	labelDicaFlutuante.setText("Placa do Veículo");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("comboBoxFilialVeiculo")) {
+        	labelDicaFlutuante.setText("Filial do Veículo");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldNomeFilial")) {
+        	labelDicaFlutuante.setText("Nome");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldCidadeFilial")) {
+        	labelDicaFlutuante.setText("Cidade");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldEstadoFilial")) {
+        	labelDicaFlutuante.setText("Estado");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldCnpj")) {
+        	labelDicaFlutuante.setText("CNPJ");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldRntrc")) {
+        	labelDicaFlutuante.setText("RNTRC");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldIdFilial")) {
+        	labelDicaFlutuante.setText("ID");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("tfNome")) {
+        	labelDicaFlutuante.setText("Nome");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("tfCpf")) {
+        	labelDicaFlutuante.setText("CPF");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldEmail")) {
+        	labelDicaFlutuante.setText("E-mail");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("pfSenha")) {
+        	labelDicaFlutuante.setText("Senha");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("cbCargo")) {
+        	labelDicaFlutuante.setText("Cargo");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("cbFilial")) {
+        	labelDicaFlutuante.setText("Filial");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("cbTurno")) {
+        	labelDicaFlutuante.setText("Turno");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("textFieldSalarioMotorista")) {
+        	labelDicaFlutuante.setText("Salário");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("tfCargaHoraria")) {
+        	labelDicaFlutuante.setText("Carga Horária");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	
+    	labelDicaFlutuante.setLayoutX(event.getSceneX());
+    	labelDicaFlutuante.setLayoutY(event.getSceneY());
+    }
+    @FXML
+    void esconderDicaFlutuante(MouseEvent event) {
+    	labelDicaFlutuante.setVisible(false);
+    	
+    }
+    
 	@FXML
 	void abrirTelaFuncionarios(MouseEvent event) {
 		paneFuncionarios.setVisible(true);

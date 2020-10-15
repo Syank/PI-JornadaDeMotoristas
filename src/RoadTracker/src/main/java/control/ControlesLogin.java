@@ -6,8 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import view.*;
 import model.*;
@@ -25,6 +27,10 @@ public class ControlesLogin implements Initializable{
     private Button botaoEntrar;
     @FXML
     private AnchorPane janela;
+    @FXML
+    private Label labelDicaFlutuante;
+    private double XAnterior;
+    private double YAnterior;
 
     
     
@@ -68,7 +74,26 @@ public class ControlesLogin implements Initializable{
     	}
     }
 
+    
+    @FXML
+    void exibirDicaFlutuante(MouseEvent event) {
+    	if(event.getTarget().toString().contains("inputUsuario")) {
+        	labelDicaFlutuante.setText("E-mail");
+        	labelDicaFlutuante.setVisible(true);
+    	}else if (event.getTarget().toString().contains("inputSenha")) {
+        	labelDicaFlutuante.setText("Senha");
+        	labelDicaFlutuante.setVisible(true);
+    	}
 
+    	labelDicaFlutuante.setLayoutX(event.getSceneX());
+    	labelDicaFlutuante.setLayoutY(event.getSceneY());
+    }
+
+    @FXML
+    void esconderDicaFlutuante(MouseEvent event) {
+    	labelDicaFlutuante.setVisible(false);
+    	
+    }
     
     @FXML
     void minimizarJanela(ActionEvent event) {
