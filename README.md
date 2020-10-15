@@ -83,7 +83,9 @@
                      </tr>
               </tbody>
        </table>
+       <h4><a href="https://drive.google.com/file/d/1HuQ9GrWlmToOBW_bJGg-9X_d5m0Zey0G/view?usp=sharing">Visualizar Burndown</h4>
 </section>
+
 <section id="cards">
        <h3>Cards das Sprints (entregas) do sistema</h3>
        <h4>Primeira entrega</h4>
