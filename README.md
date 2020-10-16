@@ -13,11 +13,17 @@
        <h1>RoadTracker :truck::computer:</h1>
        <p>Seja bem vindo à branch da segunda entrega do RoadTracker!</p>
 
+</br>
+
 <h2>O nosso desafio</h2>
 <p>Nosso cliente é a empresa IACIT e nos foi solicitado para desenvolver um sistema de gerenciamento de controle de jornada de trabalho de motoristas de forma parametrizável visando a disponibilização de funcionalidades de planejamento, acompanhamento e controle da jornada de trabalho destes trabalhadores. Nosso sistema deverá oferecer cadastro para motoristas (tendo nome, CPF, matrícula e ID do equipamento do caminhão), um cadastro para os dados do veículo (como a placa, a marca e versão do rastreador e o ID do equipamento), escala dos motoristas (turno, carga horária, dias de trabalho e de folga), um cadastro de alertas (contendo ocorrência, sigla, ícone, descrição do alerta e regra/parâmetro), cadastro de status (cadastrar status e regras de negócio de acordo com cada situação ocorrida durante a jornada, ID dos macros/mensagens, status de início e fim de jornada, tempo de trabalho, tempo de espera, tempo de refeição e tempo de descanso).</p>
 
+</br>
+
 <h2>O que é o RoadTracker?</h2>
 <p>Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas de trabalho de motoristas, pois muitas vezes não há o controle sobre o expediente desses trabalhadores. Todas as filiais de uma empresa ser cadastradas e realizar o cadastro de seus motoristas e, consequentemente, realizar o cadastro das jornadas de trabalho deles, o veículo que será utilizado e a viagem a ser realizada. Além disso, a filial terá acesso a várias informações sobre o status do motorista durante a viagem!</p>
+
+</br>
 
 <h2>Card da segunda entrega do nosso sistema</h2>
        <h3>O que entregamos :white_check_mark: </h3>
@@ -28,6 +34,20 @@
 <p>As partes mais trabalhosas foram as correções que se mostrarem serem necessárias realizar no sistema do banco de dados, de como as entidades se relacionam entre si e adaptar essas mudanças ao código Java.</p>
 
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/Cards/card2.png" width="500" height="280"/>
+
+</br>
+
+<div>
+       <h2>Feedback sobre a primeira entrega</h2>
+       <p>
+              Após nossa primeira entrega, recebemos um feedback positivo em relação ao cliente, IACIT, contudo por parte da avaliação técnica dos professores, em nosso repositório ainda faltavam alguns elementos para serem adicionados, sendo eles: A divisão das entregas por branches, o esforço que tivemos na Sprint e nossa justificativa de priorização.
+       </p>
+       <p>
+              Com essas observações levantadas pelos professores, separamos as entregas por branches, agora temos 1 branche, fora a master, para cada entrega e adicionamos o esforço que tivemos e a justificativa ao nosso README, estes dois últimos estão na seção logo a cima dessa.
+       </p>
+</div>
+
+</br>
 
 <div>
        <h2>Gráfico Burndown do nosso progresso na entrega</h2>
