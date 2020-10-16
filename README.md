@@ -29,6 +29,17 @@
 
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/Cards/card2.png" width="500" height="280"/>
 
+<div>
+       <h2>Gráfico Burndown do nosso progresso na entrega</h2>
+       <div>
+              <img aling="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/Burndown/Sprint%201%20completo.jpg">
+              </br>
+              <p> O gráfico acima exibe nosso progresso na realização das atividades que elaboramos para a segunda entrega, nele é possível ver que desde o começo nossa equipe esteve dedicada à entrega e sempre esteve adiantada no cronograma, nos permitindo adicionar funcionalidades extras ao sistema que inicialmente não haviamos planejando, tudo para melhorar a experiência do usuário.</p>
+       </div>
+</div>
+
+</br>
+
 <h2>Nosso sistema em funcionamento na segunda entrega</h2>
 
 <div>
