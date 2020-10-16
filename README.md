@@ -44,6 +44,8 @@
 </p>
 </div>
 
+</br></br>
+
 <div>
 <img align="right" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/apresentacao_entrega_2/GIFS%202%C2%B0%20entrega/GIF%20CRUD%20FUNCION%C3%81RIOS.gif" width="410"/>
        
@@ -56,6 +58,8 @@
        Após cadastrar um funcionário, independente do cargo, é possível utilizar o e-mail e a senha imediatamente no login para entrar no sistema como aquele usuário.
 </p>
 </div>
+
+</br></br>
 
 <div>
 <img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/apresentacao_entrega_2/GIFS%202%C2%B0%20entrega/GIF%20CRUD%20FILIAIS.gif" width="410"/>
@@ -70,6 +74,8 @@
 </p>
 </div>
 
+</br></br>
+
 <div>
 <img align="right" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/apresentacao_entrega_2/GIFS%202%C2%B0%20entrega/GIF%20CRUD%20VEICULOS.gif" width="410"/>
        
@@ -83,6 +89,8 @@
 </p>
 </div>
        
+</br></br>
+       
 <div>
 <img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/apresentacao_entrega_2/GIFS%202%C2%B0%20entrega/GIF%20CRUD%20ENTREGAS.gif" width="400"/>
        
@@ -95,6 +103,8 @@
        Dessa forma, após criar uma nova viagem, ela irá constar na conta do motorista escolhido, dessa forma ele poderá realizar as ações que são cabiveis a ele.
 </p>
 </div>
+
+</br></br>
 
 <p>
        Para todos os CRUDs mostrados a cima, note que ao tentar realizar qualquer alteração nos dados, uma confirmação de segurança pedindo a senha do usuário conectado irá surgir.
