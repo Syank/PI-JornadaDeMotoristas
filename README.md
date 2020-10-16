@@ -64,7 +64,7 @@
 <div>
 <img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/apresentacao_entrega_2/GIFS%202%C2%B0%20entrega/GIF%20CRUD%20FILIAIS.gif" width="410"/>
        
-<p>  As filiais no sistema possuem um campo para o RNTRC, que é uma licensa rodoviária.
+<p>  As filiais no sistema possuem um campo para o RNTRC, que é uma licença rodoviária.
 </p>
 <p>
        Para cadastrar algumas outras entidades, é necessário possuir antes uma filial cadastrada no sistema.
