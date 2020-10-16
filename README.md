@@ -67,7 +67,7 @@
                             <td>Entrega 2</td>
                             <td>CRUD do administrador englobando filiais, veículos e viagens. Leitura de avisos por parte dos supervisores e administradores.</td>
                             <td>28/09/2020 a 18/10/2020</td>
-                            <td>Em breve</td>
+                            <td><a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/sprint_1">Visualizar</td>
                      </tr>
                      <tr>
                             <td>Entrega 3</td>
@@ -83,23 +83,23 @@
                      </tr>
               </tbody>
        </table>
-       <h4><a href="https://drive.google.com/file/d/1HuQ9GrWlmToOBW_bJGg-9X_d5m0Zey0G/view?usp=sharing">Visualizar Burndown</h4>
+       <h4><a href="https://drive.google.com/file/d/1HuQ9GrWlmToOBW_bJGg-9X_d5m0Zey0G/view?usp=sharing">Visualizar Burndown de cada sprint</h4>
 </section>
 
 <section id="cards">
        <h3>Cards das Sprints (entregas) do sistema</h3>
-       <h4>Primeira entrega</h4>
+       <h4>Primeira entrega :clock12:</h4>
        <p>Os funcionários são os principais agentes do sistema e dentre eles principalmente o motorista. Sendo assim vimos a oportunidade de impressionar aqueles que estivessem utilizando o sistema proporcionando a organização dos funcionários das filiais em um único local, a disponibilização dos dados destes funcionários para melhor conhecimento de todos que estão presentes na filial e o controle dos dados de cada funcionário para que as informações possam ser atualizadas a qualquer momento de forma rápida e simplificada. Quantidade de story cards restantes: 29.</p>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/card1.png">
-       <h4>Segunda entrega</h4>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/card1.png" width=550px height=300px>
+       <h4>Segunda entrega :clock4:</h4>
        <p>O projeto pode ser basicamente separado em três partes, de acordo com os perfis de acesso: motorista, supervisor e administrador. Como a entrega anterior focava no perfil do administrador, optamos, para a sprint 1, por finalizar todas as funcionalidades que esse usuário tem. Sendo assim o usuário já pode ter uma experiência de uso mais concreta do nosso sistema, podendo cadastrar todas as entidades, acessar suas informações, editá-las ou apagá-las, se assim desejar. As funcionalidades do administrador são a base para as funcionalidades do supervisor e do motorista. Devido a isso foi necessário terminar tudo relacionado ao administrador primeiro, pois sem um administrador não há filial, sem filial não é possível cadastrar veículos e outros funcionários, sem funcionários não há viagens etc. Para que as próximas entregas sejam coesas é necessário que existam os cadastros das entidades que são necessárias para que ocorra uma viagem. Quantidade de story cards restantes: 14 </p>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/card2.png">
-       <h4>Terceira entrega</h4>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/card2.png" width=550px height=300px>
+       <h4>Terceira entrega :clock8:</h4>
        <p>Com toda a parte fundamental para a criação de uma viagem finalizada é hora de implementar a principal parte do sistema: a inserção de dados sobre o andamento da viagem através do motorista. O motorista poderá informar os status da sua jornada de trabalho, poderá definir o momento em que ele começou de fato a viagem e, também, o momento que ele a terminou. Como o motorista terá boa parte das suas funcionalidades nesse instante adicionaremos, também, as funcionalidades de um novo tipo de usuário: o supervisor. Adicionaremos o básico das suas funcionalidades com o intuito de facilitar o acesso aos dados caso o algum administrador esteja ausente. Sendo assim o sistema estará englobando boa parte do processo de gerenciamento e acompanhamento das jornadas.</p>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/card3.png">
-       <h4>Quarta entrega</h4>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/card3.png" width=550px height=300px>
+       <h4>Quarta entrega :clock12:</h4>
        <p>Todas as funcionalidades do supervisor estarão presentes no sistema proporcionando uma melhor experiência sobre o nosso sistema, pois haverá três diferentes níveis de acesso. Caso um administrador não possa resolver algo no momento, um supervisor poderá solicitar algum cadastro (caso esse seja o caso) ou ele mesmo poderá alterar e visualizar alguns dados sobre viagens e motoristas, que estarão presentes no sistema. Como forma de manter o acesso de todos os usuários ao sistema todos os usuários poderão recuperar suas senhas através do próprio sistema sem depender de cargos superiores. Sendo assim todo o nosso sistema estará consolidado em todas as partes. Além disso serão feitos ajustes finais para melhorar ainda mais os resultados obtidos.</p>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/card4.png">
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/card4.png" width=550px height=300px>
 </section>
     
 <section id="sistema_ate_o_momento">
@@ -208,12 +208,10 @@ CREATE TABLE motoristas (
 
 CREATE TABLE avisos (
     id SERIAL PRIMARY KEY,
-    tipo VARCHAR(15),
-    funcionario_destino VARCHAR(11),
-    visualizado BOOLEAN,
     mensagem TEXT,
     data DATE,
-    fk_funcionarios_filiais_cpf VARCHAR(11),
+    resolvido BOOLEAN,
+    nomenclatura VARCHAR(15),
     fk_motoristas_cpf VARCHAR(11)
 );
 
@@ -257,11 +255,6 @@ ALTER TABLE motoristas ADD CONSTRAINT FK_motoristas_2
     ON DELETE RESTRICT;
  
 ALTER TABLE avisos ADD CONSTRAINT FK_avisos_2
-    FOREIGN KEY (fk_funcionarios_filiais_cpf)
-    REFERENCES funcionarios_filiais (cpf)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE avisos ADD CONSTRAINT FK_avisos_3
     FOREIGN KEY (fk_motoristas_cpf)
     REFERENCES motoristas (cpf)
     ON DELETE RESTRICT;
