@@ -131,7 +131,19 @@
 
 <h2>Wireframes da segunda entrega do RoadTracker</h2>
 <div align="center">
-
+       <p>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/wireframes/aviso_dados_alterados.jpeg" width="400"/>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/wireframes/historico_entregas.jpeg" width="400"/>
+       </p>
+       <p>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/wireframes/aviso_selecionado.png" width="400"/>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/wireframes/ver_filiais.png" width="400"/>
+       </p>
+       </br>
+       <p>
+              Estas são apenas algumas das wireframes do nosso projeto, você pode visualizar todas clicando <a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/master/doc/wireframes">aqui
+       </p>
+       
 </div>
 
 <section id="ModeloC">
