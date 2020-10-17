@@ -134,7 +134,7 @@
        </p>
        </br>
        <p>
-              Estas são apenas algumns dos <i>wireframes</i> do nosso projeto, você pode visualizar todos clicando <a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/master/doc/wireframes">aqui</a>.
+              Estas são apenas algumas das <i>wireframes</i> do nosso projeto, você pode visualizar todos clicando <a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/master/doc/wireframes">aqui</a>.
        </p>
 </div>
 
