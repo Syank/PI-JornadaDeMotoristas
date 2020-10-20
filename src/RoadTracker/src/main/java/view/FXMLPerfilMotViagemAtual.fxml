@@ -108,14 +108,14 @@
             </HBox>
             <HBox layoutX="272.0" layoutY="47.0" prefHeight="31.0" prefWidth="387.0" styleClass="textoDeMenu">
                <children>
-                  <Label fx:id="labelAvisos" text="Viagem">
+                  <Label fx:id="labelViagem" text="Viagem">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <Pane fx:id="paneCadastrarAviso" layoutX="259.0" layoutY="87.0" prefHeight="362.0" prefWidth="486.0">
+            <Pane fx:id="paneRealizarViagem" layoutX="259.0" layoutY="87.0" prefHeight="362.0" prefWidth="486.0">
                <children>
                   <VBox layoutX="14.0" layoutY="206.0" prefHeight="135.0" prefWidth="123.0">
                      <children>
@@ -185,52 +185,52 @@
                               <Insets bottom="15.0" />
                            </VBox.margin>
                         </Label>
-                        <Label prefHeight="16.0" prefWidth="224.0" text="Tempo máximo de descanço:" />
+                        <Label prefHeight="16.0" prefWidth="224.0" text="Tempo máximo de descanso:" />
                         <Label prefHeight="16.0" prefWidth="224.0" text="Total de hoje:" />
                      </children>
                   </VBox>
                   <VBox layoutX="198.0" layoutY="28.0" prefHeight="151.0" prefWidth="46.0">
                      <children>
-                        <Label fx:id="mot_exp_max" prefHeight="17.0" prefWidth="58.0" />
-                        <Label fx:id="mot_exp_dia" prefHeight="17.0" prefWidth="58.0">
+                        <Label fx:id="expMax" prefHeight="17.0" prefWidth="58.0" />
+                        <Label fx:id="expHoje" prefHeight="17.0" prefWidth="58.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="mot_temp_max_aliment" prefHeight="17.0" prefWidth="58.0" />
-                        <Label fx:id="mot_temp_aliment_dia" prefHeight="17.0" prefWidth="58.0">
+                        <Label fx:id="alimentacaoMax" prefHeight="17.0" prefWidth="58.0" />
+                        <Label fx:id="alimentacaoHoje" prefHeight="17.0" prefWidth="58.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="mot_temp_max_descanco" prefHeight="17.0" prefWidth="58.0" />
-                        <Label fx:id="mot_max_descanco" prefHeight="17.0" prefWidth="58.0" />
+                        <Label fx:id="descansoMax" prefHeight="17.0" prefWidth="58.0" />
+                        <Label fx:id="descansoHoje" prefHeight="17.0" prefWidth="58.0" />
                      </children>
                   </VBox>
                   <VBox layoutX="142.0" layoutY="206.0" prefHeight="142.0" prefWidth="102.0">
                      <children>
-                        <Label fx:id="mot_destino" prefHeight="22.0" prefWidth="103.0">
+                        <Label fx:id="viagemDestino" prefHeight="22.0" prefWidth="103.0">
                            <VBox.margin>
                               <Insets bottom="2.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="mot_placa_veic" prefHeight="22.0" prefWidth="106.0">
+                        <Label fx:id="viagemPlacaVeiculo" prefHeight="22.0" prefWidth="106.0">
                            <VBox.margin>
                               <Insets bottom="2.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="mot_prazo_entrega" prefHeight="22.0" prefWidth="104.0">
+                        <Label fx:id="prazoEntrega" prefHeight="22.0" prefWidth="104.0">
                            <VBox.margin>
                               <Insets bottom="2.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="mot_hora_total" prefHeight="22.0" prefWidth="107.0">
+                        <Label fx:id="horasDirigidas" prefHeight="22.0" prefWidth="107.0">
                            <VBox.margin>
                               <Insets bottom="2.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="mot_situacao" prefHeight="22.0" prefWidth="104.0" />
-                        <Label fx:id="mot_carga" prefHeight="22.0" prefWidth="102.0" />
+                        <Label fx:id="motStatus" prefHeight="22.0" prefWidth="104.0" />
+                        <Label fx:id="carga" prefHeight="22.0" prefWidth="102.0" />
                      </children>
                   </VBox>
                </children>

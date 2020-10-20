@@ -22,6 +22,7 @@ public class Main extends Application {
 	private static Scene tela6;
 	private static Scene tela7;
 	private static Scene tela8;
+	private static Scene tela9;
 
 	private static double offSetX;
 	private static double offSetY;
@@ -63,9 +64,12 @@ public class Main extends Application {
 		Pane fxmlTela8 = FXMLLoader.load(getClass().getResource("FXMLPerfilMotViagemAtual.fxml"));
 		tela8 = new Scene(fxmlTela8);
 		
+		Pane fxmlTela9 = FXMLLoader.load(getClass().getResource("FXMLPerfilMotAvisos.fxml"));
+		tela9 = new Scene(fxmlTela9);
+		
 		
 		// Aplicando o método de mover tela para todas as telas
-		Scene[] telas = {tela1, tela2, tela3, tela4, tela5, tela6, tela7, tela8};
+		Scene[] telas = {tela1, tela2, tela3, tela4, tela5, tela6, tela7, tela8, tela9};
 		
 		for(int i = 0; i < 6; i++) {
 			telas[i].setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -127,6 +131,9 @@ public class Main extends Application {
 				break;
 			case "Viagem Selecionada":
 				stage.setScene(tela8);
+				break;
+			case "Criar Aviso":
+				stage.setScene(tela9);
 				break;
 		}
 	}

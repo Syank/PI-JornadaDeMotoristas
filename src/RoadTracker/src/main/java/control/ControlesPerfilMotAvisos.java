@@ -1,7 +1,11 @@
 package control;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
@@ -17,7 +21,7 @@ import model.Aviso;
 import model.Motorista;
 import view.Main;
 
-public class ControlesPerfilMotAvisos {
+public class ControlesPerfilMotAvisos implements Initializable {
 
     @FXML
     private Label labelAvisos;
@@ -157,6 +161,12 @@ public class ControlesPerfilMotAvisos {
 	
 	public void limparCampos() {
 		addMsg.setText("");
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
