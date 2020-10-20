@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import model.Aviso;
 import model.Motorista;
+import view.Main;
 
 public class ControlesPerfilMotAvisos {
 
@@ -85,7 +86,7 @@ public class ControlesPerfilMotAvisos {
 
     @FXML
     void abrirCriarAviso(MouseEvent event) {
-
+    	limparCampos();
     }
 
     @FXML
@@ -134,8 +135,8 @@ public class ControlesPerfilMotAvisos {
 
     @FXML
     void fecharJanela(ActionEvent event) {
-
-    }
+    	System.exit(0);
+    } 
 
     @FXML
     void irCadastrarAvisos(MouseEvent event) {
@@ -149,7 +150,7 @@ public class ControlesPerfilMotAvisos {
 
     @FXML
     void minimizarJanela(ActionEvent event) {
-
+    	Main.minimizar();
     }
 
     @FXML
@@ -159,12 +160,12 @@ public class ControlesPerfilMotAvisos {
 
     @FXML
     void voltar(ActionEvent event) {
-
+    	Main.trocarTela("Mot Viagens");
     }
     
 	
 	public void limparCampos() {
 		addMsg.setText("");
 	}
-
+	
 }
