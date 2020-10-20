@@ -1,7 +1,7 @@
 <html>
 <head>
        <p><img src="https://img.shields.io/badge/status%20do%20projeto-em%20progresso-yellow?style=for-the-badge&logo=appveyor"></p>
-       <p><img src="https://img.shields.io/badge/Sprint%20atual-Sprint%202-blue?style=for-the-badge&logo=appveyor"></p>
+       <p><img src="https://img.shields.io/badge/Sprint%20atual-Sprint%200-blue?style=for-the-badge&logo=appveyor"></p>
        <p>
        <img src="https://img.shields.io/badge/dependências-JavaFX%3A%2014.0.2.1-green">
        <img src="https://img.shields.io/badge/dependências-JDK%3A%2014.0.2.1-green">
