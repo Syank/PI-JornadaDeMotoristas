@@ -122,6 +122,7 @@ public class ControlesLogin implements Initializable{
 			func.cadastrarFuncionario("Admin User", "00000000000", "root", "Administrador", 1, "adminuser@root.com");
 		}
 		
+		
 	}
 
 }
