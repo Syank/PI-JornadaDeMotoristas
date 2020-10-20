@@ -1,19 +1,32 @@
-# RoadTracker :truck::computer:
-Seja bem vindo à branch da primeira entrega do RoadTracker!
+<html>
+<head>
+       <p><img src="https://img.shields.io/badge/status%20do%20projeto-em%20progresso-yellow?style=for-the-badge&logo=appveyor"></p>
+       <p><img src="https://img.shields.io/badge/Sprint%20atual-Sprint%202-blue?style=for-the-badge&logo=appveyor"></p>
+       <p>
+       <img src="https://img.shields.io/badge/dependências-JavaFX%3A%2014.0.2.1-green">
+       <img src="https://img.shields.io/badge/dependências-JDK%3A%2014.0.2.1-green">
+       <img src="https://img.shields.io/badge/dependências-Hibernate%3A%205.4.21-green">
+       <img src="https://img.shields.io/badge/dependências-PostgreSQL%20JDBC%3A%2042.2.16-green">
+       </p>
+</head>
+<body>
+    <h1>RoadTracker :truck::computer:</h1>
+    <p>Seja bem vindo à branch da primeira entrega do RoadTracker!</p>
 
-## O nosso desafio 
-Nosso cliente é a empresa IACIT e nos foi solicitado para desenvolver um sistema de gerenciamento de controle de jornada de trabalho de motoristas de forma parametrizável visando a disponibilização de funcionalidades de planejamento, acompanhamento e controle da jornada de trabalho destes trabalhadores. Nosso sistema deverá oferecer cadastro para motoristas (tendo nome, CPF, matrícula e ID do equipamento do caminhão), um cadastro para os dados do veículo (como a placa, a marca e versão do rastreador e o ID do equipamento), escala dos motoristas (turno, carga horária, dias de trabalho e de folga), um cadastro de alertas (contendo ocorrência, sigla, ícone, descrição do alerta e regra/parâmetro), cadastro de status (cadastrar status e regras de negócio de acordo com cada situação ocorrida durante a jornada, ID dos macros/mensagens, status de início e fim de jornada, tempo de trabalho, tempo de espera, tempo de refeição e tempo de descanso).
+## O nosso desafio
+<p align="justify">Nosso cliente é a empresa IACIT. Foi solicitado para nós desenvolver um sistema para o gerenciamento e controle da jornada de trabalho de motoristas que seja parametrizável visando à disponibilização de funcionalidades de planejamento, acompanhamento, controlando a jornada de trabalho de cada um desses colaboradores. Nosso sistema deverá oferecer um cadastro para motoristas (tendo nome, CPF, matrícula e ID do equipamento do caminhão), um cadastro para os dados do veículo (como a placa, a marca e versão do rastreador e o ID do equipamento), a escala dos motoristas (turno, carga horária, dias de trabalho e de folga), um cadastro de alertas (contendo ocorrência, sigla, ícone, descrição do alerta e regra/parâmetro) e um cadastro de status (cadastrar status e regras de negócio de acordo com cada situação ocorrida durante a jornada, ID dos macros/mensagens, status de início e fim de jornada, tempo de trabalho, espera, refeição e descanso).</p>
+</body>
 
 ## O que é o RoadTracker?
-Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas de trabalho de motoristas, pois muitas vezes não há o controle sobre o expediente desses trabalhadores. Todas as filiais de uma empresa ser cadastradas e realizar o cadastro de seus motoristas e, consequentemente, realizar o cadastro das jornadas de trabalho deles, o veículo que será utilizado e a viagem a ser realizada. Além disso, a filial terá acesso a várias informações sobre o status do motorista durante a viagem!
+<p align="justify">Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas de trabalho de motoristas, pois, muitas vezes, não há o monitoramento e acompanhamento necessário do expediente desses trabalhadores. Todas as filiais de uma empresa devem ser cadastradas, assim como seus motoristas e suas respectivas jornadas de trabalho, viagens a serem realizadas e o veículo que será utilizado em cada uma dessas viagens. Além disso, a filial terá acesso a várias informações sobre o status do motorista durante a viagem!</p>
 
 ## *Card* da primeira entrega do nosso sistema
 ### O que entregamos :white_check_mark:
-Entregamos um CRUD, feito para administrador, envolvendo todos os tipos de funcionários do sistema (administrador, supervisor e motorista). O administrador poderá cadastrar motoristas, supervisores e outros administradores, porém ainda não é possível solicitar cadastros (os supervisores deverão solicitar o cadastro de algum outro funcionário, se necessário). Assim que o administrador cadastra um novo funcionário é possível visualizar uma lista com todos os funcionários presentes no sistema. O usuário poderá selecionar um dos funcionários e entrar numa página que exibirá as informações do funcionário escolhido, sendo possível alterá-las (e quando no modo edição é possível descartar essas alterações) ou excluir o funcionário do sistema.
-### Por que fizemos essa escolha? :grey_question:
-Os funcionários são os principais agentes do sistema e dentre eles principalmente o motorista. Sendo assim vimos a oportunidade de impressionar aqueles que estivessem utilizando o sistema proporcionando a organização dos funcionários das filiais em um único local, a disponibilização dos dados destes funcionários para melhor conhecimento de todos que estão presentes na filial e o controle dos dados de cada funcionário para que as informações possam ser atualizadas a qualquer momento de forma rápida e simplificada. Entregamos os 4 primeiros *cards*, logo, temos 4 *cards* entregues de um total de 32 *cards*.
-### Quais são as partes mais trabalhosas? :question:
-As partes mais trabalhosas e que precisam de mais tempo são as telas de cadastrar usuários e de alterar usuários, pois, como já estarão integradas ao *back-end* precisarão de todos os campos necessários para enviar ao banco de dados e precisarão de várias validações para enviar dados persistentes ao banco. A tela de listagem é menos trabalhosa, pois não exige muitas validações. Para excluir um funcionário o processo também não é muito trabalhoso, pois desde que o usuário esteja selecionado é possível excluí-lo pela sua identificação. Como um todo a nossa primeira entrega foi difícil, pois decidimos que entregaríamos o *software* funcionando. Logo precisávamos de tempo para configurar as dependências do projeto e dar os primeiros passos com o Hibernate (tecnologia que nenhum dos nós tinha utilizado antes).
+<p align="justify">Entregamos um CRUD, feito para administrador, envolvendo todos os tipos de funcionários do sistema (administrador, supervisor e motorista). O administrador poderá cadastrar motoristas, supervisores e outros administradores, porém ainda não é possível solicitar cadastros (os supervisores deverão solicitar o cadastro de algum outro funcionário, se necessário). Assim que o administrador cadastra um novo funcionário é possível visualizar uma lista com todos os funcionários presentes no sistema. O usuário poderá selecionar um dos funcionários e entrar numa página que exibirá as informações do funcionário escolhido, sendo possível alterá-las (e quando no modo edição é possível descartar essas alterações) ou excluir o funcionário do sistema.</p>
+<h3>Por que fizemos essa escolha? :grey_question:</h3>
+<p align="justify">Os funcionários são os principais agentes do sistema e dentre eles principalmente o motorista. Sendo assim vimos a oportunidade de impressionar aqueles que estivessem utilizando o sistema proporcionando a organização dos funcionários das filiais em um único local, a disponibilização dos dados destes funcionários para melhor conhecimento de todos que estão presentes na filial e o controle dos dados de cada funcionário para que as informações possam ser atualizadas a qualquer momento de forma rápida e simplificada. Entregamos os 4 primeiros <i>cards</i>, logo, temos 4 <i>cards</i> entregues de um total de 32 <i>cards</i>.</p>
+<h3>Quais são as partes mais trabalhosas? :question:</h3>
+<p align="justify">As partes mais trabalhosas e que precisam de mais tempo são as telas de cadastrar usuários e de alterar usuários, pois, como já estarão integradas ao <i>back-end</i> precisarão de todos os campos necessários para enviar ao banco de dados e precisarão de várias validações para enviar dados persistentes ao banco. A tela de listagem é menos trabalhosa, pois não exige muitas validações. Para excluir um funcionário o processo também não é muito trabalhoso, pois desde que o usuário esteja selecionado é possível excluí-lo pela sua identificação. Como um todo a nossa primeira entrega foi difícil, pois decidimos que entregaríamos o <i>software</i> funcionando. Logo precisávamos de tempo para configurar as dependências do projeto e dar os primeiros passos com o Hibernate (tecnologia que nenhum dos nós tinha utilizado antes).</p>
 
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/Card%20Sprint%200.jpeg" width="500" height="280"/>
 
@@ -23,7 +36,7 @@ As partes mais trabalhosas e que precisam de mais tempo são as telas de cadastr
 ## *User stories* do nosso sistema
 ### Primeira entrega :clock12:
 <div>
-A nossa primeira entrega contará com um CRUD dos funcionários das filais, que poderão ter os cargos de administrador, supervisor e motoristas. Sendo assim as filiais já poderão ter controle dos funcionários que estarão cadastrados.
+<p align="justify">A nossa primeira entrega contará com um CRUD dos funcionários das filiais, que poderão ter os cargos de administrador, supervisor e motoristas. Sendo assim as filiais já poderão ter controle dos funcionários que estarão cadastrados.</p>
 </div>
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_0/doc/user_stories/1.png" width="600px"/>
 
@@ -151,9 +164,5 @@ ALTER TABLE avisos ADD CONSTRAINT FK_avisos_2
     ON DELETE RESTRICT;
 
 ~~~
-
-## Versões das bibliotecas utilizadas por nós
-- JavaFX: 14.0.2.1
-- JDK: 14.0.2.1
-- Hibernate: 5.4.21
-- PostgreSQL JDBC: 42.2.16
+</body>
+</html>
