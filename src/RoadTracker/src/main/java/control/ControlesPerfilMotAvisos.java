@@ -41,9 +41,6 @@ public class ControlesPerfilMotAvisos {
     private CheckBox fProx;
 
     @FXML
-    private Pane paneVisualizarAvisos;
-
-    @FXML
     private TableView<?> tabelaAvisos;
 
     @FXML
@@ -57,12 +54,6 @@ public class ControlesPerfilMotAvisos {
 
     @FXML
     private Button btSelecionarAviso;
-
-    @FXML
-    private Pane escolherAcaoAvisos;
-
-    @FXML
-    private Pane paneAvisoSelecionado;
 
     @FXML
     private TextField campoIDAviso;

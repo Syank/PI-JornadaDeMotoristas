@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ControlesPerfilMotAvisos">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ControlesPerfilMotViagemAtual">
    <children>
       <AnchorPane prefHeight="450.0" prefWidth="750.0" stylesheets="@designs.css">
          <children>
@@ -37,7 +37,7 @@
                         <Label text="Histórico de entregas" textFill="WHITE" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" onMouseClicked="#abrirRealizarViagem" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
+                  <HBox alignment="CENTER" onMouseClicked="#abrirRealizarViagem" prefHeight="58.0" prefWidth="250.0">
                      <children>
                         <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -48,8 +48,12 @@
                         <Label prefHeight="17.0" prefWidth="88.0" text="Realizar viagem" textFill="WHITE" />
                         <HBox layoutX="106.0" layoutY="10.0" prefHeight="53.0" prefWidth="28.0" />
                      </children>
+                     <styleClass>
+                        <String fx:value="caixasDeSelecao1" />
+                        <String fx:value="menuSelecionado" />
+                     </styleClass>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="300.0" onMouseClicked="#abrirCriarAviso" prefHeight="58.0" prefWidth="250.0">
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="300.0" onMouseClicked="#abrirCriarAviso" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                      <children>
                         <HBox prefHeight="59.0" prefWidth="31.0" />
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -60,10 +64,6 @@
                         <HBox prefHeight="56.0" prefWidth="40.0" />
                         <Label text="Avisos" textFill="WHITE" />
                      </children>
-                     <styleClass>
-                        <String fx:value="caixasDeSelecao1" />
-                        <String fx:value="menuSelecionado" />
-                     </styleClass>
                   </HBox>
                   <VBox alignment="BOTTOM_LEFT" prefHeight="84.0" prefWidth="250.0">
                      <children>
@@ -108,7 +108,7 @@
             </HBox>
             <HBox layoutX="272.0" layoutY="47.0" prefHeight="31.0" prefWidth="387.0" styleClass="textoDeMenu">
                <children>
-                  <Label fx:id="labelAvisos" text="Avisos">
+                  <Label fx:id="labelAvisos" text="Viagem">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -153,22 +153,22 @@
                   </VBox>
                   <VBox layoutX="256.0" layoutY="28.0" prefHeight="318.0" prefWidth="143.0">
                      <children>
-                        <Button fx:id="mot_iniciar_expediente" mnemonicParsing="false" prefHeight="41.0" prefWidth="143.0" styleClass="customizarBotoes" text="Inciar expediente" textFill="WHITE">
+                        <Button fx:id="mot_iniciar_expediente" mnemonicParsing="false" onMouseClicked="#iniciarExpediente" prefHeight="41.0" prefWidth="143.0" styleClass="customizarBotoes" text="Inciar expediente" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="30.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="mot_pausa_alimentacao" contentDisplay="TOP" mnemonicParsing="false" prefHeight="31.0" prefWidth="143.0" styleClass="customizarBotoes" text="Pausa para alimentação" textFill="WHITE" wrapText="true">
+                        <Button fx:id="mot_pausa_alimentacao" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#pausaAlimentacao" prefHeight="31.0" prefWidth="143.0" styleClass="customizarBotoes" text="Pausa para alimentação" textFill="WHITE" wrapText="true">
                            <VBox.margin>
                               <Insets bottom="30.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="mot_pausa_descanco" mnemonicParsing="false" prefHeight="41.0" prefWidth="143.0" styleClass="customizarBotoes" text="Pausa para descanço" textFill="WHITE">
+                        <Button fx:id="mot_pausa_descanco" mnemonicParsing="false" onMouseClicked="#pausaDescanso" prefHeight="41.0" prefWidth="143.0" styleClass="customizarBotoes" text="Pausa para descanso" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="79.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="mot_finalizar_entrega" mnemonicParsing="false" prefHeight="60.0" prefWidth="143.0" styleClass="customizarBotoes" text="Finalizar entrega" textFill="WHITE" />
+                        <Button fx:id="mot_finalizar_entrega" mnemonicParsing="false" onMouseClicked="#finalizarEntrega" prefHeight="60.0" prefWidth="143.0" styleClass="customizarBotoes" text="Finalizar entrega" textFill="WHITE" />
                      </children>
                   </VBox>
                   <VBox layoutX="14.0" layoutY="28.0" prefHeight="151.0" prefWidth="173.0">
