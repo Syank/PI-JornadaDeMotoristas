@@ -3,14 +3,21 @@ package control;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import view.Main;
+import view.Viagens;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ControlesPerfilMotViagens implements Initializable {
 
@@ -28,8 +35,9 @@ public class ControlesPerfilMotViagens implements Initializable {
     private TableColumn<?, ?> colunaSituacao;
     @FXML
     private Pane paneViagemSelecionada;
-    
-    
+    private int id;
+    private List<Viagens> listaDeViagens = new ArrayList<>();
+    private ObservableList<Viagens> obsListViagens;
     
     
     
@@ -52,16 +60,19 @@ public class ControlesPerfilMotViagens implements Initializable {
     
     @FXML
     void abrirCriarAviso(MouseEvent event) {
+    	Main.trocarTela("Criar Aviso");
     	//Ao clicar em um elemento com este evento, redireciona para a tela de criar aviso.
     }
 
     @FXML
-    void abrirHistEntregas(MouseEvent event) {
-    	//Ao clicar em um elemento com este evento, redireciona para a tela de entregas.
+    void abrirMinhasViagens(MouseEvent event) {
+    	Main.trocarTela("Mot Viagens");
+    	//Ao clicar em um elemento com este evento, redireciona para a tela de minhas viagens.
     }
 
     @FXML
     void abrirRealizarViagem(MouseEvent event) {
+    	Main.trocarTela("Viagem selecionada");
     	//Ao clicar em um elemento com este evento, redireciona para a tela de realizar viagem.
     }
     
@@ -77,9 +88,18 @@ public class ControlesPerfilMotViagens implements Initializable {
     void fecharJanela(ActionEvent event) {
     	System.exit(0);
     }
+    void carregarInfoViagens () {
+    	Viagem viagem = new Viagem();
+    	listaDeViagens = viagem.listarViagens();
+    	obsListViagens = FXCollections.observableArrayList(listaDeViagens);
+    	colunaCarga.setCellValueFactory(new PropertyValueFactory<>("carga"));
+    	colunaDestino.setCellValueFactory(new PropertyValueFactory<>("destino"));
+    	colunaSituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));
+    }
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		carregarInfoViagens ();
 		// Tudo que será carregado logo que abrimos o aplicativo.
 		
 	} 
