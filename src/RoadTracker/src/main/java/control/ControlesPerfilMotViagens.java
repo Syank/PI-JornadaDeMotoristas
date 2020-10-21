@@ -17,30 +17,41 @@ import view.Main;
 public class ControlesPerfilMotViagens implements Initializable {
 
     @FXML
-    private Label labelViagens; //
-
-    @FXML
     private Pane paneCadastrarAviso;
-
     @FXML
-    private TableView<Viagem> tabelaViagens;
-
+    private TableView<?> tabelaViagens;
     @FXML
     private TableColumn<?, ?> colunaDestino;
-
     @FXML
     private TableColumn<?, ?> colunaCarga;
-
     @FXML
     private TableColumn<?, ?> colunaPrazo;
-
     @FXML
     private TableColumn<?, ?> colunaSituacao;
-
     @FXML
     private Pane paneViagemSelecionada;
+    
+    
+    
+    
+    
 
+    @FXML
+    void iniciaViagem(ActionEvent event) {
+    	//Ao clicar em um botão com este evento, abre a tela da viagem atual.
+    }
 
+    @FXML
+    void pausaViagem(ActionEvent event) {
+    	//Ao clicar em um botão com este evento, finaliza a viagem atual.
+    }
+    
+    
+    
+    
+    
+    
+    
     @FXML
     void abrirCriarAviso(MouseEvent event) {
     	//Ao clicar em um elemento com este evento, redireciona para a tela de criar aviso.
@@ -55,19 +66,10 @@ public class ControlesPerfilMotViagens implements Initializable {
     void abrirRealizarViagem(MouseEvent event) {
     	//Ao clicar em um elemento com este evento, redireciona para a tela de realizar viagem.
     }
-
-    @FXML
-    void iniciaViagem(ActionEvent event) {
-    	//Ao clicar em um botão com este evento, abre a tela da viagem atual.
-    }
-
-    @FXML
-    void pausaViagem(ActionEvent event) {
-    	//Ao clicar em um botão com este evento, finaliza a viagem atual.
-    }
+    
     @FXML
     void voltar(ActionEvent event) {
-    	Main.trocarTela("Login"); 
+    	Main.trocarTela("Tela Login"); 
     }
 	@FXML
     void minimizarJanela(ActionEvent event) {
@@ -77,6 +79,7 @@ public class ControlesPerfilMotViagens implements Initializable {
     void fecharJanela(ActionEvent event) {
     	System.exit(0);
     }
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// Tudo que será carregado logo que abrimos o aplicativo.

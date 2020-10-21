@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -13,63 +14,50 @@ import view.Main;
 
 public class ControlesPerfilMotViagemAtual implements Initializable {
     
-    @FXML
-    private Label labelViagem;
-
-    @FXML
-    private Pane paneRealizarViagem;
-
-    @FXML
-    private Label expMax;
-
-    @FXML
-    private Label expHoje;
-
-    @FXML
-    private Label alimentacaoMax;
-
-    @FXML
-    private Label alimentacaoHoje;
-
-    @FXML
-    private Label descansoMax;
-
-    @FXML
-    private Label descansoHoje;
-
-    @FXML
-    private Label viagemDestino;
-
-    @FXML
-    private Label viagemPlacaVeiculo;
-
-    @FXML
-    private Label prazoEntrega;
-
-    @FXML
-    private Label horasDirigidas;
-
-    @FXML
-    private Label motStatus;
-
-    @FXML
-    private Label carga;
+	 @FXML
+	 private Label labelDestino;
+	 @FXML
+	 private Label labelPlaca;
+	 @FXML
+	 private Label labelPrazo;
+	 @FXML
+	 private Label labelHorasTotais;
+	 @FXML
+	 private Label labelCarga;
+	 @FXML
+	 private Label labelSituacao;
+	 @FXML
+	 private Label labelAtencao;
+	 @FXML
+	 private Button botaoFinalizar;
+	 @FXML
+	 private Button botaoExpediente;
+	 @FXML
+	 private Label labelExpMax;
+	 @FXML
+	 private Label labelExpHoje;
+	 @FXML
+	 private Button botaoAlimentacao;
+	 @FXML
+	 private Label labelAlimMax;
+	 @FXML
+	 private Label labelAlimHoje;
+	 @FXML
+	 private Button botaoDescanso;
+	 @FXML
+	 private Label labelDescMax;
+	 @FXML
+	 private Label labelDescHoje;
 
     
-    @FXML
-    void abrirCriarAviso(MouseEvent event) {
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 
-    }
-
-    @FXML
-    void abrirHistEntregas(MouseEvent event) {
-
-    }
-
-    @FXML
-    void abrirRealizarViagem(MouseEvent event) {
-
-    }
 
     @FXML
     public void iniciarExpediente(ActionEvent event) {	
@@ -99,9 +87,28 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     public void finalizarEntrega(ActionEvent event) {	
     }
     
+    
+    
+    
+    
+    @FXML
+    void abrirCriarAviso(MouseEvent event) {
+
+    }
+
+    @FXML
+    void abrirHistEntregas(MouseEvent event) {
+
+    }
+
+    @FXML
+    void abrirRealizarViagem(MouseEvent event) {
+
+    }
+    
     @FXML
     void voltar(ActionEvent event) {
-    	Main.trocarTela("Login");
+    	Main.trocarTela("Tela Login");
     }
 	@FXML
     void minimizarJanela(ActionEvent event) {
