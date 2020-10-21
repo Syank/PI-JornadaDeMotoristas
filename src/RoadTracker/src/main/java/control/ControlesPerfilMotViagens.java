@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import model.Viagem;
 import view.Main;
 import view.Viagens;
 
@@ -66,7 +67,7 @@ public class ControlesPerfilMotViagens implements Initializable {
 
     @FXML
     void abrirMinhasViagens(MouseEvent event) {
-    	Main.trocarTela("Mot Viagens");
+		carregarInfoViagens (); //atualiza lista
     	//Ao clicar em um elemento com este evento, redireciona para a tela de minhas viagens.
     }
 
