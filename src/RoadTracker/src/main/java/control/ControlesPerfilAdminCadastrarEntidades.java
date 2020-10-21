@@ -724,7 +724,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	cbSexta.setSelected(false);
     	cbSabado.setSelected(false);
     	textFieldSalario.setText("");
-    	cbCargo.getSelectionModel().clearSelection();
     	cbTurno.getSelectionModel().clearSelection();
     	textFieldEmail.setText("");
     }

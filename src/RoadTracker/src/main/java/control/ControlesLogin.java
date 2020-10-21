@@ -29,8 +29,6 @@ public class ControlesLogin implements Initializable{
     private AnchorPane janela;
     @FXML
     private Label labelDicaFlutuante;
-    private double XAnterior;
-    private double YAnterior;
 
     
     

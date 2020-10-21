@@ -2,14 +2,19 @@ package view;
 
 public class Viagens {
 	private int id;
-	private String empresaDestino;
+	private String destino;
 	private String motorista;
+	private String carga;
+	private String prazo;
+	private String situacao;
 	
-	public Viagens(int id, String empresaDestino, String motorista) {
-		super();
+	public Viagens(int id, String empresaDestino, String motorista, String carga, String prazo, String situacao) {
 		this.id = id;
-		this.empresaDestino = empresaDestino;
+		this.destino = empresaDestino;
 		this.motorista = motorista;
+		this.carga = carga;
+		this.prazo = prazo;
+		this.situacao = situacao;
 	}
 
 	public int getId() {
@@ -20,12 +25,12 @@ public class Viagens {
 		this.id = id;
 	}
 
-	public String getEmpresaDestino() {
-		return empresaDestino;
+	public String getDestino() {
+		return destino;
 	}
 
-	public void setEmpresaDestino(String empresaDestino) {
-		this.empresaDestino = empresaDestino;
+	public void setDestino(String empresaDestino) {
+		this.destino = empresaDestino;
 	}
 
 	public String getMotorista() {
@@ -34,5 +39,29 @@ public class Viagens {
 
 	public void setMotorista(String motorista) {
 		this.motorista = motorista;
+	}
+
+	public String getCarga() {
+		return carga;
+	}
+
+	public void setCarga(String carga) {
+		this.carga = carga;
+	}
+
+	public String getPrazo() {
+		return prazo;
+	}
+
+	public void setPrazo(String prazo) {
+		this.prazo = prazo;
+	}
+
+	public String getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
 	}
 }

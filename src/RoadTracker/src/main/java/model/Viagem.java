@@ -211,7 +211,7 @@ public class Viagem {
 		List<Viagens> lista = new ArrayList<>();
 		
 		for (Viagem v: this.consultarTodasViagens()) {
-			Viagens viagens = new Viagens(v.getId(), v.getDestino(), v.getMotorista().getNome());
+			Viagens viagens = new Viagens(v.getId(), v.getDestino(), v.getMotorista().getNome(), v.getCarga(), v.getFim(), v.getSituacao());
 		
 			
 			lista.add(viagens);

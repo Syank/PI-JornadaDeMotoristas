@@ -36,7 +36,7 @@ public class ControlesPerfilMotViagens implements Initializable {
     private TableColumn<?, ?> colunaSituacao;
     @FXML
     private Pane paneViagemSelecionada;
-    private int id;
+    
     private List<Viagens> listaDeViagens = new ArrayList<>();
     private ObservableList<Viagens> obsListViagens;
     
@@ -65,7 +65,7 @@ public class ControlesPerfilMotViagens implements Initializable {
 
     @FXML
     void abrirRealizarViagem(MouseEvent event) {
-    	Main.trocarTela("Viagem selecionada");
+    	Main.trocarTela("Viagem Selecionada");
     	//Ao clicar em um elemento com este evento, redireciona para a tela de realizar viagem.
     }
     @FXML
@@ -85,11 +85,16 @@ public class ControlesPerfilMotViagens implements Initializable {
     
     void carregarInfoViagens () {
     	Viagem viagem = new Viagem();
+    	
     	listaDeViagens = viagem.listarViagens();
+    	
     	obsListViagens = FXCollections.observableArrayList(listaDeViagens);
+    	
     	colunaCarga.setCellValueFactory(new PropertyValueFactory<>("carga"));
     	colunaDestino.setCellValueFactory(new PropertyValueFactory<>("destino"));
     	colunaSituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));
+    	colunaPrazo.setCellValueFactory(new PropertyValueFactory<>("prazo"));
+    	
     	tabelaViagens.setItems(obsListViagens);
     }
     
