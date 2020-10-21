@@ -25,7 +25,7 @@ public class ControlesPerfilMotViagens implements Initializable {
     @FXML
     private Pane paneMinhasViagens;
     @FXML
-    private TableView<?> tabelaViagens;
+    private TableView<Viagens> tabelaViagens;
     @FXML
     private TableColumn<?, ?> colunaDestino;
     @FXML
@@ -40,8 +40,6 @@ public class ControlesPerfilMotViagens implements Initializable {
     private List<Viagens> listaDeViagens = new ArrayList<>();
     private ObservableList<Viagens> obsListViagens;
     
-    
-    
 
     @FXML
     void iniciaViagem(ActionEvent event) {
@@ -52,12 +50,6 @@ public class ControlesPerfilMotViagens implements Initializable {
     void pausaViagem(ActionEvent event) {
     	//Ao clicar em um botão com este evento, finaliza a viagem atual.
     }
-    
-    
-    
-    
-    
-    
     
     @FXML
     void abrirCriarAviso(MouseEvent event) {
@@ -76,19 +68,21 @@ public class ControlesPerfilMotViagens implements Initializable {
     	Main.trocarTela("Viagem selecionada");
     	//Ao clicar em um elemento com este evento, redireciona para a tela de realizar viagem.
     }
-    
     @FXML
     void voltar(ActionEvent event) {
     	Main.trocarTela("Tela Login"); 
     }
+    
 	@FXML
     void minimizarJanela(ActionEvent event) {
     	Main.minimizar();
     }
+	
     @FXML
     void fecharJanela(ActionEvent event) {
     	System.exit(0);
     }
+    
     void carregarInfoViagens () {
     	Viagem viagem = new Viagem();
     	listaDeViagens = viagem.listarViagens();
@@ -96,6 +90,7 @@ public class ControlesPerfilMotViagens implements Initializable {
     	colunaCarga.setCellValueFactory(new PropertyValueFactory<>("carga"));
     	colunaDestino.setCellValueFactory(new PropertyValueFactory<>("destino"));
     	colunaSituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));
+    	tabelaViagens.setItems(obsListViagens);
     }
     
 	@Override

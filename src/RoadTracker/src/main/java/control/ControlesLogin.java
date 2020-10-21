@@ -66,7 +66,7 @@ public class ControlesLogin implements Initializable{
     		if(motorista.getSenha().equals(senhaDada)) {
     			senha = senhaDada;
     			cpfLogado = motorista.getCpf();
-	        	Main.trocarTela("Tela Boas Vindas");
+	        	Main.trocarTela("Viagem Selecionada");
 	        	inputUsuario.setText("");
 	        	inputSenha.setText("");
     			}
