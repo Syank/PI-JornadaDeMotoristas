@@ -3,6 +3,8 @@ package control;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,6 +40,7 @@ public class ControlesPerfilMotViagens implements Initializable {
     private Pane paneViagemSelecionada;
     
     private List<Viagens> listaDeViagens = new ArrayList<>();
+    private List<Viagens> listaDeViagensMotorista = new ArrayList<>();
     private ObservableList<Viagens> obsListViagens;
     
 
@@ -83,12 +86,26 @@ public class ControlesPerfilMotViagens implements Initializable {
     	System.exit(0);
     }
     
+    
+    @FXML
+    void carregarViagens(ActionEvent event) {
+    	carregarInfoViagens();
+    }
     void carregarInfoViagens () {
     	Viagem viagem = new Viagem();
     	
     	listaDeViagens = viagem.listarViagens();
     	
-    	obsListViagens = FXCollections.observableArrayList(listaDeViagens);
+    	
+    	//Essa "coisa" abaixo é um 'for coisa in lista' embelezado do java
+    	listaDeViagens.forEach(item -> {
+    		if(item.getMotorista().getCpf().equals(ControlesLogin.cpfLogado)) {
+    			listaDeViagensMotorista.add(item);
+    		}
+    	});
+    		
+    	
+    	obsListViagens = FXCollections.observableArrayList(listaDeViagensMotorista);
     	
     	colunaCarga.setCellValueFactory(new PropertyValueFactory<>("carga"));
     	colunaDestino.setCellValueFactory(new PropertyValueFactory<>("destino"));
@@ -100,7 +117,6 @@ public class ControlesPerfilMotViagens implements Initializable {
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		carregarInfoViagens ();
 		// Tudo que será carregado logo que abrimos o aplicativo.
 		
 	} 

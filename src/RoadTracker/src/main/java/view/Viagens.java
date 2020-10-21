@@ -1,20 +1,24 @@
 package view;
 
+import model.Motorista;
+
 public class Viagens {
 	private int id;
 	private String destino;
-	private String motorista;
+	private Motorista motorista;
 	private String carga;
 	private String prazo;
 	private String situacao;
+	private String nomeMotorista;
 	
-	public Viagens(int id, String empresaDestino, String motorista, String carga, String prazo, String situacao) {
+	public Viagens(int id, String empresaDestino, Motorista motorista, String carga, String prazo, String situacao) {
 		this.id = id;
 		this.destino = empresaDestino;
 		this.motorista = motorista;
 		this.carga = carga;
 		this.prazo = prazo;
 		this.situacao = situacao;
+		this.nomeMotorista = this.getMotorista().getNome();
 	}
 
 	public int getId() {
@@ -33,11 +37,11 @@ public class Viagens {
 		this.destino = empresaDestino;
 	}
 
-	public String getMotorista() {
+	public Motorista getMotorista() {
 		return motorista;
 	}
 
-	public void setMotorista(String motorista) {
+	public void setMotorista(Motorista motorista) {
 		this.motorista = motorista;
 	}
 
@@ -64,4 +68,13 @@ public class Viagens {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
+
+	public String getNomeMotorista() {
+		return nomeMotorista;
+	}
+
+	public void setNomeMotorista(String nomeMotorista) {
+		this.nomeMotorista = nomeMotorista;
+	}
+
 }

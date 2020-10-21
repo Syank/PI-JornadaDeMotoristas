@@ -124,8 +124,9 @@
                   <TableColumn fx:id="colunaSituacao" prefWidth="101.0" text="Situação" />
               </columns>
             </TableView>
-            <Button layoutX="14.0" layoutY="293.0" mnemonicParsing="false" onAction="#iniciaViagem" prefHeight="39.0" prefWidth="85.0" styleClass="customizarBotoes" text="Iniciar" textFill="WHITE" />
-            <Button layoutX="124.0" layoutY="293.0" mnemonicParsing="false" onAction="#pausaViagem" prefHeight="39.0" prefWidth="85.0" styleClass="customizarBotoes" text="Pausar" textFill="WHITE" />
+            <Button layoutX="14.0" layoutY="293.0" mnemonicParsing="false" onAction="#iniciaViagem" prefHeight="33.0" prefWidth="77.0" styleClass="customizarBotoes" text="Iniciar" textFill="WHITE" />
+            <Button layoutX="102.0" layoutY="293.0" mnemonicParsing="false" onAction="#pausaViagem" prefHeight="33.0" prefWidth="77.0" styleClass="customizarBotoes" text="Pausar" textFill="WHITE" />
+            <Button layoutX="351.0" layoutY="293.0" mnemonicParsing="false" onAction="#carregarViagens" prefHeight="33.0" prefWidth="114.0" styleClass="customizarBotoes" text="Carregar viagens" textFill="WHITE" />
          </children>
       </Pane>
    </children>

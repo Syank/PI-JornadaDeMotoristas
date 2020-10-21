@@ -292,8 +292,8 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	
     	
     	colunaId.setCellValueFactory(new PropertyValueFactory<>("id"));
-    	colunaEmpresaDestino.setCellValueFactory(new PropertyValueFactory<>("empresaDestino"));
-    	colunaMotorista.setCellValueFactory(new PropertyValueFactory<>("motorista"));
+    	colunaEmpresaDestino.setCellValueFactory(new PropertyValueFactory<>("destino"));
+    	colunaMotorista.setCellValueFactory(new PropertyValueFactory<>("nomeMotorista"));
     	
     	tabela.setItems(obsListViagens);
     }
