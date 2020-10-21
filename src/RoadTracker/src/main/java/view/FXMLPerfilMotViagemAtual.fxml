@@ -8,234 +8,186 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ControlesPerfilMotViagemAtual">
+<AnchorPane prefHeight="450.0" prefWidth="750.0" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ControlesPerfilMotViagemAtual">
    <children>
-      <AnchorPane prefHeight="450.0" prefWidth="750.0" stylesheets="@designs.css">
+      <VBox alignment="TOP_CENTER" opacity="0.85" prefHeight="450.0" prefWidth="250.0">
          <children>
-            <VBox alignment="TOP_CENTER" opacity="0.85" prefHeight="450.0" prefWidth="250.0">
+            <HBox prefHeight="24.0" prefWidth="250.0" />
+            <ImageView fitHeight="117.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@usuario.png" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="62.0" prefWidth="250.0" />
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#abrirHistEntregas" prefHeight="65.0" prefWidth="250.0">
                <children>
-                  <HBox prefHeight="24.0" prefWidth="250.0" />
-                  <ImageView fitHeight="117.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
+                  <HBox prefHeight="59.0" prefWidth="31.0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@usuario.png" />
+                        <Image url="@viagens.png" />
                      </image>
                   </ImageView>
-                  <VBox prefHeight="62.0" prefWidth="250.0" />
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#abrirHistEntregas" prefHeight="65.0" prefWidth="250.0" styleClass="caixasDeSelecao">
-                     <children>
-                        <HBox prefHeight="59.0" prefWidth="31.0" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@viagens.png" />
-                           </image>
-                        </ImageView>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="59.0" prefWidth="31.0" />
-                        <Label text="Histórico de entregas" textFill="WHITE" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" onMouseClicked="#abrirRealizarViagem" prefHeight="58.0" prefWidth="250.0">
-                     <children>
-                        <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@truck.png" />
-                           </image>
-                        </ImageView>
-                        <HBox layoutX="163.0" layoutY="10.0" prefHeight="53.0" prefWidth="23.0" />
-                        <Label prefHeight="17.0" prefWidth="88.0" text="Realizar viagem" textFill="WHITE" />
-                        <HBox layoutX="106.0" layoutY="10.0" prefHeight="53.0" prefWidth="28.0" />
-                     </children>
-                     <styleClass>
-                        <String fx:value="caixasDeSelecao1" />
-                        <String fx:value="menuSelecionado" />
-                     </styleClass>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="300.0" onMouseClicked="#abrirCriarAviso" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
-                     <children>
-                        <HBox prefHeight="59.0" prefWidth="31.0" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@alert.png" />
-                           </image>
-                        </ImageView>
-                        <HBox prefHeight="56.0" prefWidth="40.0" />
-                        <Label text="Avisos" textFill="WHITE" />
-                     </children>
-                  </HBox>
-                  <VBox alignment="BOTTOM_LEFT" prefHeight="84.0" prefWidth="250.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#voltar" prefHeight="15.0" prefWidth="23.0" styleClass="botaoVoltar">
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@voltar.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </VBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="59.0" prefWidth="31.0" />
+                  <Label text="Jornada atual" textFill="WHITE" />
                </children>
                <styleClass>
-                  <String fx:value="bordaMenu" />
-                  <String fx:value="sombraDaImagemLogin" />
+                  <String fx:value="caixasDeSelecao" />
+                  <String fx:value="menuSelecionado" />
                </styleClass>
+            </HBox>
+            <HBox alignment="CENTER" onMouseClicked="#abrirRealizarViagem" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
+               <children>
+                  <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@truck.png" />
+                     </image>
+                  </ImageView>
+                  <HBox layoutX="163.0" layoutY="10.0" prefHeight="53.0" prefWidth="23.0" />
+                  <Label prefHeight="17.0" prefWidth="88.0" text="Minhas viagens" textFill="WHITE" />
+                  <HBox layoutX="106.0" layoutY="10.0" prefHeight="53.0" prefWidth="28.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="300.0" onMouseClicked="#abrirCriarAviso" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
+               <children>
+                  <HBox prefHeight="59.0" prefWidth="31.0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@alert.png" />
+                     </image>
+                  </ImageView>
+                  <HBox prefHeight="56.0" prefWidth="40.0" />
+                  <Label text="Avisos" textFill="WHITE" />
+               </children>
+            </HBox>
+            <VBox alignment="BOTTOM_LEFT" prefHeight="84.0" prefWidth="250.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#voltar" prefHeight="15.0" prefWidth="23.0" styleClass="botaoVoltar">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@voltar.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
             </VBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="250.0" prefHeight="25.0" prefWidth="500.0">
-               <children>
-                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#minimizarJanela" styleClass="botaoMinimizar">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@minimizar.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="CENTER" layoutX="469.0" layoutY="10.0" mnemonicParsing="false" onAction="#fecharJanela" styleClass="botaoFechar">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@fechar.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox layoutX="272.0" layoutY="47.0" prefHeight="31.0" prefWidth="387.0" styleClass="textoDeMenu">
-               <children>
-                  <Label fx:id="labelViagem" text="Viagem">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <Pane fx:id="paneRealizarViagem" layoutX="259.0" layoutY="87.0" prefHeight="362.0" prefWidth="486.0">
-               <children>
-                  <VBox layoutX="14.0" layoutY="206.0" prefHeight="135.0" prefWidth="123.0">
-                     <children>
-                        <Label prefHeight="23.0" prefWidth="100.0" text="Destino: ">
-                           <VBox.margin>
-                              <Insets bottom="2.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label prefHeight="23.0" prefWidth="100.0" text="Placa do veículo:">
-                           <VBox.margin>
-                              <Insets bottom="2.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label prefHeight="23.0" prefWidth="116.0" text="Prazo de entrega:">
-                           <VBox.margin>
-                              <Insets bottom="2.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label prefHeight="23.0" prefWidth="139.0" text="Horas totais dirigidas:">
-                           <VBox.margin>
-                              <Insets bottom="2.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label prefHeight="23.0" prefWidth="100.0" text="Situação">
-                           <VBox.margin>
-                              <Insets bottom="2.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label prefHeight="23.0" prefWidth="100.0" text="Carga:">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox layoutX="256.0" layoutY="28.0" prefHeight="318.0" prefWidth="143.0">
-                     <children>
-                        <Button fx:id="mot_iniciar_expediente" mnemonicParsing="false" onMouseClicked="#iniciarExpediente" prefHeight="41.0" prefWidth="143.0" styleClass="customizarBotoes" text="Inciar expediente" textFill="WHITE">
-                           <VBox.margin>
-                              <Insets bottom="30.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="mot_pausa_alimentacao" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#pausaAlimentacao" prefHeight="31.0" prefWidth="143.0" styleClass="customizarBotoes" text="Pausa para alimentação" textFill="WHITE" wrapText="true">
-                           <VBox.margin>
-                              <Insets bottom="30.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="mot_pausa_descanco" mnemonicParsing="false" onMouseClicked="#pausaDescanso" prefHeight="41.0" prefWidth="143.0" styleClass="customizarBotoes" text="Pausa para descanso" textFill="WHITE">
-                           <VBox.margin>
-                              <Insets bottom="79.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="mot_finalizar_entrega" mnemonicParsing="false" onMouseClicked="#finalizarEntrega" prefHeight="60.0" prefWidth="143.0" styleClass="customizarBotoes" text="Finalizar entrega" textFill="WHITE" />
-                     </children>
-                  </VBox>
-                  <VBox layoutX="14.0" layoutY="28.0" prefHeight="151.0" prefWidth="173.0">
-                     <children>
-                        <Label prefHeight="16.0" prefWidth="224.0" text="Expediente máximo diário:" />
-                        <Label prefHeight="16.0" prefWidth="224.0" text="Total de hoje:">
-                           <VBox.margin>
-                              <Insets bottom="15.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label prefHeight="16.0" prefWidth="224.0" text="Tempo máximo de alimentação:" />
-                        <Label prefHeight="16.0" prefWidth="224.0" text="Total de hoje:">
-                           <VBox.margin>
-                              <Insets bottom="15.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label prefHeight="16.0" prefWidth="224.0" text="Tempo máximo de descanso:" />
-                        <Label prefHeight="16.0" prefWidth="224.0" text="Total de hoje:" />
-                     </children>
-                  </VBox>
-                  <VBox layoutX="198.0" layoutY="28.0" prefHeight="151.0" prefWidth="46.0">
-                     <children>
-                        <Label fx:id="expMax" prefHeight="17.0" prefWidth="58.0" />
-                        <Label fx:id="expHoje" prefHeight="17.0" prefWidth="58.0">
-                           <VBox.margin>
-                              <Insets bottom="15.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="alimentacaoMax" prefHeight="17.0" prefWidth="58.0" />
-                        <Label fx:id="alimentacaoHoje" prefHeight="17.0" prefWidth="58.0">
-                           <VBox.margin>
-                              <Insets bottom="15.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="descansoMax" prefHeight="17.0" prefWidth="58.0" />
-                        <Label fx:id="descansoHoje" prefHeight="17.0" prefWidth="58.0" />
-                     </children>
-                  </VBox>
-                  <VBox layoutX="142.0" layoutY="206.0" prefHeight="142.0" prefWidth="102.0">
-                     <children>
-                        <Label fx:id="viagemDestino" prefHeight="22.0" prefWidth="103.0">
-                           <VBox.margin>
-                              <Insets bottom="2.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="viagemPlacaVeiculo" prefHeight="22.0" prefWidth="106.0">
-                           <VBox.margin>
-                              <Insets bottom="2.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="prazoEntrega" prefHeight="22.0" prefWidth="104.0">
-                           <VBox.margin>
-                              <Insets bottom="2.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="horasDirigidas" prefHeight="22.0" prefWidth="107.0">
-                           <VBox.margin>
-                              <Insets bottom="2.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="motStatus" prefHeight="22.0" prefWidth="104.0" />
-                        <Label fx:id="carga" prefHeight="22.0" prefWidth="102.0" />
-                     </children>
-                  </VBox>
-               </children>
-            </Pane>
          </children>
-      </AnchorPane>
+         <styleClass>
+            <String fx:value="bordaMenu" />
+            <String fx:value="sombraDaImagemLogin" />
+         </styleClass>
+      </VBox>
+      <HBox alignment="CENTER_RIGHT" layoutX="250.0" prefHeight="25.0" prefWidth="500.0">
+         <children>
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#minimizarJanela" styleClass="botaoMinimizar">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@minimizar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" layoutX="469.0" layoutY="10.0" mnemonicParsing="false" onAction="#fecharJanela" styleClass="botaoFechar">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@fechar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="272.0" layoutY="47.0" prefHeight="31.0" prefWidth="387.0" styleClass="textoDeMenu">
+         <children>
+            <Label fx:id="labelViagem" text="Jornada atual">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox layoutX="271.0" layoutY="103.0" prefHeight="280.0" prefWidth="222.0" spacing="15.0">
+         <children>
+            <Label fx:id="labelDestino" styleClass="separadorInferior" text="Destino: " wrapText="true">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelPlaca" styleClass="separadorInferior" text="Placa do veículo:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelPrazo" styleClass="separadorInferior" text="Prazo de entrega:">
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelHorasTotais" styleClass="separadorInferior" text="Horas totais dirigidas:">
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelCarga" styleClass="separadorInferior" text="Carga:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelSituacao" styleClass="separadorInferior" text="Situação:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelAtencao" layoutX="10.0" layoutY="189.0" text="Nenhuma viagem selecionada no momento, por favor selecione na seção &quot;Minhas viagens&quot;" textAlignment="CENTER" textFill="RED" underline="true" wrapText="true">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Button fx:id="botaoFinalizar" layoutX="271.0" layoutY="383.0" mnemonicParsing="false" onMouseClicked="#finalizarEntrega" prefHeight="41.0" prefWidth="110.0" styleClass="customizarBotoes" text="Finalizar entrega" textFill="WHITE" />
+      <VBox layoutX="500.0" layoutY="103.0" prefHeight="324.0" prefWidth="228.0" spacing="20.0" styleClass="separadorLateralEsquerdo">
+         <children>
+            <VBox prefHeight="96.0" prefWidth="222.0" spacing="5.0" styleClass="textoDeMenu">
+               <children>
+                  <Button fx:id="botaoExpediente" mnemonicParsing="false" onMouseClicked="#iniciarExpediente" prefHeight="33.0" prefWidth="119.0" styleClass="customizarBotoes" text="Inciar expediente" textFill="WHITE" />
+                  <Label fx:id="labelExpMax" styleClass="separadorInferior" text="Expediente máximo diário:" />
+                  <Label fx:id="labelExpHoje" styleClass="separadorInferior" text="Total de hoje:" />
+               </children>
+            </VBox>
+            <VBox prefHeight="100.0" prefWidth="206.0" spacing="5.0" styleClass="textoDeMenu">
+               <children>
+                  <Button fx:id="botaoAlimentacao" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#pausaAlimentacao" prefHeight="33.0" prefWidth="143.0" styleClass="customizarBotoes" text="Pausa para alimentação" textFill="WHITE" wrapText="true" />
+                  <Label fx:id="labelAlimMax" styleClass="separadorInferior" text="Tempo máximo de alimentação:" />
+                  <Label fx:id="labelAlimHoje" styleClass="separadorInferior" text="Total de hoje:" />
+               </children>
+            </VBox>
+            <VBox prefHeight="90.0" prefWidth="220.0" spacing="5.0">
+               <children>
+                  <Button fx:id="botaoDescanso" mnemonicParsing="false" onMouseClicked="#pausaDescanso" prefHeight="31.0" prefWidth="132.0" styleClass="customizarBotoes" text="Pausa para descanso" textFill="WHITE" />
+                  <Label fx:id="labelDescMax" styleClass="separadorInferior" text="Tempo máximo de descanso:" />
+                  <Label fx:id="labelDescHoje" styleClass="separadorInferior" text="Total de hoje:" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="15.0" top="5.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
    </children>
 </AnchorPane>

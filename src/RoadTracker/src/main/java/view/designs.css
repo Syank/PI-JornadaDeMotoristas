@@ -68,7 +68,7 @@
 }
 
 .textoDeMenu{
-	-fx-border-width: 0px 0px 1px 0px;
+	-fx-border-width: 0px 0px 2px 0px;
 	-fx-border-color: #00a8ff;
 }
 
@@ -145,4 +145,14 @@
 	-fx-border-color: #303952;
 	-fx-border-width: 1px;
 	-fx-opacity: 0.7;
+}
+
+.separadorLateralEsquerdo{
+	-fx-border-color: #00a8ff;
+	-fx-border-width: 0px 0px 0px 2px;
+}
+
+.separadorInferior{
+	-fx-border-color: #00a8ff;
+	-fx-border-width: 0px 0px 1px 0px;
 }
