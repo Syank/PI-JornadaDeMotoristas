@@ -92,17 +92,12 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     
     @FXML
     void abrirCriarAviso(MouseEvent event) {
-
+    	Main.trocarTela("Criar Aviso");
     }
 
     @FXML
-    void abrirHistEntregas(MouseEvent event) {
-
-    }
-
-    @FXML
-    void abrirRealizarViagem(MouseEvent event) {
-
+    void abrirMinhasViagens(MouseEvent event) {
+    	Main.trocarTela("Mot Viagens");
     }
     
     @FXML

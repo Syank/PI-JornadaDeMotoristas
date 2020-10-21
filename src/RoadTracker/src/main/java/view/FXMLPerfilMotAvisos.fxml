@@ -26,7 +26,7 @@
                </image>
             </ImageView>
             <VBox prefHeight="62.0" prefWidth="250.0" />
-            <HBox alignment="CENTER_LEFT" onMouseClicked="#abrirMinhasViagens" prefHeight="65.0" prefWidth="250.0" styleClass="caixasDeSelecao">
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#abrirRealizarViagem" prefHeight="65.0" prefWidth="250.0" styleClass="caixasDeSelecao">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -38,7 +38,7 @@
                   <Label text="Jornada atual" textFill="WHITE" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" onMouseClicked="#abrirRealizarViagem" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
+            <HBox alignment="CENTER" onMouseClicked="#abrirMinhasViagens" prefHeight="58.0" prefWidth="250.0" styleClass="caixasDeSelecao1">
                <children>
                   <ImageView fitHeight="59.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
