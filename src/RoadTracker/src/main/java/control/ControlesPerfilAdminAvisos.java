@@ -125,8 +125,8 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     	aviso = aviso.encontrarAviso(idAviso);
 		
 		campoIDAviso.setText(String.valueOf(aviso.getId()));
-		remetente.setText(aviso.getFuncionario().getCpf());
-		visualizado.setSelected(aviso.isVisualizado());
+		remetente.setText(aviso.getMotorista().getCpf());
+		visualizado.setSelected(aviso.isResolvido());
 		msg.setText(aviso.getMensagem());
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

@@ -22,17 +22,15 @@ public class Aviso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
-	private String tipo;
-	private String funcionario_destino;
-	private String funcionario_origem;
 	private String mensagem;
-	private boolean visualizado;
+	private boolean resolvido;
 	private String data;
+	private String nomenclatura;
 	
 	//um ou mais avisos correspondem a um funcionario
-	@ManyToOne
-	@JoinColumn(name = "funcionario", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_cpf")) //coluna da tabela pai
-	private Funcionario funcionario = new Funcionario();
+//	@ManyToOne
+//	@JoinColumn(name = "funcionario", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_cpf")) //coluna da tabela pai
+//	private Funcionario funcionario = new Funcionario();
 	
 	//um ou mais avisos correspondem a um funcionario
 	@ManyToOne
@@ -45,35 +43,11 @@ public class Aviso {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-	public String getFuncionario_destino() {
-		return funcionario_destino;
-	}
-	public void setFuncionario_destino(String funcionario_destino) {
-		this.funcionario_destino = funcionario_destino;
-	}
 	public String getMensagem() {
 		return mensagem;
 	}
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
-	}
-	public boolean isVisualizado() {
-		return visualizado;
-	}
-	public void setVisualizado(boolean visualizado) {
-		this.visualizado = visualizado;
-	}
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
 	}
 	public String getData() {
 		return data;
@@ -88,16 +62,20 @@ public class Aviso {
 	public void setMotorista(Motorista motorista) {
 		this.motorista = motorista;
 	}
-	public String getFuncionario_origem() {
-		return funcionario_origem;
+	
+	
+public boolean isResolvido() {
+		return resolvido;
 	}
-	public void setFuncionario_origem(String funcionario_origem) {
-		this.funcionario_origem = funcionario_origem;
+	public String getNomenclatura() {
+	return nomenclatura;
+}
+public void setNomenclatura(String nomenclatura) {
+	this.nomenclatura = nomenclatura;
+}
+	public void setResolvido(boolean resolvido) {
+		this.resolvido = resolvido;
 	}
-	
-	
-	
-	
 public void cadastrarAviso(String funcionario_destino, String funcionario_origem, String mensagem) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
@@ -115,15 +93,6 @@ public void cadastrarAviso(String funcionario_destino, String funcionario_origem
     	
 		this.setData(data);
 		this.setMensagem(mensagem);
-		this.setTipo("Mensagem");
-		this.setVisualizado(false);
-		this.setFuncionario_destino(funcionario_destino);
-		this.setFuncionario_origem(funcionario_origem);
-		
-		
-		
-		funcionario.setCpf(funcionario_origem);
-		this.setFuncionario(funcionario.encontrarFuncionario(funcionario_origem));
 		
 		motorista.setCpf(funcionario_destino);
 		this.setMotorista(motorista.encontrarMotorista(funcionario_destino));
@@ -163,9 +132,9 @@ public void cadastrarAviso(String funcionario_destino, String funcionario_origem
 	public List<Avisos> listarAvisos(){	
 		List<Avisos> lista = new ArrayList<>();
 		for (Aviso a: this.consultarTodosAvisos()) {
-			Avisos aviso = new Avisos(a.getMensagem(), a.getFuncionario_destino(), getData());
+			Avisos aviso = new Avisos();
+			aviso.setMotorista(a.getMotorista());
 			aviso.setDataAviso(a.getData());
-			aviso.setFuncDestino(a.getFuncionario_destino());
 			aviso.setId(a.getId());
 			lista.add(aviso);
 		}

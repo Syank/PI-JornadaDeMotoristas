@@ -329,12 +329,13 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
             String modelo_rastreador = textFieldModeloRastreador.getText();
         	int filial = comboBoxEscolherFilialVeiculos.getValue().getId();
             
-        	//primeiro verifica se nenhum campo está nulo( NÃO VERIFICA SE FOI SELECIONADO UMA FILIAL)
-        	if(placa.length() > 1 && modelo_veiculo.length() > 1 && id_rastreador.length() > 1 && marca_rastreador.length() > 1 && modelo_rastreador.length() > 1) {
+        	//primeiro verifica se nenhum campo está nulo (NÃO VERIFICA SE FOI SELECIONADO UMA FILIAL)
+        	if(placa.length() >= 1 && modelo_veiculo.length() >= 1 && id_rastreador.length() >= 1 && marca_rastreador.length() >= 1 && modelo_rastreador.length() >= 1) {
         		veic.cadastrarVeiculo(placa, modelo_veiculo, id_rastreador, marca_rastreador, modelo_rastreador, filial);
         		notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
         	}
-        }catch (NullPointerException falha) {
+        }
+        catch (NullPointerException falha) {
         	notificar("Falha de cadastro", "Falha ao cadastrar a filial", "Preencha todos os campos.");	
         }
         	

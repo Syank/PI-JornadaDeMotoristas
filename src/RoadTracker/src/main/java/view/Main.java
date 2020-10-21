@@ -98,7 +98,7 @@ public class Main extends Application {
 		
 		 
 		// Seta a janela atual e a exibe
-		primaryStage.setScene(tela8);
+		primaryStage.setScene(tela5);
 		primaryStage.show();
 		
 		

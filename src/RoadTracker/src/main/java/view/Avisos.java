@@ -1,18 +1,13 @@
 package view;
 
+import model.Motorista;
 
 public class Avisos {
 	
 	private String tituloAviso;
-	private String funcDestino;
+	private Motorista motorista;
 	private String dataAviso;
 	private int id;
-	
-	public Avisos(String tituloAviso, String funcDestino, String dataAviso) {
-		this.setTituloAviso(tituloAviso);
-		this.setFuncDestino(funcDestino);
-		this.setDataAviso(dataAviso);
-	}
 	
 	public String getTituloAviso() {
 		return tituloAviso;
@@ -21,15 +16,7 @@ public class Avisos {
 	public void setTituloAviso(String tituloAviso) {
 		this.tituloAviso = tituloAviso;
 	}
-
-	public String getFuncDestino() {
-		return funcDestino;
-	}
-
-	public void setFuncDestino(String funcDestino) {
-		this.funcDestino = funcDestino;
-	}
-
+	
 	public String getDataAviso() {
 		return dataAviso;
 	}
@@ -40,7 +27,7 @@ public class Avisos {
 	
 	@Override
 	public String toString() {
-		return getFuncDestino();
+		return getMotorista().getCpf();
 	}
 
 	public int getId() {
@@ -49,5 +36,13 @@ public class Avisos {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Motorista getMotorista() {
+		return motorista;
+	}
+
+	public void setMotorista(Motorista motorista) {
+		this.motorista = motorista;
 	}
 }

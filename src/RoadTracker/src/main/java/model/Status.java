@@ -24,8 +24,8 @@ public class Status {
 	
 	//um ou mais status pertence a um funcionário
 	@ManyToOne
-	@JoinColumn(name = "funcionario", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_cpf")) //coluna da tabela pai
-	private Funcionario funcionario = new Funcionario();
+	@JoinColumn(name = "motorista", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_cpf")) //coluna da tabela pai
+	private Funcionario motorista = new Funcionario();
 	
 	//um ou mais status pertence a uma viagem
 	@ManyToOne

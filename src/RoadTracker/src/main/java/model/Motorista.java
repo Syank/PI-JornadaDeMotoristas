@@ -28,7 +28,6 @@ public class Motorista {
 	private String salario;
 	private String cargaHoraria;
 	private String turno;
-	private int idFilial;
 	private boolean seg;
 	private boolean ter;
 	private boolean qua;
@@ -40,11 +39,11 @@ public class Motorista {
 	
 	// Mapeamento
 	@ManyToOne
-	@JoinColumn(name = "filiais", nullable = false, foreignKey = @ForeignKey(name = "fk_filiais_id"))
+	@JoinColumn(name = "filial", nullable = false, foreignKey = @ForeignKey(name = "fk_filiais_id"))
 	private Filial filial = new Filial();
-	@OneToMany(mappedBy = "funcionario")
+	@OneToMany(mappedBy = "motorista")
 	private List<Aviso> avisos = new ArrayList<Aviso>();
-	@OneToMany(mappedBy = "funcionario")
+	@OneToMany(mappedBy = "motorista")
 	private List<Status> status = new ArrayList<Status>();
 	//@OneToMany(mappedBy = "funcionario")
 	//private List<Viagem> viagens = new ArrayList<Viagem>();
@@ -158,12 +157,6 @@ public class Motorista {
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
-	public int getIdFilial() {
-		return idFilial;
-	}
-	public void setIdFilial(int idFilial) {
-		this.idFilial = idFilial;
-	}
 	
 	// Métodos
 	public boolean cadastrarMotorista(String cpf, String nome, String email, String senha, String salario, String cargaHoraria, int idFilial,
@@ -175,7 +168,6 @@ public class Motorista {
 		this.setSenha(senha);
 		this.setSalario(salario);
 		this.setCargaHoraria(cargaHoraria);
-		this.setIdFilial(idFilial);
 		this.setTurno(turno);
 		this.setSeg(seg);
 		this.setTer(ter);
@@ -217,7 +209,10 @@ public class Motorista {
 		this.setSenha(senha);
 		this.setSalario(salario);
 		this.setCargaHoraria(cargaHoraria);
-		this.setIdFilial(idFilial);
+
+		filial.setId(idFilial);
+		this.setFilial(filial);
+		
 		this.setTurno(turno);
 		this.setSeg(seg);
 		this.setTer(ter);

@@ -9,7 +9,6 @@ import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
@@ -34,8 +33,8 @@ public class Funcionario {
 	private Filial filial = new Filial();
 	
 	//um funcionario possui um ou mais avisos
-	@OneToMany(mappedBy = "funcionario") //nome do campo na tabela filha
-	private List<Aviso> avisos = new ArrayList<Aviso>();
+//	@OneToMany(mappedBy = "funcionario") //nome do campo na tabela filha
+//	private List<Aviso> avisos = new ArrayList<Aviso>();
 	
 
 	
