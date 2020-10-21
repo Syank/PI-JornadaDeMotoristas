@@ -85,13 +85,15 @@ public class ControlesPerfilMotAvisos implements Initializable {
     }
 
     @FXML
-    void abrirHistEntregas(MouseEvent event) {
-
+    void abrirMinhasViagens(MouseEvent event) {
+    	Main.trocarTela("Mot Viagens");
+    	limparCampos();
     }
 
     @FXML
     void abrirRealizarViagem(MouseEvent event) {
-
+    	Main.trocarTela("Viagem Selecionada");
+    	limparCampos();
     }
 
     @FXML
@@ -132,11 +134,6 @@ public class ControlesPerfilMotAvisos implements Initializable {
     void fecharJanela(ActionEvent event) {
     	System.exit(0);
     } 
-
-    @FXML
-    void irCadastrarAvisos(MouseEvent event) {
-
-    }
 
     @FXML
     void irVisualizarAvisos(MouseEvent event) {

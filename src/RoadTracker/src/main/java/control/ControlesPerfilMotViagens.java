@@ -15,7 +15,7 @@ import view.Main;
 public class ControlesPerfilMotViagens implements Initializable {
 
     @FXML
-    private Pane paneCadastrarAviso;
+    private Pane paneMinhasViagens;
     @FXML
     private TableView<?> tabelaViagens;
     @FXML
