@@ -77,7 +77,7 @@ public void setNomenclatura(String nomenclatura) {
 		this.resolvido = resolvido;
 	}
 public void cadastrarAviso(String funcionario_destino, String funcionario_origem, String mensagem) {
-
+//Retirar funcionário de destino e adicionar (boolean resolvido, String nomenclatura)
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		Funcionario funcionario = new Funcionario();

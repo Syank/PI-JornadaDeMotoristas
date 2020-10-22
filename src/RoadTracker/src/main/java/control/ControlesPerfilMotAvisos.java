@@ -28,6 +28,9 @@ public class ControlesPerfilMotAvisos implements Initializable {
 
     @FXML
     private Pane paneCadastrarAviso;
+    
+    @FXML
+    private Pane paneVisualizarAvisos;
 
     @FXML
     private TextArea addMsg;
@@ -39,7 +42,7 @@ public class ControlesPerfilMotAvisos implements Initializable {
     private CheckBox envTerceiros;
 
     @FXML
-    private CheckBox resolvido;
+    private CheckBox resol;
 
     @FXML
     private CheckBox fProx;
@@ -63,9 +66,6 @@ public class ControlesPerfilMotAvisos implements Initializable {
     private TextField campoIDAviso;
 
     @FXML
-    private TextField destinatario;
-
-    @FXML
     private TextArea msg;
 
     @FXML
@@ -74,10 +74,6 @@ public class ControlesPerfilMotAvisos implements Initializable {
     @FXML
     private TextField remetente;
 
-    @FXML
-    private CheckBox visualizado;
-
-	private Labeled addDestinatario;
 
     @FXML
     void abrirCriarAviso(MouseEvent event) {
@@ -99,35 +95,32 @@ public class ControlesPerfilMotAvisos implements Initializable {
     @FXML
     public void confirmarAviso(ActionEvent event) {
     	Aviso aviso = new Aviso();
-    	Motorista motorista = new Motorista();
+    	Motorista mot = new Motorista();
     	
-    	String destino = "";
+    	String fil;
+    	String re;
+    	String pn;
+    	String te;
     	
-    	addDestinatario = null;
-		try {
-    		destino = addDestinatario.getText();		
-    		
-    	}catch (NullPointerException falha) {
-    		System.out.println("Campo de destino incorreto");
-    	}
+    	if (envTerceiros.isSelected()) {  te = "ECT"; }
+    	else { te = "EST"; }
+    	if (pneufurado.isSelected()) { pn = "PF"; }
+    	else { pn = ""; }
+    	if (resol.isSelected()) { re = "01"; }
+    	else { re = "00"; }
+    	if (fProx.isSelected()) { fil = "01"; }
+    	else { fil = "00"; }
     	
-    	if(destino.length() == 11) {
-    		if(motorista.encontrarMotorista(destino) != null) {
-    			aviso.cadastrarAviso(addDestinatario.getText(), ControlesLogin.cpfLogado, addMsg.getText());
-        		System.out.println("Mensagem cadastrada");
-    		}else {
-    			System.out.println("Não existe motorista com esse cpf");
-    		}
-    		
-    	}else {
-    		System.out.println("CPF de destino inválido");
-    	}
-
+    	String mensagem = addMsg.getText();
+//    	String motorista = mot.
+    	boolean resolvido = resol.isSelected();
+    	String nomenclatura = (String.valueOf(te) + String.valueOf(pn) + String.valueOf(fil) + String.valueOf(re));
+//    	aviso.cadastrarAviso(resolvido, mensagem, nomenclatura);
     }
 
     @FXML
-    void excluir(ActionEvent event) {
-		addMsg.setText("");
+    void apagar(ActionEvent event) {
+		limparCampos();
     }
 
     @FXML
@@ -135,10 +128,6 @@ public class ControlesPerfilMotAvisos implements Initializable {
     	System.exit(0);
     } 
 
-    @FXML
-    void irVisualizarAvisos(MouseEvent event) {
-
-    }
 
     @FXML
     void minimizarJanela(ActionEvent event) {
@@ -146,18 +135,22 @@ public class ControlesPerfilMotAvisos implements Initializable {
     }
 
     @FXML
-    void selecionarAviso(ActionEvent event) {
-
-    }
-
-    @FXML
     void voltar(ActionEvent event) {
     	Main.trocarTela("Mot Viagens");
     }
     
+    @FXML
+    void selecionarAviso(ActionEvent event) {
+
+    }
 	
 	public void limparCampos() {
 		addMsg.setText("");
+		pneufurado.setSelected(false);
+		envTerceiros.setSelected(false);
+		fProx.setSelected(false);
+		resol.setSelected(false);
+		
 	}
 
 	@Override

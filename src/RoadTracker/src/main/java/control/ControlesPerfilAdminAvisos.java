@@ -91,7 +91,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 			paneVisualizarAvisos.setDisable(false);
 			paneAvisoSelecionado.setVisible(false);
 			paneAvisoSelecionado.setDisable(true);
-    	}else if (paneAvisoSelecionado.isVisible()) {
+    	}else if (paneVisualizarAvisos.isVisible()) {
     		Main.trocarTela("Tela Boas Vindas");
     	}
     }

@@ -121,10 +121,10 @@
             <TextArea fx:id="addMsg" layoutX="23.0" layoutY="41.0" prefHeight="190.0" prefWidth="440.0" wrapText="true" />
             <Label layoutX="27.0" layoutY="14.0" text="Mensagem" />
             <Button layoutX="27.0" layoutY="293.0" mnemonicParsing="false" onAction="#confirmarAviso" prefHeight="39.0" prefWidth="85.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
-            <Button layoutX="124.0" layoutY="294.0" mnemonicParsing="false" onAction="#excluir" prefHeight="39.0" prefWidth="85.0" styleClass="customizarBotoes" text="Limpar" textFill="#fffdfd" />
+            <Button layoutX="124.0" layoutY="294.0" mnemonicParsing="false" onAction="#apagar" prefHeight="39.0" prefWidth="85.0" styleClass="customizarBotoes" text="Limpar" textFill="#fffdfd" />
             <CheckBox fx:id="pneufurado" layoutX="27.0" layoutY="251.0" mnemonicParsing="false" text="Pneu furado?" />
             <CheckBox fx:id="envTerceiros" layoutX="136.0" layoutY="251.0" mnemonicParsing="false" text="Envolve terceiros?" />
-            <CheckBox fx:id="resolvido" layoutX="265.0" layoutY="251.0" mnemonicParsing="false" text="Resolvido?" />
+            <CheckBox fx:id="resol" layoutX="265.0" layoutY="251.0" mnemonicParsing="false" text="Resolvido?" />
             <CheckBox fx:id="fProx" layoutX="361.0" layoutY="251.0" mnemonicParsing="false" text="Filial próxima?" />
          </children>
       </Pane>
