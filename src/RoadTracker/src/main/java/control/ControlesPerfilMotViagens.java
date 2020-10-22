@@ -47,6 +47,13 @@ public class ControlesPerfilMotViagens implements Initializable {
     @FXML
     void iniciaViagem(ActionEvent event) {
     	//Ao clicar em um botão com este evento, abre a tela da viagem atual.
+    	Viagens selecionado = tabelaViagens.getSelectionModel().getSelectedItem();
+    	Viagem viagem = new Viagem();
+    	
+    	viagem = viagem.encontrarViagem(selecionado.getId());
+    	
+    	viagem.atualizarSituacao("Em andamento");
+    	
     }
 
     @FXML

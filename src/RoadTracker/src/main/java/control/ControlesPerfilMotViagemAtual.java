@@ -1,6 +1,8 @@
 package control;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -9,9 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import model.Viagem;
 import view.Main;
+import view.Viagens;
 
 public class ControlesPerfilMotViagemAtual implements Initializable {
+	
+	Viagem viagemAtual = null;
     
 	 @FXML
 	 private Label labelDestino;
@@ -28,7 +34,7 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 	 @FXML
 	 private Label labelAtencao;
 	 @FXML
-	 private Button botaoFinalizar;
+	 private Button botaoFinalizarComecar;
 	 @FXML
 	 private Button botaoExpediente;
 	 @FXML
@@ -48,6 +54,7 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 	 @FXML
 	 private Label labelDescHoje;
 
+	private List<Viagens> listaDeViagens = new ArrayList<>();
     
 	 
 	 
@@ -88,6 +95,31 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     
     
     
+    @FXML
+    public void carregarViagem(ActionEvent event) {
+    	Viagem viagem = new Viagem();
+
+    	
+    	listaDeViagens = viagem.listarViagens();
+    	
+    	listaDeViagens.forEach(item -> {
+    		if(item.getMotorista().getCpf().equals(ControlesLogin.cpfLogado)) {
+    			if(item.getSituacao().equals("Em andamento")) {
+    				viagemAtual = viagem.encontrarViagem(item.getId());
+    			}
+    		}
+    	});
+    	
+    	if(viagemAtual != null) {
+    		labelDestino.setText(labelDestino.getText() + viagemAtual.getDestino());
+    		labelPlaca.setText(labelPlaca.getText() + viagemAtual.getVeiculo().getPlaca());
+    		labelPrazo.setText(labelPrazo.getText() + viagemAtual.getFim());
+    	}
+    	
+    	botaoFinalizarComecar.setText("Finalizar viagem");
+    	botaoFinalizarComecar.setOnAction(null);
+    	
+    }
     
     
     @FXML
@@ -115,7 +147,6 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		
 	} 
 }

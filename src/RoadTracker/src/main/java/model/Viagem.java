@@ -169,6 +169,32 @@ public class Viagem {
 		
 	}
 	
+	public void atualizarSituacao(String situacao) {
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		this.situacao = situacao;
+		
+		try {
+			con.getTransaction().begin();
+			
+			
+			Query query = con.createQuery("update Viagem set situacao = :situacao where id = :idViagem");
+			query.setParameter("situacao", situacao);
+			query.setParameter("idViagem", this.id);
+			query.executeUpdate();
+			
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar os dados da viagem: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+	}
+	
 	public void excluirViagem(Integer id) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
