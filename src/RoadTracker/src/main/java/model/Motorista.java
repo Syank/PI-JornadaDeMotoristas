@@ -37,6 +37,11 @@ public class Motorista {
 	private boolean dom;
 	private String cargo;
 	
+	private String dia_atual;
+	private String trabalhado_hoje;
+	private String descansado_hoje;
+	private String alimentacao_hoje;
+	
 	// Mapeamento
 	@ManyToOne
 	@JoinColumn(name = "filial", nullable = false, foreignKey = @ForeignKey(name = "fk_filiais_id"))
@@ -158,6 +163,30 @@ public class Motorista {
 		this.cargo = cargo;
 	}
 	
+	public String getDia_atual() {
+		return dia_atual;
+	}
+	public void setDia_atual(String dia_atual) {
+		this.dia_atual = dia_atual;
+	}
+	public String getTrabalhado_hoje() {
+		return trabalhado_hoje;
+	}
+	public void setTrabalhado_hoje(String trabalhado_hoje) {
+		this.trabalhado_hoje = trabalhado_hoje;
+	}
+	public String getDescansado_hoje() {
+		return descansado_hoje;
+	}
+	public void setDescansado_hoje(String descansado_hoje) {
+		this.descansado_hoje = descansado_hoje;
+	}
+	public String getAlimentacao_hoje() {
+		return alimentacao_hoje;
+	}
+	public void setAlimentacao_hoje(String alimentacao_hoje) {
+		this.alimentacao_hoje = alimentacao_hoje;
+	}
 	// Métodos
 	public boolean cadastrarMotorista(String cpf, String nome, String email, String senha, String salario, String cargaHoraria, int idFilial,
 			String turno, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom, String cargo) {
