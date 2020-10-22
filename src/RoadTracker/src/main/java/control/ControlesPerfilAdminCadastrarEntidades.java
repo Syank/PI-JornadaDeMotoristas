@@ -227,11 +227,13 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 									"Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
 						}
 
-					} else {
+					}
+					else {
 						notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
 								"Não foi possível realizar a ação de cadastro, os campos da senha estão incorretos.");
 					}
-				} else {
+				}
+            	else {
 					notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
 							"O CPF informado já está sendo utilizado por outro funcionário, "
 									+ "por favor verifique o campo ou exclua o funcionário com o CPF em questão");
@@ -253,32 +255,42 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         		
         		Motorista motorista = new Motorista();
         		
-
-        		// Primeiro verifica se o cpf não está sendo usado, depois verifica se o email não está sendo usado
-        		if(motorista.encontrarMotorista(cpf) == null) {
-					if (senha.equals(senha2)) {
-						boolean cadastro = motorista.cadastrarMotorista(cpf, nome, email, senha, salario, cargaHoraria,
-								filial, turno, seg, ter, qua, qui, sex, sab, dom, cargo);
-
-						if (cadastro) {
-							notificar("Sucesso de cadastro", "Funcionário cadastrado",
-									"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
-						} else {
-							notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
-									"Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
+        		if (Integer.parseInt(salario) < 1701.38) {
+        			//verifica se o salário é menor que o piso
+        			notificar("Falha de cadastro", "Salário baixo", "O salário informado é inválido, "
+            				+ "por favor confira o campo e insira um salário maior");
+        		}
+        		else {
+        			// Primeiro verifica se o cpf não está sendo usado, depois verifica se o email não está sendo usado
+	        		if(motorista.encontrarMotorista(cpf) == null) {
+						if (senha.equals(senha2)) {
+							boolean cadastro = motorista.cadastrarMotorista(cpf, nome, email, senha, salario, cargaHoraria,
+									filial, turno, seg, ter, qua, qui, sex, sab, dom, cargo);
+	
+							if (cadastro) {
+								notificar("Sucesso de cadastro", "Funcionário cadastrado",
+										"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+							}
+							else {
+								notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
+										"Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
+							}
 						}
-					} else {
-						notificar("Falha de cadastro", "Falha ao cadastrar",
-								"As senhas estão incorretas, tente novamente");
-					}
-            		
-        		}else {
-            		notificar("Falha de cadastro", "Falha ao cadastrar funcionário", 
-            				"O CPF informado já está sendo utilizado por outro motorista, "
-            				+ "por favor verifique o campo ou exclua o motorista com o CPF em questão");
+						else {
+							notificar("Falha de cadastro", "Falha ao cadastrar",
+									"As senhas estão incorretas, tente novamente");
+						}
+	            		
+	        		}
+	        		else {
+	            		notificar("Falha de cadastro", "Falha ao cadastrar funcionário", 
+	            				"O CPF informado já está sendo utilizado por outro motorista, "
+	            				+ "por favor verifique o campo ou exclua o motorista com o CPF em questão");
+	        		}
         		}
         	}
-    	}else {
+    	}
+    	else {
     		notificar("Falha de cadastro", "CPF inválido", "O CPF informado é inválido, "
     				+ "por favor confira o campo e insira um CPF, somente os números, de 11 dígitos");
     	}
