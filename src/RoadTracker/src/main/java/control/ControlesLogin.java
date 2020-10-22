@@ -2,6 +2,8 @@ package control;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -67,6 +69,8 @@ public class ControlesLogin implements Initializable{
 	        	Main.trocarTela("Viagem Selecionada");
 	        	inputUsuario.setText("");
 	        	inputSenha.setText("");
+	        	ControlesPerfilMotViagemAtual.carregarViagem = true;
+	        	ControlesPerfilMotViagens.carregarTableView = true;
     			}
     		}
     	}
@@ -119,7 +123,6 @@ public class ControlesLogin implements Initializable{
 		if(!(func.encontrarFuncionario("00000000000") != null)) {
 			func.cadastrarFuncionario("Admin User", "00000000000", "root", "Administrador", 1, "adminuser@root.com");
 		}
-		
 		
 	}
 

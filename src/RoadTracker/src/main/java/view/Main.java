@@ -1,6 +1,8 @@
 package view;
 	
 import java.io.IOException;
+
+import control.ControlesPerfilMotViagemAtual;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;

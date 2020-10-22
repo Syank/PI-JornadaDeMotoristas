@@ -157,26 +157,26 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="botaoFinalizarComecar" layoutX="271.0" layoutY="383.0" mnemonicParsing="false" onAction="#carregarViagem" prefHeight="41.0" prefWidth="110.0" styleClass="customizarBotoes" text="Carregar viagem" textFill="WHITE" />
+      <Button layoutX="271.0" layoutY="391.0" mnemonicParsing="false" onAction="#finalizarViagem" prefHeight="33.0" prefWidth="102.0" styleClass="customizarBotoes" text="Finalizar viagem" textFill="WHITE" />
       <VBox layoutX="500.0" layoutY="103.0" prefHeight="324.0" prefWidth="228.0" spacing="20.0" styleClass="separadorLateralEsquerdo">
          <children>
             <VBox prefHeight="96.0" prefWidth="222.0" spacing="5.0" styleClass="textoDeMenu">
                <children>
-                  <Button fx:id="botaoExpediente" mnemonicParsing="false" onAction="#iniciarExpediente" prefHeight="33.0" prefWidth="119.0" styleClass="customizarBotoes" text="Inciar expediente" textFill="WHITE" />
+                  <Button fx:id="botaoExpediente" disable="true" mnemonicParsing="false" onAction="#iniciarExpediente" prefHeight="33.0" prefWidth="119.0" styleClass="customizarBotoes" text="Inciar expediente" textFill="WHITE" />
                   <Label fx:id="labelExpMax" styleClass="separadorInferior" text="Expediente máximo diário: " />
                   <Label fx:id="labelExpHoje" styleClass="separadorInferior" text="Total de hoje: " />
                </children>
             </VBox>
             <VBox prefHeight="100.0" prefWidth="206.0" spacing="5.0" styleClass="textoDeMenu">
                <children>
-                  <Button fx:id="botaoAlimentacao" contentDisplay="TOP" mnemonicParsing="false" onAction="#pausaAlimentacao" prefHeight="33.0" prefWidth="143.0" styleClass="customizarBotoes" text="Pausa para alimentação" textFill="WHITE" wrapText="true" />
+                  <Button fx:id="botaoAlimentacao" contentDisplay="TOP" disable="true" mnemonicParsing="false" onAction="#pausaAlimentacao" prefHeight="33.0" prefWidth="143.0" styleClass="customizarBotoes" text="Pausa para alimentação" textFill="WHITE" wrapText="true" />
                   <Label fx:id="labelAlimMax" styleClass="separadorInferior" text="Tempo máximo de alimentação: " />
                   <Label fx:id="labelAlimHoje" styleClass="separadorInferior" text="Total de hoje: " />
                </children>
             </VBox>
             <VBox prefHeight="90.0" prefWidth="220.0" spacing="5.0">
                <children>
-                  <Button fx:id="botaoDescanso" mnemonicParsing="false" onAction="#pausaDescanso" prefHeight="31.0" prefWidth="132.0" styleClass="customizarBotoes" text="Pausa para descanso" textFill="WHITE" />
+                  <Button fx:id="botaoDescanso" disable="true" mnemonicParsing="false" onAction="#pausaDescanso" prefHeight="31.0" prefWidth="132.0" styleClass="customizarBotoes" text="Pausa para descanso" textFill="WHITE" />
                   <Label fx:id="labelDescMax" styleClass="separadorInferior" text="Tempo máximo de descanso: " />
                   <Label fx:id="labelDescHoje" styleClass="separadorInferior" text="Total de hoje: " />
                </children>

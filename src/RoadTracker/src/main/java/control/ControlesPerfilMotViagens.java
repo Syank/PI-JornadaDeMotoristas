@@ -2,9 +2,12 @@ package control;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ControlesPerfilMotViagens implements Initializable {
+	
+	public static boolean carregarTableView = false;
 
     @FXML
     private Pane paneMinhasViagens;
@@ -92,10 +97,7 @@ public class ControlesPerfilMotViagens implements Initializable {
     }
     
     
-    @FXML
-    void carregarViagens(ActionEvent event) {
-    	carregarInfoViagens();
-    }
+
     void carregarInfoViagens () {
         List<Viagens> listaDeViagens = new ArrayList<>();
         List<Viagens> listaDeViagensMotorista = new ArrayList<>();
@@ -124,9 +126,30 @@ public class ControlesPerfilMotViagens implements Initializable {
     	tabelaViagens.setItems(obsListViagens);
     }
     
+    
+    
+    void tarefasEmLoop() {
+    	// Considere que cada if aqui dentro é uma "função"
+    	
+    	if(carregarTableView) {
+    		carregarInfoViagens();
+    		carregarTableView = false;
+    	}
+    	
+    }
+    
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// Tudo que será carregado logo que abrimos o aplicativo.
-		
+		Timer myTimer = new Timer();
+		myTimer.schedule(new TimerTask(){
+
+
+			@Override
+			public void run() {
+				Platform.runLater(() -> tarefasEmLoop());
+			}
+		}, 0, 1000);
+
 	} 
 }

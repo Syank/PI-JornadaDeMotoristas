@@ -1,11 +1,15 @@
 package control;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,7 +22,11 @@ import view.Viagens;
 
 public class ControlesPerfilMotViagemAtual implements Initializable {
 	
-	Viagem viagemAtual = null;
+	 Viagem viagemAtual = null;
+	 
+	 public static boolean cronometrarTempoTotal = false;
+	 public static boolean cronometrarExpDiario = false;
+	 public static boolean carregarViagem = false;
     
 	 @FXML
 	 private Label labelDestino;
@@ -34,8 +42,6 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 	 private Label labelSituacao;
 	 @FXML
 	 private Label labelAtencao;
-	 @FXML
-	 private Button botaoFinalizarComecar;
 	 @FXML
 	 private Button botaoExpediente;
 	 @FXML
@@ -55,12 +61,8 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 	 @FXML
 	 private Label labelDescHoje;
 
-	private List<Viagens> listaDeViagens = new ArrayList<>();
+	 private List<Viagens> listaDeViagens = new ArrayList<>();
     
-	 
-	 
-	 
-	 
 	 
 	 
 	 
@@ -68,9 +70,27 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 
     @FXML
     public void iniciarExpediente(ActionEvent event) {	
+    	cronometrarTempoTotal = true;
+    	cronometrarExpDiario = true;
+    	botaoExpediente.setText("Pausar expediente");
+    	botaoExpediente.setOnAction(new EventHandler<ActionEvent>() {
+    		@Override
+    		public void handle(ActionEvent event) {
+    			finalizarExpediente(event);
+    		}
+    	});   	
     }
     @FXML
     public void finalizarExpediente(ActionEvent event) {	
+    	cronometrarTempoTotal = false;
+    	cronometrarExpDiario = false;
+    	botaoExpediente.setText("Iniciar expediente");
+    	botaoExpediente.setOnAction(new EventHandler<ActionEvent>() {
+    		@Override
+    		public void handle(ActionEvent event) {
+    			iniciarExpediente(event);
+    		}
+    	});
     }
     
     
@@ -91,14 +111,14 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     
     
     @FXML
-    public void finalizarEntrega(ActionEvent event) {	
+    public void finalizarViagem(ActionEvent event) {	
     }
     
     
     
-    @FXML
-    public void carregarViagem(ActionEvent event) {
+    public void carregarViagem() {
     	Viagem viagem = new Viagem();
+    	Motorista motorista = new Motorista().encontrarMotorista(ControlesLogin.cpfLogado);
 
     	
     	listaDeViagens = viagem.listarViagens();
@@ -111,10 +131,7 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     		}
     	});
     	
-    	if(viagemAtual != null) {
-    		botaoFinalizarComecar.setText("Finalizar viagem");
-        	botaoFinalizarComecar.setOnAction(null);
-        	
+    	if(viagemAtual != null) {        	
     		labelDestino.setText(labelDestino.getText() + viagemAtual.getDestino());
     		labelPlaca.setText(labelPlaca.getText() + viagemAtual.getVeiculo().getPlaca());
     		labelPrazo.setText(labelPrazo.getText() + viagemAtual.getFim());
@@ -123,9 +140,6 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     		labelSituacao.setText(labelSituacao.getText() + viagemAtual.getSituacao());
     		
     		labelAtencao.setVisible(false);
-    		
-    		Motorista motorista = new Motorista();
-    		motorista = motorista.encontrarMotorista(ControlesLogin.cpfLogado);
     		
     		labelExpMax.setText(labelExpMax.getText() + motorista.getCargaHoraria() + 'h');
     		labelExpHoje.setText(labelExpHoje.getText() + motorista.getTrabalhado_hoje() + 'h');
@@ -136,7 +150,41 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
        		labelDescMax.setText(labelDescMax.getText() + "1h");
     		labelDescHoje.setText(labelDescHoje.getText() + motorista.getDescansado_hoje() + 'h');
     		
+    		
+    		
+    		
+    		
+    		// Essa parte logo abaixo talvez esteja confusa, mas resumindo, ela verifica se a entrega está atrasada ou não, e avisa o motorista caso esteja
+        	String prazo = viagemAtual.getFim();
+        	
+        	int ano = LocalDate.now().getYear();
+        	int dia = LocalDate.now().getDayOfMonth();
+        	int mes = LocalDate.now().getMonthValue();
+        	
+        	String desmontado[] = prazo.split("/");
+        	
+        	if(Integer.parseInt(desmontado[2]) < ano) {
+        		labelAtencao.setVisible(true);
+        		labelAtencao.setText("Sua entrega está atrasada! Verifique junto a filial para mais informações.");
+        	}else if(Integer.parseInt(desmontado[1]) < mes) {
+        		labelAtencao.setVisible(true);
+        		labelAtencao.setText("Sua entrega está atrasada! Verifique junto a filial para mais informações.");
+        	}else if(Integer.parseInt(desmontado[0]) < dia) {
+        		labelAtencao.setVisible(true);
+        		labelAtencao.setText("Sua entrega está atrasada! Verifique junto a filial para mais informações.");
+        	}
+        	
+
+        	// Ativa os botões
+        	botaoAlimentacao.setDisable(false);
+        	botaoDescanso.setDisable(false);
+        	botaoExpediente.setDisable(false);
+        	
+        	
+        	carregarViagem = false;
     	}
+    	
+    	
     	
     	
     }
@@ -165,8 +213,113 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     	System.exit(0);
     }
 
+    
+    
+    void tarefasEmLoop() {
+    	// Considere que cada if aqui dentro é uma "função"
+
+  	  	
+  	  	
+  	  	// "Função" para cronometrar o tempo
+  	  	if(cronometrarTempoTotal) {
+	  	  	String texto = "Horas totais dirigidas: ";
+	  	  	
+	  	  	String tempoAtual[] = labelHorasTotais.getText().split(":");
+	  	  	
+	  	  	String segundos = tempoAtual[3];
+	  	  	String minutos = tempoAtual[2];
+	  	  	String horas = tempoAtual[1].substring(1);  // Nessa linha, horas inicialmente vem como " 00", então essas operações retiram o " "
+	  	  	
+	  	  	// Incrementa o tempo
+	  	  	segundos = String.valueOf(Integer.parseInt(segundos) + 1);
+	  	  	if(Integer.parseInt(segundos) >= 60) {
+	  	  		segundos = "00";
+	  	  	  	minutos = String.valueOf(Integer.parseInt(minutos) + 1);
+	  	  	}
+	  	  	if(Integer.parseInt(minutos) >= 60) {
+	  	  		minutos = "00";
+	  	  		horas = String.valueOf(Integer.parseInt(horas) + 1);
+	  	  	}
+	  	  	
+	  	  	// Formata o tempo
+	  	  	if(Integer.parseInt(segundos) < 10 && segundos.length() < 2) {
+	  	  		segundos = "0" + segundos;
+	  	  	}
+	  	  	if(Integer.parseInt(minutos) < 10 && minutos.length() < 2) {
+	  	  		minutos = "0" + minutos;
+	  	  	}
+	  	  	if(Integer.parseInt(horas) < 10 && horas.length() < 2) {
+	  	  		horas = "0" + horas;
+	  	  	}
+	  	  	
+	  	  	// Formata o texto e coloca na label
+	  	  	texto = texto + horas + ":" + minutos + ":" + segundos;	
+	  	  	labelHorasTotais.setText(texto);
+	  	  	
+  	  	}
+  	  	
+  	  	if(cronometrarExpDiario) {
+  	  		String texto = "Total de hoje: ";
+  	  		String totalDiario = labelExpHoje.getText();
+  	  		
+  	  		if(!totalDiario.contains("0h")) {
+  		  	  	String tempoAtual[] = labelExpHoje.getText().split(":");
+  		  	  	
+  		  	  	String segundos = tempoAtual[3];
+  		  	  	String minutos = tempoAtual[2];
+  		  	  	String horas = tempoAtual[1].substring(1);
+  		  	  	
+  		  	  	// Incrementa o tempo
+  		  	  	segundos = String.valueOf(Integer.parseInt(segundos) + 1);
+  		  	  	if(Integer.parseInt(segundos) >= 60) {
+  		  	  		segundos = "00";
+  		  	  	  	minutos = String.valueOf(Integer.parseInt(minutos) + 1);
+  		  	  	}
+  		  	  	if(Integer.parseInt(minutos) >= 60) {
+  		  	  		minutos = "00";
+  		  	  		horas = String.valueOf(Integer.parseInt(horas) + 1);
+  		  	  	}
+  		  	  	
+  		  	  	// Formata o tempo
+  		  	  	if(Integer.parseInt(segundos) < 10 && segundos.length() < 2) {
+  		  	  		segundos = "0" + segundos;
+  		  	  	}
+  		  	  	if(Integer.parseInt(minutos) < 10 && minutos.length() < 2) {
+  		  	  		minutos = "0" + minutos;
+  		  	  	}
+  		  	  	if(Integer.parseInt(horas) < 10 && horas.length() < 2) {
+  		  	  		horas = "0" + horas;
+  		  	  	}
+  		  	  	
+  		  	  	// Formata o texto e coloca na label
+  		  	  	texto = texto + horas + ":" + minutos + ":" + segundos;	
+  		  	  	labelExpHoje.setText(texto);
+  		  	  	
+  	  		}else {
+  		  	  	// Formata o texto e coloca na label
+  		  	  	texto = texto + "00:00:01";	//Aqui precisa iniciar em 1s para não ficar atrasado o tempo
+  		  	  	labelExpHoje.setText(texto);
+  		  	  	
+  	  		}
+  	  		
+  	  	}
+  	  	
+  	  	// Carrega a viagem do motorista
+  	  	if(carregarViagem) {
+  	  		carregarViagem();
+  	  	}
+    }
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+        Timer myTimer = new Timer();
+        myTimer.schedule(new TimerTask(){
+       
+
+          @Override
+          public void run() {
+        	  Platform.runLater(() -> tarefasEmLoop());
+          }
+        }, 0, 1000);
 	} 
 }
