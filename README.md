@@ -203,6 +203,10 @@ CREATE TABLE motoristas (
     sex BOOLEAN,
     email VARCHAR(50),
     senha VARCHAR(32),
+    dia_atual VARCHAR(2),
+    trabalhado_hoje VARCHAR(5),
+    descansado_hoje VARCHAR(5),
+    alimentacao_hoje VARCHAR(5),
     fk_filiais_id SERIAL
 );
 
