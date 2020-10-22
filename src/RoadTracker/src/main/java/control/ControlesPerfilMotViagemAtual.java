@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import model.Motorista;
 import model.Viagem;
 import view.Main;
 import view.Viagens;
@@ -68,26 +69,26 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     @FXML
     public void iniciarExpediente(ActionEvent event) {	
     }
-    
     @FXML
     public void finalizarExpediente(ActionEvent event) {	
     }
     
+    
     @FXML
     public void pausaDescanso(ActionEvent event) {	
     }
-    
     @FXML
     public void voltaDescanso(ActionEvent event) {	
     }
     
+    
     @FXML
     public void pausaAlimentacao(ActionEvent event) {	
     }
-    
     @FXML
     public void voltaAlimentacao(ActionEvent event) {	
     }
+    
     
     @FXML
     public void finalizarEntrega(ActionEvent event) {	
@@ -111,13 +112,32 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     	});
     	
     	if(viagemAtual != null) {
+    		botaoFinalizarComecar.setText("Finalizar viagem");
+        	botaoFinalizarComecar.setOnAction(null);
+        	
     		labelDestino.setText(labelDestino.getText() + viagemAtual.getDestino());
     		labelPlaca.setText(labelPlaca.getText() + viagemAtual.getVeiculo().getPlaca());
     		labelPrazo.setText(labelPrazo.getText() + viagemAtual.getFim());
+    		labelHorasTotais.setText(labelHorasTotais.getText() + viagemAtual.getTotal());
+    		labelCarga.setText(labelCarga.getText() + viagemAtual.getCarga());
+    		labelSituacao.setText(labelSituacao.getText() + viagemAtual.getSituacao());
+    		
+    		labelAtencao.setVisible(false);
+    		
+    		Motorista motorista = new Motorista();
+    		motorista = motorista.encontrarMotorista(ControlesLogin.cpfLogado);
+    		
+    		labelExpMax.setText(labelExpMax.getText() + motorista.getCargaHoraria() + 'h');
+    		labelExpHoje.setText(labelExpHoje.getText() + motorista.getTrabalhado_hoje() + 'h');
+    		
+       		labelAlimMax.setText(labelAlimMax.getText() + "1h");
+       		labelAlimHoje.setText(labelAlimHoje.getText() + motorista.getAlimentacao_hoje() + 'h');
+       		
+       		labelDescMax.setText(labelDescMax.getText() + "1h");
+    		labelDescHoje.setText(labelDescHoje.getText() + motorista.getDescansado_hoje() + 'h');
+    		
     	}
     	
-    	botaoFinalizarComecar.setText("Finalizar viagem");
-    	botaoFinalizarComecar.setOnAction(null);
     	
     }
     

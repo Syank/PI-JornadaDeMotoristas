@@ -162,21 +162,21 @@
          <children>
             <VBox prefHeight="96.0" prefWidth="222.0" spacing="5.0" styleClass="textoDeMenu">
                <children>
-                  <Button fx:id="botaoExpediente" mnemonicParsing="false" onMouseClicked="#iniciarExpediente" prefHeight="33.0" prefWidth="119.0" styleClass="customizarBotoes" text="Inciar expediente" textFill="WHITE" />
+                  <Button fx:id="botaoExpediente" mnemonicParsing="false" onAction="#iniciarExpediente" prefHeight="33.0" prefWidth="119.0" styleClass="customizarBotoes" text="Inciar expediente" textFill="WHITE" />
                   <Label fx:id="labelExpMax" styleClass="separadorInferior" text="Expediente máximo diário: " />
                   <Label fx:id="labelExpHoje" styleClass="separadorInferior" text="Total de hoje: " />
                </children>
             </VBox>
             <VBox prefHeight="100.0" prefWidth="206.0" spacing="5.0" styleClass="textoDeMenu">
                <children>
-                  <Button fx:id="botaoAlimentacao" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#pausaAlimentacao" prefHeight="33.0" prefWidth="143.0" styleClass="customizarBotoes" text="Pausa para alimentação" textFill="WHITE" wrapText="true" />
+                  <Button fx:id="botaoAlimentacao" contentDisplay="TOP" mnemonicParsing="false" onAction="#pausaAlimentacao" prefHeight="33.0" prefWidth="143.0" styleClass="customizarBotoes" text="Pausa para alimentação" textFill="WHITE" wrapText="true" />
                   <Label fx:id="labelAlimMax" styleClass="separadorInferior" text="Tempo máximo de alimentação: " />
                   <Label fx:id="labelAlimHoje" styleClass="separadorInferior" text="Total de hoje: " />
                </children>
             </VBox>
             <VBox prefHeight="90.0" prefWidth="220.0" spacing="5.0">
                <children>
-                  <Button fx:id="botaoDescanso" mnemonicParsing="false" onMouseClicked="#pausaDescanso" prefHeight="31.0" prefWidth="132.0" styleClass="customizarBotoes" text="Pausa para descanso" textFill="WHITE" />
+                  <Button fx:id="botaoDescanso" mnemonicParsing="false" onAction="#pausaDescanso" prefHeight="31.0" prefWidth="132.0" styleClass="customizarBotoes" text="Pausa para descanso" textFill="WHITE" />
                   <Label fx:id="labelDescMax" styleClass="separadorInferior" text="Tempo máximo de descanso: " />
                   <Label fx:id="labelDescHoje" styleClass="separadorInferior" text="Total de hoje: " />
                </children>

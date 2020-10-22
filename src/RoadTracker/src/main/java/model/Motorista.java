@@ -210,6 +210,11 @@ public class Motorista {
 		filial.setId(idFilial);
 		this.setFilial(filial);
 		
+		this.setDia_atual("00");
+		this.setAlimentacao_hoje("0");
+		this.setDescansado_hoje("0");
+		this.setTrabalhado_hoje("0");
+		
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		try {
@@ -250,6 +255,7 @@ public class Motorista {
 		this.setSex(sex);
 		this.setSab(sab);
 		this.setDom(dom);
+		
 		
 		EntityManager con = new ConnectionFactory().getConnection();
 		

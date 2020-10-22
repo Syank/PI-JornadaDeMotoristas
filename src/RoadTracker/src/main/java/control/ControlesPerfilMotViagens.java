@@ -39,9 +39,7 @@ public class ControlesPerfilMotViagens implements Initializable {
     @FXML
     private Pane paneViagemSelecionada;
     
-    private List<Viagens> listaDeViagens = new ArrayList<>();
-    private List<Viagens> listaDeViagensMotorista = new ArrayList<>();
-    private ObservableList<Viagens> obsListViagens;
+
     
 
     @FXML
@@ -99,6 +97,10 @@ public class ControlesPerfilMotViagens implements Initializable {
     	carregarInfoViagens();
     }
     void carregarInfoViagens () {
+        List<Viagens> listaDeViagens = new ArrayList<>();
+        List<Viagens> listaDeViagensMotorista = new ArrayList<>();
+        ObservableList<Viagens> obsListViagens;
+        
     	Viagem viagem = new Viagem();
     	
     	listaDeViagens = viagem.listarViagens();
