@@ -165,7 +165,7 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	
     	desabilitarEdicao();
     	
-		notificar("Sucesso", "Veículo excluído", "O veículo foi excluído com sucesso do banco de dados!");
+		notificar("Sucesso", "Viagem excluída", "A viagem foi excluída com sucesso do banco de dados!");
     }
 	@FXML
 	private void selecionarViagem(ActionEvent event) {
