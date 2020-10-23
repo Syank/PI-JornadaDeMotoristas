@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import model.Filial;
 import model.Funcionario;
 import model.Motorista;
@@ -32,7 +33,16 @@ public class ControlesLogin implements Initializable{
     private AnchorPane janela;
     @FXML
     private Label labelDicaFlutuante;
-
+    @FXML
+    private Pane paneAvisosPrincipal;
+    @FXML
+    private Pane paneAvisosSombra;
+    @FXML
+    private Pane paneAvisosFalha;
+    @FXML
+    private Label labelAvisosTituloFalha;
+    @FXML
+    private Label labelAvisosTextoFalha;
     @FXML
     void verificarLogin(ActionEvent event) {
     	Funcionario funcionario = new Funcionario();
@@ -51,8 +61,9 @@ public class ControlesLogin implements Initializable{
     	// A sequência de ifs abaixo pode ser um pouco confusa, mas, resumindo, ela verifica se foi encontrado pelo menos 1 dos cpfs,
     	//se for, então verifica qual tipo de cpf foi logado
     	if(cpfFunc.equals("Não encontrado") && cpfMot.equals("Não encontrado")){
-    		System.out.println("Não foi encontrado nenhum usuário");
-    	}else {
+    		notificar("Falha", "Usuário não encontrado", "Nenhum usuário foi encontrado. Verifique os dados.");
+    	}
+    	else {
     		if(cpfMot.equals("Não encontrado")) {
     			if(funcionario.getSenha().equals(senhaDada)) {
     				senha = senhaDada;
@@ -61,7 +72,8 @@ public class ControlesLogin implements Initializable{
                 	inputUsuario.setText("");
                 	inputSenha.setText("");
     		}
-    	}else if (cpfFunc.equals("Não encontrado")) {
+    	}
+    	else if (cpfFunc.equals("Não encontrado")) {
     		if(motorista.getSenha().equals(senhaDada)) {
     			senha = senhaDada;
     			cpfLogado = motorista.getCpf();
@@ -105,6 +117,33 @@ public class ControlesLogin implements Initializable{
     @FXML
     void fecharJanela(ActionEvent event) {
     	System.exit(0);
+    }
+    
+	void notificar(String tipoDeAviso, String titulo, String texto) {
+		paneAvisosPrincipal.setDisable(false);
+		paneAvisosPrincipal.setVisible(true);
+		paneAvisosSombra.setVisible(true);
+		paneAvisosSombra.setDisable(false);
+		
+		switch (tipoDeAviso) {
+		case "Falha":
+			paneAvisosFalha.setDisable(false);
+			paneAvisosFalha.setVisible(true);
+			labelAvisosTextoFalha.setText(texto);
+			labelAvisosTituloFalha.setText(titulo);
+			break;
+		}
+		
+	}
+	
+    @FXML
+    void fecharAviso(ActionEvent event) {
+		paneAvisosPrincipal.setDisable(true);
+		paneAvisosPrincipal.setVisible(false);
+		paneAvisosSombra.setVisible(false);
+		paneAvisosSombra.setDisable(true);
+		paneAvisosFalha.setDisable(true);
+		paneAvisosFalha.setVisible(false);
     }
 
 	@Override
