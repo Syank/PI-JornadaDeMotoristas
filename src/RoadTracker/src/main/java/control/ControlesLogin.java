@@ -33,8 +33,6 @@ public class ControlesLogin implements Initializable{
     @FXML
     private Label labelDicaFlutuante;
 
-    
-    
     @FXML
     void verificarLogin(ActionEvent event) {
     	Funcionario funcionario = new Funcionario();

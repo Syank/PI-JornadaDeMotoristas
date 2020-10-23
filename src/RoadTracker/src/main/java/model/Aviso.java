@@ -75,7 +75,7 @@ public class Aviso {
 		this.resolvido = resolvido;
 	}
 	
-	public void cadastrarAviso(String funcionario_destino, String cpfMotorista, String mensagem) {
+	public void cadastrarAviso(String funcionario_destino, String cpfMotorista, String mensagem, String nomenclatura) {
 			EntityManager con = new ConnectionFactory().getConnection();
 			
 			Motorista motorista = new Motorista();
@@ -90,14 +90,7 @@ public class Aviso {
 			this.setMensagem(mensagem);
 			this.setResolvido(false); // não vou mandar uma coisa já resolvida
 			
-// 			String nomenclatura = "";
-//			if (pneu.isSelected()) {
-//				nomenclatura = nomenclatura + "PF";
-//			
-//			}
-//			e assim vai...
-			
-			this.setNomenclatura("TST01"); // teste 1. isso precisa ver de acordo com as checkboxes da interface
+			this.setNomenclatura(nomenclatura + cpfMotorista);
 			
 			motorista.setCpf(cpfMotorista);
 			this.setMotorista(motorista);

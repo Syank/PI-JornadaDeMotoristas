@@ -362,14 +362,19 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	void alterarDados(ActionEvent event) {
 			if(confirmado) {
 				if(cargoFuncionario.equals("Motorista")) {
-					motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
-													textFieldEmail.getText(), pfSenha.getText(), 
-													textFieldSalarioMotorista.getText(), tfCargaHoraria.getText(), 
-													cbFilial.getValue().getId(), cbTurno.getValue().getTurno(),
-													cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(), cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
-				
-					notificar("Sucesso", "Alteração de dados",
-							"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+					if (Integer.parseInt(textFieldSalarioMotorista.getText()) < 1701.38) {
+						notificar("Falha", "Salário baixo", "O salário digitado é muito baixo. Escreva um salário válido.");
+					}
+					else {
+						motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
+														textFieldEmail.getText(), pfSenha.getText(), 
+														textFieldSalarioMotorista.getText(), tfCargaHoraria.getText(), 
+														cbFilial.getValue().getId(), cbTurno.getValue().getTurno(),
+														cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(), cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
+					
+						notificar("Sucesso", "Alteração de dados",
+								"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+					}
 				}else {
 				funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(),
 													cbCargo.getValue().getCargo(), cbFilial.getValue().getId(),
