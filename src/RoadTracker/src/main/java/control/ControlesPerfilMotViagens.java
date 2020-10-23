@@ -1,11 +1,11 @@
 package control;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -21,9 +21,6 @@ import javafx.scene.layout.Pane;
 import model.Viagem;
 import view.Main;
 import view.Viagens;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ControlesPerfilMotViagens implements Initializable {
 	

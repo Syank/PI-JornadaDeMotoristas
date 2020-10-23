@@ -2,15 +2,14 @@ package view;
 	
 import java.io.IOException;
 
-import control.ControlesPerfilMotViagemAtual;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class Main extends Application {

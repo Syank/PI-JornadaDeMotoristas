@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.ForeignKey;
@@ -82,11 +84,16 @@ public class Status {
 	public void enviarStatus(String inicio, String fim, String tipo, String total, String cpfMotorista, String idViagem) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
-
-		this.setInicio("0"); // pegar pegar o horário atual ainda
-		this.setFim("0"); //acho que isso é setado só depois né
-		this.setTipo(tipo);
-		this.setTotal("0"); //acho que isso é setado só depois né
+		Date dia = new Date();
+		int hora = dia.getHours();
+		int minutos = dia.getMinutes();
+		int segundos = dia.getSeconds();
+		String data = Integer.toString(hora) + ":" + Integer.toString(minutos) + ":" + Integer.toString(segundos);
+		this.setInicio(data);
+		
+		this.setTipo(tipo); // isso é setado de acordo com o botão
+		this.setFim("A declarar"); //acho que isso é setado só depois né
+		this.setTotal("A declarar"); //acho que isso é setado só depois né
 		
 		motorista.setCpf(cpfMotorista);
 		this.setMotorista(motorista);
@@ -100,7 +107,7 @@ public class Status {
 			con.getTransaction().commit();
 		}
 		catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "Ocorreu um problema ao enviar o aviso. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Ocorreu um problema ao enviar o status. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
 			con.getTransaction().rollback();
 		}
 		finally {

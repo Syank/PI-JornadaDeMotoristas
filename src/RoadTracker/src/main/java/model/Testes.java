@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Testes {
 
@@ -21,6 +22,15 @@ public class Testes {
 	System.out.println(LocalDate.now().getYear());
 	System.out.println(LocalDate.now().getMonthValue());
 	System.out.println(LocalDate.now().getDayOfMonth());
+	
+	Date dia = new Date();
+	int hora = dia.getHours();
+	int minutos = dia.getMinutes();
+	int segundos = dia.getSeconds();
+	
+	String data = Integer.toString(hora) + ":" + Integer.toString(minutos) + ":" + Integer.toString(segundos);
+	System.out.println(data);
+	
+	
 	}
-
 }

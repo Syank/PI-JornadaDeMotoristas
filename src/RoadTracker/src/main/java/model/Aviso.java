@@ -62,56 +62,60 @@ public class Aviso {
 	public void setMotorista(Motorista motorista) {
 		this.motorista = motorista;
 	}
-	
-	
-public boolean isResolvido() {
+	public boolean isResolvido() {
 		return resolvido;
 	}
 	public String getNomenclatura() {
-	return nomenclatura;
-}
-public void setNomenclatura(String nomenclatura) {
-	this.nomenclatura = nomenclatura;
-}
+		return nomenclatura;
+	}
+	public void setNomenclatura(String nomenclatura) {
+		this.nomenclatura = nomenclatura;
+	}
 	public void setResolvido(boolean resolvido) {
 		this.resolvido = resolvido;
 	}
-public void cadastrarAviso(String funcionario_destino, String funcionario_origem, String mensagem) {
-//Retirar funcionário de destino e adicionar (boolean resolvido, String nomenclatura)
-		EntityManager con = new ConnectionFactory().getConnection();
-		
-		Funcionario funcionario = new Funcionario();
-		Motorista motorista = new Motorista();
+	
+	public void cadastrarAviso(String funcionario_destino, String cpfMotorista, String mensagem) {
+			EntityManager con = new ConnectionFactory().getConnection();
 			
-		LocalDate hoje = LocalDate.now();
-		
-    	int ano = hoje.getYear();
-    	int dia = hoje.getDayOfMonth();
-    	int mes = hoje.getMonthValue();
-		
-    	String data = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
-    	
-		this.setData(data);
-		this.setMensagem(mensagem);
-		
-		motorista.setCpf(funcionario_destino);
-		this.setMotorista(motorista.encontrarMotorista(funcionario_destino));
-		
-		
-		try {
-			con.getTransaction().begin();
-			con.persist(this);
-			con.getTransaction().commit();
+			Motorista motorista = new Motorista();
+				
+			LocalDate hoje = LocalDate.now();
+	    	int ano = hoje.getYear();
+	    	int dia = hoje.getDayOfMonth();
+	    	int mes = hoje.getMonthValue();
+	    	String data = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+			this.setData(data);
+			
+			this.setMensagem(mensagem);
+			this.setResolvido(false); // não vou mandar uma coisa já resolvida
+			
+// 			String nomenclatura = "";
+//			if (pneu.isSelected()) {
+//				nomenclatura = nomenclatura + "PF";
+//			
+//			}
+//			e assim vai...
+			
+			this.setNomenclatura("TST01"); // teste 1. isso precisa ver de acordo com as checkboxes da interface
+			
+			motorista.setCpf(cpfMotorista);
+			this.setMotorista(motorista);
+			
+			try {
+				con.getTransaction().begin();
+				con.persist(this);
+				con.getTransaction().commit();
+			}
+			catch(Exception e) {
+				JOptionPane.showMessageDialog(null, "Ocorreu um problema ao enviar o aviso. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+				con.getTransaction().rollback();
+			}
+			finally {
+				con.close();
+			}
+			
 		}
-		catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "Ocorreu um problema ao enviar o aviso. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
-			con.getTransaction().rollback();
-		}
-		finally {
-			con.close();
-		}
-		
-	}
 	
 	public List<Aviso> consultarTodosAvisos(){
 		EntityManager con = new ConnectionFactory().getConnection();
