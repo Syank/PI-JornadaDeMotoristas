@@ -83,7 +83,7 @@
                      </tr>
               </tbody>
        </table>
-       <h4><a href="https://drive.google.com/file/d/1HuQ9GrWlmToOBW_bJGg-9X_d5m0Zey0G/view?usp=sharing">Visualizar <i>burndown</i> de cada sprint</h4>
+       <h4><a href="https://docs.google.com/spreadsheets/d/1HuQ9GrWlmToOBW_bJGg-9X_d5m0Zey0G/edit#gid=1949042978">Visualizar <i>burndown</i> de cada sprint</h4>
 </section>
 
 <section id="cards">
