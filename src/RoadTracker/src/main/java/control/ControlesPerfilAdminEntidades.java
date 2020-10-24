@@ -4,6 +4,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,6 +35,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private static Filial filial = new Filial();
 	private static Turnos t = new Turnos(0, null);
 	private String funcao;
+	public static boolean atualizarInfos = false;
 
 	// Elementos das panes de avisos
 	private boolean confirmado = false;
@@ -251,10 +256,12 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 			notificar("Sucesso", "Funcionário excluído",
 					"O funcionário foi excluído dos registros do banco de dados com sucesso");
+			atualizarInfos = true;
 		}else {
 			funcionario.removerFuncionario(funcionario.getCpf());
 			notificar("Sucesso", "Funcionário excluído",
 					"O funcionário foi excluído dos registros do banco de dados com sucesso");
+			atualizarInfos = true;
 		}
 	}
 	
@@ -374,13 +381,15 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 					
 						notificar("Sucesso", "Alteração de dados",
 								"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+						atualizarInfos = true;
 					}
 				}else {
-				funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(),
-													cbCargo.getValue().getCargo(), cbFilial.getValue().getId(),
-													textFieldEmail.getText());
-				notificar("Sucesso", "Alteração de dados",
-						"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+					funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(),
+							cbCargo.getValue().getCargo(), cbFilial.getValue().getId(),
+							textFieldEmail.getText());
+					notificar("Sucesso", "Alteração de dados",
+							"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+					atualizarInfos = true;
 				}
 				
 				
@@ -413,6 +422,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		filial.excluirFilial(idFilial);
 
 		notificar("Sucesso", "Filial excluída", "A filial foi excluída dos registros do banco de dados com sucesso!");
+		atualizarInfos = true;
 	}
 
 	
@@ -434,7 +444,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	
 			notificar("Sucesso", "Filial atualizada",
 					"Os dados da filial " + textFieldNomeFilial.getText() + " foram alterados com sucesso!");
-			
+			atualizarInfos = true;
 
 		}else {
 			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
@@ -508,6 +518,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		desabilitarEdicao();
 
 		notificar("Sucesso", "Veículo excluído", "O veículo foi excluído com sucesso do banco de dados!");
+		atualizarInfos = true;
 	}
 
 	
@@ -529,6 +540,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 					"Os dados do veículo de placa " + textFieldPlacaVeiculo.getText() + " foram alterados com sucesso!");
 
 			desabilitarEdicao();
+			atualizarInfos = true;
 			
 		}else {
 			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
@@ -937,7 +949,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 	@FXML
 	void atualizarLista(ActionEvent event) {
-		carregarTableViews();
+		atualizarInfos = true;
 	}
 
 	@FXML
@@ -959,7 +971,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	}
 
 	@FXML
-	void abrirTelaEnt(ActionEvent event) {
+	void abrirTelaEnt(MouseEvent event) {
 		abrirTelaSelecionarEntidade();
 	}
 
@@ -993,12 +1005,31 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 	// --------------
 
+	
+	
+    public void tarefasEmLoop() {
+    	if(atualizarInfos) {
+    		carregarTableViews();
+    		carregarComboBox();
+    		atualizarInfos = false;
+    	}
+    }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		abrirTelaSelecionarEntidade();
 		carregarTableViews();
 		carregarComboBox();
 		desabilitarEdicao();
+		
+        Timer myTimer = new Timer();
+        myTimer.schedule(new TimerTask(){
+       
+
+          @Override
+          public void run() {
+        	  Platform.runLater(() -> tarefasEmLoop());
+          }
+        }, 0, 1000);
 	}
 
 }

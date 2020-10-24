@@ -203,7 +203,6 @@
                   <TableColumn fx:id="colunaCargo" prefWidth="103.0" text="Cargo" />
               </columns>
             </TableView>
-            <Button layoutX="361.0" layoutY="315.0" mnemonicParsing="false" onAction="#atualizarLista" prefHeight="30.0" prefWidth="102.0" styleClass="customizarBotoes" text="Atualizar lista" textFill="WHITE" />
             <TextField fx:id="campoDeBuscaNome" layoutX="14.0" layoutY="19.0" prefHeight="27.0" prefWidth="224.0" promptText="Nome" styleClass="customizarInputs" />
             <TextField fx:id="campoDeBuscaCpf" layoutX="259.0" layoutY="19.0" prefHeight="27.0" prefWidth="153.0" promptText="CPF" styleClass="customizarInputs" />
          </children>
@@ -261,7 +260,6 @@
                   <TableColumn fx:id="colunaEstado" prefWidth="79.0" text="Estado" />
                </columns>
             </TableView>
-            <Button layoutX="361.0" layoutY="315.0" mnemonicParsing="false" onAction="#atualizarLista" prefHeight="30.0" prefWidth="102.0" styleClass="customizarBotoes" text="Atualizar lista" textFill="WHITE" />
             <TextField fx:id="campoDeBuscaFilial" layoutX="14.0" layoutY="19.0" prefHeight="27.0" prefWidth="224.0" promptText="Filial" styleClass="customizarInputs" />
             <TextField fx:id="campoDeBuscaEstado" layoutX="259.0" layoutY="19.0" prefHeight="27.0" prefWidth="153.0" promptText="Estado" styleClass="customizarInputs" />
          </children>
@@ -321,7 +319,6 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Button layoutX="361.0" layoutY="315.0" mnemonicParsing="false" onAction="#atualizarLista" prefHeight="30.0" prefWidth="102.0" styleClass="customizarBotoes" text="Atualizar lista" textFill="WHITE" />
             <TextField fx:id="campoDeBuscaVeiculo" layoutX="14.0" layoutY="19.0" prefHeight="27.0" prefWidth="224.0" promptText="Placa" styleClass="customizarInputs" />
             <TextField fx:id="campoDeBuscaIDVeiculo" layoutX="259.0" layoutY="19.0" prefHeight="27.0" prefWidth="153.0" promptText="ID do Rastreador" styleClass="customizarInputs" />
          </children>

@@ -6,6 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,6 +36,7 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 	
 	private String funcao = "";
 	private boolean confirmado = false;
+	public static boolean atualizarInfos = false;
 	
     @FXML
     private TextField campoDeBuscaNome;
@@ -150,6 +155,8 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
         	notificar("Sucesso", "Dados alterados", "Os dados da viagem foram alterados com sucesso");
         	
         	desabilitarEdicao();
+        	
+        	atualizarInfos = true;
     	}else {
     		notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
     	}
@@ -166,6 +173,7 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	desabilitarEdicao();
     	
 		notificar("Sucesso", "Viagem excluída", "A viagem foi excluída com sucesso do banco de dados!");
+		atualizarInfos = true;
     }
 	@FXML
 	private void selecionarViagem(ActionEvent event) {
@@ -186,7 +194,7 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 	}
     @FXML
     private void atualizarLista(ActionEvent event) {
-    	carregarTableView();
+    	atualizarInfos = true;
     }
     
     
@@ -435,12 +443,30 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	System.exit(0);
     }
 
+    
+    
+    public void tarefasEmLoop() {
+    	if(atualizarInfos) {
+    		carregarTableView();
+    		carregarComboBoxs();
+    		atualizarInfos = false;
+    	}
+    }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		carregarTableView();
 		carregarComboBoxs();
 		desabilitarEdicao();
 		
+        Timer myTimer = new Timer();
+        myTimer.schedule(new TimerTask(){
+       
+
+          @Override
+          public void run() {
+        	  Platform.runLater(() -> tarefasEmLoop());
+          }
+        }, 0, 1000);
 	}
 
 }

@@ -222,6 +222,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 						if (cadastro) {
 							notificar("Sucesso de cadastro", "Funcionário cadastrado",
 									"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+							ControlesPerfilAdminEntidades.atualizarInfos = true;
 						} else {
 							notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
 									"Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
@@ -270,6 +271,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 							if (cadastro) {
 								notificar("Sucesso de cadastro", "Funcionário cadastrado",
 										"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+								ControlesPerfilAdminEntidades.atualizarInfos = true;
 							}
 							else {
 								notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
@@ -315,6 +317,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	if(nome.length() > 1 && cidade.length() > 1 && estado.length() > 1 && cnpj.length() > 1 && rntrc.length() > 1) {
     		f.cadastrarFilial(nome, cidade, estado, cnpj, rntrc);
     		notificar("Sucesso de cadastro", "Filial cadastrada", "A filial " + nome + " foi cadastrada com sucesso!");
+    		ControlesPerfilAdminEntidades.atualizarInfos = true;
     	}else{
     		notificar("Falha de cadastro", "Falha ao cadastrar a filial", "Preencha todos os campos.");	
     		}
@@ -345,6 +348,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         	if(placa.length() >= 1 && modelo_veiculo.length() >= 1 && id_rastreador.length() >= 1 && marca_rastreador.length() >= 1 && modelo_rastreador.length() >= 1) {
         		veic.cadastrarVeiculo(placa, modelo_veiculo, id_rastreador, marca_rastreador, modelo_rastreador, filial);
         		notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
+        		ControlesPerfilAdminEntidades.atualizarInfos = true;
         	}
         }
         catch (NullPointerException falha) {
@@ -376,6 +380,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     					   cpfFuncionario, placaVeiculo, 
     					   textFieldCarga.getText());
         		notificar("Sucesso de cadastro", "Viagem cadastrada", "A viagem foi cadastrada no sistema com sucesso!");
+        		ControlesPerfilAdminHistEntregas.atualizarInfos = true;
         	}
         	
     	}catch (NullPointerException falha) {
@@ -753,6 +758,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	datePickerPrazoEntrega.setValue(LocalDate.now());
     }
     
+    
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		carregarComboBoxCargos();
@@ -760,5 +767,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 		carregarComboBoxTurnos();
 		carregarComboBoxMotoristas();
 		carregarComboBoxVeiculos();
+		
 	}
 }

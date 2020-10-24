@@ -71,6 +71,8 @@ public class ControlesLogin implements Initializable{
                 	Main.trocarTela("Tela Boas Vindas");
                 	inputUsuario.setText("");
                 	inputSenha.setText("");
+                	ControlesPerfilAdminEntidades.atualizarInfos = true;
+                	ControlesPerfilAdminHistEntregas.atualizarInfos = true;
     		}
     	}
     	else if (cpfFunc.equals("Não encontrado")) {

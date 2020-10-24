@@ -153,7 +153,6 @@
                   <TableColumn fx:id="colunaMotorista" prefWidth="230.0" text="Motorista" />
               </columns>
             </TableView>
-            <Button layoutX="361.0" layoutY="305.0" mnemonicParsing="false" onAction="#atualizarLista" prefHeight="30.0" prefWidth="102.0" styleClass="customizarBotoes" text="Atualizar lista" textFill="WHITE" />
          </children>
       </Pane>
       <Pane fx:id="paneViagemSelecionada" disable="true" layoutX="250.0" layoutY="88.0" prefHeight="362.0" prefWidth="500.0" visible="false">
