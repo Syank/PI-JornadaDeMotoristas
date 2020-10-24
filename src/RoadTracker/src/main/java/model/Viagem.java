@@ -267,5 +267,59 @@ public class Viagem {
 		return viagem;
 	}
 	
+	public void atualizarHorasTotais(String horasTotais) {
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		this.total = horasTotais;
+		
+		try {
+			con.getTransaction().begin();
+			
+			
+			Query query = con.createQuery("update Viagem set total = :horasTotais where id = :idViagem");
+			query.setParameter("horasTotais", horasTotais);
+			query.setParameter("idViagem", this.id);
+			query.executeUpdate();
+			
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar os dados da viagem: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+	}
+	
+	public void finalizarViagem(String horasTotais) {
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		this.total = horasTotais;
+		this.situacao = "Finalizado";
+		
+		try {
+			con.getTransaction().begin();
+			
+			
+			Query query = con.createQuery("update Viagem set total = :horasTotais, situacao = :situacao where id = :idViagem");
+			query.setParameter("horasTotais", horasTotais);
+			query.setParameter("situacao", "Finalizado");
+			query.setParameter("idViagem", this.id);
+			query.executeUpdate();
+			
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar os dados da viagem: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+	}
+	
 
 }

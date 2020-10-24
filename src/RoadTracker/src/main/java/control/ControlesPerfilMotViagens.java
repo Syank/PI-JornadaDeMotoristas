@@ -25,6 +25,8 @@ import view.Viagens;
 public class ControlesPerfilMotViagens implements Initializable {
 	
 	public static boolean carregarTableView = false;
+	public static boolean viagemEmAndamentoJaExistente = false;
+    public List<Viagens> listaDeViagensMotorista = new ArrayList<>();
 
     @FXML
     private Pane paneMinhasViagens;
@@ -52,13 +54,47 @@ public class ControlesPerfilMotViagens implements Initializable {
     	
     	viagem = viagem.encontrarViagem(selecionado.getId());
     	
-    	viagem.atualizarSituacao("Em andamento");
+    	listaDeViagensMotorista.forEach(item -> {
+    		if(item.getSituacao().equals("Em andamento")) {
+    			viagemEmAndamentoJaExistente = true;
+    		}
+    	});
+    	if(!viagemEmAndamentoJaExistente) {
+        	if(!viagem.getSituacao().equals("Finalizado")) {
+            	viagem.atualizarSituacao("Em andamento");
+            	
+            	carregarTableView = true;
+            	ControlesPerfilMotViagemAtual.carregarViagem = true;
+        	}else {
+        		System.out.println("Essa viagem já foi finalizada!");
+        	}
+    	}else {
+    		System.out.println("Já existe uma viagem em andamento!");
+    	}
+
+    	
+
     	
     }
 
     @FXML
     void pausaViagem(ActionEvent event) {
     	//Ao clicar em um botão com este evento, finaliza a viagem atual.
+    	Viagens selecionado = tabelaViagens.getSelectionModel().getSelectedItem();
+    	Viagem viagem = new Viagem();
+    	
+    	viagem = viagem.encontrarViagem(selecionado.getId());
+    	
+    	if(!(viagem.getSituacao().equals("Pausado") || viagem.getSituacao().equals("Finalizado"))) {
+        	viagem.atualizarSituacao("Pausado");
+        	
+        	carregarTableView = true;
+        	viagemEmAndamentoJaExistente = false;
+        	ControlesPerfilMotViagemAtual.carregarViagem = true;
+    	}else {
+    		System.out.println("Essa viagem já foi finalizada/pausada!");
+    	}
+
     }
     
     @FXML
@@ -69,7 +105,7 @@ public class ControlesPerfilMotViagens implements Initializable {
 
     @FXML
     void abrirMinhasViagens(MouseEvent event) {
-		carregarInfoViagens (); //atualiza lista
+    	carregarTableView = true; //atualiza lista
     	//Ao clicar em um elemento com este evento, redireciona para a tela de minhas viagens.
     }
 
@@ -97,8 +133,8 @@ public class ControlesPerfilMotViagens implements Initializable {
 
     void carregarInfoViagens () {
         List<Viagens> listaDeViagens = new ArrayList<>();
-        List<Viagens> listaDeViagensMotorista = new ArrayList<>();
         ObservableList<Viagens> obsListViagens;
+        listaDeViagensMotorista.clear();
         
     	Viagem viagem = new Viagem();
     	

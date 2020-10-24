@@ -1,7 +1,6 @@
 package view;
 	
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -71,13 +70,13 @@ public class Main extends Application {
 		
 		// Aplicando o método de mover tela para todas as telas
 		Scene[] telas = {tela1, tela2, tela3, tela4, tela5, tela6, tela7, tela8, tela9};
-		
-		for(int i = 0; i < 6; i++) {
+
+		for(int i = 0; i < telas.length; i++) {
 			telas[i].setOnMousePressed(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
 					offSetX = event.getSceneX();
-					offSetY = event.getSceneY();	
+					offSetY = event.getSceneY();
 				}
 			});
 			telas[i].setOnMouseDragged(new EventHandler<MouseEvent>() {

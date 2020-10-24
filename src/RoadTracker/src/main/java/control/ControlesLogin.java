@@ -80,6 +80,7 @@ public class ControlesLogin implements Initializable{
 	        	Main.trocarTela("Viagem Selecionada");
 	        	inputUsuario.setText("");
 	        	inputSenha.setText("");
+	        	motorista.resetarDiaDeTrabalho();
 	        	ControlesPerfilMotViagemAtual.carregarViagem = true;
 	        	ControlesPerfilMotViagens.carregarTableView = true;
     			}

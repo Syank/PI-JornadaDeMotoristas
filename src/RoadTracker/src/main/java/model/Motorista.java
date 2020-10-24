@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -375,4 +376,73 @@ public class Motorista {
 
 		return cpf;
 	}
+	
+	public void atualizarTempos(String expHoje, String alimHoje, String descHoje) {
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		this.trabalhado_hoje = expHoje;
+		this.alimentacao_hoje = alimHoje;
+		this.descansado_hoje = descHoje;
+		
+		try {
+			con.getTransaction().begin();
+			
+			
+			Query query = con.createQuery("update Motorista set trabalhado_hoje = :expHoje, alimentacao_hoje = :alimHoje, descansado_hoje = :descHoje where cpf = :cpf");
+			query.setParameter("expHoje", expHoje);
+			query.setParameter("alimHoje", alimHoje);
+			query.setParameter("descHoje", descHoje);
+			query.setParameter("cpf", this.cpf);
+			query.executeUpdate();
+			
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar os dados do motorista: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+	}
+	
+	public void resetarDiaDeTrabalho() {
+		String diaDeHoje = String.valueOf(LocalDate.now().getDayOfMonth());
+		
+		if(!this.getDia_atual().equals(diaDeHoje)) {
+			EntityManager con = new ConnectionFactory().getConnection();
+			
+			this.trabalhado_hoje = "0";
+			this.alimentacao_hoje = "0";
+			this.descansado_hoje = "0";
+			this.dia_atual = diaDeHoje;
+
+			try {
+				con.getTransaction().begin();
+
+
+				Query query = con.createQuery("update Motorista set trabalhado_hoje = :expHoje, alimentacao_hoje = :alimHoje, descansado_hoje = :descHoje, dia_atual = :diaHoje where cpf = :cpf");
+				query.setParameter("expHoje", "0");
+				query.setParameter("alimHoje", "0");
+				query.setParameter("descHoje", "0");
+				query.setParameter("diaHoje", diaDeHoje);
+				query.setParameter("cpf", this.cpf);
+				query.executeUpdate();
+
+				con.getTransaction().commit();
+			}
+			catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Erro ao atualizar os dados do motorista: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+				System.err.println(e);
+				con.getTransaction().rollback();
+			}
+			finally {
+				con.close();
+			}
+		}
+		
+
+	}
+	
 }

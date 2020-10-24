@@ -157,7 +157,7 @@
             </Label>
          </children>
       </VBox>
-      <Button layoutX="271.0" layoutY="391.0" mnemonicParsing="false" onAction="#finalizarViagem" prefHeight="33.0" prefWidth="102.0" styleClass="customizarBotoes" text="Finalizar viagem" textFill="WHITE" />
+      <Button fx:id="botaoFinalizarViagem" disable="true" layoutX="271.0" layoutY="391.0" mnemonicParsing="false" onAction="#finalizarViagem" prefHeight="33.0" prefWidth="102.0" styleClass="customizarBotoes" text="Finalizar viagem" textFill="WHITE" />
       <VBox layoutX="500.0" layoutY="103.0" prefHeight="324.0" prefWidth="228.0" spacing="20.0" styleClass="separadorLateralEsquerdo">
          <children>
             <VBox prefHeight="96.0" prefWidth="222.0" spacing="5.0" styleClass="textoDeMenu">
