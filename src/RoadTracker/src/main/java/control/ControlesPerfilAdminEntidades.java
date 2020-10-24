@@ -586,7 +586,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldIDRastreador.setText(String.valueOf(veiculo.getId_rastreador()));
 		textFieldPlacaVeiculo.setText(veiculo.getPlaca());
 		textFieldModeloRastreador.setText(veiculo.getModelo_rastreador());
-		comboBoxFilialVeiculo.getSelectionModel().select(veiculo.getFilial().getId());
+		comboBoxFilialVeiculo.getSelectionModel().select(veiculo.getFilial().getId() - 1);
 	}
 
 	// -------------------------------------
