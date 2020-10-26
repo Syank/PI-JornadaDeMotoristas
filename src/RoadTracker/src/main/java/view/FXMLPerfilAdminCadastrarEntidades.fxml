@@ -149,7 +149,7 @@
                   <VBox layoutX="16.0" layoutY="14.0" prefHeight="156.0" prefWidth="149.0" spacing="15.0">
                      <children>
                         <ComboBox fx:id="cbTurno" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefWidth="150.0" promptText="Turno" styleClass="customizarInputs" />
-                        <TextField fx:id="tfCargaHoraria" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Carga Horária" styleClass="customizarInputs" />
+                        <TextField fx:id="tfCargaHoraria" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Carga Horária Diária" styleClass="customizarInputs" />
                         <TextField fx:id="textFieldSalario" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Salário" styleClass="customizarInputs" />
                      </children>
                   </VBox>

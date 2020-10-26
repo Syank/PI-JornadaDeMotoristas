@@ -372,6 +372,9 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 					if (Integer.parseInt(textFieldSalarioMotorista.getText()) < 1701.38) {
 						notificar("Falha", "Salário baixo", "O salário digitado é muito baixo. Escreva um salário válido.");
 					}
+					else if (Integer.parseInt(tfCargaHoraria.getText()) > 12) {
+	        			notificar("Falha de cadastro", "Carga horária", "A carga horária diária previamente acordada pode ser no máximo de 12 horas. Verifique o valor e tente novamente.");
+	        		}
 					else {
 						motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
 														textFieldEmail.getText(), pfSenha.getText(), 

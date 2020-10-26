@@ -261,6 +261,9 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         			notificar("Falha de cadastro", "Salário baixo", "O salário informado é inválido, "
             				+ "por favor confira o campo e insira um salário maior");
         		}
+        		else if (Integer.parseInt(cargaHoraria) > 8) {
+        			notificar("Falha de cadastro", "Carga horária", "A carga horária diária é 8 horas (sem aviso prévio). Verifique o valor e tente novamente.");
+        		}
         		else {
         			// Primeiro verifica se o cpf não está sendo usado, depois verifica se o email não está sendo usado
 	        		if(motorista.encontrarMotorista(cpf) == null) {
