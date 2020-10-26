@@ -26,6 +26,7 @@ public class Aviso {
 	private boolean resolvido;
 	private String data;
 	private String nomenclatura;
+	private String emissor;
 	
 	//um ou mais avisos correspondem a um funcionario
 //	@ManyToOne
@@ -34,7 +35,7 @@ public class Aviso {
 	
 	//um ou mais avisos correspondem a um funcionario
 	@ManyToOne
-	@JoinColumn(name = "motorista", nullable = false, foreignKey = @ForeignKey(name = "fk_motoristas_cpf")) //coluna da tabela pai
+	@JoinColumn(name = "motorista", nullable = true, foreignKey = @ForeignKey(name = "fk_motoristas_cpf")) //coluna da tabela pai
 	private Motorista motorista = new Motorista();
 	
 	public Integer getId() {
@@ -61,6 +62,12 @@ public class Aviso {
 	}
 	public void setMotorista(Motorista motorista) {
 		this.motorista = motorista;
+	}
+	public String getEmissor() {
+		return emissor;
+	}
+	public void setEmissor(String emissor) {
+		this.emissor = emissor;
 	}
 	public boolean isResolvido() {
 		return resolvido;
@@ -94,6 +101,7 @@ public class Aviso {
 			
 			motorista.setCpf(cpfMotorista);
 			this.setMotorista(motorista);
+			this.setEmissor(cpfMotorista);
 			
 			try {
 				con.getTransaction().begin();
@@ -160,4 +168,36 @@ public class Aviso {
 		return aviso;
 	}
 	
+	
+	public void solicitarCadastro(String cpfEmissor, String mensagem) {
+		EntityManager con = new ConnectionFactory().getConnection();
+			
+		LocalDate hoje = LocalDate.now();
+    	int ano = hoje.getYear();
+    	int dia = hoje.getDayOfMonth();
+    	int mes = hoje.getMonthValue();
+    	String data = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+		this.setData(data);
+		
+		this.setMensagem(mensagem);
+		this.setResolvido(false); // não vou mandar uma coisa já resolvida
+		
+		this.setNomenclatura("Registro");
+		this.setMotorista(null);
+		this.setEmissor(cpfEmissor);
+		
+		try {
+			con.getTransaction().begin();
+			con.persist(this);
+			con.getTransaction().commit();
+		}
+		catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Ocorreu um problema ao enviar o aviso. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+	}
 }

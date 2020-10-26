@@ -16,6 +16,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.Aviso;
+import model.Filial;
+import view.Filiais;
+import view.Turnos;
 
 public class ControlesPerfilSuperEntidades implements Initializable{
 
@@ -69,7 +73,7 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    @FXML
 	    private Pane paneCadastrarMotorista;
 	    @FXML
-	    private ComboBox<?> comboBoxCadastroFilial;
+	    private ComboBox<Filiais> comboBoxCadastroFilial;
 	    @FXML
 	    private Pane paneInfosExtrasMotorista;
 	    @FXML
@@ -87,7 +91,7 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    @FXML
 	    private CheckBox checkBoxSabado;
 	    @FXML
-	    private ComboBox<?> comboBoxCadastroTurno;
+	    private ComboBox<Turnos> comboBoxCadastroTurno;
 	    @FXML
 	    private TextField textFieldCadastroCargaHoraria;
 	    @FXML
@@ -201,22 +205,89 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 
 	    @FXML
 	    void solicitarCadastro(ActionEvent event) {
-
+	    	Aviso aviso = new Aviso();
+	    	
+	    	String solicitacao = "";
+	    	
+	    	String nome = textFieldCadastroNome.getText();
+	    	String cpf = textFieldCadastroCpf.getText();
+	    	String email = textFieldCadastroEmail.getText();
+	    	String senha = textFieldCadastroSenha.getText();
+	    	String cargaHoraria = textFieldCadastroCargaHoraria.getText();
+	    	String salario = textFieldCadastroSalario.getText();
+	    	
+	    	int idFilial = comboBoxCadastroFilial.getValue().getId();
+	    	String nomeFilial = new Filial().encontrarFilial(idFilial).getNome();
+	    	String turno = comboBoxCadastroTurno.getValue().getTurno();
+	    	
+	    	boolean dom = checkBoxDomingo.isSelected();
+	    	boolean seg = checkBoxSegunda.isSelected();
+	    	boolean ter = checkBoxTerca.isSelected();
+	    	boolean qua = checkBoxQuarta.isSelected();
+	    	boolean qui = checkBoxQuinta.isSelected();
+	    	boolean sex = checkBoxSexta.isSelected();
+	    	boolean sab = checkBoxSabado.isSelected();
+	    	String diasDeTrabalho = "";
+	    	
+	    	if(dom) {
+	    		diasDeTrabalho += "Domingo";
+	    	}
+	    	if(seg) {
+	    		diasDeTrabalho += ", Segunda-Feira";
+	    	}
+	    	if(ter) {
+	    		diasDeTrabalho += ", Terça-Feira";
+	    	}
+	    	if(qua) {
+	    		diasDeTrabalho += ", Quarta-Feira";
+	    	}
+	    	if(qui) {
+	    		diasDeTrabalho += ", Quinta-Feira";
+	    	}
+	    	if(sex) {
+	    		diasDeTrabalho += ", Sexta-Feira";
+	    	}
+	    	if(sab) {
+	    		diasDeTrabalho += " e Sábado";
+	    	}
+	    	if(!dom) {
+	    		diasDeTrabalho = diasDeTrabalho.substring(2); // Tira ", " caso não trabalhe domingo
+	    	}
+	    	
+	    	solicitacao = "Solicito o cadastro do motorista com as seguintes informações:\n"
+	    				+ "Nome: " + nome + "\n"
+	    				+ "CPF: " + cpf + "\n"
+	    				+ "E-mail: " + email + "\n"
+	    				+ "Senha: " + senha + "\n"
+	    				+ "Carga Horária: " + cargaHoraria + "\n"
+	    				+ "Salário: " + salario + "\n"
+	    				+ "Turno: " + turno + "\n"
+	    				+ "Dias de trabalho: " + diasDeTrabalho + "\n"
+	    				+ "Pertencendo a Filial " + nomeFilial + ", de ID igual a: " + String.valueOf(idFilial);
+	    	
+	    	aviso.solicitarCadastro(ControlesLogin.cpfLogado, solicitacao);
+	    	
+	    	System.out.println("Solicitação enviada!");
 	    }
-
-	    @FXML
-	    void solicitarExclusao(ActionEvent event) {
-
-	    }
-	    
-	    
-	    
 	    
 	    
 	    @FXML
 	    void abrirTelaSolicitarCadastro(MouseEvent event) {
+	    	paneSelecionarOpcao.setVisible(false);
+	    	paneSelecionarOpcao.setDisable(true);
+	    	
+	    	paneCadastrarMotorista.setVisible(true);
+	    	paneCadastrarMotorista.setDisable(false);
 	    	
 	    }
+	    
+	    
+	    @FXML
+	    void abrirTelaSelecionarMotorista(MouseEvent event) {
+
+	    }
+	    
+	    
 	    
 	    @FXML
 	    void abrirTelaMotoristas(MouseEvent event) {
@@ -225,11 +296,6 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    
 	    @FXML
 	    void abrirTelaAvisos(MouseEvent event) {
-
-	    }
-
-	    @FXML
-	    void abrirTelaSelecionarMotorista(MouseEvent event) {
 
 	    }
 
