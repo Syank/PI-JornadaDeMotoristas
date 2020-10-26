@@ -59,7 +59,7 @@ public class ControlesLogin implements Initializable{
     	
     	
     	// A sequência de ifs abaixo pode ser um pouco confusa, mas, resumindo, ela verifica se foi encontrado pelo menos 1 dos cpfs,
-    	//se for, então verifica qual tipo de cpf foi logado
+    	// se for, então verifica qual tipo de cpf foi logado
     	if(cpfFunc.equals("Não encontrado") && cpfMot.equals("Não encontrado")){
     		notificar("Falha", "Usuário não encontrado", "Nenhum usuário foi encontrado. Verifique os dados.");
     	}
@@ -68,39 +68,45 @@ public class ControlesLogin implements Initializable{
     			if(funcionario.getSenha().equals(senhaDada)) {
     				senha = senhaDada;
     				cpfLogado = funcionario.getCpf();
-                	Main.trocarTela("Tela Boas Vindas");
+    				
+    				if (funcionario.getCargo().equals("Supervisor")) {
+    					Main.trocarTela("Tela Inicial Supervisor");
+    				}
+    				else {
+    					Main.trocarTela("Tela Boas Vindas");
+    				}
+    				
                 	inputUsuario.setText("");
                 	inputSenha.setText("");
                 	ControlesPerfilAdminEntidades.atualizarInfos = true;
                 	ControlesPerfilAdminHistEntregas.atualizarInfos = true;
-    		}
-    	}
-    	else if (cpfFunc.equals("Não encontrado")) {
-    		if(motorista.getSenha().equals(senhaDada)) {
-    			senha = senhaDada;
-    			cpfLogado = motorista.getCpf();
-	        	Main.trocarTela("Viagem Selecionada");
-	        	inputUsuario.setText("");
-	        	inputSenha.setText("");
-	        	motorista.resetarDiaDeTrabalho();
-	        	ControlesPerfilMotViagemAtual.carregarViagem = true;
-	        	ControlesPerfilMotViagens.carregarTableView = true;
     			}
+    		}
+    		else if (cpfFunc.equals("Não encontrado")) {
+	    		if(motorista.getSenha().equals(senhaDada)) {
+	    			senha = senhaDada;
+	    			cpfLogado = motorista.getCpf();
+		        	Main.trocarTela("Viagem Selecionada");
+		        	inputUsuario.setText("");
+		        	inputSenha.setText("");
+		        	motorista.resetarDiaDeTrabalho();
+		        	ControlesPerfilMotViagemAtual.carregarViagem = true;
+		        	ControlesPerfilMotViagens.carregarTableView = true;
+	    		}
     		}
     	}
     }
 
-    
     @FXML
     void exibirDicaFlutuante(MouseEvent event) {
     	if(event.getTarget().toString().contains("inputUsuario")) {
         	labelDicaFlutuante.setText("E-mail");
         	labelDicaFlutuante.setVisible(true);
-    	}else if (event.getTarget().toString().contains("inputSenha")) {
+    	}
+    	else if (event.getTarget().toString().contains("inputSenha")) {
         	labelDicaFlutuante.setText("Senha");
         	labelDicaFlutuante.setVisible(true);
     	}
-
     	labelDicaFlutuante.setLayoutX(event.getSceneX());
     	labelDicaFlutuante.setLayoutY(event.getSceneY());
     }
@@ -108,7 +114,6 @@ public class ControlesLogin implements Initializable{
     @FXML
     void esconderDicaFlutuante(MouseEvent event) {
     	labelDicaFlutuante.setVisible(false);
-    	
     }
     
     @FXML
@@ -153,7 +158,6 @@ public class ControlesLogin implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		Funcionario func = new Funcionario();
 		Filial filial = new Filial();
-		
 		
 		// Verifica se já existe uma Filial no banco de dados para cadastrar o admin root
 		if(!(filial.encontrarFilial(1) != null)) {

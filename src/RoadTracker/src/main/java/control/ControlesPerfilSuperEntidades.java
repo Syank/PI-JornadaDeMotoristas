@@ -23,7 +23,6 @@ import view.Turnos;
 
 public class ControlesPerfilSuperEntidades implements Initializable{
 
-	
 	 	@FXML
 	    private Pane paneMotoristaSelecionado;
 	    @FXML
