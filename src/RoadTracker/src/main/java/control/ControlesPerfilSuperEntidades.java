@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import model.Aviso;
 import model.Filial;
 import view.Filiais;
+import view.Main;
 import view.Turnos;
 
 public class ControlesPerfilSuperEntidades implements Initializable{
@@ -283,9 +284,8 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    
 	    @FXML
 	    void abrirTelaSelecionarMotorista(MouseEvent event) {
-
+	    	
 	    }
-	    
 	    
 	    
 	    @FXML
@@ -295,32 +295,29 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    
 	    @FXML
 	    void abrirTelaAvisos(MouseEvent event) {
-
+//	    	Main.trocarTela("Tela Avisos");
 	    }
 
 	    @FXML
 	    void abrirTelaHistEntregas(MouseEvent event) {
-
+	    	Main.trocarTela("Tela Supervisor Entregas");
 	    }
 	    
-	    
-	    
-	    
-	    
+
 	    // Essas 3 funções a baixo você pode copiar das outras telas
 	    @FXML
 	    void minimizarJanela(ActionEvent event) {
-
+	    	Main.minimizar();
 	    }
 	    
 	    @FXML
 	    void fecharJanela(ActionEvent event) {
-
+	    	System.exit(0);
 	    }
 	    
 	    @FXML
 	    void voltar(MouseEvent event) {
-
+	    	Main.trocarTela("Tela Login");
 	    }
 	
 	

@@ -82,7 +82,7 @@ public class Aviso {
 		this.resolvido = resolvido;
 	}
 	
-	public void cadastrarAviso(String funcionario_destino, String cpfMotorista, String mensagem, String nomenclatura) {
+	public void cadastrarAviso(String funcionario_destino, String cpfMotorista, String mensagem, String nomenclatura, boolean resolvido) {
 			EntityManager con = new ConnectionFactory().getConnection();
 			
 			Motorista motorista = new Motorista();
@@ -95,7 +95,7 @@ public class Aviso {
 			this.setData(data);
 			
 			this.setMensagem(mensagem);
-			this.setResolvido(false); // não vou mandar uma coisa já resolvida
+			this.setResolvido(resolvido); // não vou mandar uma coisa já resolvida (foi dada a opção, então é melhor mandar).
 			
 			this.setNomenclatura(nomenclatura + cpfMotorista);
 			

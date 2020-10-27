@@ -1,8 +1,11 @@
 package control;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,8 +17,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import model.Viagem;
+import view.Main;
+import view.Viagens;
 
 public class ControlesPerfilSuperEntregas implements Initializable {
 
@@ -30,7 +37,7 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     @FXML
     private TextField campoDeBuscaMotorista;
     @FXML
-    private TableView<?> tabela;
+    private TableView<Viagens> tabela;
     @FXML
     private TableColumn<?, ?> colunaId;
     @FXML
@@ -87,6 +94,8 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     private PasswordField passwordFieldConfirmarSenha;
     @FXML
     private Label labelDicaFlutuante;
+    private List<Viagens> listaDeViagens;
+    private ObservableList<Viagens> obsListViagens;
     
     
     
@@ -132,25 +141,42 @@ public class ControlesPerfilSuperEntregas implements Initializable {
 
     @FXML
     void minimizarJanela(ActionEvent event) {
-
+    	Main.minimizar();
     }
     
     @FXML
     void fecharJanela(ActionEvent event) {
-
+    	System.exit(0);
     }
     
     @FXML
     void voltar(ActionEvent event) {
-
+    	Main.trocarTela("Tela Inicial Supervisor");
     }
 
+    private void carregarTableView(){
+    	Viagem viagem = new Viagem();
+    	
+    	listaDeViagens = viagem.listarViagens();
+    	
+    	obsListViagens = FXCollections.observableArrayList(listaDeViagens);
+    	
+    	
+    	colunaId.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	colunaEmpresaDestino.setCellValueFactory(new PropertyValueFactory<>("destino"));
+    	colunaMotorista.setCellValueFactory(new PropertyValueFactory<>("nomeMotorista"));
+    	
+    	tabela.setItems(obsListViagens);
+    }
     
+	@FXML
+	void confirmarAlteracao(ActionEvent event) {
+	}
     
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// Colocar as funções para carregar a tableview aqui
+		carregarTableView();
 		
 	}
 

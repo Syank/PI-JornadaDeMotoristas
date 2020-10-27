@@ -111,10 +111,10 @@ public class ControlesPerfilMotAvisos implements Initializable {
     	else { fil = "00"; }
     	
     	String mensagem = addMsg.getText();
-//    	String motorista = mot.
+    	String motorista = ControlesLogin.cpfLogado;
     	boolean resolvido = resol.isSelected();
     	String nomenclatura = (String.valueOf(te) + String.valueOf(pn) + String.valueOf(fil) + String.valueOf(re));
-//    	aviso.cadastrarAviso(resolvido, mensagem, nomenclatura);
+    	aviso.cadastrarAviso("todos", motorista, mensagem, nomenclatura, resolvido);
     }
 
     @FXML
