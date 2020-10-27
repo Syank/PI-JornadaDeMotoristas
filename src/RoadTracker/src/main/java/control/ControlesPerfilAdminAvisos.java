@@ -37,7 +37,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     @FXML
     private TableColumn<?, ?> colunaTituloAviso;
     @FXML
-    private TableColumn<?, ?> colunaFuncDestino;
+    private TableColumn<?, ?> colunaRemetente;
     @FXML
     private TableColumn<?, ?> colunaDataAviso;
     @FXML
@@ -82,6 +82,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
    		paneAvisoSelecionado.setDisable(true);
 		paneVisualizarAvisos.setDisable(false);
 		paneVisualizarAvisos.setVisible(true);
+		carregarTableViews();	
     }
     
     @FXML
@@ -150,6 +151,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		
 		colunaTituloAviso.setCellValueFactory(new PropertyValueFactory<>("tituloAviso"));
 		colunaDataAviso.setCellValueFactory(new PropertyValueFactory<>("dataAviso"));
+		colunaRemetente.setCellValueFactory(new PropertyValueFactory<>("motorista"));
 		
 		tabelaAvisos.setItems(obsListAvisos);
 	}

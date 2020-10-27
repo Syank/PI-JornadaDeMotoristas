@@ -56,7 +56,6 @@ public class Aviso {
 	public void setData(String data) {
 		this.data = data;
 	}
-	
 	public Motorista getMotorista() {
 		return motorista;
 	}
@@ -138,7 +137,8 @@ public class Aviso {
 		List<Avisos> lista = new ArrayList<>();
 		for (Aviso a: this.consultarTodosAvisos()) {
 			Avisos aviso = new Avisos();
-			aviso.setMotorista(a.getMotorista());
+			aviso.setTituloAviso(a.getMensagem());
+			aviso.setMotorista(a.getMotorista().getCpf());
 			aviso.setDataAviso(a.getData());
 			aviso.setId(a.getId());
 			lista.add(aviso);

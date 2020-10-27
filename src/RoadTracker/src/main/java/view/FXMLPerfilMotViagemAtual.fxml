@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="760.0" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ControlesPerfilMotViagemAtual">
+<AnchorPane prefHeight="450.0" prefWidth="735.0" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ControlesPerfilMotViagemAtual">
    <children>
       <VBox alignment="TOP_CENTER" opacity="0.85" prefHeight="450.0" prefWidth="250.0">
          <children>
@@ -22,7 +22,7 @@
                   <Image url="@usuario.png" />
                </image>
             </ImageView>
-            <VBox prefHeight="62.0" prefWidth="250.0" />
+            <VBox prefHeight="46.0" prefWidth="250.0" />
             <HBox alignment="CENTER_LEFT" onMouseClicked="#abrirMinhasViagens" prefHeight="65.0" prefWidth="250.0">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />
@@ -63,6 +63,19 @@
                   <Label text="Avisos" textFill="WHITE" />
                </children>
             </HBox>
+            <VBox alignment="BOTTOM_LEFT" prefHeight="84.0" prefWidth="250.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#voltar" prefHeight="15.0" prefWidth="23.0" styleClass="botaoVoltar">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@voltar.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
          </children>
          <styleClass>
             <String fx:value="bordaMenu" />
@@ -177,9 +190,9 @@
             <Insets />
          </opaqueInsets>
       </VBox>
-      <Pane fx:id="paneAvisosPrincipal" disable="true" prefHeight="450.0" prefWidth="760.0" visible="false">
+      <Pane fx:id="paneAvisosPrincipal" disable="true" prefHeight="450.0" prefWidth="747.0" visible="false">
          <children>
-            <Pane fx:id="paneAvisosSombra" disable="true" layoutX="-1.0" layoutY="-1.0" prefHeight="460.0" prefWidth="768.0" styleClass="sombraDeAviso" visible="false" />
+            <Pane fx:id="paneAvisosSombra" disable="true" layoutX="-1.0" layoutY="-1.0" prefHeight="460.0" prefWidth="751.0" styleClass="sombraDeAviso" visible="false" />
             <Pane fx:id="paneAvisosFalha" disable="true" layoutX="185.0" layoutY="126.0" prefHeight="150.0" prefWidth="400.0" styleClass="fundoAviso" visible="false">
                <children>
                   <HBox alignment="TOP_RIGHT" prefHeight="26.0" prefWidth="400.0">

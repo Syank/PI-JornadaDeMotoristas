@@ -5,7 +5,7 @@ import model.Motorista;
 public class Avisos {
 	
 	private String tituloAviso;
-	private Motorista motorista;
+	private String motorista;
 	private String dataAviso;
 	private int id;
 	
@@ -24,11 +24,6 @@ public class Avisos {
 	public void setDataAviso(String dataAviso) {
 		this.dataAviso = dataAviso;
 	}
-	
-	@Override
-	public String toString() {
-		return getMotorista().getCpf();
-	}
 
 	public int getId() {
 		return id;
@@ -38,11 +33,11 @@ public class Avisos {
 		this.id = id;
 	}
 
-	public Motorista getMotorista() {
+	public String getMotorista() {
 		return motorista;
 	}
 
-	public void setMotorista(Motorista motorista) {
-		this.motorista = motorista;
+	public void setMotorista(String string) {
+		this.motorista = string;
 	}
 }
