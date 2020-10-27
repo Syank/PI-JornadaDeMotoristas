@@ -78,8 +78,8 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     
     @FXML
     void abrirTelaAvisos(MouseEvent event) {
-   		paneAvisoSelecionado.setVisible(true);
-   		paneAvisoSelecionado.setDisable(false);
+   		paneAvisoSelecionado.setVisible(false);
+   		paneAvisoSelecionado.setDisable(true);
 		paneVisualizarAvisos.setDisable(false);
 		paneVisualizarAvisos.setVisible(true);
     }
