@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.swing.JOptionPane;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import model.Motorista;
 import model.Viagem;
 import view.Main;
@@ -29,6 +33,8 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 	 public static boolean cronometrarDescDiario = false;
 	 public static boolean cronometrarAlimDiaria = false;
 	 public static boolean carregarViagem = false;
+	 public static boolean descansoObrigatorio = false;
+	 public int tempototal = 0;
     
 	 @FXML
 	 private Label labelDestino;
@@ -64,12 +70,44 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 	 private Label labelDescHoje;
 	 @FXML
 	 private Button botaoFinalizarViagem;
-
-    
+	 @FXML
+	 private Pane paneAvisosPrincipal;
+	 @FXML
+	 private Pane paneAvisosSombra;
+	 @FXML
+	 private Pane paneAvisosFalha;
+	 @FXML
+	 private Label labelAvisosTituloFalha;
+	 @FXML
+	 private Label labelAvisosTextoFalha;
 	 
 	 
-	 
-
+	void notificar(String tipoDeAviso, String titulo, String texto) {
+			paneAvisosPrincipal.setDisable(false);
+			paneAvisosPrincipal.setVisible(true);
+			paneAvisosSombra.setVisible(true);
+			paneAvisosSombra.setDisable(false);
+			
+			switch (tipoDeAviso) {
+			case "Pausa":
+				paneAvisosFalha.setDisable(false);
+				paneAvisosFalha.setVisible(true);
+				labelAvisosTextoFalha.setText(texto);
+				labelAvisosTituloFalha.setText(titulo);
+				break;
+			}
+			
+		}
+	
+    @FXML
+    void fecharAviso(ActionEvent event) {
+		paneAvisosPrincipal.setDisable(true);
+		paneAvisosPrincipal.setVisible(false);
+		paneAvisosSombra.setVisible(false);
+		paneAvisosSombra.setDisable(true);
+		paneAvisosFalha.setDisable(true);
+		paneAvisosFalha.setVisible(false);
+    }
 
     @FXML
     public void iniciarExpediente(ActionEvent event) {	
@@ -223,8 +261,6 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 		ControlesPerfilMotViagens.carregarTableView = true;
     }
     
-    
-    
     public void carregarViagem() {
     	Viagem viagem = new Viagem();
     	viagemAtual = null;
@@ -272,11 +308,6 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
        		}else {
        			labelDescHoje.setText("Total de hoje: " + motorista.getDescansado_hoje());
        		}
-
-    		
-    		
-    		
-    		
     		
     		// Essa parte logo abaixo talvez esteja confusa, mas resumindo, ela verifica se a entrega está atrasada ou não, e avisa o motorista caso esteja
         	String prazo = viagemAtual.getFim();
@@ -338,9 +369,6 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     		carregarViagem = false;
     	}
     	
-    	
-    	
-    	
     }
     
     
@@ -372,8 +400,6 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     void tarefasEmLoop() {
     	// Considere que cada if aqui dentro é uma "função"
 
-  	  	
-  	  	
   	  	// "Função" para cronometrar o tempo
   	  	if(cronometrarTempoTotal) {
 	  	  	String texto = "Horas totais dirigidas: ";
@@ -409,6 +435,15 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 	  	  	// Formata o texto e coloca na label
 	  	  	texto = texto + horas + ":" + minutos + ":" + segundos;	
 	  	  	labelHorasTotais.setText(texto);
+	  	  	
+	  	  	tempototal = tempototal + 1;
+	  	  	
+	  	  	// verificando se o tempototal (que é em segundos) é divisível por 18000 segundos (que equivalem a 5 horas)
+	  	  	if (tempototal % 18000 == 0) {
+	  	  		tempototal = 0; // cuidado com o tamanho da variável
+	  	  		
+	  	  		notificar("Tempo", "Descanso", "Sua pausa de 30 minutos chegou! Aproveite!");
+	  	  	}
 	  	  	
   	  	}
   	  	
@@ -458,8 +493,6 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
   	  		
   	  	}
   	  	
-  	  	
-  	  	
   	  	if(cronometrarAlimDiaria) {
   	  		String texto = "Total de hoje: ";
   	  		String totalDiario = labelAlimHoje.getText();
@@ -505,7 +538,6 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
   	  		}
   	  		
   	  	}
-  	  	
   	  	
   	  	if(cronometrarDescDiario) {
   	  		String texto = "Total de hoje: ";

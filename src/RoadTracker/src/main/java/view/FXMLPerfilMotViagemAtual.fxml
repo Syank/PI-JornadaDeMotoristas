@@ -8,10 +8,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="750.0" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ControlesPerfilMotViagemAtual">
+<AnchorPane prefHeight="450.0" prefWidth="760.0" stylesheets="@designs.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ControlesPerfilMotViagemAtual">
    <children>
       <VBox alignment="TOP_CENTER" opacity="0.85" prefHeight="450.0" prefWidth="250.0">
          <children>
@@ -62,19 +63,6 @@
                   <Label text="Avisos" textFill="WHITE" />
                </children>
             </HBox>
-            <VBox alignment="BOTTOM_LEFT" prefHeight="84.0" prefWidth="250.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#voltar" prefHeight="15.0" prefWidth="23.0" styleClass="botaoVoltar">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@voltar.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </VBox>
          </children>
          <styleClass>
             <String fx:value="bordaMenu" />
@@ -189,5 +177,33 @@
             <Insets />
          </opaqueInsets>
       </VBox>
+      <Pane fx:id="paneAvisosPrincipal" disable="true" prefHeight="450.0" prefWidth="760.0" visible="false">
+         <children>
+            <Pane fx:id="paneAvisosSombra" disable="true" layoutX="-1.0" layoutY="-1.0" prefHeight="460.0" prefWidth="768.0" styleClass="sombraDeAviso" visible="false" />
+            <Pane fx:id="paneAvisosFalha" disable="true" layoutX="185.0" layoutY="126.0" prefHeight="150.0" prefWidth="400.0" styleClass="fundoAviso" visible="false">
+               <children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="26.0" prefWidth="400.0">
+                     <children>
+                        <HBox prefHeight="26.0" prefWidth="400.0">
+                           <children>
+                              <Label fx:id="labelAvisosTituloFalha" prefHeight="26.0" prefWidth="202.0" text="Tela de Avisos" textFill="#bdc3c7">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <styleClass>
+                        <String fx:value="fundoMenuAviso" />
+                        <String fx:value="sombraMenuAviso" />
+                     </styleClass>
+                  </HBox>
+                  <Button layoutX="161.0" layoutY="104.0" mnemonicParsing="false" onAction="#fecharAviso" prefHeight="32.0" prefWidth="78.0" styleClass="botaoCancelar" text="Confirmar" textFill="WHITE" />
+                  <Label fx:id="labelAvisosTextoFalha" alignment="TOP_CENTER" layoutX="57.0" layoutY="35.0" onMouseClicked="#fecharAviso" prefHeight="63.0" prefWidth="286.0" text="Aviso" textAlignment="CENTER" textFill="#bdc3c7" wrapText="true" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

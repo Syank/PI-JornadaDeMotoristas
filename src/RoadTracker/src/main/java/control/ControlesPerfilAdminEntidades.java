@@ -253,11 +253,11 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	void excluirFuncionario(ActionEvent event) {
 		if(cargoFuncionario.equals("Motorista")) {
 			motorista.excluirMotorista(cpfFuncionario);
-
 			notificar("Sucesso", "Funcionário excluído",
 					"O funcionário foi excluído dos registros do banco de dados com sucesso");
 			atualizarInfos = true;
-		}else {
+		}
+		else {
 			funcionario.removerFuncionario(funcionario.getCpf());
 			notificar("Sucesso", "Funcionário excluído",
 					"O funcionário foi excluído dos registros do banco de dados com sucesso");
@@ -396,13 +396,12 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 				}
 				
 				
-			}else {
+			}
+			else {
 				notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
 			}
-			
 			confirmado = false;
 			funcao = "";
-		
 	}
 	// -------------------------------
 
@@ -442,14 +441,12 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			filial.alterarDadosFilial(textFieldNomeFilial.getText(), textFieldCidadeFilial.getText(),
 									  textFieldEstadoFilial.getText(), textFieldCnpj.getText(), textFieldRntrc.getText(), 
 									  Integer.parseInt(textFieldIdFilial.getText()));
-	
 			desabilitarEdicao();
-	
 			notificar("Sucesso", "Filial atualizada",
 					"Os dados da filial " + textFieldNomeFilial.getText() + " foram alterados com sucesso!");
 			atualizarInfos = true;
-
-		}else {
+		}
+		else {
 			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
 		}
 		
@@ -478,9 +475,9 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			Filiais selecionada = tabelaFiliais.getSelectionModel().getSelectedItem();
 			idFilial = selecionada.getId();
 			abrirTelaFilialSelecionada(event);
-
 			carregarInfoFilial();
-		}catch (NullPointerException falha) {
+		}
+		catch (NullPointerException falha) {
 			notificar("Falha", "Entidade não selecionada", "Nenhuma filial foi selecionada na lista, por favor selecione uma e tente novamente");
 		}
 
@@ -489,7 +486,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	void carregarInfoFilial() {
 		Filial filial = new Filial();
 		filial = filial.encontrarFilial(idFilial);
-
 		textFieldCidadeFilial.setText(filial.getCidade());
 		textFieldEstadoFilial.setText(filial.getEstado());
 		textFieldNomeFilial.setText(filial.getNome());
@@ -508,7 +504,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldIDRastreador.setDisable(false);
 		textFieldModeloRastreador.setDisable(false);
 		comboBoxFilialVeiculo.setDisable(false);
-
 		botaoSalvarAlteracoesVeiculo.setDisable(false);
 		botaoDescartarAlteracoesVeiculo.setDisable(false);
 	}
@@ -517,14 +512,11 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	void excluirVeiculo(ActionEvent event) {
 		Veiculo veiculo = new Veiculo();
 		veiculo.excluirVeiculo(placaVeiculo);
-
 		desabilitarEdicao();
-
 		notificar("Sucesso", "Veículo excluído", "O veículo foi excluído com sucesso do banco de dados!");
 		atualizarInfos = true;
 	}
 
-	
 	@FXML
 	void requisitarAlteracaoVeiculo(ActionEvent event) {
 		funcao = "Veiculo";
@@ -545,7 +537,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			desabilitarEdicao();
 			atualizarInfos = true;
 			
-		}else {
+		}
+		else {
 			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
 		}
 		
