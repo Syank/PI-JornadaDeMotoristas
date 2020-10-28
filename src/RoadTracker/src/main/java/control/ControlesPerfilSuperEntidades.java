@@ -211,11 +211,87 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 
 	    @FXML
 	    void esconderDicaFlutuante(MouseEvent event) {
+	    	labelDicaFlutuante.setVisible(false);
 
 	    }
 
 	    @FXML
 	    void exibirDicaFlutuante(MouseEvent event) {
+	    	if(event.getTarget().toString().contains("tfNome")) {
+        	labelDicaFlutuante.setText("Nome");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("tfCpf")) {
+        	labelDicaFlutuante.setText("CPF");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("textFieldEmail")) {
+        	labelDicaFlutuante.setText("Email");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("pfSenha")) {
+        	labelDicaFlutuante.setText("Senha");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("cbCargo")) {
+        	labelDicaFlutuante.setText("Cargo");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("cbFilial")) {
+        	labelDicaFlutuante.setText("Filial");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("cbTurno")) {
+        	labelDicaFlutuante.setText("Turno");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("textFieldSalarioMotorista")) {
+        	labelDicaFlutuante.setText("Motorista");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("tfCargaHoraria")) {
+        	labelDicaFlutuante.setText("Carga horária");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("textFieldCadastroNome")) {
+        	labelDicaFlutuante.setText("Nome");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("textFieldCadastroCpf")) {
+        	labelDicaFlutuante.setText("CPF");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("textFieldCadastroEmail")) {
+        	labelDicaFlutuante.setText("Email");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("textFieldCadastroSenha")) {
+        	labelDicaFlutuante.setText("Senha");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("textFieldCadastroConfirmarSenha")) {
+        	labelDicaFlutuante.setText("Confirmar senha");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("comboBoxCadastroFilial")) {
+        	labelDicaFlutuante.setText("Filial");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("comboBoxCadastroTurno")) {
+        	labelDicaFlutuante.setText("Turno");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("textFieldCadastroCargaHoraria")) {
+        	labelDicaFlutuante.setText("Carga horária");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("textFieldCadastroSalario")) {
+        	labelDicaFlutuante.setText("Salário");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+	    	
+    	labelDicaFlutuante.setLayoutX(event.getSceneX());
+    	labelDicaFlutuante.setLayoutY(event.getSceneY());
 
 	    }
 
