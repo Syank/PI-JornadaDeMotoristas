@@ -87,6 +87,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     
     @FXML
     void voltar(ActionEvent event) {
+    	carregarTableViews();
     	if (paneAvisoSelecionado.isVisible()) {
     		paneVisualizarAvisos.setVisible(true);
 			paneVisualizarAvisos.setDisable(false);
@@ -99,6 +100,11 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     
     @FXML
     void excluir(ActionEvent event) {
+    	Aviso aviso = new Aviso();
+    	
+    	aviso.excluirAviso(Integer.parseInt(campoIDAviso.getText()));
+    	
+    	voltar(event);
     }
 
     @FXML

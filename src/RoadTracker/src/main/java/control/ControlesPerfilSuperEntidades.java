@@ -181,7 +181,6 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 		private List<Funcionarios> listaDeMotoristas = new ArrayList<>();
 		private ObservableList<Funcionarios> obsListMotoristas;
 	    
-	    // Só estão os métodos das ações dos botões aqui, os outros como carregar tableview devem ser criados
 	    
 	    
 
@@ -191,11 +190,15 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 			turnos = t.listarTurnos();
 			turnosList = FXCollections.observableArrayList(turnos);
 			cbTurno.setItems(turnosList);
+			comboBoxCadastroTurno.setItems(turnosList);
 		}
+		
 		public void carregarComboBoxFiliais() {
 			filiais = filial.listarFiliais();
 			filiaisList = FXCollections.observableArrayList(filiais);
 			cbFilial.setItems(filiaisList);
+			comboBoxCadastroFilial.setItems(filiaisList);
+			
 
 		}
 
@@ -412,16 +415,50 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    
 	    @FXML
 	    void abrirTelaMotoristas(MouseEvent event) {
-
+	    	paneCadastrarMotorista.setVisible(false);
+	    	paneCadastrarMotorista.setDisable(true);
+	    	
+	    	paneSelecionarOpcao.setVisible(true);
+	    	paneSelecionarOpcao.setDisable(false);
+	    	
+	    	paneMotoristas.setVisible(false);
+	    	paneMotoristas.setDisable(true);
+	    	
+	    	paneMotoristaSelecionado.setVisible(false);
+	    	paneMotoristaSelecionado.setDisable(true);
 	    }
 	    
 	    @FXML
 	    void abrirTelaAvisos(MouseEvent event) {
+	    	paneCadastrarMotorista.setVisible(false);
+	    	paneCadastrarMotorista.setDisable(true);
+	    	
+	    	paneSelecionarOpcao.setVisible(true);
+	    	paneSelecionarOpcao.setDisable(false);
+	    	
+	    	paneMotoristas.setVisible(false);
+	    	paneMotoristas.setDisable(true);
+	    	
+	    	paneMotoristaSelecionado.setVisible(false);
+	    	paneMotoristaSelecionado.setDisable(true);
+	    	
 //	    	Main.trocarTela("Tela Avisos");
 	    }
 
 	    @FXML
 	    void abrirTelaHistEntregas(MouseEvent event) {
+	    	paneCadastrarMotorista.setVisible(false);
+	    	paneCadastrarMotorista.setDisable(true);
+	    	
+	    	paneSelecionarOpcao.setVisible(true);
+	    	paneSelecionarOpcao.setDisable(false);
+	    	
+	    	paneMotoristas.setVisible(false);
+	    	paneMotoristas.setDisable(true);
+	    	
+	    	paneMotoristaSelecionado.setVisible(false);
+	    	paneMotoristaSelecionado.setDisable(true);
+	    	
 	    	Main.trocarTela("Tela Supervisor Entregas");
 	    }
 	    
@@ -567,7 +604,6 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 			
 		}
 	    
-		
 		void carregarTableView() {
 			Motorista motorista = new Motorista();
 
@@ -590,7 +626,8 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    @Override
 	    public void initialize(URL location, ResourceBundle resources) {
 	    	carregarTableView();
-		
+	    	carregarComboBoxFiliais();
+	    	carregarComboBoxTurnos();
 	}
 
 }

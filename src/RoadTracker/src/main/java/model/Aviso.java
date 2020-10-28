@@ -3,6 +3,9 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.lang.model.type.TypeKind;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.ForeignKey;
@@ -22,6 +25,7 @@ public class Aviso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
+	@Column(columnDefinition="TEXT")
 	private String mensagem;
 	private boolean resolvido;
 	private String data;
@@ -116,6 +120,30 @@ public class Aviso {
 			}
 			
 		}
+	
+	
+	public Aviso excluirAviso(int id) {
+		EntityManager con = new ConnectionFactory().getConnection();
+
+		Aviso aviso = null;
+
+		try {
+			aviso = con.find(model.Aviso.class, id);		
+
+			con.getTransaction().begin();
+			con.remove(aviso);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+
+		return aviso;
+	}
 	
 	public List<Aviso> consultarTodosAvisos(){
 		EntityManager con = new ConnectionFactory().getConnection();
