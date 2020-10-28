@@ -1,9 +1,11 @@
 package control;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,12 +22,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import model.Motorista;
+import model.Veiculo;
 import model.Viagem;
+import view.Funcionarios;
 import view.Main;
+import view.Veiculos;
 import view.Viagens;
 
 public class ControlesPerfilSuperEntregas implements Initializable {
 
+	Motorista motorista = new Motorista();
+	Veiculo veiculo = new Veiculo();
+	
     @FXML
     private Pane paneSelecionarViagem;
     @FXML
@@ -65,9 +74,9 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     @FXML
     private TextField textFieldSituacao;
     @FXML
-    private ComboBox<?> comboBoxMotorista;
+    private ComboBox<Funcionarios> comboBoxMotorista;
     @FXML
-    private ComboBox<?> comboBoxVeiculo;
+    private ComboBox<Veiculos> comboBoxVeiculo;
     @FXML
     private Pane paneAvisosPrincipal;
     @FXML
@@ -97,6 +106,13 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     private List<Viagens> listaDeViagens;
     private ObservableList<Viagens> obsListViagens;
     
+    private int idViagem;
+    
+	private List<Funcionarios> listaDeMotoristas = new ArrayList<>();
+	private ObservableList<Funcionarios> obsListMotorista;
+	
+	private List<Veiculos> listaDeVeiculos = new ArrayList<>();
+	private ObservableList<Veiculos> obsListVeiculo;
     
     
     
@@ -116,27 +132,91 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     }
 
     @FXML
-    void fecharAviso(ActionEvent event) {
-
-    }
-
-    @FXML
     void selecionarViagem(ActionEvent event) {
+    	 carregarComboBoxs();
+    	 
+		Viagens selecionada = tabela.getSelectionModel().getSelectedItem();
+		idViagem = selecionada.getId();
 
+		carregarInfoViagem();
     }
     
-    
+    @SuppressWarnings("unlikely-arg-type")
+	void carregarInfoViagem() {
+       	paneSelecionarViagem.setVisible(false);
+    	paneSelecionarViagem.setDisable(true);
+    	paneViagemSelecionada.setVisible(true);
+    	paneViagemSelecionada.setDisable(false);
+    	
+    	Viagem viagem = new Viagem();
+    	viagem = viagem.encontrarViagem(idViagem);
+    	
+    	textFieldCarga.setText(viagem.getCarga());
+    	textFieldDestino.setText(viagem.getDestino());
+    	textFieldId.setText(String.valueOf(viagem.getId()));
+    	textFieldInicio.setText(viagem.getInicio());
+    	textFieldSituacao.setText(viagem.getSituacao());
+    	textFieldTotal.setText(viagem.getSituacao());
+    	
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    	LocalDate localDate = LocalDate.parse(viagem.getFim(), formatter);
+    	datePickerPrazo.setValue(localDate);
+    	
+    	comboBoxMotorista.getSelectionModel().selectFirst();
+    	
+    	int seguranca = 0;
+    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
+    	while(!viagem.getMotorista().getNome().equals(comboBoxMotorista.getSelectionModel().getSelectedItem().getNome())) {
+    		comboBoxMotorista.getSelectionModel().selectNext();
+    		seguranca++;
+    		if(seguranca > 100) {
+    			break;
+    		}
+    	}
+    	
+    	
+    	
+    	//Esse aqui ta meio bugado, esse não é a forma correta de fazer, mas da forma correta não funciona :/
+    	String placa = viagem.getVeiculo().getPlaca();
+    	Veiculos placaSelecionada = comboBoxVeiculo.getSelectionModel().getSelectedItem();
+    	
+    	int seguranca1 = 0;
+    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao veiculo da viagem  	
+    	while(!placa.equals(placaSelecionada)) {
+    		comboBoxVeiculo.getSelectionModel().selectNext();
+    		seguranca1++;
+    		if(seguranca1 > 100) {
+    			break;
+    		}
+    	}
+    }
     
     
     
     @FXML
     void abrirTelaAvisos(MouseEvent event) {
-
+    	carregarTableView();
+    	
+		paneViagemSelecionada.setVisible(false);
+		paneViagemSelecionada.setDisable(true);
+		
+		paneSelecionarViagem.setVisible(true);
+		paneSelecionarViagem.setDisable(false);
+		
     }
 
     @FXML
     void abrirTelaMotoristas(MouseEvent event) {
-
+    	carregarTableView();
+    	
+		paneViagemSelecionada.setVisible(false);
+		paneViagemSelecionada.setDisable(true);
+		
+		paneSelecionarViagem.setVisible(true);
+		paneSelecionarViagem.setDisable(false);
+		
+    	Main.trocarTela("Tela Inicial Supervisor");
+    	
     }
 
     @FXML
@@ -151,7 +231,18 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     
     @FXML
     void voltar(ActionEvent event) {
-    	Main.trocarTela("Tela Inicial Supervisor");
+    	carregarTableView();
+    	carregarComboBoxs();
+    	if(paneViagemSelecionada.isVisible()) {
+    		paneViagemSelecionada.setVisible(false);
+    		paneViagemSelecionada.setDisable(true);
+    		
+    		paneSelecionarViagem.setVisible(true);
+    		paneSelecionarViagem.setDisable(false);
+    	}else {
+    		Main.trocarTela("Tela Inicial Supervisor");
+    	}
+    	
     }
 
     private void carregarTableView(){
@@ -168,15 +259,22 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     	
     	tabela.setItems(obsListViagens);
     }
-    
-	@FXML
-	void confirmarAlteracao(ActionEvent event) {
-	}
+    private void carregarComboBoxs() {
+    	listaDeMotoristas = motorista.listarMotoristas();
+    	obsListMotorista = FXCollections.observableArrayList(listaDeMotoristas);
+		comboBoxMotorista.setItems(obsListMotorista);
+
+    	listaDeVeiculos = veiculo.listarVeiculos();
+    	obsListVeiculo = FXCollections.observableArrayList(listaDeVeiculos);
+		comboBoxVeiculo.setItems(obsListVeiculo);
+
+    }
     
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		carregarTableView();
+		carregarComboBoxs();
 		
 	}
 
