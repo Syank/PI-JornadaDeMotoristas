@@ -23,12 +23,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import model.*;
-import view.*;
+import model.Aviso;
+import view.Avisos;
+import view.Main;
 
 public class ControlesPerfilAdminAvisos implements Initializable{
 
-    @FXML
+	@FXML
     private Label labelAvisos;
     @FXML
     private Pane paneVisualizarAvisos;
@@ -167,10 +168,9 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		
 		tabelaAvisos.setItems(obsListAvisos);
 	}
-	
-
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		carregarTableViews();		
+		carregarTableViews();
 	}
 }

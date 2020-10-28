@@ -258,19 +258,32 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	}
 
 	@FXML
+	void requisitarExclusaoFuncionario(ActionEvent event) {
+		confirmado = false;
+		funcao = "ExcluirFuncionario";
+		notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar a exclusão.");
+	}
+	@FXML
 	void excluirFuncionario(ActionEvent event) {
-		if(cargoFuncionario.equals("Motorista")) {
-			motorista.excluirMotorista(cpfFuncionario);
-			notificar("Sucesso", "Funcionário excluído",
-					"O funcionário foi excluído dos registros do banco de dados com sucesso");
-			atualizarInfos = true;
+		if (confirmado) {
+			if(cargoFuncionario.equals("Motorista")) {
+				motorista.excluirMotorista(cpfFuncionario);
+				notificar("Sucesso", "Funcionário excluído",
+						"O funcionário foi excluído dos registros do banco de dados com sucesso");
+				atualizarInfos = true;
+			}
+			else {
+				funcionario.removerFuncionario(funcionario.getCpf());
+				notificar("Sucesso", "Funcionário excluído",
+						"O funcionário foi excluído dos registros do banco de dados com sucesso");
+				atualizarInfos = true;
+			}
 		}
 		else {
-			funcionario.removerFuncionario(funcionario.getCpf());
-			notificar("Sucesso", "Funcionário excluído",
-					"O funcionário foi excluído dos registros do banco de dados com sucesso");
-			atualizarInfos = true;
+			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
 		}
+		confirmado = false;
+		funcao = "";
 	}
 	
 	@FXML
@@ -450,14 +463,27 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		botaoSalvarAlteracoesFilial.setDisable(false);
 		botaoDescartarAlteracoesFilial.setDisable(false);
 	}
-
+	
+	@FXML
+	void requisitarExclusaoFilial(ActionEvent event) {
+		confirmado = false;
+		funcao = "ExcluirFilial";
+		notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar a exclusão.");
+	}
 	@FXML
 	void excluirFilial(ActionEvent event) {
-		Filial filial = new Filial();
-		filial.excluirFilial(idFilial);
+		if (confirmado) {
+			Filial filial = new Filial();
+			filial.excluirFilial(idFilial);
 
-		notificar("Sucesso", "Filial excluída", "A filial foi excluída dos registros do banco de dados com sucesso!");
-		atualizarInfos = true;
+			notificar("Sucesso", "Filial excluída", "A filial foi excluída dos registros do banco de dados com sucesso!");
+			atualizarInfos = true;
+		}
+		else {
+			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
+		}
+		confirmado = false;
+		funcao = "";
 	}
 
 	
@@ -540,14 +566,26 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		botaoSalvarAlteracoesVeiculo.setDisable(false);
 		botaoDescartarAlteracoesVeiculo.setDisable(false);
 	}
-
+	@FXML
+	void requisitarExclusaoVeiculo(ActionEvent event) {
+		confirmado = false;
+		funcao = "ExcluirVeiculo";
+		notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar a exclusão.");
+	}
 	@FXML
 	void excluirVeiculo(ActionEvent event) {
-		Veiculo veiculo = new Veiculo();
-		veiculo.excluirVeiculo(placaVeiculo);
-		desabilitarEdicao();
-		notificar("Sucesso", "Veículo excluído", "O veículo foi excluído com sucesso do banco de dados!");
-		atualizarInfos = true;
+		if (confirmado) {
+			Veiculo veiculo = new Veiculo();
+			veiculo.excluirVeiculo(placaVeiculo);
+			desabilitarEdicao();
+			notificar("Sucesso", "Veículo excluído", "O veículo foi excluído com sucesso do banco de dados!");
+			atualizarInfos = true;
+		}
+		else {
+			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
+		}
+		confirmado = false;
+		funcao = "";
 	}
 
 	@FXML
@@ -901,15 +939,24 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		fecharAviso(event);
 		
 		switch(funcao){
-		case "Funcionario":
-			alterarDados(event);
-			break;
-		case "Veiculo":
-			salvarDadosAlteradosVeiculo(event);
-			break;
-		case "Filial":
-			salvarDadosAlteradosFilial(event);
-			break;
+			case "Funcionario":
+				alterarDados(event);
+				break;
+			case "Veiculo":
+				salvarDadosAlteradosVeiculo(event);
+				break;
+			case "Filial":
+				salvarDadosAlteradosFilial(event);
+				break;
+			case "ExcluirFuncionario":
+				excluirFuncionario(event);
+				break;
+			case "ExcluirFilial":
+				excluirFilial(event);
+				break;
+			case "ExcluirVeiculo":
+				excluirVeiculo(event);
+				break;
 		}
 		
 	}
@@ -1034,8 +1081,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 	// --------------
 
-	
-	
     public void tarefasEmLoop() {
     	if(atualizarInfos) {
     		carregarTableViews();
@@ -1043,6 +1088,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     		atualizarInfos = false;
     	}
     }
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		abrirTelaSelecionarEntidade();
