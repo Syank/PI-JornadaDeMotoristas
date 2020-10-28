@@ -135,6 +135,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private TextField textFieldEmail;
 	@FXML
 	private TextField textFieldSalarioMotorista;
+	@FXML
+	private Label labelSituacaoMotorista;
 
 	private List<Cargos> cargos = new ArrayList<>();
 	private ObservableList<Cargos> cargosList;
@@ -153,6 +155,12 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	
 	private List<Funcionarios> listaDeMotoristas = new ArrayList<>();
 	private ObservableList<Funcionarios> obsListMotoristas;
+	
+    private List<Viagens> listaDeViagensMotorista = new ArrayList<>();
+    
+    private boolean funcionarioEncontrado = false;
+    
+    
 	
 	
 	// ---------------------------------
@@ -269,6 +277,13 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	void selecionarFuncionario(ActionEvent event) {
 		try{
 			Funcionarios selecionado = tabelaFuncionarios.getSelectionModel().getSelectedItem();
+			funcionarioEncontrado = true;
+		}catch (NullPointerException falha) {
+			notificar("Falha", "Entidade não selecionada", "Nenhum funcionário foi selecionado na lista, por favor selecione um e tente novamente");
+		}
+		
+		if(funcionarioEncontrado) {
+			Funcionarios selecionado = tabelaFuncionarios.getSelectionModel().getSelectedItem();
 			
 			cpfFuncionario = selecionado.getCpf();
 			cargoFuncionario = selecionado.getCargo();
@@ -277,14 +292,14 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			paneFuncionarios.setDisable(true);
 			paneFuncionarioSelecionado.setVisible(true);
 			paneFuncionarioSelecionado.setDisable(false);
-			
+
 			carregarComboBoxCargos();
 			carregarComboBox();
 			carregarComboBoxTurnos();
 			carregarInfoFuncionario();
-		}catch (NullPointerException falha) {
-			notificar("Falha", "Entidade não selecionada", "Nenhum funcionário foi selecionado na lista, por favor selecione um e tente novamente");
 		}
+
+		funcionarioEncontrado = false;
 
 	}
 
@@ -324,7 +339,26 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 				cbTurno.getSelectionModel().select(2);
 			}
 			
+			
+	        List<Viagens> listaDeViagens = new ArrayList<>();
+	        listaDeViagensMotorista.clear();
+	        
+	    	Viagem viagem = new Viagem();
+	    	
+	    	listaDeViagens = viagem.listarViagens();
+			
+	    	labelSituacaoMotorista.setText("Situação: Parado");
+	    	//Essa "coisa" abaixo é um 'for coisa in lista' embelezado do java
+	    	listaDeViagens.forEach(item -> {
+	    		if(item.getMotorista().getCpf().equals(ControlesLogin.cpfLogado)) {
+	    			if(item.getSituacao().equals("Em andamento")) {
+	    				labelSituacaoMotorista.setText("Situação: Em viagem");
+	    			}
+	    		}
+	    	});
+			
 		}else {
+			labelSituacaoMotorista.setVisible(false);
 			boxInfoExtraMotorista1.setVisible(false);
 			boxInfoExtraMotorista1.setDisable(true);
 			boxInfoExtraMotorista2.setVisible(false);

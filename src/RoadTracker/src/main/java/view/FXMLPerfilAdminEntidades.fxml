@@ -180,6 +180,11 @@
                   <TextField fx:id="tfCpf" editable="true" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CPF" styleClass="customizarInputs" />
                   <TextField fx:id="textFieldEmail" editable="true" layoutX="10.0" layoutY="57.0" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="E-mail" styleClass="customizarInputs" />
                   <PasswordField fx:id="pfSenha" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Senha" styleClass="customizarInputs" />
+                  <Label fx:id="labelSituacaoMotorista" text="Situação: ">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
          </children>
