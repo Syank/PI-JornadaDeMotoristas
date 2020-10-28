@@ -138,9 +138,16 @@ public class Aviso {
 		for (Aviso a: this.consultarTodosAvisos()) {
 			Avisos aviso = new Avisos();
 			aviso.setTituloAviso(a.getMensagem());
-			aviso.setMotorista(a.getMotorista().getCpf());
 			aviso.setDataAviso(a.getData());
 			aviso.setId(a.getId());
+			
+			try {
+				aviso.setMotorista(a.getMotorista().getCpf());
+			}catch (Exception erro){
+				aviso.setMotorista(a.getEmissor());
+			}
+
+			
 			lista.add(aviso);
 		}
 		

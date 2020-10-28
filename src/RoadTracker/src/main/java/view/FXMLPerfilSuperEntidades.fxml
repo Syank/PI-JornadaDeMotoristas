@@ -150,9 +150,9 @@
                   <Button mnemonicParsing="false" styleClass="customizarBotoes" text="Alterar foto" textFill="WHITE" />
                </children>
             </VBox>
-            <VBox layoutX="176.0" layoutY="23.0" prefHeight="305.0" prefWidth="148.0" spacing="20.0">
+            <VBox layoutX="176.0" layoutY="23.0" prefHeight="252.0" prefWidth="148.0" spacing="20.0">
                <children>
-                  <ComboBox fx:id="cbCargo" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefHeight="27.0" prefWidth="150.0" promptText="Cargo" styleClass="customizarInputs" />
+                  <ComboBox fx:id="cbCargo" disable="true" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefHeight="27.0" prefWidth="150.0" promptText="Motorista" styleClass="customizarInputs" />
                   <ComboBox fx:id="cbFilial" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefWidth="150.0" promptText="Filial" styleClass="customizarInputs" />
                   <VBox fx:id="boxInfoExtraMotorista1" prefHeight="110.0" prefWidth="148.0" spacing="20.0">
                      <children>

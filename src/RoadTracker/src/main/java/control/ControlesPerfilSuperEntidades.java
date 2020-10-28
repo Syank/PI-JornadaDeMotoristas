@@ -1,7 +1,11 @@
 package control;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,14 +17,19 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Aviso;
 import model.Filial;
+import model.Motorista;
+import model.Viagem;
 import view.Filiais;
+import view.Funcionarios;
 import view.Main;
 import view.Turnos;
+import view.Viagens;
 
 public class ControlesPerfilSuperEntidades implements Initializable{
 
@@ -53,11 +62,11 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    @FXML
 	    private ComboBox<?> cbCargo;
 	    @FXML
-	    private ComboBox<?> cbFilial;
+	    private ComboBox<Filiais> cbFilial;
 	    @FXML
 	    private VBox boxInfoExtraMotorista1;
 	    @FXML
-	    private ComboBox<?> cbTurno;
+	    private ComboBox<Turnos> cbTurno;
 	    @FXML
 	    private TextField textFieldSalarioMotorista;
 	    @FXML
@@ -113,7 +122,7 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    @FXML
 	    private Button botaoBuscar;
 	    @FXML
-	    private TableView<?> tabelaFuncionarios;
+	    private TableView<Funcionarios> tabelaFuncionarios;
 	    @FXML
 	    private TableColumn<?, ?> colunaNome;
 	    @FXML
@@ -153,24 +162,48 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    @FXML
 	    private PasswordField passwordFieldConfirmarSenha;
 	    
+	    private String cpfMotorista;
 	    
+		private List<Turnos> turnos = new ArrayList<>();
+		private ObservableList<Turnos> turnosList;
+		private Turnos t = new Turnos(0, null);
+
+		
+		private List<Filiais> filiais = new ArrayList<>();
+		private ObservableList<Filiais> filiaisList;
+		private static Filial filial = new Filial();
 	    
+	    public List<Viagens> listaDeViagensMotorista = new ArrayList<>();
+	    
+		private boolean confirmado = false;
+		private String funcao;
+	    
+		private List<Funcionarios> listaDeMotoristas = new ArrayList<>();
+		private ObservableList<Funcionarios> obsListMotoristas;
 	    
 	    // Só estão os métodos das ações dos botões aqui, os outros como carregar tableview devem ser criados
 	    
 	    
 
 
+		
+		public void carregarComboBoxTurnos() {
+			turnos = t.listarTurnos();
+			turnosList = FXCollections.observableArrayList(turnos);
+			cbTurno.setItems(turnosList);
+		}
+		public void carregarComboBoxFiliais() {
+			filiais = filial.listarFiliais();
+			filiaisList = FXCollections.observableArrayList(filiais);
+			cbFilial.setItems(filiaisList);
 
+		}
 
-	    @FXML
-	    void confirmarAlteracao(ActionEvent event) {
-
-	    }
 
 	    @FXML
 	    void descartarAlteracoes(ActionEvent event) {
-
+	    	carregarInfosMotorista();
+	    	desabilitarEdicao();
 	    }
 
 	    @FXML
@@ -183,26 +216,74 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 
 	    }
 
-	    @FXML
-	    void fecharAviso(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void habilitarEdicao(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void requisitarAlteracaoFuncionario(ActionEvent event) {
-
-	    }
-
+	    
+	    
 	    @FXML
 	    void selecionarFuncionario(ActionEvent event) {
-
+	    	Funcionarios selecionado = tabelaFuncionarios.getSelectionModel().getSelectedItem();
+	    	
+	    	cpfMotorista = selecionado.getCpf();
+	    	
+	    	paneMotoristas.setVisible(false);
+	    	paneMotoristas.setDisable(true);
+	    	paneMotoristaSelecionado.setVisible(true);
+	    	paneMotoristaSelecionado.setDisable(false);
+	    	
+	    	
+	    	desabilitarEdicao();
+	    	carregarComboBoxTurnos();
+	    	carregarComboBoxFiliais();
+	    	carregarInfosMotorista();
 	    }
 
+	    void carregarInfosMotorista() {
+	    	Motorista motorista = new Motorista().encontrarMotorista(cpfMotorista);
+	    	
+	    	tfNome.setText(motorista.getNome());
+	    	tfCpf.setText(motorista.getCpf());
+	    	textFieldEmail.setText(motorista.getEmail());
+	    	pfSenha.setText(motorista.getSenha());
+	    	textFieldSalarioMotorista.setText(motorista.getSalario());
+	    	tfCargaHoraria.setText(motorista.getCargaHoraria());
+	    	
+	    	cbDom.setSelected(motorista.getDom());
+	    	cbSeg.setSelected(motorista.getSeg());
+	    	cbTer.setSelected(motorista.getTer());
+	    	cbQua.setSelected(motorista.getQua());
+	    	cbQui.setSelected(motorista.getQui());
+	    	cbSex.setSelected(motorista.getSex());
+	    	cbSab.setSelected(motorista.getSab());
+	    	
+	    	cbFilial.getSelectionModel().select(motorista.getFilial().getId() - 1);
+			if (motorista.getTurno().equals("Matutino")) {
+				cbTurno.getSelectionModel().select(0);
+			} else if (motorista.getTurno().equals("Vespertino")) {
+				cbTurno.getSelectionModel().select(1);
+			} else {
+				cbTurno.getSelectionModel().select(2);
+			}
+	    			
+			
+	        List<Viagens> listaDeViagens = new ArrayList<>();
+	        listaDeViagensMotorista.clear();
+	        
+	    	Viagem viagem = new Viagem();
+	    	
+	    	listaDeViagens = viagem.listarViagens();
+	    	
+	    	
+	    	labelSituacaoMotorista.setText("Situação: Parado");
+	    	//Essa "coisa" abaixo é um 'for coisa in lista' embelezado do java
+	    	listaDeViagens.forEach(item -> {
+	    		if(item.getMotorista().getCpf().equals(ControlesLogin.cpfLogado)) {
+	    			if(item.getSituacao().equals("Em andamento")) {
+	    				labelSituacaoMotorista.setText("Situação: Em viagem");
+	    			}
+	    		}
+	    	});
+	    	
+	    }
+	    
 	    @FXML
 	    void solicitarCadastro(ActionEvent event) {
 	    	Aviso aviso = new Aviso();
@@ -270,6 +351,42 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    	System.out.println("Solicitação enviada!");
 	    }
 	    
+		@FXML
+		void requisitarAlteracaoFuncionario(ActionEvent event) {
+			funcao = "Funcionario";
+			notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar as alterações nos dados");
+		}
+	    @FXML
+	    void alterarDados(ActionEvent event) {
+	    	Motorista motorista = new Motorista().encontrarMotorista(cpfMotorista);
+	    	if(confirmado) {
+	    		if (Integer.parseInt(textFieldSalarioMotorista.getText()) < 1701.38) {
+	    			notificar("Falha", "Salário baixo", "O salário digitado é muito baixo. Escreva um salário válido.");
+	    		}
+	    		else if (Integer.parseInt(tfCargaHoraria.getText()) > 12) {
+	    			notificar("Falha de cadastro", "Carga horária", "A carga horária diária previamente acordada pode ser no máximo de 12 horas. Verifique o valor e tente novamente.");
+	    		}
+	    		else {
+	    			motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
+	    					textFieldEmail.getText(), pfSenha.getText(), 
+	    					textFieldSalarioMotorista.getText(), tfCargaHoraria.getText(), 
+	    					cbFilial.getValue().getId(), cbTurno.getValue().getTurno(),
+	    					cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(), cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
+
+	    			notificar("Sucesso", "Alteração de dados",
+	    					"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+	    			carregarTableView();
+	    		}
+
+
+
+	    	}
+	    	else {
+	    		notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
+	    	}
+	    	confirmado = false;
+	    	funcao = "";
+	    }
 	    
 	    @FXML
 	    void abrirTelaSolicitarCadastro(MouseEvent event) {
@@ -284,6 +401,11 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    
 	    @FXML
 	    void abrirTelaSelecionarMotorista(MouseEvent event) {
+	    	paneSelecionarOpcao.setVisible(false);
+	    	paneSelecionarOpcao.setDisable(true);
+	    	
+	    	paneMotoristas.setVisible(true);
+	    	paneMotoristas.setDisable(false);
 	    	
 	    }
 	    
@@ -317,16 +439,157 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    
 	    @FXML
 	    void voltar(MouseEvent event) {
-	    	Main.trocarTela("Tela Login");
+	    	if(paneMotoristaSelecionado.isVisible()) {
+	    		paneMotoristaSelecionado.setVisible(false);
+	    		paneMotoristaSelecionado.setDisable(true);
+	    		
+	    		paneMotoristas.setVisible(true);
+	    		paneMotoristas.setDisable(false);
+	    		
+	    	}else if(paneMotoristas.isVisible()) {
+	    		paneMotoristas.setVisible(false);
+	    		paneMotoristas.setDisable(true);
+	    		
+	    		paneSelecionarOpcao.setVisible(true);
+	    		paneSelecionarOpcao.setDisable(false);
+	    		
+	    	}else if(paneCadastrarMotorista.isVisible()) {
+	    		paneCadastrarMotorista.setVisible(false);
+	    		paneCadastrarMotorista.setDisable(true);
+	    		
+	    		paneSelecionarOpcao.setVisible(true);
+	    		paneSelecionarOpcao.setDisable(false);
+	    	}else {
+	    		Main.trocarTela("Tela Login");
+	    	}
 	    }
 	
 	
+	    @FXML
+	    void habilitarEdicao(ActionEvent event) {
+	    	tfNome.setDisable(false);
+	    	tfCpf.setDisable(false);
+	    	textFieldEmail.setDisable(false);
+	    	pfSenha.setDisable(false);
+	    	textFieldSalarioMotorista.setDisable(false);
+	    	
+	    	boxInfoExtraMotorista2.setDisable(false);
+	    	
+	    	cbFilial.setDisable(false);
+			cbTurno.setDisable(false);
+			
+			btnSalvar.setDisable(false);
+			btnDescartar.setDisable(false);
+	    }
+	    
+
+	    void desabilitarEdicao() {
+	    	tfNome.setDisable(true);
+	    	tfCpf.setDisable(true);
+	    	textFieldEmail.setDisable(true);
+	    	pfSenha.setDisable(true);
+	    	textFieldSalarioMotorista.setDisable(true);
+	    	
+	    	boxInfoExtraMotorista2.setDisable(true);
+	    	
+	    	cbFilial.setDisable(true);
+			cbTurno.setDisable(true);
+			
+			btnSalvar.setDisable(true);
+			btnDescartar.setDisable(true);
+	    }
 	
-	
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// Coloque as funções para carregar as tableviews e combobox aqui
+	    
+		void notificar(String tipoDeAviso, String titulo, String texto) {
+			paneAvisosPrincipal.setDisable(false);
+			paneAvisosPrincipal.setVisible(true);
+			paneAvisosSombra.setVisible(true);
+			paneAvisosSombra.setDisable(false);
+			
+			switch (tipoDeAviso) {
+			case "Sucesso":
+				paneAvisosSucesso.setDisable(false);
+				paneAvisosSucesso.setVisible(true);
+				labelAvisosTextoSucesso.setText(texto);
+				labelAvisosTituloSucesso.setText(titulo);
+				break;
+			case "Falha":
+				paneAvisosFalha.setDisable(false);
+				paneAvisosFalha.setVisible(true);
+				labelAvisosTextoFalha.setText(texto);
+				labelAvisosTituloFalha.setText(titulo);
+				break;
+			case "Confirmar":
+				paneAvisosConfirmar.setDisable(false);
+				paneAvisosConfirmar.setVisible(true);
+				labelAvisosTextoConfirmar.setText(texto);
+				labelAvisosTituloConfirmar.setText(titulo);
+				passwordFieldConfirmarSenha.setText("");
+				break;
+			}
+			
+		}
+
+		
+		@FXML
+		void confirmarAlteracao(ActionEvent event) {
+			if(paneAvisosConfirmar.isVisible()) {
+				if(passwordFieldConfirmarSenha.getText().equals(ControlesLogin.senha)) {
+					confirmado = true;
+				}else {
+					confirmado = false;
+				}
+			}
+			
+			fecharAviso(event);
+			
+			switch(funcao){
+			case "Funcionario":
+				alterarDados(event);
+				break;
+			}
+			
+		}
+		@FXML
+		void fecharAviso(ActionEvent event) {		
+			paneAvisosPrincipal.setDisable(true);
+			paneAvisosPrincipal.setVisible(false);
+			paneAvisosSombra.setVisible(false);
+			paneAvisosSombra.setDisable(true);
+			paneAvisosSucesso.setDisable(true);
+			paneAvisosSucesso.setVisible(false);
+			paneAvisosFalha.setDisable(true);
+			paneAvisosFalha.setVisible(false);
+			paneAvisosConfirmar.setDisable(true);
+			paneAvisosConfirmar.setVisible(false);
+			
+			desabilitarEdicao();
+			
+		}
+	    
+		
+		void carregarTableView() {
+			Motorista motorista = new Motorista();
+
+			listaDeMotoristas = motorista.listarMotoristas();
+
+			// Transforma a array primitiva em Observable Array
+			obsListMotoristas = FXCollections.observableArrayList(listaDeMotoristas);
+
+			// "Habilita" as colunas da tableView para receber o valor retornado da classe
+			// Listas, nos seus métodos get
+			colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+			colunaCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+			colunaCargo.setCellValueFactory(new PropertyValueFactory<>("cargo"));
+
+			// Adiciona a Observable Array na TableView
+			tabelaFuncionarios.setItems(obsListMotoristas);
+
+		}
+	    
+	    @Override
+	    public void initialize(URL location, ResourceBundle resources) {
+	    	carregarTableView();
 		
 	}
 

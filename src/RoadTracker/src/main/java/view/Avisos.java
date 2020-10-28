@@ -1,6 +1,5 @@
 package view;
 
-import model.Motorista;
 
 public class Avisos {
 	

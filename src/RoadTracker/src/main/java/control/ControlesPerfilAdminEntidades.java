@@ -289,7 +289,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	}
 
 	void carregarInfoFuncionario() {
-		System.out.println(cargoFuncionario);
 		if(cargoFuncionario.equals("Motorista")) {
 			boxInfoExtraMotorista1.setVisible(true);
 			boxInfoExtraMotorista1.setDisable(true);
@@ -317,9 +316,9 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			cbCargo.getSelectionModel().select(0);
 			cbFilial.getSelectionModel().select(motorista.getFilial().getId() - 1);
 			
-			if (motorista.getCargo().equals("Matutino")) {
+			if (motorista.getTurno().equals("Matutino")) {
 				cbTurno.getSelectionModel().select(0);
-			} else if (motorista.getCargo().equals("Vespertino")) {
+			} else if (motorista.getTurno().equals("Vespertino")) {
 				cbTurno.getSelectionModel().select(1);
 			} else {
 				cbTurno.getSelectionModel().select(2);

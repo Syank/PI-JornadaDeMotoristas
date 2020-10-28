@@ -126,9 +126,15 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     	aviso = aviso.encontrarAviso(idAviso);
 		
 		campoIDAviso.setText(String.valueOf(aviso.getId()));
-		remetente.setText(aviso.getMotorista().getCpf());
 		visualizado.setSelected(aviso.isResolvido());
 		msg.setText(aviso.getMensagem());
+		
+		// Esse try é um remendo no código pois corrigir isso envolveria mudar muitas classes
+		try {
+			remetente.setText(aviso.getMotorista().getCpf());
+		}catch(Exception erro) {
+			remetente.setText(aviso.getEmissor());
+		}
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     	LocalDate localDate = LocalDate.parse(aviso.getData(), formatter);
