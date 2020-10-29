@@ -124,7 +124,6 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 	@FXML
 	void requisitarAlteracao(ActionEvent event) {
 		funcao = "Veiculo";
-		
 		notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar as alterações nos dados");
 	}
 	
@@ -164,16 +163,28 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	confirmado = false;
     	funcao = "";
     }
+    
+    @FXML
+	void requisitarExclusaoViagem(ActionEvent event) {
+		confirmado = false;
+		funcao = "ExcluirViagem";
+		notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar a exclusão.");
+	}
     @FXML
     private void excluirViagem(ActionEvent event) {
-    	Viagem viagem = new Viagem();
     	
-    	viagem.excluirViagem(Integer.parseInt(textFieldId.getText()));
-    	
-    	desabilitarEdicao();
-    	
-		notificar("Sucesso", "Viagem excluída", "A viagem foi excluída com sucesso do banco de dados!");
-		atualizarInfos = true;
+		if (confirmado) {
+	    	Viagem viagem = new Viagem();
+	    	viagem.excluirViagem(Integer.parseInt(textFieldId.getText()));
+	    	desabilitarEdicao();
+			notificar("Sucesso", "Viagem excluída", "A viagem foi excluída com sucesso do banco de dados!");
+			atualizarInfos = true;
+		}
+		else {
+			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
+		}
+		confirmado = false;
+		funcao = "";
     }
 	@FXML
 	private void selecionarViagem(ActionEvent event) {
@@ -356,9 +367,12 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 		
 		fecharAviso(event);	
 		switch(funcao) {
-		case "Veiculo":
-			salvarAlteracoes(event);
-			break;
+			case "Veiculo":
+				salvarAlteracoes(event);
+				break;
+			case "ExcluirViagem":
+				excluirViagem(event);
+				break;
 		}
 			
 	}

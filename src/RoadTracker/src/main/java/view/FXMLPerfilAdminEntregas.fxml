@@ -159,7 +159,7 @@
          <children>
             <Button fx:id="botaoSalvar" alignment="CENTER" layoutX="324.0" layoutY="303.0" mnemonicParsing="false" onAction="#requisitarAlteracao" prefHeight="30.0" prefWidth="76.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE" />
             <Button layoutX="35.0" layoutY="270.0" mnemonicParsing="false" onAction="#habilitarEdicao" prefHeight="30.0" prefWidth="76.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE" />
-            <Button layoutX="35.0" layoutY="305.0" mnemonicParsing="false" onAction="#excluirViagem" prefHeight="30.0" prefWidth="76.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE" />
+            <Button layoutX="35.0" layoutY="305.0" mnemonicParsing="false" onAction="#requisitarExclusaoViagem" prefHeight="30.0" prefWidth="76.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE" />
             <Button fx:id="botaoDescartar" layoutX="410.0" layoutY="302.0" mnemonicParsing="false" onAction="#descartarAlteracoes" prefHeight="31.0" prefWidth="76.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE" />
             <VBox layoutX="35.0" layoutY="32.0" prefHeight="200.0" prefWidth="136.0" spacing="20.0">
                <children>
