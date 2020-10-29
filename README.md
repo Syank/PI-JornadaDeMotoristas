@@ -129,23 +129,19 @@
 <section id="Wireframes">
     <h3>Wireframes do RoadTracker </h3>
         <p>
-    <img src="doc/wireframes/login.jpeg" width="400px">
+    <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/login.jpeg" width="400px">
        </p>
         <p>
-    <img src="doc/wireframes/boas_vindas.jpeg" width="400px" >            
-    <img src="doc/wireframes/cadastro_funcionario.jpeg" width="400px">   
+    <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/boas_vindas.jpeg" width="400px" >
+    <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/escolher_entidade.png" width="400px">
        </p>
         <p>
-    <img src="doc/wireframes/aviso_funcionario_cadastrdo.jpeg" width="400px">           
-    <img src="doc/wireframes/aviso_falha_cadastro.jpeg" width="400px">
+    <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/aviso_solicita_senha.png" width="400px">           
+    <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/aviso_usuario_excluido.png" width="400px">
         </p>
         <p>
-    <img src="doc/wireframes/listagem_funcionarios.jpeg" width="400px">
-    <img src="doc/wireframes/informações_funcionario.jpeg" width="400px">
-       </p>
-        <p>
-    <img src="doc/wireframes/aviso_usuario_excluido.jpeg" width="400px">
-    <img src="doc/wireframes/aviso_dados_alterados.jpeg" width="400px">
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/ver_filiais.png" width="400px">
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/informa%C3%A7%C3%B5es_funcionario.jpeg" width="400px">   
        </p>
     
  </section>
