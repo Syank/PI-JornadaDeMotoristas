@@ -36,7 +36,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private static Turnos t = new Turnos(0, null);
 	private String funcao;
 	public static boolean atualizarInfos = false;
-
+	public List<Veiculo> listaDePlacaVeiculos = new ArrayList<>();
+	
 	// Elementos das panes de avisos
 	private boolean confirmado = false;
 	@FXML
@@ -553,6 +554,12 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldIdFilial.setText(String.valueOf(filial.getId()));
 
 	}
+	
+	@FXML 
+	void pesquisarFilial(ActionEvent event){	
+		System.out.println("abacate");
+		
+	}
 	// -------------------------------------
 
 	// Métodos veiculo
@@ -655,7 +662,34 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldModeloRastreador.setText(veiculo.getModelo_rastreador());
 		comboBoxFilialVeiculo.getSelectionModel().select(veiculo.getFilial().getId() - 1);
 	}
-
+	//TA TUDO ERRADOOO
+	@FXML 
+	void pesquisarVeiculo(ActionEvent event){
+		obsListVeiculos = FXCollections.observableArrayList(listaDeVeiculos);
+		if(campoDeBuscaVeiculo.getText() != "" && campoDeBuscaIDVeiculo.getText() == "" ) {
+			listaDePlacaVeiculos.forEach(item -> {
+	    		if(item.getPlaca().equals(campoDeBuscaVeiculo.getText())) {
+	    			System.out.println("acabate");
+	    		} 
+			});
+		}
+	
+		else if(campoDeBuscaVeiculo.getText().length() > 0 && campoDeBuscaIDVeiculo.getText().length() < 0) {
+			System.out.println("2");
+			colunaIDVeiculo.setCellValueFactory(new PropertyValueFactory<>(campoDeBuscaIDVeiculo.getText()));
+			tabelaVeiculos.setItems(obsListVeiculos);
+		}
+		else if(campoDeBuscaVeiculo.getText().length() > 0 && campoDeBuscaIDVeiculo.getText().length() > 0) {
+			
+				listaDePlacaVeiculos.forEach(item -> {
+		    		if(item.getPlaca().equals(campoDeBuscaVeiculo.getText())) {
+		    			System.out.println("acabate");
+		    		}
+		    });
+		
+		}
+	//abcdef
+	}
 	// -------------------------------------
 	
 	
