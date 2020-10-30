@@ -43,6 +43,11 @@ public class ControlesLogin implements Initializable{
     private Label labelAvisosTituloFalha;
     @FXML
     private Label labelAvisosTextoFalha;
+    
+    
+    
+    
+    
     @FXML
     void verificarLogin(ActionEvent event) {
     	Funcionario funcionario = new Funcionario();
@@ -71,6 +76,7 @@ public class ControlesLogin implements Initializable{
     				
     				if (funcionario.getCargo().equals("Supervisor")) {
     					Main.trocarTela("Tela Inicial Supervisor");
+    					ControlesPerfilSuperEntregas.atualizarTableViewEComboBox = true;
     				}
     				else {
     					Main.trocarTela("Tela Boas Vindas");
@@ -80,6 +86,7 @@ public class ControlesLogin implements Initializable{
                 	inputSenha.setText("");
                 	ControlesPerfilAdminEntidades.atualizarInfos = true;
                 	ControlesPerfilAdminHistEntregas.atualizarInfos = true;
+                	ControlesPerfilAdminAvisos.carregarInfos = true;
     			}
     		}
     		else if (cpfFunc.equals("Não encontrado")) {

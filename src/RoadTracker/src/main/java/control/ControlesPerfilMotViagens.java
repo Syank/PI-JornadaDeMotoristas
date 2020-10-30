@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -42,6 +43,22 @@ public class ControlesPerfilMotViagens implements Initializable {
     private TableColumn<?, ?> colunaSituacao;
     @FXML
     private Pane paneViagemSelecionada;
+    @FXML
+    private Pane paneAvisosPrincipal;
+    @FXML
+    private Pane paneAvisosSombra;
+    @FXML
+    private Pane paneAvisosSucesso;
+    @FXML
+    private Pane paneAvisosFalha;
+    @FXML
+    private Label labelAvisosTextoSucesso;
+    @FXML
+    private Label labelAvisosTituloSucesso;
+    @FXML
+    private Label labelAvisosTextoFalha;
+    @FXML
+    private Label labelAvisosTituloFalha;
     
 
     
@@ -62,14 +79,17 @@ public class ControlesPerfilMotViagens implements Initializable {
     	if(!viagemEmAndamentoJaExistente) {
         	if(!viagem.getSituacao().equals("Finalizado")) {
             	viagem.atualizarSituacao("Em andamento");
+            	viagem.iniciarViagem();
             	
             	carregarTableView = true;
             	ControlesPerfilMotViagemAtual.carregarViagem = true;
+            	
+            	notificar("Sucesso", "Atualização da situação da viagem", "A viagem foi iniciada com sucesso, verifique mais informações no menu de viagem atual");
         	}else {
-        		System.out.println("Essa viagem já foi finalizada!");
+        		notificar("Falha", "Falha na situação da viagem", "Essa viagem já foi finalizada");
         	}
     	}else {
-    		System.out.println("Já existe uma viagem em andamento!");
+    		notificar("Falha", "Falha na situação da viagem", "Já existe uma viagem em andamento");	
     	}
 
     	
@@ -91,8 +111,10 @@ public class ControlesPerfilMotViagens implements Initializable {
         	carregarTableView = true;
         	viagemEmAndamentoJaExistente = false;
         	ControlesPerfilMotViagemAtual.carregarViagem = true;
+        	
+        	notificar("Sucesso", "Atualização da situação da viagem", "A viagem foi pausada com sucesso");
     	}else {
-    		System.out.println("Essa viagem já foi finalizada/pausada!");
+    		notificar("Falha", "Falha na situação da viagem", "Essa viagem já foi finalizada/pausada");	
     	}
 
     }
@@ -160,6 +182,38 @@ public class ControlesPerfilMotViagens implements Initializable {
     }
     
     
+    void notificar(String tipoDeAviso, String titulo, String texto) {
+    	paneAvisosPrincipal.setDisable(false);
+    	paneAvisosPrincipal.setVisible(true);
+    	paneAvisosSombra.setVisible(true);
+    	paneAvisosSombra.setDisable(false);
+    	switch(tipoDeAviso){
+    		case "Sucesso":
+    			paneAvisosSucesso.setDisable(false);
+    			paneAvisosSucesso.setVisible(true);
+    			labelAvisosTextoSucesso.setText(texto);
+    			labelAvisosTituloSucesso.setText(titulo);
+    			break;
+    		case "Falha":
+    			paneAvisosFalha.setDisable(false);
+    			paneAvisosFalha.setVisible(true);
+    			labelAvisosTextoFalha.setText(texto);
+    			labelAvisosTituloFalha.setText(titulo);
+    			break;
+    	}
+    }
+    @FXML
+    void fecharAviso(ActionEvent event){
+    	paneAvisosPrincipal.setDisable(true);
+    	paneAvisosPrincipal.setVisible(false);
+    	paneAvisosSombra.setVisible(false);
+    	paneAvisosSombra.setDisable(true);
+		paneAvisosSucesso.setDisable(true);
+		paneAvisosSucesso.setVisible(false);
+		paneAvisosFalha.setDisable(true);
+		paneAvisosFalha.setVisible(false);
+    }
+
     
     void tarefasEmLoop() {
     	// Considere que cada if aqui dentro é uma "função"

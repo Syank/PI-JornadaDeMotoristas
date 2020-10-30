@@ -371,7 +371,15 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         	int ano = datePickerPrazoEntrega.getValue().getYear();
         	int dia = datePickerPrazoEntrega.getValue().getDayOfMonth();
         	int mes = datePickerPrazoEntrega.getValue().getMonthValue();
-        	String prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+        	
+        	String prazo;
+        	
+        	if(dia < 10) {
+            	prazo = ("0" + String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+        	}else {
+            	prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+        	}
+
         	
         	String cpfFuncionario = comboBoxMotoristaViagem.getSelectionModel().getSelectedItem().getCpf();
         	String placaVeiculo = comboBoxVeiculoViagem.getSelectionModel().getSelectedItem().getPlaca();

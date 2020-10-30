@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -306,6 +307,43 @@ public class Viagem {
 			Query query = con.createQuery("update Viagem set total = :horasTotais, situacao = :situacao where id = :idViagem");
 			query.setParameter("horasTotais", horasTotais);
 			query.setParameter("situacao", "Finalizado");
+			query.setParameter("idViagem", this.id);
+			query.executeUpdate();
+			
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar os dados da viagem: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+	}
+	
+	public void iniciarViagem() {
+		EntityManager con = new ConnectionFactory().getConnection();
+		String dataDeInicio;
+		
+    	int ano = LocalDate.now().getYear();
+    	int dia = LocalDate.now().getDayOfMonth();
+    	int mes = LocalDate.now().getMonthValue();
+    	
+    	if(dia < 10) {
+    		dataDeInicio = ("0" + String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+    	}else {
+    		dataDeInicio = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+    	}
+		
+		this.inicio = dataDeInicio;
+		
+		try {
+			con.getTransaction().begin();
+			
+			
+			Query query = con.createQuery("update Viagem set inicio = :dataDeInicio where id = :idViagem");
+			query.setParameter("dataDeInicio", dataDeInicio);
 			query.setParameter("idViagem", this.id);
 			query.executeUpdate();
 			

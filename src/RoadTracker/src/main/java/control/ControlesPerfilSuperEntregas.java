@@ -6,6 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,6 +38,8 @@ public class ControlesPerfilSuperEntregas implements Initializable {
 
 	Motorista motorista = new Motorista();
 	Veiculo veiculo = new Veiculo();
+	
+	public static boolean atualizarTableViewEComboBox = false;
 	
     @FXML
     private Pane paneSelecionarViagem;
@@ -273,10 +279,28 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     }
     
     
+    void tarefasEmLoop() {
+    	// Considere que cada if aqui dentro é uma "função"
+    	
+    	if(atualizarTableViewEComboBox) {
+    		carregarTableView();
+    		carregarComboBoxs();
+    		atualizarTableViewEComboBox = false;
+    	}
+    	
+    }
+    
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		carregarTableView();
-		carregarComboBoxs();
+	public void initialize(URL location, ResourceBundle resources) {	
+		Timer myTimer = new Timer();
+		myTimer.schedule(new TimerTask(){
+
+
+			@Override
+			public void run() {
+				Platform.runLater(() -> tarefasEmLoop());
+			}
+		}, 0, 1000);
 		
 	}
 

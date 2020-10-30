@@ -6,7 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,6 +32,8 @@ import view.Main;
 
 public class ControlesPerfilAdminAvisos implements Initializable{
 
+	public static boolean carregarInfos = false;
+	
 	@FXML
     private Label labelAvisos;
     @FXML
@@ -61,20 +66,26 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 
     @FXML
     void abrirTelaCadEnt(MouseEvent event) {
-    	Main.trocarTela("Tela Cadastrar Funcionarios");
+    	carregarInfos = true;
     	voltarAvisos();
+    	Main.trocarTela("Tela Cadastrar Funcionarios");
+
     }
     
     @FXML
     void abrirTelaFunc(MouseEvent event) {
-    	Main.trocarTela("Tela Funcionarios");
+    	carregarInfos = true;
     	voltarAvisos();
+    	Main.trocarTela("Tela Funcionarios");
+
     }
     
     @FXML
     void abrirTelaHistEntregas(MouseEvent event) {
-    	Main.trocarTela("Tela Historico de Entregas");
+    	carregarInfos = true;
     	voltarAvisos();
+    	Main.trocarTela("Tela Historico de Entregas");
+
     }
     
     @FXML
@@ -83,12 +94,12 @@ public class ControlesPerfilAdminAvisos implements Initializable{
    		paneAvisoSelecionado.setDisable(true);
 		paneVisualizarAvisos.setDisable(false);
 		paneVisualizarAvisos.setVisible(true);
-		carregarTableViews();	
+    	carregarInfos = true;
     }
     
     @FXML
     void voltar(ActionEvent event) {
-    	carregarTableViews();
+    	carregarInfos = true;
     	if (paneAvisoSelecionado.isVisible()) {
     		paneVisualizarAvisos.setVisible(true);
 			paneVisualizarAvisos.setDisable(false);
@@ -169,8 +180,32 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		tabelaAvisos.setItems(obsListAvisos);
 	}
     
+	
+	
+	
+    void tarefasEmLoop() {
+    	// Considere que cada if aqui dentro é uma "função"
+    	
+    	if(carregarInfos) {
+    		carregarTableViews();
+    		carregarInfos = false;
+    	}
+    	
+    }
+    
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		carregarTableViews();
+
+		
+		Timer myTimer = new Timer();
+		myTimer.schedule(new TimerTask(){
+
+
+			@Override
+			public void run() {
+				Platform.runLater(() -> tarefasEmLoop());
+			}
+		}, 0, 1000);
 	}
 }
