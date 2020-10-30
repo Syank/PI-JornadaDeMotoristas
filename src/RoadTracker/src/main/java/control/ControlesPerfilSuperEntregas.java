@@ -203,6 +203,8 @@ public class ControlesPerfilSuperEntregas implements Initializable {
 		paneSelecionarViagem.setVisible(true);
 		paneSelecionarViagem.setDisable(false);
 		
+		Main.trocarTela("Tela Supervisor Avisos");
+		
     }
 
     @FXML

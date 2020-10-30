@@ -23,7 +23,7 @@
       <VBox alignment="TOP_CENTER" opacity="0.85" prefHeight="450.0" prefWidth="250.0">
          <children>
             <HBox prefHeight="24.0" prefWidth="250.0" />
-            <ImageView fitHeight="117.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="117.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@usuario.png" />
                </image>

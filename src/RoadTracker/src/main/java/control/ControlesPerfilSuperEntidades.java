@@ -518,7 +518,7 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    	paneMotoristaSelecionado.setVisible(false);
 	    	paneMotoristaSelecionado.setDisable(true);
 	    	
-//	    	Main.trocarTela("Tela Avisos");
+	    	Main.trocarTela("Tela Supervisor Avisos");
 	    }
 
 	    @FXML

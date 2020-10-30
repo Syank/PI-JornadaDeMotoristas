@@ -25,6 +25,7 @@ public class Main extends Application {
 	private static Scene tela9;
 	private static Scene tela10;
 	private static Scene tela11;
+	private static Scene tela12;
 
 	private static double offSetX;
 	private static double offSetY;
@@ -70,8 +71,11 @@ public class Main extends Application {
 		Pane fxmlTela11 = FXMLLoader.load(getClass().getResource("FXMLPerfilSuperEntregas.fxml"));
 		tela11 = new Scene(fxmlTela11);
 		
+		Pane fxmlTela12 = FXMLLoader.load(getClass().getResource("FXMLPerfilSuperAvisos.fxml"));
+		tela12 = new Scene(fxmlTela12);
+		
 		// Aplicando o método de mover tela para todas as telas
-		Scene[] telas = {tela1, tela2, tela3, tela4, tela5, tela6, tela7, tela8, tela9, tela10, tela11};
+		Scene[] telas = {tela1, tela2, tela3, tela4, tela5, tela6, tela7, tela8, tela9, tela10, tela11, tela12};
 
 		for(int i = 0; i < telas.length; i++) {
 			telas[i].setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -139,6 +143,8 @@ public class Main extends Application {
 			case "Tela Supervisor Entregas":
 				stage.setScene(tela11);
 				break;
+			case "Tela Supervisor Avisos":
+				stage.setScene(tela12);
 		}
 	}
 	
