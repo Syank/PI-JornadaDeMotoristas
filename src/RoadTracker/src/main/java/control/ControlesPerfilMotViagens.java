@@ -84,7 +84,7 @@ public class ControlesPerfilMotViagens implements Initializable {
             	carregarTableView = true;
             	ControlesPerfilMotViagemAtual.carregarViagem = true;
             	
-            	notificar("Sucesso", "Atualização da situação da viagem", "A viagem foi iniciada com sucesso, verifique mais informações no menu de viagem atual");
+            	notificar("Sucesso", "Atualização da situação da viagem", "A viagem foi iniciada com sucesso, verifique mais informações no menu de 'Jornada atual'");
         	}else {
         		notificar("Falha", "Falha na situação da viagem", "Essa viagem já foi finalizada");
         	}

@@ -219,17 +219,19 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     	viagem = viagem.encontrarViagem(viagemAtual.getId());
     	motorista = motorista.encontrarMotorista(ControlesLogin.cpfLogado);
 		
+    	
   	  	String tempoAtual[] = labelHorasTotais.getText().split(":");
   	  	String segundos = tempoAtual[3];
   	  	String minutos = tempoAtual[2];
   	  	String horas = tempoAtual[1].substring(1);
   	  	String tempoTotal = horas + ":" + minutos + ":" + segundos;
+  	  	
 
   	  	String segundosExpHoje =  "00";
   	  	String minutosExpHoje = "00";
   	  	String horasExpHoje = "00";
   	  	String tempoTotalExpHoje = horasExpHoje + ":" + minutosExpHoje + ":" + segundosExpHoje;
-  	  	if(!labelExpHoje.getText().equals("0h")) {
+  	  	if(!labelExpHoje.getText().contains("0h")) {
   	  	  	String expHojeAtual[] = labelExpHoje.getText().split(":");
   	  	  	segundosExpHoje = expHojeAtual[3];
   	  	  	minutosExpHoje = expHojeAtual[2];
@@ -241,7 +243,7 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
   	  	String minutosAlimHoje = "00";
   	  	String horasAlimHoje = "00";
   	  	String tempoTotalAlimHoje = horasAlimHoje + ":" + minutosAlimHoje + ":" + segundosAlimHoje;
-  	  	if(!labelAlimHoje.getText().equals("0h")) {
+  	  	if(!labelAlimHoje.getText().contains("0h")) {
   	  	  	String alimHojeAtual[] = labelAlimHoje.getText().split(":");
   	  	  	segundosAlimHoje = alimHojeAtual[3];
   	  	  	minutosAlimHoje = alimHojeAtual[2];
@@ -253,7 +255,7 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
   	  	String minutosDescHoje = "00";
   	  	String horasDescHoje = "00";
   	  	String tempoTotalDescHoje = horasDescHoje + ":" + minutosDescHoje + ":" + segundosDescHoje;
-  	  	if(!labelDescHoje.getText().equals("0h")) {
+  	  	if(!labelDescHoje.getText().contains("0h")) {
   	  	  	String descHojeAtual[] = labelDescHoje.getText().split(":");
   	  	  	segundosDescHoje = descHojeAtual[3];
   	  	  	minutosDescHoje = descHojeAtual[2];
@@ -362,7 +364,7 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
         	}else if(Integer.parseInt(desmontado[1]) < mes) {
         		labelAtencao.setVisible(true);
         		labelAtencao.setText("Sua entrega está atrasada! Verifique junto a filial para mais informações.");
-        	}else if(Integer.parseInt(desmontado[0]) < dia) {
+        	}else if(Integer.parseInt(desmontado[0]) < dia && Integer.parseInt(desmontado[1]) <= mes) {
         		labelAtencao.setVisible(true);
         		labelAtencao.setText("Sua entrega está atrasada! Verifique junto a filial para mais informações.");
         	}
