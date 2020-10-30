@@ -17,6 +17,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import model.*;
@@ -198,6 +199,31 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	obsListVeiculos = FXCollections.observableArrayList(veiculos);
     	comboBoxVeiculoViagem.setItems(obsListVeiculos);
     }
+    
+	@FXML
+	public void mascararCpf(KeyEvent event) {
+		String texto = tfCpf.getText();
+		String caracter = event.getCharacter();
+		
+		// Verifica se é um número e se for, aplica a máscara de CPF, porém, caso não seja, não permite a adição do caracter
+		if(caracter.equals("1") || caracter.equals("2") || caracter.equals("3") || caracter.equals("4") ||
+		      caracter.equals("5") || caracter.equals("6") || caracter.equals("7") || caracter.equals("8") ||
+		      caracter.equals("9") || caracter.equals("0")){
+
+			if(texto.length() == 3 || texto.length() == 7) {
+				texto = texto + ".";
+			}else if(texto.length() == 11) {
+				texto = texto + "-";
+			}
+			
+		}else {
+			texto = texto.substring(1, texto.length());
+		}
+		
+		tfCpf.setText(texto);
+		
+		
+	}
     @FXML
     void cadastrarFuncionario(MouseEvent event) {
     	// Todos os funcionários

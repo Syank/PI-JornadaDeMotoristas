@@ -158,7 +158,7 @@
             <VBox layoutX="15.0" layoutY="75.0" prefHeight="218.0" prefWidth="159.0" spacing="15.0">
                <children>
                   <TextField fx:id="tfNome" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Nome" styleClass="customizarInputs" />
-                  <TextField fx:id="tfCpf" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CPF" styleClass="customizarInputs" />
+                  <TextField fx:id="tfCpf" onKeyTyped="#mascararCpf" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CPF" styleClass="customizarInputs" />
                   <TextField fx:id="textFieldEmail" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="E-mail" styleClass="customizarInputs" />
                   <PasswordField fx:id="pfSenha1" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Senha" styleClass="customizarInputs" />
                   <PasswordField fx:id="pfSenha2" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Confirme a senha" styleClass="customizarInputs" />
