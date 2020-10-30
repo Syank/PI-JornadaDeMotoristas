@@ -176,7 +176,7 @@
                   <TextField fx:id="tfEstadoFilial" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Estado da filial (Sigla)" styleClass="customizarInputs" />
                </children>
             </VBox>
-            <TextField fx:id="tfCnpj" layoutX="238.0" layoutY="65.0" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CNPJ" styleClass="customizarInputs" />
+            <TextField fx:id="tfCnpj" layoutX="238.0" layoutY="65.0" onKeyTyped="#mascararCnpj" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CNPJ" styleClass="customizarInputs" />
             <TextField fx:id="tfRntrc" layoutX="238.0" layoutY="117.0" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="RNTRC" styleClass="customizarInputs" />
          </children>
       </Pane>

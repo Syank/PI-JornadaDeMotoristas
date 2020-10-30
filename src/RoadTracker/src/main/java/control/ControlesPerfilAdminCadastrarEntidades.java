@@ -349,11 +349,41 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     // -----------------------------------
     
     // Métodos da pane para cadastro da filial 
+	@FXML
+	public void mascararCnpj(KeyEvent event) {
+		String texto = tfCnpj.getText();
+		String caracter = event.getCharacter();
+
+		
+		// Verifica se é um número e se for, aplica a máscara de CNPJ, porém, caso não seja, não permite a adição do caracter
+		if(caracter.equals("1") || caracter.equals("2") || caracter.equals("3") || caracter.equals("4") ||
+		   caracter.equals("5") || caracter.equals("6") || caracter.equals("7") || caracter.equals("8") ||
+		   caracter.equals("9") || caracter.equals("0")){
+
+			if(texto.length() == 2 || texto.length() == 6) {
+				texto = texto + ".";
+			}else if(texto.length() == 10) {
+				texto = texto + "/";
+			}else if(texto.length() == 16) {
+				texto = texto + "-";
+			}
+
+		}else if(texto.length() > 1){
+			texto = texto.substring(0, texto.length());
+		}
+		
+		if(texto.length() > 19) {
+			texto = texto.substring(0, 19);
+		}
+
+		tfCnpj.setText(texto);
+		tfCnpj.end();
+		
+		
+	}
     @FXML
     void cadastrarFilial(ActionEvent event) {
-    	
     	Filial f = new Filial();
-    	
     	
     	String nome = tfNomeFilial.getText();
     	String cidade = tfCidadeFilial.getText();
@@ -361,13 +391,21 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	String cnpj = tfCnpj.getText();
     	String rntrc = tfRntrc.getText();
     	
+    	boolean cnpjValido = false;
+       	if(!(cnpj.length() < 19)) {
+    		if(cnpj.charAt(2) == '.' && cnpj.charAt(6) == '.' && cnpj.charAt(10) == '/' && cnpj.charAt(16) == '-') {
+    			cnpjValido = true;
+    		}
+    	}	
+       	System.out.println(cnpjValido);
+    	
     	//primeiro verifica se nenhum campo está nulo
-    	if(nome.length() > 1 && cidade.length() > 1 && estado.length() > 1 && cnpj.length() > 1 && rntrc.length() > 1) {
+    	if(nome.length() > 1 && cidade.length() > 1 && estado.length() > 1 && cnpjValido && rntrc.length() > 1) {
     		f.cadastrarFilial(nome, cidade, estado, cnpj, rntrc);
     		notificar("Sucesso de cadastro", "Filial cadastrada", "A filial " + nome + " foi cadastrada com sucesso!");
     		ControlesPerfilAdminEntidades.atualizarInfos = true;
     	}else{
-    		notificar("Falha de cadastro", "Falha ao cadastrar a filial", "Preencha todos os campos.");	
+    		notificar("Falha de cadastro", "Falha ao cadastrar a filial", "Verifique os campos");	
     		}
     	
     	
@@ -806,6 +844,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 		paneAvisosSucesso.setVisible(false);
 		paneAvisosFalha.setDisable(true);
 		paneAvisosFalha.setVisible(false);
+		
 		limparCamposCadastrarFuncionarios();
 		limparCamposCadastrarFiliais();
 		limparCamposCadastrarViagens();

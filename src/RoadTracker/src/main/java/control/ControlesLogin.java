@@ -59,7 +59,6 @@ public class ControlesLogin implements Initializable{
     	String cpfFunc = funcionario.verificarLogin(loginDado);
     	String cpfMot = motorista.verificarLogin(loginDado);
     	
-    	System.out.println(cpfFunc);
     	
     	funcionario = funcionario.encontrarFuncionario(cpfFunc);
     	motorista = motorista.encontrarMotorista(cpfMot);
@@ -172,12 +171,12 @@ public class ControlesLogin implements Initializable{
 		
 		// Verifica se já existe uma Filial no banco de dados para cadastrar o admin root
 		if(!(filial.encontrarFilial(1) != null)) {
-			filial.cadastrarFilial("Filial Central", "São José dos Campos", "SP", "00000000000000", "00000000");
+			filial.cadastrarFilial("Filial Central", "São José dos Campos", "SP", "00.000.000/0000-00", "00000000");
 		}
 		
 		// Verifica se já existe a conta do admin root, se não, a cria
-		if(!(func.encontrarFuncionario("00000000000") != null)) {
-			func.cadastrarFuncionario("Admin User", "00000000000", "root", "Administrador", 1, "adminuser@root.com");
+		if(!(func.encontrarFuncionario("000.000.000-00") != null)) {
+			func.cadastrarFuncionario("Admin User", "000.000.000-00", "root", "Administrador", 1, "adminuser@root.com");
 		}
 		
 	}
