@@ -77,6 +77,7 @@ public class ControlesLogin implements Initializable{
     				if (funcionario.getCargo().equals("Supervisor")) {
     					Main.trocarTela("Tela Inicial Supervisor");
     					ControlesPerfilSuperEntregas.atualizarTableViewEComboBox = true;
+    					ControlesPerfilSuperEntidades.atualizarTableViewEComboBox = true;
     				}
     				else {
     					Main.trocarTela("Tela Boas Vindas");

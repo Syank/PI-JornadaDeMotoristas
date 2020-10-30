@@ -343,7 +343,16 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			textFieldEmail.setText(motorista.getEmail());
 			textFieldSalarioMotorista.setText(motorista.getSalario());
 			cbCargo.getSelectionModel().select(0);
-			cbFilial.getSelectionModel().select(motorista.getFilial().getId() - 1);
+			
+		   	int seguranca = 0;
+	    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
+	    	while(!motorista.getNome().equals(cbFilial.getSelectionModel().getSelectedItem().getNome())) {
+	    		cbFilial.getSelectionModel().selectNext();
+	    		seguranca++;
+	    		if(seguranca > 100) {
+	    			break;
+	    		}
+	    	}
 			
 			if (motorista.getTurno().equals("Matutino")) {
 				cbTurno.getSelectionModel().select(0);
@@ -395,8 +404,16 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 				cbCargo.getSelectionModel().select(2);
 			}
 	
-			// Filial
-			cbFilial.getSelectionModel().select(funcionario.getFilial().getId() - 1);
+			// Filial		
+		   	int seguranca = 0;
+	    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
+	    	while(!funcionario.getNome().equals(cbFilial.getSelectionModel().getSelectedItem().getNome())) {
+	    		cbFilial.getSelectionModel().selectNext();
+	    		seguranca++;
+	    		if(seguranca > 100) {
+	    			break;
+	    		}
+	    	}
 	
 		}
 	}
@@ -653,6 +670,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 	void carregarInfoVeiculo() {
 		Veiculo veiculo = new Veiculo();
+		Filial filial = new Filial().encontrarFilial(veiculo.getFilial().getId());
 		veiculo = veiculo.encontrarVeiculo(placaVeiculo);
 
 		textFieldMarcaRastreador.setText(veiculo.getMarca_rastreador());
@@ -660,7 +678,15 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldIDRastreador.setText(String.valueOf(veiculo.getId_rastreador()));
 		textFieldPlacaVeiculo.setText(veiculo.getPlaca());
 		textFieldModeloRastreador.setText(veiculo.getModelo_rastreador());
-		comboBoxFilialVeiculo.getSelectionModel().select(veiculo.getFilial().getId() - 1);
+	   	int seguranca = 0;
+    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
+    	while(!filial.getNome().equals(comboBoxFilialVeiculo.getSelectionModel().getSelectedItem().getNome())) {
+    		comboBoxFilialVeiculo.getSelectionModel().selectNext();
+    		seguranca++;
+    		if(seguranca > 100) {
+    			break;
+    		}
+    	}
 	}
 	//TA TUDO ERRADOOO
 	@FXML 
