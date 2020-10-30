@@ -29,14 +29,22 @@ public class Testes {
 		int segundos = dia.getSeconds();
 
 */			
-		String texto[] = "asdasd: 00:00:00".split(":");
+//		String texto[] = "asdasd: 00:00:00".split(":");
 //		String data = Integer.toString(hora) + ":" + Integer.toString(minutos) + ":" + Integer.toString(segundos);
-		System.out.println(texto.length);
+//		System.out.println(texto.length);
 	
 		
 	//	Aviso aviso = new Aviso();
 		
 	//	aviso.solicitarCadastro("00000000000", "Solicito o cadastro do motorista a seguir:\n- João da Silva\n- CPF: 123");
+		
+		String caracteresValidos = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvXxWwYyZz-0123456789";
+		char listaCaracteresValidos[] = caracteresValidos.toCharArray();
+		for (int i = 0; i < listaCaracteresValidos.length; i++) {
+			System.out.print(listaCaracteresValidos[i]);
+			System.out.print(' ');
+		}
+
 	
 	}
 }

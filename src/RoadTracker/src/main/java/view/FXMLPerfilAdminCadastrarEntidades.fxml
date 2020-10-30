@@ -188,7 +188,7 @@
                   <TextField fx:id="textFieldModeloRastreador" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Versão do Rastreador" styleClass="customizarInputs" />
                   <TextField fx:id="textFieldIDRastreador" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="ID do Rastreador" styleClass="customizarInputs" />
                   <TextField fx:id="textFieldModeloVeiculo" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Modelo do Veículo" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldPlacaVeiculo" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Placa do Veículo" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldPlacaVeiculo" onKeyTyped="#mascararPlaca" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Placa do Veículo" styleClass="customizarInputs" />
                </children>
             </VBox>
             <Button layoutX="21.0" layoutY="305.0" mnemonicParsing="false" onAction="#cadastrarVeiculo" prefHeight="30.0" prefWidth="106.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />

@@ -134,6 +134,12 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     private TextField textFieldModeloVeiculo;
     @FXML
     private ComboBox<Filiais> comboBoxEscolherFilialVeiculos;
+    
+	String caracteresValidos = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvXxWwYyZz-0123456789";
+	String caracteresMaiusculosValidos = "ABCDEFGHIJKLMNOPQRSTUVXWYZ";
+	String numerosValidos = "0123456789";
+	char listaCaracteresValidos[] = caracteresValidos.toCharArray();
+	char listaCaracteresMaiusculosValidos[] = caracteresMaiusculosValidos.toCharArray();
     // ----------------------------------------
     
     
@@ -204,23 +210,29 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 	public void mascararCpf(KeyEvent event) {
 		String texto = tfCpf.getText();
 		String caracter = event.getCharacter();
+
 		
 		// Verifica se é um número e se for, aplica a máscara de CPF, porém, caso não seja, não permite a adição do caracter
 		if(caracter.equals("1") || caracter.equals("2") || caracter.equals("3") || caracter.equals("4") ||
-		      caracter.equals("5") || caracter.equals("6") || caracter.equals("7") || caracter.equals("8") ||
-		      caracter.equals("9") || caracter.equals("0")){
+				caracter.equals("5") || caracter.equals("6") || caracter.equals("7") || caracter.equals("8") ||
+				caracter.equals("9") || caracter.equals("0")){
 
 			if(texto.length() == 3 || texto.length() == 7) {
 				texto = texto + ".";
 			}else if(texto.length() == 11) {
 				texto = texto + "-";
 			}
-			
-		}else {
-			texto = texto.substring(1, texto.length());
+
+		}else if(texto.length() > 1){
+			texto = texto.substring(0, texto.length());
 		}
 		
+		if(texto.length() > 14) {
+			texto = texto.substring(0, 14);
+		}
+
 		tfCpf.setText(texto);
+		tfCpf.end();
 		
 		
 	}
@@ -235,8 +247,15 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	int filial = cbFilial.getValue().getId();
     	String email = textFieldEmail.getText();
     	
+    	// Verifica se o CPF é válido
+    	boolean cpfValido = false;
+    	if(!(cpf.length() < 14)) {
+    		if(cpf.charAt(3) == '.' && cpf.charAt(7) == '.' && cpf.charAt(11) == '-') {
+        		cpfValido = true;
+    		}
+    	}
     	
-    	if(cpf.length() == 11) {
+    	if(cpfValido) {
         	Funcionario funcionario = new Funcionario();
 
     		// Primeiro verifica se o cpf não está sendo usado, depois verifica se o email não está sendo usado
@@ -323,7 +342,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	}
     	else {
     		notificar("Falha de cadastro", "CPF inválido", "O CPF informado é inválido, "
-    				+ "por favor confira o campo e insira um CPF, somente os números, de 11 dígitos");
+    				+ "por favor confira o campo");
     	}
 
     }
@@ -361,6 +380,37 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     
     // Métodos para cadastro de veículos
     @FXML
+    public void mascararPlaca(KeyEvent event){
+		String texto = textFieldPlacaVeiculo.getText();
+		String caracter = event.getCharacter();
+		boolean validado = false;
+		
+		for(int i = 0; i < listaCaracteresValidos.length; i++) {
+			if(listaCaracteresValidos[i] == caracter.charAt(0)) {
+				validado = true;
+				break;
+			}
+		}
+		
+		if(validado) {
+			if(texto.length() == 3) {
+				texto = texto + "-";
+			}
+
+			if(texto.length() > 1){
+				texto = texto.substring(0, texto.length());
+			}
+
+			if(texto.length() > 8) {
+				texto = texto.substring(0, 8);
+			}
+			
+			textFieldPlacaVeiculo.setText(texto.toUpperCase());
+			textFieldPlacaVeiculo.end();
+		}
+
+    }
+    @FXML
     void cadastrarVeiculo(ActionEvent event) {
         	
         Veiculo veic = new Veiculo();
@@ -372,9 +422,27 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
             String marca_rastreador = textFieldMarcaRastreador.getText();
             String modelo_rastreador = textFieldModeloRastreador.getText();
         	int filial = comboBoxEscolherFilialVeiculos.getValue().getId();
-            
+        	
+        	boolean placaValida = false;
+        	if(placa.length() == 8) {
+        		if(caracteresMaiusculosValidos.contains(String.valueOf(placa.charAt(0))) && 
+        				caracteresMaiusculosValidos.contains(String.valueOf(placa.charAt(1))) &&
+        				caracteresMaiusculosValidos.contains(String.valueOf(placa.charAt(2))) &&
+        				(placa.charAt(3) == '-') &&
+        				numerosValidos.contains(String.valueOf(placa.charAt(4))) &&
+        				numerosValidos.contains(String.valueOf(placa.charAt(5))) &&
+        				numerosValidos.contains(String.valueOf(placa.charAt(6))) &&
+        				numerosValidos.contains(String.valueOf(placa.charAt(7)))){
+
+        			placaValida = true;
+        		}
+        	}
+        	
+        	if(!placaValida) {
+        		System.out.println("Placa inválida!");
+        	}
         	//primeiro verifica se nenhum campo está nulo (NÃO VERIFICA SE FOI SELECIONADO UMA FILIAL)
-        	if(placa.length() >= 1 && modelo_veiculo.length() >= 1 && id_rastreador.length() >= 1 && marca_rastreador.length() >= 1 && modelo_rastreador.length() >= 1) {
+        	if(placaValida && modelo_veiculo.length() >= 1 && id_rastreador.length() >= 1 && marca_rastreador.length() >= 1 && modelo_rastreador.length() >= 1) {
         		veic.cadastrarVeiculo(placa, modelo_veiculo, id_rastreador, marca_rastreador, modelo_rastreador, filial);
         		notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
         		ControlesPerfilAdminEntidades.atualizarInfos = true;

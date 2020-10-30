@@ -663,15 +663,16 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			abrirTelaVeiculoSelecionado(event);
 
 			carregarInfoVeiculo();
-		}catch (NullPointerException falha) {
+		}catch (Exception falha) {
+			System.out.println(falha);
 			notificar("Falha", "Entidade não selecionada", "Nenhum veículo foi selecionado na lista, por favor selecione um e tente novamente");
 		}
 	}
 
 	void carregarInfoVeiculo() {
-		Veiculo veiculo = new Veiculo();
+		Veiculo veiculo = new Veiculo().encontrarVeiculo(placaVeiculo);
 		Filial filial = new Filial().encontrarFilial(veiculo.getFilial().getId());
-		veiculo = veiculo.encontrarVeiculo(placaVeiculo);
+
 
 		textFieldMarcaRastreador.setText(veiculo.getMarca_rastreador());
 		textFieldModeloVeiculo.setText(veiculo.getModelo_veiculo());
@@ -680,7 +681,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		textFieldModeloRastreador.setText(veiculo.getModelo_rastreador());
 	   	int seguranca = 0;
     	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
-    	while(!filial.getNome().equals(comboBoxFilialVeiculo.getSelectionModel().getSelectedItem().getNome())) {
+	   	comboBoxFilialVeiculo.getSelectionModel().selectFirst();
+	   	while(!filial.getNome().equals(comboBoxFilialVeiculo.getSelectionModel().getSelectedItem().getNome())) {
     		comboBoxFilialVeiculo.getSelectionModel().selectNext();
     		seguranca++;
     		if(seguranca > 100) {
