@@ -241,7 +241,7 @@ public class Funcionario {
 			cpf = list.toString();
 			
 			if(cpf.length() > 3) {
-				cpf = cpf.substring(1, 12);
+				cpf = cpf.substring(1, cpf.length() - 1);
 			}else {
 				cpf = "Não encontrado";
 			}

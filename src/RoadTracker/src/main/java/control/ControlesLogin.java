@@ -59,6 +59,8 @@ public class ControlesLogin implements Initializable{
     	String cpfFunc = funcionario.verificarLogin(loginDado);
     	String cpfMot = motorista.verificarLogin(loginDado);
     	
+    	System.out.println(cpfFunc);
+    	
     	funcionario = funcionario.encontrarFuncionario(cpfFunc);
     	motorista = motorista.encontrarMotorista(cpfMot);
     	
@@ -78,6 +80,7 @@ public class ControlesLogin implements Initializable{
     					Main.trocarTela("Tela Inicial Supervisor");
     					ControlesPerfilSuperEntregas.atualizarTableViewEComboBox = true;
     					ControlesPerfilSuperEntidades.atualizarTableViewEComboBox = true;
+    					ControlesPerfilSuperAvisos.atualizarInfos = true;
     				}
     				else {
     					Main.trocarTela("Tela Boas Vindas");

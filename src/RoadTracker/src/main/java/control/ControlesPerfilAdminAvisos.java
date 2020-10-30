@@ -60,8 +60,10 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     private DatePicker dataDoAviso;
     @FXML
     private Pane paneAvisoSelecionado;
+    
 	private List<Avisos> listaAvisos = new ArrayList<>();
 	private ObservableList<Avisos> obsListAvisos;
+	
 	private int idAviso;
 
     @FXML

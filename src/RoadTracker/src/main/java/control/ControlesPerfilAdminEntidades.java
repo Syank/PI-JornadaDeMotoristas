@@ -406,6 +406,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	
 			// Filial		
 		   	int seguranca = 0;
+		   	cbFilial.getSelectionModel().selectFirst();
 	    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
 	    	while(!funcionario.getNome().equals(cbFilial.getSelectionModel().getSelectedItem().getNome())) {
 	    		cbFilial.getSelectionModel().selectNext();

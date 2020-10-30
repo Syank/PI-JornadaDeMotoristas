@@ -209,6 +209,7 @@ public class ControlesPerfilSuperEntregas implements Initializable {
 		paneSelecionarViagem.setVisible(true);
 		paneSelecionarViagem.setDisable(false);
 		
+		ControlesPerfilSuperAvisos.atualizarInfos = true;
 		Main.trocarTela("Tela Supervisor Avisos");
 		
     }
