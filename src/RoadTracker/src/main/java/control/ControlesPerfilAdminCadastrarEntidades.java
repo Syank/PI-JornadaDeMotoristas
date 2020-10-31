@@ -404,6 +404,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     		f.cadastrarFilial(nome, cidade, estado, cnpj, rntrc);
     		notificar("Sucesso de cadastro", "Filial cadastrada", "A filial " + nome + " foi cadastrada com sucesso!");
     		ControlesPerfilAdminEntidades.atualizarInfos = true;
+    		ControlesPerfilAdminHistEntregas.atualizarInfos = true;
     	}else{
     		notificar("Falha de cadastro", "Falha ao cadastrar a filial", "Verifique os campos");	
     		}

@@ -123,8 +123,11 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     
 	@FXML
 	void requisitarAlteracao(ActionEvent event) {
-		funcao = "Veiculo";
-		notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar as alterações nos dados");
+		System.out.println(comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca());
+		if(!comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca().equals("Selecione um veículo...")) {
+			funcao = "Veiculo";
+			notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar as alterações nos dados");	
+		}
 	}
 	
     
@@ -138,7 +141,13 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
         	int mes = datePickerPrazo.getValue().getMonthValue();
         	int ano = datePickerPrazo.getValue().getYear();
         	
-        	String prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+        	String prazo;
+        	
+        	if(dia < 10) {
+            	prazo = ("0" + String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+        	}else {
+            	prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+        	}
         	
         	viagem.alterarDadosViagem(prazo, textFieldDestino.getText(),
         							  comboBoxMotorista.getSelectionModel().getSelectedItem().getCpf(), 
@@ -232,7 +241,6 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	datePickerPrazo.setValue(localDate);
     	
     	comboBoxMotorista.getSelectionModel().selectFirst();
-    	
     	int seguranca = 0;
     	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
     	while(!viagem.getMotorista().getNome().equals(comboBoxMotorista.getSelectionModel().getSelectedItem().getNome())) {
@@ -246,12 +254,11 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	
     	
     	//Esse aqui ta meio bugado, esse não é a forma correta de fazer, mas da forma correta não funciona :/
-    	String placa = viagem.getVeiculo().getPlaca();
-    	Veiculos placaSelecionada = comboBoxVeiculo.getSelectionModel().getSelectedItem();
-    	
+
+    	comboBoxVeiculo.getSelectionModel().selectFirst();
     	int seguranca1 = 0;
     	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao veiculo da viagem  	
-    	while(!placa.equals(placaSelecionada)) {
+    	while(!viagem.getVeiculo().getPlaca().equals(comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca())) {
     		comboBoxVeiculo.getSelectionModel().selectNext();
     		seguranca1++;
     		if(seguranca1 > 100) {
@@ -318,11 +325,14 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     }
     
     private void carregarComboBoxs() {
+    	
     	listaDeMotoristas = motorista.listarMotoristas();
     	obsListMotorista = FXCollections.observableArrayList(listaDeMotoristas);
 		comboBoxMotorista.setItems(obsListMotorista);
 
+		
     	listaDeVeiculos = veiculo.listarVeiculos();
+    	listaDeVeiculos.add(0, new Veiculos(0, "Selecione um veículo..."));
     	obsListVeiculo = FXCollections.observableArrayList(listaDeVeiculos);
 		comboBoxVeiculo.setItems(obsListVeiculo);
 
