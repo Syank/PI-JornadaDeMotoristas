@@ -31,11 +31,13 @@ import javafx.scene.layout.VBox;
 import model.Aviso;
 import model.Filial;
 import model.Motorista;
+import model.Veiculo;
 import model.Viagem;
 import view.Filiais;
 import view.Funcionarios;
 import view.Main;
 import view.Turnos;
+import view.Veiculos;
 import view.Viagens;
 
 public class ControlesPerfilSuperEntidades implements Initializable{
@@ -171,7 +173,37 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	private Label labelAvisosTextoConfirmar;
 	@FXML
 	private PasswordField passwordFieldConfirmarSenha;
-
+	@FXML
+	private Pane paneVeiculos;
+	@FXML
+	private TableView<Veiculos> tabelaVeiculos;
+	@FXML
+	private TableColumn<?, ?> colunaPlaca;
+	@FXML
+	private TableColumn<?, ?> colunaIDVeiculo;
+	@FXML
+	private TextField campoDeBuscaVeiculo;
+	@FXML
+	private TextField campoDeBuscaIDVeiculo;
+	@FXML
+	private Pane paneVeiculoSelecionado;
+	@FXML
+	private TextField textFieldMarcaRastreador;
+	@FXML
+	private TextField textFieldModeloRastreador;
+	@FXML
+	private TextField textFieldIDRastreador;
+	@FXML
+	private TextField textFieldModeloVeiculo;
+	@FXML
+	private Button botaoSalvarAlteracoesVeiculo;
+	@FXML
+	private Button botaoDescartarAlteracoesVeiculo;
+	@FXML
+	private TextField textFieldPlacaVeiculo;
+	@FXML
+	private ComboBox<Filiais> comboBoxFilialVeiculo;
+	
 	private String cpfMotorista;
 
 	private List<Turnos> turnos = new ArrayList<>();
@@ -196,6 +228,21 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 
 	private List<TextField> textfieldsDeCpf = new ArrayList<TextField>();
 	
+	private String placaVeiculo;
+	
+	private List<Veiculos> listaDeVeiculos = new ArrayList<>();
+	private ObservableList<Veiculos> obsListVeiculos;
+	
+	private List<Veiculos> listaDeVeiculosPesquisa = new ArrayList<>();
+	private ObservableList<Veiculos> obsListVeiculosPesquisa;
+	
+	private List<TextField> textfieldsDePlacas = new ArrayList<TextField>();
+	
+	String caracteresValidos = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvXxWwYyZz-0123456789";
+	String caracteresMaiusculosValidos = "ABCDEFGHIJKLMNOPQRSTUVXWYZ";
+	String numerosValidos = "0123456789";
+	char listaCaracteresValidos[] = caracteresValidos.toCharArray();
+	char listaCaracteresMaiusculosValidos[] = caracteresMaiusculosValidos.toCharArray();
 	
 
 	public void carregarComboBoxTurnos() {
@@ -211,9 +258,14 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 		cbFilial.setItems(filiaisList);
 		comboBoxCadastroFilial.setItems(filiaisList);
 
-
 	}
 
+	public void carregarComboBox() {
+		filiais = filial.listarFiliais();
+		filiaisList = FXCollections.observableArrayList(filiais);
+		cbFilial.setItems(filiaisList);
+		comboBoxFilialVeiculo.setItems(filiaisList);
+	}
 
 	@FXML
 	void descartarAlteracoes(ActionEvent event) {
@@ -572,6 +624,191 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 			tabelaFuncionarios.setItems(obsListMotoristas);
 		}
 	}
+	
+	@FXML
+	void requisitarAlteracaoVeiculo(ActionEvent event) {
+		funcao = "Veiculo";
+		notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar as alterações nos dados");
+	}
+	
+	@FXML
+	void habilitarEdicaoVeiculo(ActionEvent event) {
+		textFieldMarcaRastreador.setDisable(false);
+		textFieldModeloVeiculo.setDisable(false);
+		textFieldIDRastreador.setDisable(false);
+		textFieldModeloRastreador.setDisable(false);
+		comboBoxFilialVeiculo.setDisable(false);
+		botaoSalvarAlteracoesVeiculo.setDisable(false);
+		botaoDescartarAlteracoesVeiculo.setDisable(false);
+	}
+	
+	@FXML
+    public void mascararPlaca(KeyEvent event){
+		String caracter = event.getCharacter();
+		
+		textfieldsDePlacas.forEach(textfield -> {
+			if(event.getSource().equals(textfield)) {
+				String texto = textfield.getText();
+
+				boolean validado = false;
+
+				for(int i = 0; i < listaCaracteresValidos.length; i++) {
+					if(listaCaracteresValidos[i] == caracter.charAt(0)) {
+						validado = true;
+						break;
+					}
+				}
+
+				if(validado) {
+					if(texto.length() == 3) {
+						texto = texto + "-";
+					}
+
+					if(texto.length() > 1){
+						texto = texto.substring(0, texto.length());
+					}
+
+					if(texto.length() > 8) {
+						texto = texto.substring(0, 8);
+					}
+
+					textfield.setText(texto.toUpperCase());
+					textfield.end();
+				}
+
+			}	
+		});
+
+    }
+	
+	@FXML
+	void pesquisarVeiculo(ActionEvent event) {
+		if(!campoDeBuscaVeiculo.getText().isEmpty() || !campoDeBuscaIDVeiculo.getText().isEmpty()){
+			String placaRequisitado = campoDeBuscaVeiculo.getText().toUpperCase();
+			String rastreadorRequisitado = campoDeBuscaIDVeiculo.getText().toUpperCase();
+			
+			// Caso não existe nada no campo pesquisado, ele retorna "", uma string vazia, porém "" existe em todas as strings
+			//então é necessário criar um pequeno filtro para ele não retornar pesquisas incorretas e pesquisar de acordo com os campos preenchidos
+			listaDeVeiculos.forEach(veiculo -> {
+				boolean placa = false;
+				boolean rastreador = false;
+				boolean tudo = false;
+				
+				// Nessa parte ele checa se está utilizando todos os campos de pesquisa ou somente alguns
+				if(!campoDeBuscaVeiculo.getText().isEmpty() && !campoDeBuscaIDVeiculo.getText().isEmpty()) {
+					tudo = true;
+				}else {
+					if(!campoDeBuscaVeiculo.getText().isEmpty()) {
+						placa = true;
+					}
+					if(!campoDeBuscaIDVeiculo.getText().isEmpty()) {
+						rastreador = true;
+					}
+				}
+
+				// Aqui ele faz definitivamente a pesquisa, de acordo com estar utilizando todos os campos ou não
+				if(tudo && veiculo.getPlaca().toUpperCase().contains(placaRequisitado) && String.valueOf(veiculo.getId_rastreador()).contains(rastreadorRequisitado)) {
+					listaDeVeiculosPesquisa.add(veiculo);
+				}else if(placa && veiculo.getPlaca().toUpperCase().contains(placaRequisitado)) {
+					listaDeVeiculosPesquisa.add(veiculo);
+				}else if(rastreador && String.valueOf(veiculo.getId_rastreador()).contains(rastreadorRequisitado)) {
+					listaDeVeiculosPesquisa.add(veiculo);
+				}
+			});
+
+			obsListVeiculosPesquisa = FXCollections.observableArrayList(listaDeVeiculosPesquisa);
+
+			tabelaVeiculos.setItems(obsListVeiculosPesquisa);
+
+			// Limpa as listas para não acumular com a próxima pesquisa
+			listaDeVeiculosPesquisa.clear();
+		}else {
+			// Se não houver nada escrito nos campos, reseta a tabela mostrando todo o conteúdo
+			tabelaVeiculos.setItems(obsListVeiculos);
+		}
+	}
+	@FXML
+	void salvarDadosAlteradosVeiculo(ActionEvent event) {
+		Veiculo veiculo = new Veiculo();
+		
+		if(confirmado) {
+			veiculo.alterarDadosVeiculo(textFieldPlacaVeiculo.getText(), textFieldModeloVeiculo.getText(),
+					textFieldIDRastreador.getText(), textFieldMarcaRastreador.getText(),
+					textFieldModeloRastreador.getText(), comboBoxFilialVeiculo.getValue().getId());
+
+			notificar("Sucesso", "Dados alterados",
+					"Os dados do veículo de placa " + textFieldPlacaVeiculo.getText() + " foram alterados com sucesso!");
+
+			desabilitarEdicao();
+			atualizarTableViewEComboBox = true;
+			
+		}
+		else {
+			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
+		}
+		
+		confirmado = false;
+		funcao = "";
+	}
+	
+	@FXML
+	void descartarAlteracoesVeiculo(ActionEvent event) {
+		Veiculo veiculo = new Veiculo();
+		veiculo = veiculo.encontrarVeiculo(placaVeiculo);
+
+		textFieldMarcaRastreador.setText(veiculo.getMarca_rastreador());
+		textFieldModeloVeiculo.setText(veiculo.getModelo_veiculo());
+		textFieldIDRastreador.setText(String.valueOf(veiculo.getId_rastreador()));
+		textFieldPlacaVeiculo.setText(veiculo.getPlaca());
+		textFieldModeloRastreador.setText(veiculo.getModelo_rastreador());
+
+		desabilitarEdicao();
+	}
+	
+	@FXML
+	void selecionarVeiculo(ActionEvent event) {
+//		try {
+			Veiculos selecionado = tabelaVeiculos.getSelectionModel().getSelectedItem();
+			placaVeiculo = selecionado.getPlaca();
+			abrirTelaVeiculoSelecionado(event);
+
+			carregarInfoVeiculo();
+//		}catch (Exception falha) {
+//			System.out.println(falha);
+//			notificar("Falha", "Entidade não selecionada", "Nenhum veículo foi selecionado na lista, por favor selecione um e tente novamente");
+//		}
+	}
+	
+	void carregarInfoVeiculo() {
+		Veiculo veiculo = new Veiculo().encontrarVeiculo(placaVeiculo);
+		Filial filial = new Filial().encontrarFilial(veiculo.getFilial().getId());
+
+
+		textFieldMarcaRastreador.setText(veiculo.getMarca_rastreador());
+		textFieldModeloVeiculo.setText(veiculo.getModelo_veiculo());
+		textFieldIDRastreador.setText(String.valueOf(veiculo.getId_rastreador()));
+		textFieldPlacaVeiculo.setText(veiculo.getPlaca());
+		textFieldModeloRastreador.setText(veiculo.getModelo_rastreador());
+	   	int seguranca = 0;
+    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
+	   	comboBoxFilialVeiculo.getSelectionModel().selectFirst();
+	   	while(!filial.getNome().equals(comboBoxFilialVeiculo.getSelectionModel().getSelectedItem().getNome())) {
+    		comboBoxFilialVeiculo.getSelectionModel().selectNext();
+    		seguranca++;
+    		if(seguranca > 100) {
+    			break;
+    		}
+    	}
+	}
+	
+	@FXML
+	void abrirTelaVeiculoSelecionado(ActionEvent event) {
+		paneVeiculos.setVisible(false);
+		paneVeiculoSelecionado.setVisible(true);
+
+		paneVeiculos.setDisable(true);
+		paneVeiculoSelecionado.setDisable(false);
+	}
 
 	@FXML
 	void abrirTelaSolicitarCadastro(MouseEvent event) {
@@ -608,6 +845,15 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 
 		paneMotoristaSelecionado.setVisible(false);
 		paneMotoristaSelecionado.setDisable(true);
+	}
+	
+	@FXML
+	void abrirTelaVeiculos(MouseEvent event) {
+		paneSelecionarOpcao.setVisible(false);
+		paneSelecionarOpcao.setDisable(true);
+		
+		paneVeiculos.setVisible(true);
+		paneVeiculos.setDisable(false);
 	}
 
 	@FXML
@@ -679,7 +925,21 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 
 			paneSelecionarOpcao.setVisible(true);
 			paneSelecionarOpcao.setDisable(false);
-		}else {
+		}else if(paneVeiculoSelecionado.isVisible()){
+			paneVeiculoSelecionado.setVisible(false);
+			paneVeiculoSelecionado.setDisable(true);
+			
+			paneVeiculos.setVisible(true);
+			paneVeiculos.setDisable(false);
+		}else if(paneVeiculos.isVisible()) {
+			paneVeiculos.setVisible(false);
+			paneVeiculos.setDisable(true);
+			
+			paneSelecionarOpcao.setVisible(true);
+			paneSelecionarOpcao.setDisable(false);
+			
+		}
+		else {
 			Main.trocarTela("Tela Login");
 		}
 	}
@@ -717,6 +977,15 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 
 		btnSalvar.setDisable(true);
 		btnDescartar.setDisable(true);
+		
+		textFieldMarcaRastreador.setDisable(true);
+		textFieldModeloVeiculo.setDisable(true);
+		textFieldIDRastreador.setDisable(true);
+		textFieldPlacaVeiculo.setDisable(true);
+		botaoSalvarAlteracoesVeiculo.setDisable(true);
+		botaoDescartarAlteracoesVeiculo.setDisable(true);
+		comboBoxFilialVeiculo.setDisable(true);
+		textFieldModeloRastreador.setDisable(true);
 	}
 
 
@@ -767,6 +1036,9 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 		case "Funcionario":
 			alterarDados(event);
 			break;
+		case "Veiculo":
+			salvarDadosAlteradosVeiculo(event);
+			break;
 		}
 
 	}
@@ -789,20 +1061,27 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 
 	void carregarTableView() {
 		Motorista motorista = new Motorista();
+		Veiculo veiculo = new Veiculo();
 
 		listaDeMotoristas = motorista.listarMotoristas();
+		listaDeVeiculos = veiculo.listarVeiculos();
 
 		// Transforma a array primitiva em Observable Array
 		obsListMotoristas = FXCollections.observableArrayList(listaDeMotoristas);
+		obsListVeiculos = FXCollections.observableArrayList(listaDeVeiculos);
 
 		// "Habilita" as colunas da tableView para receber o valor retornado da classe
 		// Listas, nos seus métodos get
 		colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		colunaCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		colunaCargo.setCellValueFactory(new PropertyValueFactory<>("cargo"));
+		
+		colunaIDVeiculo.setCellValueFactory(new PropertyValueFactory<>("id_rastreador"));
+		colunaPlaca.setCellValueFactory(new PropertyValueFactory<>("placa"));
 
 		// Adiciona a Observable Array na TableView
 		tabelaFuncionarios.setItems(obsListMotoristas);
+		tabelaVeiculos.setItems(obsListVeiculos);
 
 	}
 
@@ -813,6 +1092,7 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 		if(atualizarTableViewEComboBox) {
 			carregarTableView();
 			carregarComboBoxFiliais();
+			carregarComboBox();
 			atualizarTableViewEComboBox = false;
 		}
 
@@ -825,6 +1105,9 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 		textfieldsDeCpf.add(campoDeBuscaCpf);
 		textfieldsDeCpf.add(tfCpf);
 		textfieldsDeCpf.add(textFieldCadastroCpf);
+		
+		textfieldsDePlacas.add(textFieldPlacaVeiculo);
+		textfieldsDePlacas.add(campoDeBuscaVeiculo);
 		
 		Timer myTimer = new Timer();
 		myTimer.schedule(new TimerTask(){

@@ -36,9 +36,11 @@
                         <Image url="@funcionarios.png" />
                      </image>
                   </ImageView>
-                  <HBox layoutX="163.0" layoutY="10.0" prefHeight="59.0" prefWidth="29.0" />
-                  <Label prefWidth="76.0" text="Motoristas" textFill="WHITE" />
-                  <HBox layoutX="106.0" layoutY="10.0" prefHeight="59.0" prefWidth="27.0" />
+                  <HBox layoutX="163.0" layoutY="10.0" prefHeight="59.0" prefWidth="20.0" />
+                  <Label prefHeight="17.0" prefWidth="117.0" text="Motoristas e Veículos" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="7.0" />
+                     </HBox.margin></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="203.0" prefHeight="58.0" prefWidth="250.0">
