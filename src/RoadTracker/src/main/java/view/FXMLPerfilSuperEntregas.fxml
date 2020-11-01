@@ -146,21 +146,24 @@
          <children>
             <VBox layoutX="35.0" layoutY="32.0" prefHeight="200.0" prefWidth="136.0" spacing="20.0">
                <children>
-                  <TextField fx:id="textFieldId" editable="false" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="ID" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldInicio" editable="false" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Inicio" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldTotal" editable="false" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Total" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldId" disable="true" editable="false" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="ID" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldInicio" disable="true" editable="false" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Inicio" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldTotal" disable="true" editable="false" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Total" styleClass="customizarInputs" />
                   <DatePicker fx:id="datePickerPrazo" disable="true" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Prazo" styleClass="customizarInputs" />
                </children>
             </VBox>
             <VBox layoutX="250.0" layoutY="32.0" prefHeight="253.0" prefWidth="148.0" spacing="20.0">
                <children>
-                  <TextField fx:id="textFieldDestino" editable="false" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Destino" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldCarga" editable="false" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Carga" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldSituacao" editable="false" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Situação" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldDestino" disable="true" editable="false" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Destino" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldCarga" disable="true" editable="false" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Carga" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldSituacao" disable="true" editable="false" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Situação" styleClass="customizarInputs" />
                   <ComboBox fx:id="comboBoxMotorista" disable="true" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefWidth="150.0" promptText="Motorista" styleClass="customizarInputs" />
                   <ComboBox fx:id="comboBoxVeiculo" disable="true" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefWidth="150.0" promptText="Veiculo" styleClass="customizarInputs" />
                </children>
             </VBox>
+            <Button layoutX="35.0" layoutY="303.0" mnemonicParsing="false" onAction="#habilitarEdicao" prefHeight="30.0" prefWidth="63.0" styleClass="customizarBotoes" text="Editar" textFill="WHITE" />
+            <Button fx:id="botaoSalvar" layoutX="293.0" layoutY="303.0" mnemonicParsing="false" onAction="#requisitarAlteracao" prefHeight="30.0" prefWidth="63.0" styleClass="customizarBotoes" text="Salvar" textFill="WHITE" />
+            <Button fx:id="botaoDescartar" layoutX="369.0" layoutY="303.0" mnemonicParsing="false" onAction="#descartarAlteracoes" prefHeight="30.0" prefWidth="76.0" styleClass="customizarBotoes" text="Descartar" textFill="WHITE" />
          </children>
       </Pane>
       <Pane fx:id="paneAvisosPrincipal" disable="true" prefHeight="450.0" prefWidth="750.0" visible="false">
@@ -185,7 +188,7 @@
                         <String fx:value="sombraMenuAviso" />
                      </styleClass>
                   </HBox>
-                  <Button layoutX="161.0" layoutY="104.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="78.0" styleClass="botaoConfirmar" text="Confirmar" textFill="WHITE" />
+                  <Button layoutX="161.0" layoutY="104.0" mnemonicParsing="false" onAction="#fecharAviso" prefHeight="32.0" prefWidth="78.0" styleClass="botaoConfirmar" text="Confirmar" textFill="WHITE" />
                   <Label fx:id="labelAvisosTextoSucesso" alignment="TOP_CENTER" layoutX="57.0" layoutY="35.0" prefHeight="63.0" prefWidth="286.0" text="Aviso" textAlignment="CENTER" textFill="#bdc3c7" wrapText="true" />
                </children>
             </Pane>
@@ -231,7 +234,7 @@
                         <String fx:value="sombraMenuAviso" />
                      </styleClass>
                   </HBox>
-                  <Button layoutX="161.0" layoutY="109.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="78.0" styleClass="botaoConfirmar" text="Confirmar" textFill="WHITE" />
+                  <Button layoutX="161.0" layoutY="109.0" mnemonicParsing="false" onAction="#confirmarAlteracao" prefHeight="32.0" prefWidth="78.0" styleClass="botaoConfirmar" text="Confirmar" textFill="WHITE" />
                   <Label fx:id="labelAvisosTextoConfirmar" alignment="TOP_CENTER" layoutX="14.0" layoutY="35.0" prefHeight="33.0" prefWidth="372.0" text="Aviso" textAlignment="CENTER" textFill="#bdc3c7" wrapText="true" />
                   <PasswordField fx:id="passwordFieldConfirmarSenha" layoutX="126.0" layoutY="70.0" promptText="Senha" styleClass="customizarInputs" />
                </children>

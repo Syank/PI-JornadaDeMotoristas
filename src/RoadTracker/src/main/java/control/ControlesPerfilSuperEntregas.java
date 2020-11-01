@@ -39,6 +39,9 @@ public class ControlesPerfilSuperEntregas implements Initializable {
 	Motorista motorista = new Motorista();
 	Veiculo veiculo = new Veiculo();
 	
+	private String funcao = "";
+	private boolean confirmado = false;
+	
 	public static boolean atualizarTableViewEComboBox = false;
 	
     @FXML
@@ -138,6 +141,65 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     @FXML
     void exibirDicaFlutuante(MouseEvent event) {
 
+    }
+    
+	@FXML
+	void requisitarAlteracao(ActionEvent event) {
+		if(!comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca().equals("Selecione um veículo...")) {
+			funcao = "Veiculo";
+			notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar as alterações nos dados");	
+		}else {
+			System.out.println("Selecione um veículo!");
+		}
+	}
+	
+    
+    @FXML
+    private void salvarAlteracoes(ActionEvent event) {
+    	if(confirmado) {
+    	   	Viagem viagem = new Viagem();
+        	
+        	
+        	int dia = datePickerPrazo.getValue().getDayOfMonth();
+        	int mes = datePickerPrazo.getValue().getMonthValue();
+        	int ano = datePickerPrazo.getValue().getYear();
+        	
+        	String prazo;
+        	
+        	if(dia < 10) {
+            	prazo = ("0" + String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+        	}else {
+            	prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+        	}
+        	
+        	viagem.alterarDadosViagem(prazo, textFieldDestino.getText(),
+        							  comboBoxMotorista.getSelectionModel().getSelectedItem().getCpf(), 
+        							  comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca(), 
+        							  textFieldCarga.getText(), Integer.parseInt(textFieldId.getText()));
+        	
+        	textFieldDestino.setDisable(false);
+        	textFieldCarga.setDisable(false);
+        	comboBoxMotorista.setDisable(false);
+        	comboBoxVeiculo.setDisable(false);
+        	datePickerPrazo.setDisable(false);
+        	
+        	notificar("Sucesso", "Dados alterados", "Os dados da viagem foram alterados com sucesso");
+        	
+        	desabilitarEdicao();
+        	
+    		atualizarTableViewEComboBox = false;
+    	}else {
+    		notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
+    	}
+ 
+    	confirmado = false;
+    	funcao = "";
+    }
+    
+    @FXML
+    void descartarAlteracoes(ActionEvent event) {
+    	carregarInfoViagem();
+    	desabilitarEdicao();
     }
 
     @FXML
@@ -281,6 +343,28 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     	
     }
 
+    void desabilitarEdicao() {
+    	datePickerPrazo.setDisable(true);
+    	textFieldDestino.setDisable(true);
+    	textFieldCarga.setDisable(true);
+    	comboBoxMotorista.setDisable(true);
+    	comboBoxVeiculo.setDisable(true);
+    	botaoSalvar.setDisable(true);
+    	botaoDescartar.setDisable(true);
+    	
+    }
+    
+    @FXML
+    void habilitarEdicao(ActionEvent event) {
+    	datePickerPrazo.setDisable(false);
+    	textFieldDestino.setDisable(false);
+    	textFieldCarga.setDisable(false);
+    	comboBoxMotorista.setDisable(false);
+    	comboBoxVeiculo.setDisable(false);
+    	botaoSalvar.setDisable(false);
+    	botaoDescartar.setDisable(false);
+    }
+    
     @FXML
     void minimizarJanela(ActionEvent event) {
     	Main.minimizar();
@@ -295,6 +379,7 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     void voltar(ActionEvent event) {
     	carregarTableView();
     	carregarComboBoxs();
+    	desabilitarEdicao();
     	if(paneViagemSelecionada.isVisible()) {
     		paneViagemSelecionada.setVisible(false);
     		paneViagemSelecionada.setDisable(true);
@@ -327,9 +412,75 @@ public class ControlesPerfilSuperEntregas implements Initializable {
 		comboBoxMotorista.setItems(obsListMotorista);
 
     	listaDeVeiculos = veiculo.listarVeiculos();
+    	listaDeVeiculos.add(0, new Veiculos(0, "Selecione um veículo..."));
     	obsListVeiculo = FXCollections.observableArrayList(listaDeVeiculos);
 		comboBoxVeiculo.setItems(obsListVeiculo);
 
+    }
+    
+    
+    
+	@FXML
+	void confirmarAlteracao(ActionEvent event) {
+		if(paneAvisosConfirmar.isVisible()) {
+			if(passwordFieldConfirmarSenha.getText().equals(ControlesLogin.senha)) {
+				confirmado = true;
+			}else {
+				confirmado = false;
+			}
+		}		
+		
+		fecharAviso(event);	
+		switch(funcao) {
+			case "Veiculo":
+				salvarAlteracoes(event);
+				break;
+		}
+			
+	}
+    
+	void notificar(String tipoDeAviso, String titulo, String texto) {
+		paneAvisosPrincipal.setDisable(false);
+		paneAvisosPrincipal.setVisible(true);
+		paneAvisosSombra.setVisible(true);
+		paneAvisosSombra.setDisable(false);
+		switch (tipoDeAviso) {
+		case "Sucesso":
+			paneAvisosSucesso.setDisable(false);
+			paneAvisosSucesso.setVisible(true);
+			labelAvisosTextoSucesso.setText(texto);
+			labelAvisosTituloSucesso.setText(titulo);
+			break;
+		case "Falha":
+			paneAvisosFalha.setDisable(false);
+			paneAvisosFalha.setVisible(true);
+			labelAvisosTextoFalha.setText(texto);
+			labelAvisosTituloFalha.setText(titulo);
+			break;
+		case "Confirmar":
+			paneAvisosConfirmar.setDisable(false);
+			paneAvisosConfirmar.setVisible(true);
+			labelAvisosTextoConfirmar.setText(texto);
+			labelAvisosTituloConfirmar.setText(titulo);
+			passwordFieldConfirmarSenha.setText("");
+			break;
+		}
+	}
+    
+    @FXML
+    void fecharAviso(ActionEvent event){
+    	paneAvisosPrincipal.setDisable(true);
+    	paneAvisosPrincipal.setVisible(false);
+    	paneAvisosSombra.setVisible(false);
+    	paneAvisosSombra.setDisable(true);
+		paneAvisosSucesso.setDisable(true);
+		paneAvisosSucesso.setVisible(false);
+		paneAvisosFalha.setDisable(true);
+		paneAvisosFalha.setVisible(false);
+		paneAvisosConfirmar.setDisable(true);
+		paneAvisosConfirmar.setVisible(false);
+		
+		
     }
     
     
