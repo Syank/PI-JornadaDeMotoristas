@@ -167,6 +167,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     
     private boolean funcionarioEncontrado = false;
     
+	private List<TextField> textfieldsDeCpf = new ArrayList<TextField>();
+    
     
 	
 	
@@ -213,6 +215,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	@FXML
 	private Button botaoDescartarAlteracoesFilial;
 	private int idFilial;
+	
+
 
 	// ------------------------------
 
@@ -262,6 +266,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	String numerosValidos = "0123456789";
 	char listaCaracteresValidos[] = caracteresValidos.toCharArray();
 	char listaCaracteresMaiusculosValidos[] = caracteresMaiusculosValidos.toCharArray();
+	
+	private List<TextField> textfieldsDePlacas = new ArrayList<TextField>();
 	
 	// ------------------------------
 
@@ -540,31 +546,36 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	
 	@FXML
 	public void mascararCpf(KeyEvent event) {
-		String texto = campoDeBuscaCpf.getText();
 		String caracter = event.getCharacter();
-
 		
-		// Verifica se é um número e se for, aplica a máscara de CPF, porém, caso não seja, não permite a adição do caracter
-		if(caracter.equals("1") || caracter.equals("2") || caracter.equals("3") || caracter.equals("4") ||
-				caracter.equals("5") || caracter.equals("6") || caracter.equals("7") || caracter.equals("8") ||
-				caracter.equals("9") || caracter.equals("0")){
+		textfieldsDeCpf.forEach(textfield -> {
+			if(event.getSource().equals(textfield)) {
+				String texto = textfield.getText();
 
-			if(texto.length() == 3 || texto.length() == 7) {
-				texto = texto + ".";
-			}else if(texto.length() == 11) {
-				texto = texto + "-";
+				// Verifica se é um número e se for, aplica a máscara de CPF, porém, caso não seja, não permite a adição do caracter
+				if(caracter.equals("1") || caracter.equals("2") || caracter.equals("3") || caracter.equals("4") ||
+						caracter.equals("5") || caracter.equals("6") || caracter.equals("7") || caracter.equals("8") ||
+						caracter.equals("9") || caracter.equals("0")){
+
+					if(texto.length() == 3 || texto.length() == 7) {
+						texto = texto + ".";
+					}else if(texto.length() == 11) {
+						texto = texto + "-";
+					}
+
+				}else if(texto.length() > 1){
+					texto = texto.substring(0, texto.length() - 1);
+				}
+				
+				if(texto.length() > 14) {
+					texto = texto.substring(0, 14);
+				}
+
+				textfield.setText(texto);
+				textfield.end();
 			}
-
-		}else if(texto.length() > 1){
-			texto = texto.substring(0, texto.length() - 1);
-		}
+		});
 		
-		if(texto.length() > 14) {
-			texto = texto.substring(0, 14);
-		}
-
-		campoDeBuscaCpf.setText(texto);
-		campoDeBuscaCpf.end();
 		
 		
 	}
@@ -871,33 +882,40 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 	@FXML
     public void mascararPlaca(KeyEvent event){
-		String texto = campoDeBuscaVeiculo.getText();
 		String caracter = event.getCharacter();
-		boolean validado = false;
 		
-		for(int i = 0; i < listaCaracteresValidos.length; i++) {
-			if(listaCaracteresValidos[i] == caracter.charAt(0)) {
-				validado = true;
-				break;
-			}
-		}
-		
-		if(validado) {
-			if(texto.length() == 3) {
-				texto = texto + "-";
-			}
+		textfieldsDePlacas.forEach(textfield -> {
+			if(event.getSource().equals(textfield)) {
+				String texto = textfield.getText();
 
-			if(texto.length() > 1){
-				texto = texto.substring(0, texto.length());
-			}
+				boolean validado = false;
 
-			if(texto.length() > 8) {
-				texto = texto.substring(0, 8);
-			}
-			
-			campoDeBuscaVeiculo.setText(texto.toUpperCase());
-			campoDeBuscaVeiculo.end();
-		}
+				for(int i = 0; i < listaCaracteresValidos.length; i++) {
+					if(listaCaracteresValidos[i] == caracter.charAt(0)) {
+						validado = true;
+						break;
+					}
+				}
+
+				if(validado) {
+					if(texto.length() == 3) {
+						texto = texto + "-";
+					}
+
+					if(texto.length() > 1){
+						texto = texto.substring(0, texto.length());
+					}
+
+					if(texto.length() > 8) {
+						texto = texto.substring(0, 8);
+					}
+
+					textfield.setText(texto.toUpperCase());
+					textfield.end();
+				}
+
+			}	
+		});
 
     }
 	
@@ -1386,6 +1404,12 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		abrirTelaSelecionarEntidade();
 		desabilitarEdicao();
+		
+		textfieldsDeCpf.add(campoDeBuscaCpf);
+		textfieldsDeCpf.add(tfCpf);
+		
+		textfieldsDePlacas.add(textFieldPlacaVeiculo);
+		textfieldsDePlacas.add(campoDeBuscaVeiculo);
 		
         Timer myTimer = new Timer();
         myTimer.schedule(new TimerTask(){

@@ -193,8 +193,6 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 
 	private List<Funcionarios> listaDeFuncionariosPesquisa = new ArrayList<>();
 	private ObservableList<Funcionarios> obsListFuncionariosPesquisa;
-	
-	private TextField textfieldsCpf[] = {campoDeBuscaCpf, tfCpf, textFieldCadastroCpf};
 
 	private List<TextField> textfieldsDeCpf = new ArrayList<TextField>();
 	
