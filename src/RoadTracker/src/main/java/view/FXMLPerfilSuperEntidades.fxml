@@ -165,7 +165,7 @@
             <VBox layoutX="14.0" layoutY="23.0" prefHeight="200.0" prefWidth="148.0" spacing="20.0">
                <children>
                   <TextField fx:id="tfNome" editable="true" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefHeight="27.0" prefWidth="150.0" promptText="Nome" styleClass="customizarInputs" />
-                  <TextField fx:id="tfCpf" editable="true" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CPF" styleClass="customizarInputs" />
+                  <TextField fx:id="tfCpf" editable="true" onKeyTyped="#mascararCpf" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CPF" styleClass="customizarInputs" />
                   <TextField fx:id="textFieldEmail" editable="true" layoutX="10.0" layoutY="57.0" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="E-mail" styleClass="customizarInputs" />
                   <PasswordField fx:id="pfSenha" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Senha" styleClass="customizarInputs" />
                   <Label fx:id="labelSituacaoMotorista" styleClass="separadorInferior" text="Situação: ">
@@ -208,7 +208,7 @@
             <VBox layoutX="15.0" layoutY="75.0" prefHeight="218.0" prefWidth="159.0" spacing="15.0">
                <children>
                   <TextField fx:id="textFieldCadastroNome" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Nome" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldCadastroCpf" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CPF" styleClass="customizarInputs" />
+                  <TextField fx:id="textFieldCadastroCpf" onKeyTyped="#mascararCpf" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CPF" styleClass="customizarInputs" />
                   <TextField fx:id="textFieldCadastroEmail" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="E-mail" styleClass="customizarInputs" />
                   <PasswordField fx:id="textFieldCadastroSenha" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Senha" styleClass="customizarInputs" />
                   <PasswordField fx:id="textFieldCadastroConfirmarSenha" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Confirme a senha" styleClass="customizarInputs" />
@@ -219,7 +219,7 @@
       <Pane fx:id="paneMotoristas" disable="true" layoutX="250.0" layoutY="85.0" prefHeight="365.0" prefWidth="500.0" visible="false">
          <children>
             <Button fx:id="btSelecionarFuncionario" layoutX="22.0" layoutY="315.0" mnemonicParsing="false" onAction="#selecionarFuncionario" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
-            <Button fx:id="botaoBuscar" layoutX="420.0" layoutY="8.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="botaoPesquisar" textFill="WHITE">
+            <Button fx:id="botaoBuscar" layoutX="420.0" layoutY="8.0" mnemonicParsing="false" onAction="#pesquisarFuncionarios" prefHeight="31.0" prefWidth="36.0" styleClass="botaoPesquisar" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -236,7 +236,7 @@
               </columns>
             </TableView>
             <TextField fx:id="campoDeBuscaNome" layoutX="14.0" layoutY="19.0" prefHeight="27.0" prefWidth="224.0" promptText="Nome" styleClass="customizarInputs" />
-            <TextField fx:id="campoDeBuscaCpf" layoutX="259.0" layoutY="19.0" prefHeight="27.0" prefWidth="153.0" promptText="CPF" styleClass="customizarInputs" />
+            <TextField fx:id="campoDeBuscaCpf" layoutX="259.0" layoutY="19.0" onKeyTyped="#mascararCpf" prefHeight="27.0" prefWidth="153.0" promptText="CPF" styleClass="customizarInputs" />
          </children>
       </Pane>
       <Pane fx:id="paneSelecionarOpcao" layoutX="260.0" layoutY="80.0" prefHeight="365.0" prefWidth="485.0">

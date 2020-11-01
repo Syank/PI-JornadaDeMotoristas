@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.apache.commons.math3.analysis.function.Atan;
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -188,10 +191,14 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	private List<Funcionarios> listaDeMotoristas = new ArrayList<>();
 	private ObservableList<Funcionarios> obsListMotoristas;
 
+	private List<Funcionarios> listaDeFuncionariosPesquisa = new ArrayList<>();
+	private ObservableList<Funcionarios> obsListFuncionariosPesquisa;
+	
+	private TextField textfieldsCpf[] = {campoDeBuscaCpf, tfCpf, textFieldCadastroCpf};
 
-
-
-
+	private List<TextField> textfieldsDeCpf = new ArrayList<TextField>();
+	
+	
 
 	public void carregarComboBoxTurnos() {
 		turnos = t.listarTurnos();
@@ -341,6 +348,7 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 		cbSab.setSelected(motorista.getSab());
 
 	   	int seguranca = 0;
+	   	cbFilial.getSelectionModel().selectFirst();
     	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
     	while(!motorista.getFilial().getNome().equals(cbFilial.getSelectionModel().getSelectedItem().getNome())) {
     		cbFilial.getSelectionModel().selectNext();
@@ -470,7 +478,7 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 
 				notificar("Sucesso", "Alteração de dados",
 						"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
-				carregarTableView();
+				atualizarTableViewEComboBox = true;
 			}
 
 
@@ -481,6 +489,90 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 		}
 		confirmado = false;
 		funcao = "";
+	}
+	
+	
+	@FXML
+	public void mascararCpf(KeyEvent event) {
+		String caracter = event.getCharacter();
+		
+		textfieldsDeCpf.forEach(textfield -> {
+			if(event.getSource().equals(textfield)) {
+				String texto = textfield.getText();
+
+				// Verifica se é um número e se for, aplica a máscara de CPF, porém, caso não seja, não permite a adição do caracter
+				if(caracter.equals("1") || caracter.equals("2") || caracter.equals("3") || caracter.equals("4") ||
+						caracter.equals("5") || caracter.equals("6") || caracter.equals("7") || caracter.equals("8") ||
+						caracter.equals("9") || caracter.equals("0")){
+
+					if(texto.length() == 3 || texto.length() == 7) {
+						texto = texto + ".";
+					}else if(texto.length() == 11) {
+						texto = texto + "-";
+					}
+
+				}else if(texto.length() > 1){
+					texto = texto.substring(0, texto.length() - 1);
+				}
+				
+				if(texto.length() > 14) {
+					texto = texto.substring(0, 14);
+				}
+
+				textfield.setText(texto);
+				textfield.end();
+			}
+		});
+		
+	}
+	
+	
+	@FXML
+	void pesquisarFuncionarios(ActionEvent event) {
+		if(!campoDeBuscaCpf.getText().isEmpty() || !campoDeBuscaNome.getText().isEmpty()){
+			
+			String nomeRequisitado = campoDeBuscaNome.getText().toLowerCase();
+			String cpfRequisitado = campoDeBuscaCpf.getText();
+ 
+			// Caso não existe nada no campo pesquisado, ele retorna "", uma string vazia, porém "" existe em todas as strings
+			//então é necessário criar um pequeno filtro para ele não retornar pesquisas incorretas e pesquisar de acordo com os campos preenchidos
+			listaDeMotoristas.forEach(funcionario -> {
+				boolean cpf = false;
+				boolean nome = false;
+				boolean tudo = false;
+
+				// Nessa parte ele checa se está utilizando todos os campos de pesquisa ou somente alguns
+				if(!campoDeBuscaCpf.getText().isEmpty() && !campoDeBuscaNome.getText().isEmpty()) {
+					tudo = true;
+				}else {
+					if(!campoDeBuscaCpf.getText().isEmpty()) {
+						cpf = true;
+					}
+					if(!campoDeBuscaNome.getText().isEmpty()) {
+						nome = true;
+					}
+				}
+
+				// Aqui ele faz definitivamente a pesquisa, de acordo com estar utilizando todos os campos ou não
+				if(tudo && funcionario.getNome().toLowerCase().contains(nomeRequisitado) && funcionario.getCpf().contains(cpfRequisitado)) {
+					listaDeFuncionariosPesquisa.add(funcionario);
+				}else if(cpf && funcionario.getCpf().contains(cpfRequisitado)) {
+					listaDeFuncionariosPesquisa.add(funcionario);
+				}else if(nome && funcionario.getNome().toLowerCase().contains(nomeRequisitado)) {
+					listaDeFuncionariosPesquisa.add(funcionario);
+				}
+			});
+
+			obsListFuncionariosPesquisa = FXCollections.observableArrayList(listaDeFuncionariosPesquisa);
+
+			tabelaFuncionarios.setItems(obsListFuncionariosPesquisa);
+
+			// Limpa as listas para não acumular com a próxima pesquisa
+			listaDeFuncionariosPesquisa.clear();
+		}else {
+			// Se não houver nada escrito nos campos, reseta a tabela mostrando todo o conteúdo
+			tabelaFuncionarios.setItems(obsListMotoristas);
+		}
 	}
 
 	@FXML
@@ -731,7 +823,11 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		carregarComboBoxTurnos();
-
+		
+		textfieldsDeCpf.add(campoDeBuscaCpf);
+		textfieldsDeCpf.add(tfCpf);
+		textfieldsDeCpf.add(textFieldCadastroCpf);
+		
 		Timer myTimer = new Timer();
 		myTimer.schedule(new TimerTask(){
 

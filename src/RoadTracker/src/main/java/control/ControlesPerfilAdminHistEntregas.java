@@ -123,10 +123,11 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     
 	@FXML
 	void requisitarAlteracao(ActionEvent event) {
-		System.out.println(comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca());
 		if(!comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca().equals("Selecione um veículo...")) {
 			funcao = "Veiculo";
 			notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar as alterações nos dados");	
+		}else {
+			System.out.println("Selecione um veículo!");
 		}
 	}
 	

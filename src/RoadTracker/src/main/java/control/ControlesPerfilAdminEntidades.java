@@ -157,6 +157,12 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private List<Funcionarios> listaDeMotoristas = new ArrayList<>();
 	private ObservableList<Funcionarios> obsListMotoristas;
 	
+	private List<Funcionarios> listaDeFuncionariosPesquisa = new ArrayList<>();
+	private ObservableList<Funcionarios> obsListFuncionariosPesquisa;
+	
+	private List<Funcionarios> listaTodosFuncionarios = new ArrayList<>();
+	
+	
     private List<Viagens> listaDeViagensMotorista = new ArrayList<>();
     
     private boolean funcionarioEncontrado = false;
@@ -184,6 +190,9 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 	private List<Filiais> listaDeFiliais = new ArrayList<>();
 	private ObservableList<Filiais> obsListFiliais;
+	
+	private List<Filiais> listaDeFiliaisPesquisa = new ArrayList<>();
+	private ObservableList<Filiais> obsListFiliaisPesquisa;
 
 	@FXML
 	private Pane paneFilialSelecionada;
@@ -220,8 +229,13 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private TextField campoDeBuscaVeiculo;
 	@FXML
 	private TextField campoDeBuscaIDVeiculo;
+	
 	private List<Veiculos> listaDeVeiculos = new ArrayList<>();
 	private ObservableList<Veiculos> obsListVeiculos;
+	
+	private List<Veiculos> listaDeVeiculosPesquisa = new ArrayList<>();
+	private ObservableList<Veiculos> obsListVeiculosPesquisa;
+	
 	private String placaVeiculo;
 
 	@FXML
@@ -242,6 +256,13 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private Button botaoDescartarAlteracoesVeiculo;
 	@FXML
 	private ComboBox<Filiais> comboBoxFilialVeiculo;
+	
+	String caracteresValidos = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvXxWwYyZz-0123456789";
+	String caracteresMaiusculosValidos = "ABCDEFGHIJKLMNOPQRSTUVXWYZ";
+	String numerosValidos = "0123456789";
+	char listaCaracteresValidos[] = caracteresValidos.toCharArray();
+	char listaCaracteresMaiusculosValidos[] = caracteresMaiusculosValidos.toCharArray();
+	
 	// ------------------------------
 
 	// Métodos funcionários
@@ -468,6 +489,85 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			confirmado = false;
 			funcao = "";
 	}
+	
+	@FXML
+	void pesquisarFuncionarios(ActionEvent event) {
+		if(!campoDeBuscaCpf.getText().isEmpty() || !campoDeBuscaNome.getText().isEmpty()){
+			
+			String nomeRequisitado = campoDeBuscaNome.getText().toLowerCase();
+			String cpfRequisitado = campoDeBuscaCpf.getText();
+ 
+			// Caso não existe nada no campo pesquisado, ele retorna "", uma string vazia, porém "" existe em todas as strings
+			//então é necessário criar um pequeno filtro para ele não retornar pesquisas incorretas e pesquisar de acordo com os campos preenchidos
+			listaTodosFuncionarios.forEach(funcionario -> {
+				boolean cpf = false;
+				boolean nome = false;
+				boolean tudo = false;
+
+				// Nessa parte ele checa se está utilizando todos os campos de pesquisa ou somente alguns
+				if(!campoDeBuscaCpf.getText().isEmpty() && !campoDeBuscaNome.getText().isEmpty()) {
+					tudo = true;
+				}else {
+					if(!campoDeBuscaCpf.getText().isEmpty()) {
+						cpf = true;
+					}
+					if(!campoDeBuscaNome.getText().isEmpty()) {
+						nome = true;
+					}
+				}
+
+				// Aqui ele faz definitivamente a pesquisa, de acordo com estar utilizando todos os campos ou não
+				if(tudo && funcionario.getNome().toLowerCase().contains(nomeRequisitado) && funcionario.getCpf().contains(cpfRequisitado)) {
+					listaDeFuncionariosPesquisa.add(funcionario);
+				}else if(cpf && funcionario.getCpf().contains(cpfRequisitado)) {
+					listaDeFuncionariosPesquisa.add(funcionario);
+				}else if(nome && funcionario.getNome().toLowerCase().contains(nomeRequisitado)) {
+					listaDeFuncionariosPesquisa.add(funcionario);
+				}
+			});
+
+			obsListFuncionariosPesquisa = FXCollections.observableArrayList(listaDeFuncionariosPesquisa);
+
+			tabelaFuncionarios.setItems(obsListFuncionariosPesquisa);
+
+			// Limpa as listas para não acumular com a próxima pesquisa
+			listaDeFuncionariosPesquisa.clear();
+		}else {
+			// Se não houver nada escrito nos campos, reseta a tabela mostrando todo o conteúdo
+			tabelaFuncionarios.setItems(obsListFuncionarios);
+		}
+	}
+	
+	@FXML
+	public void mascararCpf(KeyEvent event) {
+		String texto = campoDeBuscaCpf.getText();
+		String caracter = event.getCharacter();
+
+		
+		// Verifica se é um número e se for, aplica a máscara de CPF, porém, caso não seja, não permite a adição do caracter
+		if(caracter.equals("1") || caracter.equals("2") || caracter.equals("3") || caracter.equals("4") ||
+				caracter.equals("5") || caracter.equals("6") || caracter.equals("7") || caracter.equals("8") ||
+				caracter.equals("9") || caracter.equals("0")){
+
+			if(texto.length() == 3 || texto.length() == 7) {
+				texto = texto + ".";
+			}else if(texto.length() == 11) {
+				texto = texto + "-";
+			}
+
+		}else if(texto.length() > 1){
+			texto = texto.substring(0, texto.length() - 1);
+		}
+		
+		if(texto.length() > 14) {
+			texto = texto.substring(0, 14);
+		}
+
+		campoDeBuscaCpf.setText(texto);
+		campoDeBuscaCpf.end();
+		
+		
+	}
 	// -------------------------------
 
 	// Métodos filial
@@ -574,8 +674,85 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	}
 	
 	@FXML 
-	void pesquisarFilial(ActionEvent event){	
-		System.out.println("abacate");
+	void pesquisarFilial(ActionEvent event){
+		if(!campoDeBuscaEstado.getText().isEmpty() || !campoDeBuscaFilial.getText().isEmpty()){
+			
+			String estadoRequisitado = campoDeBuscaEstado.getText().toLowerCase();
+			String filialRequisitada = campoDeBuscaFilial.getText().toLowerCase();
+ 
+			// Caso não existe nada no campo pesquisado, ele retorna "", uma string vazia, porém "" existe em todas as strings
+			//então é necessário criar um pequeno filtro para ele não retornar pesquisas incorretas e pesquisar de acordo com os campos preenchidos
+			listaDeFiliais.forEach(filial -> {
+				boolean estado = false;
+				boolean nome = false;
+				boolean tudo = false;
+				
+				// Nessa parte ele checa se está utilizando todos os campos de pesquisa ou somente alguns
+				if(!campoDeBuscaEstado.getText().isEmpty() && !campoDeBuscaFilial.getText().isEmpty()) {
+					tudo = true;
+				}else {
+					if(!campoDeBuscaEstado.getText().isEmpty()) {
+						estado = true;
+					}
+					if(!campoDeBuscaFilial.getText().isEmpty()) {
+						nome = true;
+					}
+				}
+
+				// Aqui ele faz definitivamente a pesquisa, de acordo com estar utilizando todos os campos ou não
+				if(tudo && filial.getEstado().toLowerCase().contains(estadoRequisitado) && filial.getNome().toLowerCase().contains(filialRequisitada)) {
+					listaDeFiliaisPesquisa.add(filial);
+				}else if(estado && filial.getEstado().toLowerCase().contains(estadoRequisitado)) {
+					listaDeFiliaisPesquisa.add(filial);
+				}else if(nome && filial.getNome().toLowerCase().contains(filialRequisitada)) {
+					listaDeFiliaisPesquisa.add(filial);
+				}
+			});
+ 
+			obsListFiliaisPesquisa = FXCollections.observableArrayList(listaDeFiliaisPesquisa);
+
+			tabelaFiliais.setItems(obsListFiliaisPesquisa);
+
+			// Limpa as listas para não acumular com a próxima pesquisa
+			listaDeFiliaisPesquisa.clear();
+		}else {
+			// Se não houver nada escrito nos campos, reseta a tabela mostrando todo o conteúdo
+			tabelaFiliais.setItems(obsListFiliais);
+		}
+
+		
+	}
+	
+	@FXML
+	public void mascararCnpj(KeyEvent event) {
+		String texto = textFieldCnpj.getText();
+		String caracter = event.getCharacter();
+
+		
+		// Verifica se é um número e se for, aplica a máscara de CNPJ, porém, caso não seja, não permite a adição do caracter
+		if(caracter.equals("1") || caracter.equals("2") || caracter.equals("3") || caracter.equals("4") ||
+		   caracter.equals("5") || caracter.equals("6") || caracter.equals("7") || caracter.equals("8") ||
+		   caracter.equals("9") || caracter.equals("0")){
+
+			if(texto.length() == 2 || texto.length() == 6) {
+				texto = texto + ".";
+			}else if(texto.length() == 10) {
+				texto = texto + "/";
+			}else if(texto.length() == 16) {
+				texto = texto + "-";
+			}
+
+		}else if(texto.length() > 1){
+			texto = texto.substring(0, texto.length() - 1);
+		}
+		
+		if(texto.length() > 19) {
+			texto = texto.substring(0, 19);
+		}
+
+		textFieldCnpj.setText(texto);
+		textFieldCnpj.end();
+		
 		
 	}
 	// -------------------------------------
@@ -691,33 +868,84 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     		}
     	}
 	}
-	//TA TUDO ERRADOOO
+
+	@FXML
+    public void mascararPlaca(KeyEvent event){
+		String texto = campoDeBuscaVeiculo.getText();
+		String caracter = event.getCharacter();
+		boolean validado = false;
+		
+		for(int i = 0; i < listaCaracteresValidos.length; i++) {
+			if(listaCaracteresValidos[i] == caracter.charAt(0)) {
+				validado = true;
+				break;
+			}
+		}
+		
+		if(validado) {
+			if(texto.length() == 3) {
+				texto = texto + "-";
+			}
+
+			if(texto.length() > 1){
+				texto = texto.substring(0, texto.length());
+			}
+
+			if(texto.length() > 8) {
+				texto = texto.substring(0, 8);
+			}
+			
+			campoDeBuscaVeiculo.setText(texto.toUpperCase());
+			campoDeBuscaVeiculo.end();
+		}
+
+    }
+	
 	@FXML 
 	void pesquisarVeiculo(ActionEvent event){
-		obsListVeiculos = FXCollections.observableArrayList(listaDeVeiculos);
-		if(campoDeBuscaVeiculo.getText() != "" && campoDeBuscaIDVeiculo.getText() == "" ) {
-			listaDePlacaVeiculos.forEach(item -> {
-	    		if(item.getPlaca().equals(campoDeBuscaVeiculo.getText())) {
-	    			System.out.println("acabate");
-	    		} 
+		if(!campoDeBuscaVeiculo.getText().isEmpty() || !campoDeBuscaIDVeiculo.getText().isEmpty()){
+			String placaRequisitado = campoDeBuscaVeiculo.getText().toUpperCase();
+			String rastreadorRequisitado = campoDeBuscaIDVeiculo.getText().toUpperCase();
+			
+			// Caso não existe nada no campo pesquisado, ele retorna "", uma string vazia, porém "" existe em todas as strings
+			//então é necessário criar um pequeno filtro para ele não retornar pesquisas incorretas e pesquisar de acordo com os campos preenchidos
+			listaDeVeiculos.forEach(veiculo -> {
+				boolean placa = false;
+				boolean rastreador = false;
+				boolean tudo = false;
+				
+				// Nessa parte ele checa se está utilizando todos os campos de pesquisa ou somente alguns
+				if(!campoDeBuscaVeiculo.getText().isEmpty() && !campoDeBuscaIDVeiculo.getText().isEmpty()) {
+					tudo = true;
+				}else {
+					if(!campoDeBuscaVeiculo.getText().isEmpty()) {
+						placa = true;
+					}
+					if(!campoDeBuscaIDVeiculo.getText().isEmpty()) {
+						rastreador = true;
+					}
+				}
+
+				// Aqui ele faz definitivamente a pesquisa, de acordo com estar utilizando todos os campos ou não
+				if(tudo && veiculo.getPlaca().toUpperCase().contains(placaRequisitado) && String.valueOf(veiculo.getId_rastreador()).contains(rastreadorRequisitado)) {
+					listaDeVeiculosPesquisa.add(veiculo);
+				}else if(placa && veiculo.getPlaca().toUpperCase().contains(placaRequisitado)) {
+					listaDeVeiculosPesquisa.add(veiculo);
+				}else if(rastreador && String.valueOf(veiculo.getId_rastreador()).contains(rastreadorRequisitado)) {
+					listaDeVeiculosPesquisa.add(veiculo);
+				}
 			});
-		}
-	
-		else if(campoDeBuscaVeiculo.getText().length() > 0 && campoDeBuscaIDVeiculo.getText().length() < 0) {
-			System.out.println("2");
-			colunaIDVeiculo.setCellValueFactory(new PropertyValueFactory<>(campoDeBuscaIDVeiculo.getText()));
+
+			obsListVeiculosPesquisa = FXCollections.observableArrayList(listaDeVeiculosPesquisa);
+
+			tabelaVeiculos.setItems(obsListVeiculosPesquisa);
+
+			// Limpa as listas para não acumular com a próxima pesquisa
+			listaDeVeiculosPesquisa.clear();
+		}else {
+			// Se não houver nada escrito nos campos, reseta a tabela mostrando todo o conteúdo
 			tabelaVeiculos.setItems(obsListVeiculos);
 		}
-		else if(campoDeBuscaVeiculo.getText().length() > 0 && campoDeBuscaIDVeiculo.getText().length() > 0) {
-			
-				listaDePlacaVeiculos.forEach(item -> {
-		    		if(item.getPlaca().equals(campoDeBuscaVeiculo.getText())) {
-		    			System.out.println("acabate");
-		    		}
-		    });
-		
-		}
-	//abcdef
 	}
 	// -------------------------------------
 	
@@ -1041,7 +1269,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	}
 
 	public void carregarTableViews() {
-
 		Funcionario funcionario = new Funcionario();
 		Filial filial = new Filial();
 		Veiculo veiculo = new Veiculo();
@@ -1051,6 +1278,9 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		listaDeFiliais = filial.listarFiliais();
 		listaDeVeiculos = veiculo.listarVeiculos();
 		listaDeMotoristas = motorista.listarMotoristas();
+		
+		listaTodosFuncionarios.addAll(listaDeFuncionarios);
+		listaTodosFuncionarios.addAll(listaDeMotoristas);
 
 		// Transforma a array primitiva em Observable Array
 		obsListFuncionarios = FXCollections.observableArrayList(listaDeFuncionarios);
@@ -1155,8 +1385,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		abrirTelaSelecionarEntidade();
-		carregarTableViews();
-		carregarComboBox();
 		desabilitarEdicao();
 		
         Timer myTimer = new Timer();
