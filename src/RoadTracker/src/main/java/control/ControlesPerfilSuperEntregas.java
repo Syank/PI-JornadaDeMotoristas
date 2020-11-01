@@ -44,7 +44,7 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     @FXML
     private Pane paneSelecionarViagem;
     @FXML
-    private TextField campoDeBuscaNome;
+    private TextField campoDeBuscaEmpresaDestino;
     @FXML
     private TextField campoDeBuscaCpf;
     @FXML
@@ -119,6 +119,9 @@ public class ControlesPerfilSuperEntregas implements Initializable {
 	
 	private List<Veiculos> listaDeVeiculos = new ArrayList<>();
 	private ObservableList<Veiculos> obsListVeiculo;
+	
+	private List<Viagens> listaDeViagensPesquisa = new ArrayList<>();
+	private ObservableList<Viagens> obsListViagensPesquisa;
     
     
     
@@ -196,6 +199,56 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     		}
     	}
     }
+    
+    
+    
+	@FXML
+	void pesquisarViagens(ActionEvent event) {
+		if(!campoDeBuscaMotorista.getText().isEmpty() || !campoDeBuscaEmpresaDestino.getText().isEmpty()){
+			
+			String empresaRequisitado = campoDeBuscaEmpresaDestino.getText().toLowerCase();
+			String motoristaRequisitado = campoDeBuscaMotorista.getText().toLowerCase();
+ 
+			// Caso não existe nada no campo pesquisado, ele retorna "", uma string vazia, porém "" existe em todas as strings
+			//então é necessário criar um pequeno filtro para ele não retornar pesquisas incorretas e pesquisar de acordo com os campos preenchidos
+			listaDeViagens.forEach(viagem -> {
+				boolean empresa = false;
+				boolean motorista = false;
+				boolean tudo = false;
+
+				// Nessa parte ele checa se está utilizando todos os campos de pesquisa ou somente alguns
+				if(!campoDeBuscaEmpresaDestino.getText().isEmpty() && !campoDeBuscaMotorista.getText().isEmpty()) {
+					tudo = true;
+				}else {
+					if(!campoDeBuscaEmpresaDestino.getText().isEmpty()) {
+						empresa = true;
+					}
+					if(!campoDeBuscaMotorista.getText().isEmpty()) {
+						motorista = true;
+					}
+				}
+
+				// Aqui ele faz definitivamente a pesquisa, de acordo com estar utilizando todos os campos ou não
+				if(tudo && viagem.getDestino().toLowerCase().contains(empresaRequisitado) && viagem.getNomeMotorista().contains(motoristaRequisitado)) {
+					listaDeViagensPesquisa.add(viagem);
+				}else if(empresa && viagem.getDestino().toLowerCase().contains(empresaRequisitado)) {
+					listaDeViagensPesquisa.add(viagem);
+				}else if(motorista && viagem.getNomeMotorista().toLowerCase().contains(motoristaRequisitado)) {
+					listaDeViagensPesquisa.add(viagem);
+				}
+			});
+
+			obsListViagensPesquisa = FXCollections.observableArrayList(listaDeViagensPesquisa);
+
+			tabela.setItems(obsListViagensPesquisa);
+
+			// Limpa as listas para não acumular com a próxima pesquisa
+			listaDeViagensPesquisa.clear();
+		}else {
+			// Se não houver nada escrito nos campos, reseta a tabela mostrando todo o conteúdo
+			tabela.setItems(obsListViagens);
+		}
+	}
     
     
     

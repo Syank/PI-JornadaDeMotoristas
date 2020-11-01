@@ -133,9 +133,8 @@
       </HBox>
       <Pane fx:id="paneSelecionarViagem" layoutX="251.0" layoutY="88.0" prefHeight="362.0" prefWidth="500.0">
          <children>
-            <TextField fx:id="campoDeBuscaNome" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="102.0" promptText="ID" styleClass="customizarInputs" />
-            <TextField fx:id="campoDeBuscaCpf" layoutX="135.0" layoutY="15.0" prefHeight="27.0" prefWidth="136.0" promptText="Empresa Destino" styleClass="customizarInputs" />
-            <Button fx:id="botaoBuscar" layoutX="426.0" layoutY="9.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" styleClass="botaoPesquisar" textFill="WHITE">
+            <TextField fx:id="campoDeBuscaEmpresaDestino" layoutX="23.0" layoutY="14.0" prefHeight="27.0" prefWidth="189.0" promptText="Empresa Destino" styleClass="customizarInputs" />
+            <Button fx:id="botaoBuscar" layoutX="426.0" layoutY="9.0" mnemonicParsing="false" onAction="#pesquisarViagens" prefHeight="31.0" prefWidth="36.0" styleClass="botaoPesquisar" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -144,7 +143,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <TextField fx:id="campoDeBuscaMotorista" layoutX="292.0" layoutY="14.0" prefHeight="25.0" prefWidth="126.0" promptText="Motorista" styleClass="customizarInputs" />
+            <TextField fx:id="campoDeBuscaMotorista" layoutX="229.0" layoutY="14.0" prefHeight="27.0" prefWidth="189.0" promptText="Motorista" styleClass="customizarInputs" />
             <Button layoutX="23.0" layoutY="305.0" mnemonicParsing="false" onAction="#selecionarViagem" prefHeight="30.0" prefWidth="85.0" styleClass="customizarBotoes" text="Selecionar" textFill="WHITE" />
             <TableView fx:id="tabela" editable="true" layoutX="23.0" layoutY="62.0" prefHeight="223.0" prefWidth="441.0">
               <columns>
