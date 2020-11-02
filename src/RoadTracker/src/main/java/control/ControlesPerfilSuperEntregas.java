@@ -188,7 +188,8 @@ public class ControlesPerfilSuperEntregas implements Initializable {
         	desabilitarEdicao();
         	
     		atualizarTableViewEComboBox = false;
-    	}else {
+    	}
+    	else {
     		notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
     	}
  
@@ -479,10 +480,7 @@ public class ControlesPerfilSuperEntregas implements Initializable {
 		paneAvisosFalha.setVisible(false);
 		paneAvisosConfirmar.setDisable(true);
 		paneAvisosConfirmar.setVisible(false);
-		
-		
     }
-    
     
     void tarefasEmLoop() {
     	// Considere que cada if aqui dentro é uma "função"

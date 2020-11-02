@@ -336,7 +336,15 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         		
         		Motorista motorista = new Motorista();
         		
-        		if (Integer.parseInt(salario) < 1701.38) {
+        		// verificando se o usuário digitou um salário float com vírgula ou com ponto
+        		for (int i = 0; i < salario.length(); i++) {
+        			char caracter = salario.charAt(i);
+        			if (caracter == ',') { // se for vírgula troca, pois o java só entende ponto
+        				salario = salario.replace(',', '.');
+        			}
+        		}
+        		
+        		if (Float.parseFloat(salario) < 1701.38) {
         			//verifica se o salário é menor que o piso
         			notificar("Falha de cadastro", "Salário baixo", "O salário informado é inválido, "
             				+ "por favor confira o campo e insira um salário maior");

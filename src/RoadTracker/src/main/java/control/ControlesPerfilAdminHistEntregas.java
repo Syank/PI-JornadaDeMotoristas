@@ -149,7 +149,8 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
         	
         	if(dia < 10) {
             	prazo = ("0" + String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
-        	}else {
+        	}
+        	else {
             	prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
         	}
         	
@@ -169,7 +170,8 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
         	desabilitarEdicao();
         	
         	atualizarInfos = true;
-    	}else {
+    	}
+    	else {
     		notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
     	}
  
@@ -188,10 +190,17 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	
 		if (confirmado) {
 	    	Viagem viagem = new Viagem();
-	    	viagem.excluirViagem(Integer.parseInt(textFieldId.getText()));
+	    	boolean viagemExcluida = viagem.excluirViagem(Integer.parseInt(textFieldId.getText()));
 	    	desabilitarEdicao();
-			notificar("Sucesso", "Viagem excluída", "A viagem foi excluída com sucesso do banco de dados!");
-			atualizarInfos = true;
+	    	
+	    	if (viagemExcluida) {
+				notificar("Sucesso", "Viagem excluída", "A viagem foi excluída com sucesso do banco de dados!");
+				atualizarInfos = true;
+	    	}
+	    	else {
+				notificar("Falha", "Falha",
+						"A viagem não foi excluída. Verifique se não há nenhum registro ligado a ela e tente novamente.");
+	    	}
 		}
 		else {
 			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");

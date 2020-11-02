@@ -151,9 +151,8 @@ public class Veiculo {
 		
 	}
 	
-	public void excluirVeiculo(String placa) {
+	public boolean excluirVeiculo(String placa) {
 		EntityManager con = new ConnectionFactory().getConnection();
-		
 		Veiculo veiculo = null;
 		
 		try {
@@ -162,10 +161,11 @@ public class Veiculo {
 			con.getTransaction().begin();
 			con.remove(veiculo);
 			con.getTransaction().commit();
+			return true;
 		}
 		catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
 			con.getTransaction().rollback();
+			return false;
 		}
 		finally {
 			con.close();

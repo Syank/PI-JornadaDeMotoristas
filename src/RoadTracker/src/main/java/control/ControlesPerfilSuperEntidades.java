@@ -501,7 +501,6 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 		if (retorno) {
 			notificar("Sucesso", "Sucesso!", "O cadastro foi solicitado com sucesso.");
 			limparCampos();
-			
 		}
 		else {
 			notificar("Falha", "Falha", "O cadastro não pôde ser solicitado. Tente novamente.");
@@ -534,9 +533,6 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 						"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
 				atualizarTableViewEComboBox = true;
 			}
-
-
-
 		}
 		else {
 			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");

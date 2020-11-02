@@ -213,59 +213,60 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     }
     
     void atualizarTempos() {
-    	Viagem viagem = new Viagem();
-    	Motorista motorista = new Motorista();
-    	
-    	viagem = viagem.encontrarViagem(viagemAtual.getId());
-    	motorista = motorista.encontrarMotorista(ControlesLogin.cpfLogado);
-		
-    	
-  	  	String tempoAtual[] = labelHorasTotais.getText().split(":");
-  	  	String segundos = tempoAtual[3];
-  	  	String minutos = tempoAtual[2];
-  	  	String horas = tempoAtual[1].substring(1);
-  	  	String tempoTotal = horas + ":" + minutos + ":" + segundos;
-  	  	
-
-  	  	String segundosExpHoje =  "00";
-  	  	String minutosExpHoje = "00";
-  	  	String horasExpHoje = "00";
-  	  	String tempoTotalExpHoje = horasExpHoje + ":" + minutosExpHoje + ":" + segundosExpHoje;
-  	  	if(!labelExpHoje.getText().contains("0h")) {
-  	  	  	String expHojeAtual[] = labelExpHoje.getText().split(":");
-  	  	  	segundosExpHoje = expHojeAtual[3];
-  	  	  	minutosExpHoje = expHojeAtual[2];
-  	  	  	horasExpHoje = expHojeAtual[1].substring(1);
-  	  	  	tempoTotalExpHoje = horasExpHoje + ":" + minutosExpHoje + ":" + segundosExpHoje;
-  	  	}
-
-  	  	String segundosAlimHoje = "00";
-  	  	String minutosAlimHoje = "00";
-  	  	String horasAlimHoje = "00";
-  	  	String tempoTotalAlimHoje = horasAlimHoje + ":" + minutosAlimHoje + ":" + segundosAlimHoje;
-  	  	if(!labelAlimHoje.getText().contains("0h")) {
-  	  	  	String alimHojeAtual[] = labelAlimHoje.getText().split(":");
-  	  	  	segundosAlimHoje = alimHojeAtual[3];
-  	  	  	minutosAlimHoje = alimHojeAtual[2];
-  	  	  	horasAlimHoje = alimHojeAtual[1].substring(1);
-  	  	  	tempoTotalAlimHoje = horasAlimHoje + ":" + minutosAlimHoje + ":" + segundosAlimHoje;
-  	  	}
-  	  
-  	  	String segundosDescHoje = "00";
-  	  	String minutosDescHoje = "00";
-  	  	String horasDescHoje = "00";
-  	  	String tempoTotalDescHoje = horasDescHoje + ":" + minutosDescHoje + ":" + segundosDescHoje;
-  	  	if(!labelDescHoje.getText().contains("0h")) {
-  	  	  	String descHojeAtual[] = labelDescHoje.getText().split(":");
-  	  	  	segundosDescHoje = descHojeAtual[3];
-  	  	  	minutosDescHoje = descHojeAtual[2];
-  	  	  	horasDescHoje = descHojeAtual[1].substring(1);
-  	  	  	tempoTotalDescHoje = horasDescHoje + ":" + minutosDescHoje + ":" + segundosDescHoje;
-  	  	}
-
-		viagem.atualizarHorasTotais(tempoTotal);
-		motorista.atualizarTempos(tempoTotalExpHoje, tempoTotalAlimHoje, tempoTotalDescHoje);
-
+    	if (viagemAtual != null) {
+	    	Viagem viagem = new Viagem();
+	    	Motorista motorista = new Motorista();
+	    	
+	    	viagem = viagem.encontrarViagem(viagemAtual.getId());
+	    	motorista = motorista.encontrarMotorista(ControlesLogin.cpfLogado);
+			
+	    	
+	  	  	String tempoAtual[] = labelHorasTotais.getText().split(":");
+	  	  	String segundos = tempoAtual[3];
+	  	  	String minutos = tempoAtual[2];
+	  	  	String horas = tempoAtual[1].substring(1);
+	  	  	String tempoTotal = horas + ":" + minutos + ":" + segundos;
+	  	  	
+	
+	  	  	String segundosExpHoje =  "00";
+	  	  	String minutosExpHoje = "00";
+	  	  	String horasExpHoje = "00";
+	  	  	String tempoTotalExpHoje = horasExpHoje + ":" + minutosExpHoje + ":" + segundosExpHoje;
+	  	  	if(!labelExpHoje.getText().contains("0h")) {
+	  	  	  	String expHojeAtual[] = labelExpHoje.getText().split(":");
+	  	  	  	segundosExpHoje = expHojeAtual[3];
+	  	  	  	minutosExpHoje = expHojeAtual[2];
+	  	  	  	horasExpHoje = expHojeAtual[1].substring(1);
+	  	  	  	tempoTotalExpHoje = horasExpHoje + ":" + minutosExpHoje + ":" + segundosExpHoje;
+	  	  	}
+	
+	  	  	String segundosAlimHoje = "00";
+	  	  	String minutosAlimHoje = "00";
+	  	  	String horasAlimHoje = "00";
+	  	  	String tempoTotalAlimHoje = horasAlimHoje + ":" + minutosAlimHoje + ":" + segundosAlimHoje;
+	  	  	if(!labelAlimHoje.getText().contains("0h")) {
+	  	  	  	String alimHojeAtual[] = labelAlimHoje.getText().split(":");
+	  	  	  	segundosAlimHoje = alimHojeAtual[3];
+	  	  	  	minutosAlimHoje = alimHojeAtual[2];
+	  	  	  	horasAlimHoje = alimHojeAtual[1].substring(1);
+	  	  	  	tempoTotalAlimHoje = horasAlimHoje + ":" + minutosAlimHoje + ":" + segundosAlimHoje;
+	  	  	}
+	  	  
+	  	  	String segundosDescHoje = "00";
+	  	  	String minutosDescHoje = "00";
+	  	  	String horasDescHoje = "00";
+	  	  	String tempoTotalDescHoje = horasDescHoje + ":" + minutosDescHoje + ":" + segundosDescHoje;
+	  	  	if(!labelDescHoje.getText().contains("0h")) {
+	  	  	  	String descHojeAtual[] = labelDescHoje.getText().split(":");
+	  	  	  	segundosDescHoje = descHojeAtual[3];
+	  	  	  	minutosDescHoje = descHojeAtual[2];
+	  	  	  	horasDescHoje = descHojeAtual[1].substring(1);
+	  	  	  	tempoTotalDescHoje = horasDescHoje + ":" + minutosDescHoje + ":" + segundosDescHoje;
+	  	  	}
+	
+			viagem.atualizarHorasTotais(tempoTotal);
+			motorista.atualizarTempos(tempoTotalExpHoje, tempoTotalAlimHoje, tempoTotalDescHoje);
+    	}
     }
     
     @FXML

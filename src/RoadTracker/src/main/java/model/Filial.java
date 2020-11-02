@@ -125,7 +125,7 @@ public class Filial {
 		
 	}
 	
-	public void excluirFilial(Integer id) {
+	public boolean excluirFilial(Integer id) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		Filial filial = null;
@@ -136,10 +136,11 @@ public class Filial {
 			con.getTransaction().begin();
 			con.remove(filial);
 			con.getTransaction().commit();
+			return true;
 		}
 		catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
 			con.getTransaction().rollback();
+			return false;
 		}
 		finally {
 			con.close();

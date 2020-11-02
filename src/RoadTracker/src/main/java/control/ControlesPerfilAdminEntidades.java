@@ -301,18 +301,34 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	}
 	@FXML
 	void excluirFuncionario(ActionEvent event) {
+		
+		Motorista motoristaExcluido = null;
+		Funcionario funcionarioExcluido = null;
+		
 		if (confirmado) {
 			if(cargoFuncionario.equals("Motorista")) {
-				motorista.excluirMotorista(cpfFuncionario);
-				notificar("Sucesso", "Funcionário excluído",
-						"O funcionário foi excluído dos registros do banco de dados com sucesso");
-				atualizarInfos = true;
+				motoristaExcluido = motorista.excluirMotorista(cpfFuncionario);
+				if (motoristaExcluido != null) {
+					notificar("Sucesso", "Funcionário excluído",
+							"O funcionário foi excluído dos registros do banco de dados com sucesso");
+					atualizarInfos = true;
+				}
+				else {
+					notificar("Falha", "Falha",
+							"O funcionário não foi excluído. Verifique se não há nenhum registo ligado a ele e tente novamente.");
+				}
 			}
 			else {
-				funcionario.removerFuncionario(funcionario.getCpf());
-				notificar("Sucesso", "Funcionário excluído",
-						"O funcionário foi excluído dos registros do banco de dados com sucesso");
-				atualizarInfos = true;
+				funcionarioExcluido = funcionario.removerFuncionario(funcionario.getCpf());
+				if (funcionarioExcluido != null) {
+					notificar("Sucesso", "Funcionário excluído",
+							"O funcionário foi excluído dos registros do banco de dados com sucesso");
+					atualizarInfos = true;
+				}
+				else {
+					notificar("Falha", "Falha",
+							"O funcionário não foi excluído. Verifique se não há nenhum registo ligado a ele e tente novamente.");
+				}
 			}
 		}
 		else {
@@ -612,10 +628,16 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	void excluirFilial(ActionEvent event) {
 		if (confirmado) {
 			Filial filial = new Filial();
-			filial.excluirFilial(idFilial);
-
-			notificar("Sucesso", "Filial excluída", "A filial foi excluída dos registros do banco de dados com sucesso!");
-			atualizarInfos = true;
+			boolean filialExcluida = filial.excluirFilial(idFilial);
+			
+			if (filialExcluida) {
+				notificar("Sucesso", "Filial excluída", "A filial foi excluída dos registros do banco de dados com sucesso!");
+				atualizarInfos = true;
+			}
+			else {
+				notificar("Falha", "Falha",
+						"A filial não foi excluída. Verifique se não há nenhum registo ligado a ela e tente novamente.");
+			}
 		}
 		else {
 			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");
@@ -832,10 +854,17 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	void excluirVeiculo(ActionEvent event) {
 		if (confirmado) {
 			Veiculo veiculo = new Veiculo();
-			veiculo.excluirVeiculo(placaVeiculo);
+			boolean veiculoExcluido = veiculo.excluirVeiculo(placaVeiculo);
 			desabilitarEdicao();
-			notificar("Sucesso", "Veículo excluído", "O veículo foi excluído com sucesso do banco de dados!");
-			atualizarInfos = true;
+			
+			if (veiculoExcluido) {
+				notificar("Sucesso", "Veículo excluído", "O veículo foi excluído com sucesso do banco de dados!");
+				atualizarInfos = true;
+			}
+			else {
+				notificar("Falha", "Falha",
+						"O veículo não foi excluído. Verifique se não há nenhum registro ligado a ele e tente novamente.");
+			}
 		}
 		else {
 			notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");

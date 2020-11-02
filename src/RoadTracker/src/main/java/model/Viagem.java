@@ -196,7 +196,7 @@ public class Viagem {
 		}
 	}
 	
-	public void excluirViagem(Integer id) {
+	public boolean excluirViagem(Integer id) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
 		Viagem viagem = null;
@@ -207,10 +207,11 @@ public class Viagem {
 			con.getTransaction().begin();
 			con.remove(viagem);
 			con.getTransaction().commit();
+			return true;
 		}
 		catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
 			con.getTransaction().rollback();
+			return false;
 		}
 		finally {
 			con.close();

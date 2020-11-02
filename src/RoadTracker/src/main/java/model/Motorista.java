@@ -286,8 +286,8 @@ public class Motorista {
 			con.getTransaction().commit();
 		}
 		catch (Exception e) {
-			System.err.println(e);
 			con.getTransaction().rollback();
+			return null;
 		}
 		finally {
 			con.close();
@@ -358,13 +358,10 @@ public class Motorista {
 			cpf = list.toString();
 			
 			if(cpf.length() > 3) {
-				cpf = cpf.substring(1, 12);
+				cpf = cpf.substring(1, 15);
 			}else {
 				cpf = "Não encontrado";
 			}
-				
-			
-					
 		}
 		catch (Exception e) {
 			System.err.println(e);
