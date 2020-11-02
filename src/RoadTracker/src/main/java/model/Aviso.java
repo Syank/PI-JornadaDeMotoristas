@@ -85,7 +85,7 @@ public class Aviso {
 		this.resolvido = resolvido;
 	}
 	
-	public void cadastrarAviso(String funcionario_destino, String cpfMotorista, String mensagem, String nomenclatura, boolean resolvido) {
+	public boolean cadastrarAviso(String funcionario_destino, String cpfMotorista, String mensagem, String nomenclatura, boolean resolvido) {
 			EntityManager con = new ConnectionFactory().getConnection();
 			
 			Motorista motorista = new Motorista();
@@ -119,6 +119,7 @@ public class Aviso {
 				con.getTransaction().begin();
 				con.persist(this);
 				con.getTransaction().commit();
+				return true;
 			}
 			catch(Exception e) {
 				JOptionPane.showMessageDialog(null, "Ocorreu um problema ao enviar o aviso. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
@@ -127,7 +128,7 @@ public class Aviso {
 			finally {
 				con.close();
 			}
-			
+			return false;
 		}
 	
 	

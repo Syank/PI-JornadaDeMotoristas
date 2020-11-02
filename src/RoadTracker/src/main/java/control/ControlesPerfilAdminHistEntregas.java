@@ -221,9 +221,6 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     	atualizarInfos = true;
     }
     
-    
-    
-    @SuppressWarnings("unlikely-arg-type")
 	private void carregarInfoViagem() {
     	paneSelecionarViagem.setVisible(false);
     	paneSelecionarViagem.setDisable(true);

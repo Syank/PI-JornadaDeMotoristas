@@ -17,7 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import model.Aviso;
-import model.Motorista;
 import view.Main;
 
 public class ControlesPerfilMotAvisos implements Initializable {
@@ -72,6 +71,30 @@ public class ControlesPerfilMotAvisos implements Initializable {
 
     @FXML
     private TextField remetente;
+    
+    @FXML
+    private Pane paneAvisosPrincipal;
+
+    @FXML
+    private Pane paneAvisosSombra;
+
+    @FXML
+    private Pane paneAvisosSucesso;
+
+    @FXML
+    private Label labelAvisosTituloSucesso;
+
+    @FXML
+    private Label labelAvisosTextoSucesso;
+
+    @FXML
+    private Pane paneAvisosFalha;
+
+    @FXML
+    private Label labelAvisosTituloFalha;
+
+    @FXML
+    private Label labelAvisosTextoFalha;
 
 
     @FXML
@@ -94,7 +117,6 @@ public class ControlesPerfilMotAvisos implements Initializable {
     @FXML
     public void confirmarAviso(ActionEvent event) {
     	Aviso aviso = new Aviso();
-    	Motorista mot = new Motorista();
     	
     	String fil;
     	String re;
@@ -114,7 +136,14 @@ public class ControlesPerfilMotAvisos implements Initializable {
     	String motorista = ControlesLogin.cpfLogado;
     	boolean resolvido = resol.isSelected();
     	String nomenclatura = (String.valueOf(te) + String.valueOf(pn) + String.valueOf(fil) + String.valueOf(re));
-    	aviso.cadastrarAviso("todos", motorista, mensagem, nomenclatura, resolvido);
+    	boolean retorno = aviso.cadastrarAviso("todos", motorista, mensagem, nomenclatura, resolvido);
+    	
+    	if (retorno) {
+    		notificar("Sucesso", "Aviso enviado com sucesso!", "O aviso foi enviado a um dos funcionários da empresa.");
+    	}
+    	else {
+    		notificar("Falha", "Falha no envio do aviso.", "O aviso não pôde ser enviado. Tente novamente.");
+    	}
     }
 
     @FXML
@@ -151,10 +180,41 @@ public class ControlesPerfilMotAvisos implements Initializable {
 		resol.setSelected(false);
 		
 	}
+	
+    void notificar(String tipoDeAviso, String titulo, String texto) {
+    	paneAvisosPrincipal.setDisable(false);
+    	paneAvisosPrincipal.setVisible(true);
+    	paneAvisosSombra.setVisible(true);
+    	paneAvisosSombra.setDisable(false);
+    	switch(tipoDeAviso){
+    		case "Sucesso":
+    			paneAvisosSucesso.setDisable(false);
+    			paneAvisosSucesso.setVisible(true);
+    			labelAvisosTextoSucesso.setText(texto);
+    			labelAvisosTituloSucesso.setText(titulo);
+    			break;
+    		case "Falha":
+    			paneAvisosFalha.setDisable(false);
+    			paneAvisosFalha.setVisible(true);
+    			labelAvisosTextoFalha.setText(texto);
+    			labelAvisosTituloFalha.setText(titulo);
+    			break;
+    	}
+    }
+    @FXML
+    void fecharAviso(ActionEvent event){
+    	paneAvisosPrincipal.setDisable(true);
+    	paneAvisosPrincipal.setVisible(false);
+    	paneAvisosSombra.setVisible(false);
+    	paneAvisosSombra.setDisable(true);
+		paneAvisosSucesso.setDisable(true);
+		paneAvisosSucesso.setVisible(false);
+		paneAvisosFalha.setDisable(true);
+		paneAvisosFalha.setVisible(false);
+    }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		
 	}
 	
