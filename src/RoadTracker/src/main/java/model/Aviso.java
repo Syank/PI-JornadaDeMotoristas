@@ -94,7 +94,16 @@ public class Aviso {
 	    	int ano = hoje.getYear();
 	    	int dia = hoje.getDayOfMonth();
 	    	int mes = hoje.getMonthValue();
-	    	String data = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+	    	
+	    	String diaCerto = "";
+	    	if (dia >= 1 && dia < 10) {
+	    		diaCerto = '0' + String.valueOf(dia);
+	    	}
+	    	else {
+	    		diaCerto = String.valueOf(dia);
+	    	}
+	    	
+	    	String data = (diaCerto + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
 			this.setData(data);
 			
 			this.setMensagem(mensagem);
