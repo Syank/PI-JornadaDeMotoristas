@@ -496,10 +496,16 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 				+ "Turno: " + turno + "\n"
 				+ "Dias de trabalho: " + diasDeTrabalho + "\n"
 				+ "Pertencendo a Filial " + nomeFilial + ", de ID igual a: " + String.valueOf(idFilial);
-
-		aviso.solicitarCadastro(ControlesLogin.cpfLogado, solicitacao);
-
-		System.out.println("Solicitação enviada!");
+		
+		boolean retorno = aviso.solicitarCadastro(ControlesLogin.cpfLogado, solicitacao);
+		if (retorno) {
+			notificar("Sucesso", "Sucesso!", "O cadastro foi solicitado com sucesso.");
+			limparCampos();
+			
+		}
+		else {
+			notificar("Falha", "Falha", "O cadastro não pôde ser solicitado. Tente novamente.");
+		}
 	}
 
 	@FXML
@@ -1083,7 +1089,25 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 
 	}
 
-
+	void limparCampos() {
+		textFieldCadastroNome.setText("");
+		textFieldCadastroCpf.setText("");
+		textFieldCadastroEmail.setText("");
+		textFieldCadastroSenha.setText("");
+		textFieldCadastroConfirmarSenha.setText("");
+		textFieldCadastroCargaHoraria.setText("");
+		textFieldCadastroSalario.setText("");
+		comboBoxCadastroFilial.getSelectionModel().select(0);
+		comboBoxCadastroTurno.getSelectionModel().select(0);
+		checkBoxDomingo.setSelected(false);
+		checkBoxSegunda.setSelected(false);
+		checkBoxTerca.setSelected(false);
+		checkBoxQuarta.setSelected(false);
+		checkBoxQuinta.setSelected(false);
+		checkBoxSexta.setSelected(false);
+		checkBoxSabado.setSelected(false);
+	}
+	
 	void tarefasEmLoop() {
 		// Considere que cada if aqui dentro é uma "função"
 

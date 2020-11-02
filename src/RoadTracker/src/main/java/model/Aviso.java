@@ -214,7 +214,7 @@ public class Aviso {
 	}
 	
 	
-	public void solicitarCadastro(String cpfEmissor, String mensagem) {
+	public boolean solicitarCadastro(String cpfEmissor, String mensagem) {
 		EntityManager con = new ConnectionFactory().getConnection();
 			
 		LocalDate hoje = LocalDate.now();
@@ -235,6 +235,7 @@ public class Aviso {
 			con.getTransaction().begin();
 			con.persist(this);
 			con.getTransaction().commit();
+			return true;
 		}
 		catch(Exception e) {
 			JOptionPane.showMessageDialog(null, "Ocorreu um problema ao enviar o aviso. Tente novamente.\nErro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
@@ -243,6 +244,6 @@ public class Aviso {
 		finally {
 			con.close();
 		}
-		
+		return false;
 	}
 }

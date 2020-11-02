@@ -140,6 +140,7 @@ public class ControlesPerfilMotAvisos implements Initializable {
     	
     	if (retorno) {
     		notificar("Sucesso", "Aviso enviado com sucesso!", "O aviso foi enviado a um dos funcionários da empresa.");
+    		limparCampos();
     	}
     	else {
     		notificar("Falha", "Falha no envio do aviso.", "O aviso não pôde ser enviado. Tente novamente.");
@@ -178,7 +179,6 @@ public class ControlesPerfilMotAvisos implements Initializable {
 		envTerceiros.setSelected(false);
 		fProx.setSelected(false);
 		resol.setSelected(false);
-		
 	}
 	
     void notificar(String tipoDeAviso, String titulo, String texto) {
