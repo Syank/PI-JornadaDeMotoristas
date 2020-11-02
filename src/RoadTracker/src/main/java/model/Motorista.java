@@ -299,7 +299,7 @@ public class Motorista {
 	public List<Funcionarios> listarMotoristas() {
 		List<Funcionarios> lista = new ArrayList<>();
 		for (Motorista m: this.consultarTodosMotoristas()) {
-			Funcionarios nome = new Funcionarios(m.cpf, m.nome, m.cargo);
+			Funcionarios nome = new Funcionarios(m.cpf, m.nome, m.cargo, m.email);
 			lista.add(nome);
 		}
 		return lista;

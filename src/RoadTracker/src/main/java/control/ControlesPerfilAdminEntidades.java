@@ -203,8 +203,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	@FXML
 	private TextField textFieldCidadeFilial;
 	@FXML
-	private TextField textFieldEstadoFilial;
-	@FXML
 	private TextField textFieldCnpj;
 	@FXML
 	private TextField textFieldRntrc;
@@ -214,6 +212,16 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private Button botaoSalvarAlteracoesFilial;
 	@FXML
 	private Button botaoDescartarAlteracoesFilial;
+	
+    @FXML
+    private ComboBox<Estados> comboBoxEstados;
+    
+    private List<Estados> estados = new ArrayList<>();
+    private ObservableList<Estados> obsListEstados;
+    
+    private String listaDeEstados[] = {"AC", "AL", "AP", "AM", "BA", "CE", "ES", "GO", "MA", "MT", "MG", "PA", "PB", "PR",
+    								   "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", "DF"};
+	
 	private int idFilial;
 	
 
@@ -586,7 +594,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	void habilitarEdicaoFilial(ActionEvent event) {
 		textFieldNomeFilial.setDisable(false);
 		textFieldCidadeFilial.setDisable(false);
-		textFieldEstadoFilial.setDisable(false);
+		comboBoxEstados.setDisable(false);
 		textFieldCnpj.setDisable(false);
 		textFieldRntrc.setDisable(false);
 
@@ -627,8 +635,10 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		Filial filial = new Filial();
 		
 		if(confirmado) {
+			String estado = comboBoxEstados.getSelectionModel().getSelectedItem().getEstado();
+			
 			filial.alterarDadosFilial(textFieldNomeFilial.getText(), textFieldCidadeFilial.getText(),
-									  textFieldEstadoFilial.getText(), textFieldCnpj.getText(), textFieldRntrc.getText(), 
+									  estado, textFieldCnpj.getText(), textFieldRntrc.getText(), 
 									  Integer.parseInt(textFieldIdFilial.getText()));
 			desabilitarEdicao();
 			notificar("Sucesso", "Filial atualizada",
@@ -651,9 +661,19 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 		textFieldNomeFilial.setText(filial.getNome());
 		textFieldCidadeFilial.setText(filial.getCidade());
-		textFieldEstadoFilial.setText(filial.getEstado());
 		textFieldCnpj.setText(filial.getCnpj());
 		textFieldRntrc.setText(filial.getRntrc());
+		
+	   	int seguranca = 0;
+    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
+	   	comboBoxEstados.getSelectionModel().selectFirst();
+	   	while(!filial.getEstado().equals(comboBoxEstados.getSelectionModel().getSelectedItem().getEstado())) {
+	   		comboBoxEstados.getSelectionModel().selectNext();
+    		seguranca++;
+    		if(seguranca > 100) {
+    			break;
+    		}
+    	}
 
 
 	}
@@ -676,11 +696,21 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		Filial filial = new Filial();
 		filial = filial.encontrarFilial(idFilial);
 		textFieldCidadeFilial.setText(filial.getCidade());
-		textFieldEstadoFilial.setText(filial.getEstado());
 		textFieldNomeFilial.setText(filial.getNome());
 		textFieldCnpj.setText(filial.getCnpj());
 		textFieldRntrc.setText(filial.getRntrc());
 		textFieldIdFilial.setText(String.valueOf(filial.getId()));
+		
+	   	int seguranca = 0;
+    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
+	   	comboBoxEstados.getSelectionModel().selectFirst();
+	   	while(!filial.getEstado().equals(comboBoxEstados.getSelectionModel().getSelectedItem().getEstado())) {
+	   		comboBoxEstados.getSelectionModel().selectNext();
+    		seguranca++;
+    		if(seguranca > 100) {
+    			break;
+    		}
+    	}
 
 	}
 	
@@ -733,6 +763,19 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 		
 	}
+	
+    void carregarComboBoxEstados() {
+    	estados.add(new Estados("Selecione um estado..."));
+    	
+    	for(int i = 0; i < listaDeEstados.length; i++) {
+    		estados.add(new Estados(listaDeEstados[i]));
+    	}
+    	
+    	obsListEstados = FXCollections.observableArrayList(estados);
+    	
+    	comboBoxEstados.setItems(obsListEstados);
+    	
+    }
 	
 	@FXML
 	public void mascararCnpj(KeyEvent event) {
@@ -996,7 +1039,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     	}else if (event.getTarget().toString().contains("textFieldCidadeFilial")) {
         	labelDicaFlutuante.setText("Cidade");
         	labelDicaFlutuante.setVisible(true);
-    	}else if (event.getTarget().toString().contains("textFieldEstadoFilial")) {
+    	}else if (event.getTarget().toString().contains("comboBoxEstados")) {
         	labelDicaFlutuante.setText("Estado");
         	labelDicaFlutuante.setVisible(true);
     	}else if (event.getTarget().toString().contains("textFieldCnpj")) {
@@ -1188,7 +1231,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 		textFieldNomeFilial.setDisable(true);
 		textFieldCidadeFilial.setDisable(true);
-		textFieldEstadoFilial.setDisable(true);
+		comboBoxEstados.setDisable(true);
 		textFieldCnpj.setDisable(true);
 		textFieldRntrc.setDisable(true);
 		botaoSalvarAlteracoesFilial.setDisable(true);
@@ -1404,6 +1447,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		abrirTelaSelecionarEntidade();
 		desabilitarEdicao();
+		carregarComboBoxEstados();
 		
 		textfieldsDeCpf.add(campoDeBuscaCpf);
 		textfieldsDeCpf.add(tfCpf);

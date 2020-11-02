@@ -156,7 +156,7 @@ public class Funcionario {
 	public List<Funcionarios> listarFuncionarios(){
 		List<Funcionarios> lista = new ArrayList<>();
 		for (Funcionario f: this.consultarTodosFuncionarios()) {
-			Funcionarios nomeF = new Funcionarios(f.getCpf(), f.getNome(), f.getCargo());
+			Funcionarios nomeF = new Funcionarios(f.getCpf(), f.getNome(), f.getCargo(), f.getEmail());
 			nomeF.setCpf(f.getCpf());
 			nomeF.setNome(f.getNome());
 			nomeF.setCargo(f.getCargo());

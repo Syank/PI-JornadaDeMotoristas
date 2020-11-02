@@ -98,6 +98,11 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     
     private List<Turnos> turnos = new ArrayList<>();
     private ObservableList<Turnos> turnosList;
+    
+	private List<Funcionarios> listaTodosFuncionarios = new ArrayList<>();
+	
+	private boolean emailValido = true;
+	
     // --------------------------------------------
     
 	
@@ -111,11 +116,18 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     @FXML
     private TextField tfCidadeFilial;
     @FXML
-    private TextField tfEstadoFilial;
-    @FXML
     private TextField tfCnpj;
     @FXML
     private TextField tfRntrc;
+    @FXML
+    private ComboBox<Estados> comboBoxEstados;
+    
+    private List<Estados> estados = new ArrayList<>();
+    private ObservableList<Estados> obsListEstados;
+    
+    private String listaDeEstados[] = {"AC", "AL", "AP", "AM", "BA", "CE", "ES", "GO", "MA", "MT", "MG", "PA", "PB", "PR",
+    								   "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", "DF"};
+    
     // ---------------------------------------
     
     
@@ -140,6 +152,9 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 	String numerosValidos = "0123456789";
 	char listaCaracteresValidos[] = caracteresValidos.toCharArray();
 	char listaCaracteresMaiusculosValidos[] = caracteresMaiusculosValidos.toCharArray();
+	
+	private boolean placaValida = true;
+	private boolean rastreadorValido = true;
     // ----------------------------------------
     
     
@@ -236,6 +251,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 		
 		
 	}
+
     @FXML
     void cadastrarFuncionario(MouseEvent event) {
     	// Todos os funcionários
@@ -255,7 +271,26 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     		}
     	}
     	
-    	if(cpfValido) {
+    	emailValido = true; // Reseta a váriavel para o valor padrão inicial
+    	// boolean emailValido = false; (o comentário é só para ilustrar, pois como o forEach abaixo é algo local, é necessário
+    	//declarar a váriavel emailValid globalmente, lá no início da classe
+    	
+    	// Verifica se o email está no formato de email
+    	if(!email.contains("@") || !email.contains(".com")) {
+    		emailValido = false;
+    	}
+    	
+    	// Inicilamente o emailValido é true, e ao percorrer a lista, caso encontre um email igual, emailValido torna-se false
+    	listaTodosFuncionarios.addAll(new Funcionario().listarFuncionarios());
+    	listaTodosFuncionarios.addAll(new Motorista().listarMotoristas());
+    	listaTodosFuncionarios.forEach(pessoa -> {
+    		if(pessoa.getEmail().equals(email)) {
+    			emailValido = false;
+    		}
+    	});
+    	
+    	
+    	if(cpfValido && emailValido) {
         	Funcionario funcionario = new Funcionario();
 
     		// Primeiro verifica se o cpf não está sendo usado, depois verifica se o email não está sendo usado
@@ -341,8 +376,14 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         	}
     	}
     	else {
-    		notificar("Falha de cadastro", "CPF inválido", "O CPF informado é inválido, "
-    				+ "por favor confira o campo");
+    		if(!cpfValido) {
+        		notificar("Falha de cadastro", "CPF inválido", "O CPF informado é inválido, "
+        				+ "por favor confira o campo");
+    		}else if (!emailValido) {
+        		notificar("Falha de cadastro", "E-mail inválido", "O e-mail informado é inválido ou já está sendo utilizado "
+        				+ "por outro usuário");
+    		}
+
     	}
 
     }
@@ -387,7 +428,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	
     	String nome = tfNomeFilial.getText();
     	String cidade = tfCidadeFilial.getText();
-    	String estado = tfEstadoFilial.getText();
+    	String estado = comboBoxEstados.getSelectionModel().getSelectedItem().getEstado();
     	String cnpj = tfCnpj.getText();
     	String rntrc = tfRntrc.getText();
     	
@@ -462,7 +503,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
             String modelo_rastreador = textFieldModeloRastreador.getText();
         	int filial = comboBoxEscolherFilialVeiculos.getValue().getId();
         	
-        	boolean placaValida = false;
+        	placaValida = true;
+        	rastreadorValido = true;
         	if(placa.length() == 8) {
         		if(caracteresMaiusculosValidos.contains(String.valueOf(placa.charAt(0))) && 
         				caracteresMaiusculosValidos.contains(String.valueOf(placa.charAt(1))) &&
@@ -476,19 +518,24 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         			placaValida = true;
         		}
         	}
+        	veiculos.forEach(veiculo -> {
+        		if(veiculo.getPlaca().equals(placa)) {
+        			placaValida = false;
+        		}
+        		if(String.valueOf(veiculo.getId_rastreador()).equals(id_rastreador)) {
+        			rastreadorValido = false;
+        		}
+        	});
         	
-        	if(!placaValida) {
-        		System.out.println("Placa inválida!");
-        	}
         	//primeiro verifica se nenhum campo está nulo (NÃO VERIFICA SE FOI SELECIONADO UMA FILIAL)
-        	if(placaValida && modelo_veiculo.length() >= 1 && id_rastreador.length() >= 1 && marca_rastreador.length() >= 1 && modelo_rastreador.length() >= 1) {
+        	if(placaValida && modelo_veiculo.length() >= 1 && rastreadorValido && marca_rastreador.length() >= 1 && modelo_rastreador.length() >= 1) {
         		veic.cadastrarVeiculo(placa, modelo_veiculo, id_rastreador, marca_rastreador, modelo_rastreador, filial);
         		notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
         		ControlesPerfilAdminEntidades.atualizarInfos = true;
         	}
         }
         catch (NullPointerException falha) {
-        	notificar("Falha de cadastro", "Falha ao cadastrar a filial", "Preencha todos os campos.");	
+        	notificar("Falha de cadastro", "Falha ao cadastrar o veículo", "Preencha todos os campos.");	
         }
         	
     }
@@ -583,7 +630,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	}else if (event.getTarget().toString().contains("tfCidadeFilial")) {
         	labelDicaFlutuante.setText("Cidade da Filial");
         	labelDicaFlutuante.setVisible(true);
-    	}else if (event.getTarget().toString().contains("tfEstadoFilial")) {
+    	}else if (event.getTarget().toString().contains("comboBoxEstados")) {
         	labelDicaFlutuante.setText("Estado da Filial (Sigla)");
         	labelDicaFlutuante.setVisible(true);
     	}else if (event.getTarget().toString().contains("tfCnpj")) {
@@ -868,7 +915,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     public void limparCamposCadastrarFiliais() {
     	tfNomeFilial.setText("");
     	tfCidadeFilial.setText("");
-    	tfEstadoFilial.setText("");
+    	comboBoxEstados.getSelectionModel().selectFirst();
     	tfCnpj.setText("");
     	tfRntrc.setText("");
     }
@@ -904,6 +951,19 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     }
     
     
+    void carregarComboBoxEstados() {
+    	estados.add(new Estados("Selecione um estado..."));
+    	
+    	for(int i = 0; i < listaDeEstados.length; i++) {
+    		estados.add(new Estados(listaDeEstados[i]));
+    	}
+    	
+    	obsListEstados = FXCollections.observableArrayList(estados);
+    	
+    	comboBoxEstados.setItems(obsListEstados);
+    	
+    }
+    
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -912,6 +972,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 		carregarComboBoxTurnos();
 		carregarComboBoxMotoristas();
 		carregarComboBoxVeiculos();
+		carregarComboBoxEstados();
+		
 		
 	}
 }

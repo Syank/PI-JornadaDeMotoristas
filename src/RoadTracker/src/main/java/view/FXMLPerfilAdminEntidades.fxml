@@ -276,7 +276,7 @@
                <children>
                   <TextField fx:id="textFieldNomeFilial" disable="true" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Nome" styleClass="customizarInputs" />
                   <TextField fx:id="textFieldCidadeFilial" disable="true" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Cidade" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldEstadoFilial" disable="true" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Estado" styleClass="customizarInputs" />
+                  <ComboBox fx:id="comboBoxEstados" disable="true" prefHeight="27.0" prefWidth="180.0" promptText="Estado" styleClass="customizarInputs" />
                </children>
             </VBox>
             <Button layoutX="33.0" layoutY="286.0" mnemonicParsing="false" onAction="#requisitarExclusaoFilial" prefHeight="33.0" prefWidth="76.0" styleClass="customizarBotoes" text="Excluir" textFill="WHITE" />
@@ -397,7 +397,7 @@
                      </styleClass>
                   </HBox>
                   <Button layoutX="161.0" layoutY="109.0" mnemonicParsing="false" onAction="#confirmarAlteracao" prefHeight="32.0" prefWidth="78.0" styleClass="botaoConfirmar" text="Confirmar" textFill="WHITE" />
-                  <Label fx:id="labelAvisosTextoConfirmar" alignment="TOP_CENTER" layoutX="14.0" layoutY="35.0" prefHeight="33.0" prefWidth="372.0" text="Aviso" textAlignment="CENTER" textFill="#bdc3c7" wrapText="true" />
+                  <Label fx:id="labelAvisosTextoConfirmar" alignment="TOP_CENTER" layoutX="14.0" layoutY="30.0" prefHeight="45.0" prefWidth="372.0" text="Aviso" textAlignment="CENTER" textFill="#bdc3c7" wrapText="true" />
                   <PasswordField fx:id="passwordFieldConfirmarSenha" layoutX="126.0" layoutY="70.0" promptText="Senha" styleClass="customizarInputs" />
                </children>
             </Pane>

@@ -173,7 +173,7 @@
                <children>
                   <TextField fx:id="tfNomeFilial" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Nome da filial" styleClass="customizarInputs" />
                   <TextField fx:id="tfCidadeFilial" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Cidade da filial" styleClass="customizarInputs" />
-                  <TextField fx:id="tfEstadoFilial" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Estado da filial (Sigla)" styleClass="customizarInputs" />
+                  <ComboBox fx:id="comboBoxEstados" prefHeight="27.0" prefWidth="180.0" promptText="Estado" styleClass="customizarInputs" />
                </children>
             </VBox>
             <TextField fx:id="tfCnpj" layoutX="238.0" layoutY="65.0" onKeyTyped="#mascararCnpj" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CNPJ" styleClass="customizarInputs" />
