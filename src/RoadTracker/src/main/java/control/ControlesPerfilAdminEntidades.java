@@ -169,9 +169,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     
 	private List<TextField> textfieldsDeCpf = new ArrayList<TextField>();
     
-    
-	
-	
 	// ---------------------------------
 
 	// Elementos das panes de filiais
@@ -281,10 +278,10 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 	// Métodos funcionários
 	public void carregarComboBoxCargos() {
+		cargos.add(new Cargos(0, "Selecione um cargo..."));
 		cargos = funcionario.listarCargos();
 		cargosList = FXCollections.observableArrayList(cargos);
 		cbCargo.setItems(cargosList);
-
 	}
 
 	public void carregarComboBoxTurnos() {
@@ -312,10 +309,14 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 					notificar("Sucesso", "Funcionário excluído",
 							"O funcionário foi excluído dos registros do banco de dados com sucesso");
 					atualizarInfos = true;
+					
+					paneFuncionarioSelecionado.setVisible(false);
+					paneFuncionarios.setVisible(true);
+					paneFuncionarios.setDisable(false);
 				}
 				else {
 					notificar("Falha", "Falha",
-							"O funcionário não foi excluído. Verifique se não há nenhum registo ligado a ele e tente novamente.");
+							"O funcionário não foi excluído. Verifique se não há nenhum registro ligado a ele e tente novamente.");
 				}
 			}
 			else {
@@ -324,10 +325,14 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 					notificar("Sucesso", "Funcionário excluído",
 							"O funcionário foi excluído dos registros do banco de dados com sucesso");
 					atualizarInfos = true;
+					
+					paneFuncionarioSelecionado.setVisible(false);
+					paneFuncionarios.setVisible(true);
+					paneFuncionarios.setDisable(false);
 				}
 				else {
 					notificar("Falha", "Falha",
-							"O funcionário não foi excluído. Verifique se não há nenhum registo ligado a ele e tente novamente.");
+							"O funcionário não foi excluído. Verifique se não há nenhum registro ligado a ele e tente novamente.");
 				}
 			}
 		}
@@ -642,6 +647,10 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			if (filialExcluida) {
 				notificar("Sucesso", "Filial excluída", "A filial foi excluída dos registros do banco de dados com sucesso!");
 				atualizarInfos = true;
+				
+				paneFilialSelecionada.setVisible(false);
+				paneFiliais.setVisible(true);
+				paneFiliais.setDisable(false);
 			}
 			else {
 				notificar("Falha", "Falha",
@@ -869,6 +878,10 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			if (veiculoExcluido) {
 				notificar("Sucesso", "Veículo excluído", "O veículo foi excluído com sucesso do banco de dados!");
 				atualizarInfos = true;
+				
+				paneVeiculos.setVisible(true);
+				paneVeiculos.setDisable(false);
+				paneVeiculoSelecionado.setVisible(false);
 			}
 			else {
 				notificar("Falha", "Falha",
@@ -1422,6 +1435,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 	@FXML
 	void abrirTelaCadFunc(MouseEvent event) {
+		carregarComboBoxCargos();
 		Main.trocarTela("Tela Cadastrar Funcionarios");
 		abrirTelaSelecionarEntidade();
 	}
@@ -1449,6 +1463,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			Main.trocarTela("Tela Boas Vindas");
 		} else {
 			if (paneFuncionarioSelecionado.isVisible()) {
+				carregarComboBoxCargos();
 				abrirTelaFuncionarios(event);
 			} else if (paneFilialSelecionada.isVisible()) {
 				abrirTelaFiliais(event);

@@ -59,10 +59,6 @@ public class ControlesPerfilMotViagens implements Initializable {
     private Label labelAvisosTextoFalha;
     @FXML
     private Label labelAvisosTituloFalha;
-    
-
-    
-
     @FXML
     void iniciaViagem(ActionEvent event) {
     	//Ao clicar em um botão com este evento, abre a tela da viagem atual.

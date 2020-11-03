@@ -450,8 +450,6 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     	System.exit(0);
     }
 
-    
-    
     void tarefasEmLoop() {
     	// Considere que cada if aqui dentro é uma "função"
 

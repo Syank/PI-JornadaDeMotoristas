@@ -322,7 +322,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 				}
         	}
         	else {
-        		
         		String salario = textFieldSalario.getText();
         		String cargaHoraria = tfCargaHoraria.getText();
         		String turno = cbTurno.getValue().getTurno();

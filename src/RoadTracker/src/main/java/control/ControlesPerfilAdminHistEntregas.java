@@ -58,7 +58,6 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     private Pane paneSelecionarViagem;
     @FXML
     private Pane paneViagemSelecionada;
-    
     @FXML
     private TextField textFieldId;
     @FXML
@@ -129,7 +128,8 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 		if(!comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca().equals("Selecione um veículo...")) {
 			funcao = "Veiculo";
 			notificar("Confirmar", "Confirmar senha do usuário", "Por favor, confirme sua senha no campo abaixo para confirmar as alterações nos dados");	
-		}else {
+		}
+		else {
 			System.out.println("Selecione um veículo!");
 		}
 	}
@@ -139,7 +139,6 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     private void salvarAlteracoes(ActionEvent event) {
     	if(confirmado) {
     	   	Viagem viagem = new Viagem();
-        	
         	
         	int dia = datePickerPrazo.getValue().getDayOfMonth();
         	int mes = datePickerPrazo.getValue().getMonthValue();
@@ -193,6 +192,10 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 	    	boolean viagemExcluida = viagem.excluirViagem(Integer.parseInt(textFieldId.getText()));
 	    	desabilitarEdicao();
 	    	
+			paneViagemSelecionada.setVisible(false);
+			paneSelecionarViagem.setVisible(true);
+			paneSelecionarViagem.setDisable(false);
+	    	
 	    	if (viagemExcluida) {
 				notificar("Sucesso", "Viagem excluída", "A viagem foi excluída com sucesso do banco de dados!");
 				atualizarInfos = true;
@@ -215,12 +218,12 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 			idViagem = selecionada.getId();
 
 			carregarInfoViagem();
-		}catch (NullPointerException falha) {
+		}
+		catch (NullPointerException falha) {
 			notificar("Falha", "Entidade não selecionada", "Nenhuma viagem foi selecionada na lista, por favor selecione uma e tente novamente");
 		}
 
 	}
-	
 	@FXML
 	void abrirTelaAvisos(MouseEvent event) {
 		Main.trocarTela("Tela Avisos");
