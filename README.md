@@ -110,14 +110,11 @@
        </p>
         <p>
                <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/escolher_entidade.png" width="400px">
-               <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/aviso_solicita_senha.png" width="400px"> 
+               <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/cadastro_motoristas.png" width="400px">
        </p>
         <p>
-               <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/aviso_usuario_excluido.png" width="400px">
-               <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/ver_filiais.png" width="400px">
+               <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/cadastro_motoristas_sucesso.png" width="400px">
+               <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/listagem_funcionarios.png" width="400px">
         </p>
-        <p>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/informa%C3%A7%C3%B5es_funcionario.jpeg" width="400px">   
-       </p>
        <h4><a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/master/doc/wireframes">Visualizar todos os <i>wireframes</i> do sistema</a></h4>
  </section>
