@@ -21,11 +21,7 @@
        <li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#Branches-de-cada-entrega">Branches de cada entrega</a></li>
 <li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#cards-das-sprints-entregas-do-sistema">Cards das Sprints (entregas) do sistema</a></li>
 <li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#nosso-sistema-em-funcionamento-at%C3%A9-o-momento">Nosso sistema em funcionamento até o momento</a></li>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#user-stories-do-nosso-sistema">User stories do nosso sistema</a></li>
 <li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#wireframes-do-roadtracker-">Wireframes do RoadTracker</a></li>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#modelo-conceitual-do-nosso-banco-de-dados">Modelo conceitual do nosso banco de dados</a></li>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#modelo-l%C3%B3gico-do-nosso-banco-de-dados">Modelo lógico do nosso banco de dados</a></li>
-<li><a href="https://github.com/Syank/PI-JornadaDeMotoristas#modelo-f%C3%ADsico-do-nosso-banco-de-dados">Modelo físico do nosso banco de dados</a></li>
 </ul>
 </nav>
 </section>
@@ -106,26 +102,6 @@
         <h3>Nosso sistema em funcionamento até o momento</h3>
         <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_1/Sistema%20Sprint%200.gif">
 </section>
-    
-
-<section id="user_stories">
-     <h3>User stories do nosso sistema</h3>
-     <h4>Primeira entrega :clock12:</h4>
-     <p align="justify">A nossa primeira entrega contará com um CRUD dos funcionários das filiais, que poderão ter os cargos de administrador, supervisor e motorista. A partir disso, as filiais já poderão ter controle dos funcionários cadastrados sob seu nome e terão uma visão mais ampla das jornadas de trabalho de cada colaborador.</p>
-    <img src="doc/user_stories/1.png" width="600px">
-     <h4>Segunda entrega :clock4:</h4>
-    <p align="justify">Na segunda entrega já será possível o cadastro das filiais, assim como dos veículos e viagens. Isso possibilitará o melhor controle de cada viagem realizada, disponibilizando informaçoes do veículo nela utilizado, o motorista que a realizará e proporcionando a escalabilidade de boa parte do sistema.</p>
-    <img src="doc/user_stories/2.png" width="600px">
-    <img src="doc/user_stories/2-2.png" width="600px">
-     <h4>Terceira entrega :clock8:</h4>
-     <p align="justify">Acerca da terceira entrega, o motorista poderá cadastrar os status em que ele se encontra (como descanso, espera, alimentação e abastecimento), permitindo que todos da sua filial saibam como está o andamento de sua viagem. Essa é uma das principais funcionalidades do sistema, porém depende de outra: cadastro das viagens. Sem uma viagem o motorista não poderá emitir status.</p>
-    <img src="doc/user_stories/3.png" width="600px">
-     <h4>Quarta entrega :clock12:</h4>
-     <p align="justify">Finalmente, diante da quarta e última entrega, todos os usuários poderão recuperar a sua senha caso seja necessário. Haverá um perfil para supervisores, que poderão desempenhar algumas funções dos administradores (o que ajuda na agilidade dos processos). Além disso, os motoristas poderão enviar avisos aos administradores e supervisores, caso haja algum assunto importante a ser tratado ou caso ocorra alguma emergência.</p>
-    <img src="doc/user_stories/4.png" width="600px">
-</section>
-          
-
 <section id="Wireframes">
     <h3>Wireframes do RoadTracker </h3>
         <p>
@@ -145,138 +121,3 @@
        </p>
        <h4><a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/master/doc/wireframes">Visualizar todos os <i>wireframes</i> do sistema</a></h4>
  </section>
-
-<section id="ModeloC">
-        <h3>Modelo conceitual do nosso banco de dados</h3>
-        <img src="doc/banco_de_dados/RTdbNovo-conceitual.png" width="800px">
-    
-</section>
-
-<section id="ModeloL">
-        <h3>Modelo lógico do nosso banco de dados</h3>
-        <img src="doc/banco_de_dados/RTdbNovo-logico.png" width="800px">
-
-</section>
-</body>
-<section id="ModeloF">
-        <h3>Modelo físico do nosso banco de dados</h3>
-        </section>
-
-~~~SQL
-
-CREATE DATABASE rtracker;
-
-CREATE TABLE filiais (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(50),
-    cnpj VARCHAR(15),
-    cidade VARCHAR(30),
-    estado VARCHAR(2),
-    rntrc VARCHAR(8)
-);
-
-CREATE TABLE funcionarios_filiais (
-    cpf VARCHAR(11) PRIMARY KEY,
-    nome VARCHAR(50),
-    cargo VARCHAR(13),
-    email VARCHAR(50),
-    senha VARCHAR(32),
-    fk_filiais_id SERIAL
-);
-
-CREATE TABLE motoristas (
-    cpf VARCHAR(11) PRIMARY KEY,
-    nome VARCHAR(50),
-    cnh VARCHAR(11),
-    dom BOOLEAN,
-    seg BOOLEAN,
-    ter BOOLEAN,
-    qua BOOLEAN,
-    qui BOOLEAN,
-    sab BOOLEAN,
-    cargahoraria VARCHAR(4),
-    salario VARCHAR(10),
-    sex BOOLEAN,
-    email VARCHAR(50),
-    senha VARCHAR(32),
-    dia_atual VARCHAR(2),
-    trabalhado_hoje VARCHAR(5),
-    descansado_hoje VARCHAR(5),
-    alimentacao_hoje VARCHAR(5),
-    fk_filiais_id SERIAL
-);
-
-CREATE TABLE avisos (
-    id SERIAL PRIMARY KEY,
-    mensagem TEXT,
-    data DATE,
-    resolvido BOOLEAN,
-    nomenclatura VARCHAR(15),
-    fk_motoristas_cpf VARCHAR(11)
-);
-
-CREATE TABLE veiculos (
-    placa VARCHAR(8) PRIMARY KEY,
-    id_rastreador VARCHAR(20),
-    marca_rastreador VARCHAR(20),
-    modelo_rastreador VARCHAR(20),
-    modelo_veiculo VARCHAR(20),
-    fk_filiais_id SERIAL
-);
-
-CREATE TABLE viagens (
-    id SERIAL PRIMARY KEY,
-    destino VARCHAR(30),
-    carga VARCHAR(20),
-    inicio TIMESTAMP,
-    fim TIMESTAMP,
-    prazo TIMESTAMP,
-    fk_veiculos_placa VARCHAR(8),
-    fk_motoristas_cpf VARCHAR(11)
-);
-
-CREATE TABLE status (
-    id SERIAL PRIMARY KEY,
-    tipo VARCHAR(20),
-    inicio TIMESTAMP,
-    fim TIMESTAMP,
-    total TIMESTAMP,
-    fk_motoristas_cpf VARCHAR(11)
-);
- 
-ALTER TABLE funcionarios_filiais ADD CONSTRAINT FK_funcionarios_filiais_2
-    FOREIGN KEY (fk_filiais_id)
-    REFERENCES filiais (id)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE motoristas ADD CONSTRAINT FK_motoristas_2
-    FOREIGN KEY (fk_filiais_id)
-    REFERENCES filiais (id)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE avisos ADD CONSTRAINT FK_avisos_2
-    FOREIGN KEY (fk_motoristas_cpf)
-    REFERENCES motoristas (cpf)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE veiculos ADD CONSTRAINT FK_veiculos_2
-    FOREIGN KEY (fk_filiais_id)
-    REFERENCES filiais (id)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE viagens ADD CONSTRAINT FK_viagens_2
-    FOREIGN KEY (fk_veiculos_placa)
-    REFERENCES veiculos (placa)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE viagens ADD CONSTRAINT FK_viagens_3
-    FOREIGN KEY (fk_motoristas_cpf)
-    REFERENCES motoristas (cpf)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE status ADD CONSTRAINT FK_status_2
-    FOREIGN KEY (fk_motoristas_cpf)
-    REFERENCES motoristas (cpf)
-    ON DELETE RESTRICT;
-
-~~~
