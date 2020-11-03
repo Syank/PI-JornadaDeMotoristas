@@ -139,7 +139,8 @@ public class ControlesPerfilSuperAvisos implements Initializable{
 		// Esse try é um remendo no código pois corrigir isso envolveria mudar muitas classes
 		try {
 			remetente.setText(aviso.getMotorista().getCpf());
-		}catch(Exception erro) {
+		}
+		catch(Exception erro) {
 			remetente.setText(aviso.getEmissor());
 		}
 
@@ -159,7 +160,8 @@ public class ControlesPerfilSuperAvisos implements Initializable{
     		paneVisualizarAvisos.setDisable(false);
     		paneVisualizarAvisos.setVisible(true);
     		
-    	}else {
+    	}
+    	else {
         	Main.trocarTela("Tela Inicial Supervisor");
     	}
     	

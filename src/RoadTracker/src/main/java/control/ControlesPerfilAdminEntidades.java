@@ -397,6 +397,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			
 		   	int seguranca = 0;
 	    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
+		   	cbFilial.getSelectionModel().selectFirst();
 	    	while(!motorista.getNome().equals(cbFilial.getSelectionModel().getSelectedItem().getNome())) {
 	    		cbFilial.getSelectionModel().selectNext();
 	    		seguranca++;
@@ -485,11 +486,21 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	void alterarDados(ActionEvent event) {
 			if(confirmado) {
 				if(cargoFuncionario.equals("Motorista")) {
-					if (Integer.parseInt(textFieldSalarioMotorista.getText()) < 1701.38) {
+					
+					String salario = textFieldSalarioMotorista.getText();
+	        		// verificando se o usuário digitou um salário float com vírgula ou com ponto
+	        		for (int i = 0; i < salario.length(); i++) {
+	        			char caracter = salario.charAt(i);
+	        			if (caracter == ',') { // se for vírgula troca, pois o java só entende ponto
+	        				salario = salario.replace(',', '.');
+	        			}
+	        		}
+					
+					if (Float.parseFloat(salario) < 1701.38) {
 						notificar("Falha", "Salário baixo", "O salário digitado é muito baixo. Escreva um salário válido.");
 					}
 					else if (Integer.parseInt(tfCargaHoraria.getText()) > 12) {
-	        			notificar("Falha de cadastro", "Carga horária", "A carga horária diária previamente acordada pode ser no máximo de 12 horas. Verifique o valor e tente novamente.");
+	        			notificar("Falha", "Carga horária", "A carga horária diária previamente acordada pode ser no máximo de 12 horas. Verifique o valor e tente novamente.");
 	        		}
 					else {
 						motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
@@ -510,8 +521,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 							"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
 					atualizarInfos = true;
 				}
-				
-				
 			}
 			else {
 				notificar("Falha", "Senha de confirmação incorreta", "A senha de verificação estava incorreta, tente novamente");

@@ -516,11 +516,21 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	void alterarDados(ActionEvent event) {
 		Motorista motorista = new Motorista().encontrarMotorista(cpfMotorista);
 		if(confirmado) {
-			if (Integer.parseInt(textFieldSalarioMotorista.getText()) < 1701.38) {
+			
+			String salario = textFieldSalarioMotorista.getText();
+    		// verificando se o usuário digitou um salário float com vírgula ou com ponto
+    		for (int i = 0; i < salario.length(); i++) {
+    			char caracter = salario.charAt(i);
+    			if (caracter == ',') { // se for vírgula troca, pois o java só entende ponto
+    				salario = salario.replace(',', '.');
+    			}
+    		}
+    		
+			if (Float.parseFloat(salario) < 1701.38) {
 				notificar("Falha", "Salário baixo", "O salário digitado é muito baixo. Escreva um salário válido.");
 			}
 			else if (Integer.parseInt(tfCargaHoraria.getText()) > 12) {
-				notificar("Falha de cadastro", "Carga horária", "A carga horária diária previamente acordada pode ser no máximo de 12 horas. Verifique o valor e tente novamente.");
+				notificar("Falha", "Carga horária", "A carga horária diária previamente acordada pode ser no máximo de 12 horas. Verifique o valor e tente novamente.");
 			}
 			else {
 				motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
