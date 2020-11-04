@@ -1,21 +1,29 @@
 package control;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import model.Filial;
 import model.Funcionario;
 import model.Motorista;
+import view.Cargos;
+import view.Funcionarios;
 import view.Main;
 
 
@@ -43,10 +51,34 @@ public class ControlesLogin implements Initializable{
     private Label labelAvisosTituloFalha;
     @FXML
     private Label labelAvisosTextoFalha;
+    @FXML
+    private Pane trocaSenha;
+    @FXML
+    private Pane paneLogin;
+    @FXML
+    private TextField tfNome;
+    @FXML
+    private TextField tfCpf;
+    @FXML
+    private TextField textFieldEmail;
+    @FXML
+    private PasswordField pfSenha1;
+    @FXML
+    private PasswordField pfSenha2;
+    @FXML
+    private ComboBox<Cargos> cbCargos;
+    @FXML
+    private Pane paneAvisosSucesso;
+    @FXML
+    private Label labelAvisosTextoSucesso;
+    @FXML 
+    private Label labelAvisosTituloSucesso;
     
+	private String cargoFuncionario;
     
-    
-    
+	private static Funcionario funcionario = new Funcionario();
+	private List<Cargos> cargos = new ArrayList<>();
+	private ObservableList<Cargos> cargosList;
     
     @FXML
     void verificarLogin(ActionEvent event) {
@@ -117,6 +149,30 @@ public class ControlesLogin implements Initializable{
         	labelDicaFlutuante.setText("Senha");
         	labelDicaFlutuante.setVisible(true);
     	}
+    	else if (event.getTarget().toString().contains("tfCpf")) {
+        	labelDicaFlutuante.setText("Cpf");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("tfNome")) {
+        	labelDicaFlutuante.setText("Nome");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("pfSenha1")) {
+        	labelDicaFlutuante.setText("Nova senha");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("pfSenha2")) {
+        	labelDicaFlutuante.setText("Confirmar nova senha");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("textFieldEmail")) {
+        	labelDicaFlutuante.setText("email");
+        	labelDicaFlutuante.setVisible(true);
+    	}
+    	else if (event.getTarget().toString().contains("cbCargos")) {
+        	labelDicaFlutuante.setText("cargo");
+        	labelDicaFlutuante.setVisible(true);
+    	}
     	labelDicaFlutuante.setLayoutX(event.getSceneX());
     	labelDicaFlutuante.setLayoutY(event.getSceneY());
     }
@@ -137,6 +193,82 @@ public class ControlesLogin implements Initializable{
     	System.exit(0);
     }
     
+    @FXML //muda para pane de trocar senha
+    void esqueceuSenha(MouseEvent event) {
+    	trocaSenha.setVisible(true);
+    	trocaSenha.setDisable(false);
+    	paneLogin.setVisible(false);
+    	paneLogin.setDisable(true);
+    }
+    
+    @FXML
+    void confirmarTroca(ActionEvent event) {
+    	Funcionario funcionario = new Funcionario();
+    	Motorista motorista = new Motorista();
+    	
+    	String email = textFieldEmail.getText();
+    	String senha1 = pfSenha1.getText();
+    	String senha2 = pfSenha2.getText();
+    	String cpf = tfCpf.getText();
+    	String nome = tfNome.getText();
+    	cargoFuncionario = cbCargos.getSelectionModel().getSelectedItem().getCargo();
+    	
+    	if(cargoFuncionario.equals("Motorista")) {
+        	motorista = motorista.encontrarMotorista(cpf);
+        	if(motorista != null) {
+        		if(motorista.getEmail().equals(email) && motorista.getNome().equals(nome) && senha1.equals(senha2)) {
+        			motorista.alterarSenhaMot(senha2);
+        			notificar("Sucesso", "Senha alterada", "Sua senha foi alterada com sucesso! Você já pode realizar seu login.");
+        		}
+        	}	
+    	}
+    	else {
+        	funcionario = funcionario.encontrarFuncionario(cpf);
+        	if(funcionario != null) {
+        		if(funcionario.getEmail().equals(email) && funcionario.getNome().equals(nome) && senha1.equals(senha2)) {
+        			funcionario.alterarSenhaFunc(senha2);
+        			notificar("Sucesso", "Senha alterada", "Sua senha foi alterada com sucesso! Você já pode realizar seu login.");
+        		}
+        	}	
+    	}
+    }
+    
+	public void carregarComboBoxCargos() {
+		cargos.add(new Cargos(0, "Selecione um cargo..."));
+		cargos = funcionario.listarCargos();
+		cargosList = FXCollections.observableArrayList(cargos);
+		cbCargos.setItems(cargosList);
+	}
+    
+	@FXML
+	public void mascararCpf(KeyEvent event) {
+		String texto = tfCpf.getText();
+		String caracter = event.getCharacter();
+
+		
+		// Verifica se é um número e se for, aplica a máscara de CPF, porém, caso não seja, não permite a adição do caracter
+		if(caracter.equals("1") || caracter.equals("2") || caracter.equals("3") || caracter.equals("4") ||
+				caracter.equals("5") || caracter.equals("6") || caracter.equals("7") || caracter.equals("8") ||
+				caracter.equals("9") || caracter.equals("0")){
+
+			if(texto.length() == 3 || texto.length() == 7) {
+				texto = texto + ".";
+			}else if(texto.length() == 11) {
+				texto = texto + "-";
+			}
+
+		}else if(texto.length() > 1){
+			texto = texto.substring(0, texto.length());
+		}
+		
+		if(texto.length() > 14) {
+			texto = texto.substring(0, 14);
+		}
+
+		tfCpf.setText(texto);
+		tfCpf.end();
+	}
+    
 	void notificar(String tipoDeAviso, String titulo, String texto) {
 		paneAvisosPrincipal.setDisable(false);
 		paneAvisosPrincipal.setVisible(true);
@@ -150,8 +282,13 @@ public class ControlesLogin implements Initializable{
 			labelAvisosTextoFalha.setText(texto);
 			labelAvisosTituloFalha.setText(titulo);
 			break;
+		case "Sucesso":
+			paneAvisosSucesso.setDisable(false);
+			paneAvisosSucesso.setVisible(true);
+			labelAvisosTextoSucesso.setText(texto);
+			labelAvisosTituloSucesso.setText(titulo);
+			break;
 		}
-		
 	}
 	
     @FXML
@@ -163,6 +300,14 @@ public class ControlesLogin implements Initializable{
 		paneAvisosFalha.setDisable(true);
 		paneAvisosFalha.setVisible(false);
     }
+    
+	@FXML
+	void voltar(ActionEvent event) {
+    	trocaSenha.setVisible(false);
+    	trocaSenha.setDisable(true);
+    	paneLogin.setVisible(true);
+    	paneLogin.setDisable(false);
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -178,7 +323,7 @@ public class ControlesLogin implements Initializable{
 		if(!(func.encontrarFuncionario("000.000.000-00") != null)) {
 			func.cadastrarFuncionario("Admin User", "000.000.000-00", "root", "Administrador", 1, "adminuser@root.com");
 		}
-		
+		carregarComboBoxCargos();
 	}
 
 }

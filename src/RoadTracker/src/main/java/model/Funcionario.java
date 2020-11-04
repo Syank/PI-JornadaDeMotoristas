@@ -166,6 +166,23 @@ public class Funcionario {
 		return lista;
 	}
 	
+	public void alterarSenhaFunc(String senha){
+		this.setSenha(senha);
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		try {
+			con.getTransaction().begin();
+			con.merge(this);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+	}
 	public List<Cargos> listarCargos(){
 		
 		List<Cargos> cargos = new ArrayList<>();

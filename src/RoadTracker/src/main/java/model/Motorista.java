@@ -234,6 +234,24 @@ public class Motorista {
 		
 		return true;
 	}
+	
+	public void alterarSenhaMot(String senha){
+		this.setSenha(senha);
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		try {
+			con.getTransaction().begin();
+			con.merge(this);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+	}
 
 	public void alterarDadosMotorista(String cpf, String nome, String email, String senha, String salario, String cargaHoraria, int idFilial,
 			String turno, boolean seg, boolean ter, boolean qua, boolean qui, boolean sex, boolean sab, boolean dom) {
