@@ -1,9 +1,15 @@
 package control;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.swing.JOptionPane;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,12 +25,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import model.ConnectionFactory;
 import model.Filial;
 import model.Funcionario;
 import model.Motorista;
+import model.Viagem;
 import view.Cargos;
 import view.Funcionarios;
 import view.Main;
+import view.Viagens;
 
 
 public class ControlesLogin implements Initializable{
@@ -308,6 +317,53 @@ public class ControlesLogin implements Initializable{
     	paneLogin.setVisible(true);
     	paneLogin.setDisable(false);
 	}
+	
+	public void verificarViagensAtrasadas() {
+		
+		// data de hoje
+		Date diaHoje = new Date();
+		int anoH = diaHoje.getYear() + 1900;
+		int mesH = diaHoje.getMonth() + 1;
+		int diaH = diaHoje.getDate();
+		LocalDate dtHojeV = LocalDate.of(anoH, mesH, diaH);
+		LocalDate dtViagem = null;
+		
+		// fazendo a verificação de cada viagem a partir de uma consulta no banco
+		Viagem v = new Viagem();
+		
+		List<Viagem> viagens = null;
+		viagens = v.consultarTodasViagens(); // todas as viagens vão para uma lista
+		
+		for (Viagem viagem: viagens) {
+			// fazendo a comparação da data da viagem com o dia atual
+			
+			int anoV = Integer.parseInt(viagem.getFim().substring(6, 10)); // pegando a String do banco e dividindo
+			int mesV = Integer.parseInt(viagem.getFim().substring(3, 5));
+			int diaV = Integer.parseInt(viagem.getFim().substring(0, 2));
+			
+			dtViagem = LocalDate.of(anoV, mesV, diaV);
+			boolean atrasada = dtViagem.isBefore(dtHojeV);
+			
+			if (atrasada && viagem.getSituacao().equals("Não iniciado")) {
+				EntityManager con = new ConnectionFactory().getConnection();	
+				try {
+					con.getTransaction().begin();
+					Query query = con.createNativeQuery("update viagens set situacao = :situacao where id = :idViagem");
+					query.setParameter("situacao", "Atrasado");
+					query.setParameter("idViagem", viagem.getId());
+					query.executeUpdate();
+					con.getTransaction().commit();
+				}
+				catch (Exception e) {
+					System.err.println(e);
+					con.getTransaction().rollback();
+				}
+				finally {
+					con.close();
+				}
+			}
+		}
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -324,6 +380,7 @@ public class ControlesLogin implements Initializable{
 			func.cadastrarFuncionario("Admin User", "000.000.000-00", "root", "Administrador", 1, "adminuser@root.com");
 		}
 		carregarComboBoxCargos();
+		verificarViagensAtrasadas();
 	}
 
 }
