@@ -3,6 +3,7 @@ package control;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -559,19 +560,21 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         	int dia = datePickerPrazoEntrega.getValue().getDayOfMonth();
         	int mes = datePickerPrazoEntrega.getValue().getMonthValue();
         	
+    		Date diaHoje = new Date();
+    		int anoH = diaHoje.getYear() + 1900;
+    		int mesH = diaHoje.getMonth() + 1;
+    		int diaH = diaHoje.getDate();
+        	
+        	LocalDate dtHoje = LocalDate.of(anoH, mesH, diaH); 
+        	LocalDate dtPicker = LocalDate.of(ano, mes, dia);
+        	boolean prazoValido = dtPicker.isAfter(dtHoje) || dtPicker.isEqual(dtHoje);
+        	
         	String prazo;
-        	boolean prazoValido = true;
         	if(dia < 10) {
             	prazo = ("0" + String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
-        	}else {
-            	prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
         	}
-        	if(LocalDate.now().getYear() < ano) {
-        		prazoValido = false;
-        	}else if (LocalDate.now().getMonthValue() < mes) {
-        		prazoValido = false;
-        	}else if (LocalDate.now().getDayOfMonth() < dia) {
-        		prazoValido = false;
+        	else {
+            	prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
         	}
         	
         	String cpfFuncionario = comboBoxMotoristaViagem.getSelectionModel().getSelectedItem().getCpf();
