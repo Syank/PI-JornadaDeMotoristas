@@ -136,14 +136,19 @@ public class ControlesPerfilMotAvisos implements Initializable {
     	String motorista = ControlesLogin.cpfLogado;
     	boolean resolvido = resol.isSelected();
     	String nomenclatura = (String.valueOf(te) + String.valueOf(pn) + String.valueOf(fil) + String.valueOf(re));
-    	boolean retorno = aviso.cadastrarAviso("todos", motorista, mensagem, nomenclatura, resolvido);
+    	boolean retorno = aviso.cadastrarAviso("todos", motorista, mensagem + "\n\n" + nomenclatura, nomenclatura, resolvido);
     	
-    	if (retorno) {
+    	if (retorno && !mensagem.isEmpty()) {
     		notificar("Sucesso", "Aviso enviado com sucesso!", "O aviso foi enviado a um dos funcionários da empresa.");
     		limparCampos();
     	}
     	else {
-    		notificar("Falha", "Falha no envio do aviso.", "O aviso não pôde ser enviado. Tente novamente.");
+    		if(retorno) {
+        		notificar("Falha", "Falha no envio do aviso.", "O aviso não pôde ser enviado. Tente novamente.");
+    		}else if(mensagem.isEmpty()) {
+        		notificar("Falha", "Falha no envio do aviso.", "Não é possível enviar sem uma mensagem, por favor descreva a situação e tente novamente");
+    		}
+
     	}
     }
 
@@ -165,7 +170,7 @@ public class ControlesPerfilMotAvisos implements Initializable {
 
     @FXML
     void voltar(ActionEvent event) {
-    	Main.trocarTela("Mot Viagens");
+    	Main.trocarTela("Viagem Selecionada");
     }
     
     @FXML

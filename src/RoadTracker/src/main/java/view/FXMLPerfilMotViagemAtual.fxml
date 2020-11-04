@@ -22,7 +22,7 @@
                   <Image url="@usuario.png" />
                </image>
             </ImageView>
-            <VBox prefHeight="46.0" prefWidth="250.0" />
+            <VBox prefHeight="62.0" prefWidth="250.0" />
             <HBox alignment="CENTER_LEFT" onMouseClicked="#abrirMinhasViagens" prefHeight="65.0" prefWidth="250.0">
                <children>
                   <HBox prefHeight="59.0" prefWidth="31.0" />

@@ -560,25 +560,35 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         	int mes = datePickerPrazoEntrega.getValue().getMonthValue();
         	
         	String prazo;
-        	
+        	boolean prazoValido = true;
         	if(dia < 10) {
             	prazo = ("0" + String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
         	}else {
             	prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
         	}
-
+        	if(LocalDate.now().getYear() < ano) {
+        		prazoValido = false;
+        	}else if (LocalDate.now().getMonthValue() < mes) {
+        		prazoValido = false;
+        	}else if (LocalDate.now().getDayOfMonth() < dia) {
+        		prazoValido = false;
+        	}
         	
         	String cpfFuncionario = comboBoxMotoristaViagem.getSelectionModel().getSelectedItem().getCpf();
         	String placaVeiculo = comboBoxVeiculoViagem.getSelectionModel().getSelectedItem().getPlaca();
         	
         	
         	//Não verifica se as combobox estao vazias
-        	if(prazo.length() > 1 && placaVeiculo.length() > 1 && tfEmpresaDestino.getText().length() > 1 && textFieldCarga.getText().length() > 1) {
+        	if(prazoValido && prazo.length() > 1 && placaVeiculo.length() > 1 && tfEmpresaDestino.getText().length() > 1 && textFieldCarga.getText().length() > 1) {
         		viagem.cadastrarViagem(prazo, tfEmpresaDestino.getText(), 
     					   cpfFuncionario, placaVeiculo, 
     					   textFieldCarga.getText());
         		notificar("Sucesso de cadastro", "Viagem cadastrada", "A viagem foi cadastrada no sistema com sucesso!");
         		ControlesPerfilAdminHistEntregas.atualizarInfos = true;
+        	}
+        	
+        	if(!prazoValido) {
+        		notificar("Falha de cadastro", "Prazo incorreto", "Você escolheu uma data de entrega que é anterior a data de hoje");	
         	}
         	
     	}catch (NullPointerException falha) {

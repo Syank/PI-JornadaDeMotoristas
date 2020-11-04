@@ -106,7 +106,9 @@ public class ControlesPerfilMotViagens implements Initializable {
         	
         	carregarTableView = true;
         	viagemEmAndamentoJaExistente = false;
+        	ControlesPerfilMotViagemAtual.pausarViagem = true;
         	ControlesPerfilMotViagemAtual.carregarViagem = true;
+        	
         	
         	notificar("Sucesso", "Atualização da situação da viagem", "A viagem foi pausada com sucesso");
     	}else {
@@ -134,7 +136,7 @@ public class ControlesPerfilMotViagens implements Initializable {
     }
     @FXML
     void voltar(ActionEvent event) {
-    	Main.trocarTela("Tela Login"); 
+    	Main.trocarTela("Viagem Selecionada"); 
     }
     
 	@FXML

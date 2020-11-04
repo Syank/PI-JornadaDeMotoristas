@@ -31,7 +31,10 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 	 public static boolean cronometrarDescDiario = false;
 	 public static boolean cronometrarAlimDiaria = false;
 	 public static boolean carregarViagem = false;
+	 public static boolean pausarViagem = false;
 	 public static boolean descansoObrigatorio = false;
+	 private boolean alimMaxAtingido = false;
+	 private boolean descMaxAtingido = false;
 	 public int tempototal = 0;
     
 	 @FXML
@@ -284,7 +287,8 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 		
 		labelSituacao.setText("Situação: Finalizado");
 		labelAtencao.setText("Viagem finalizada! Você pode selecionar uma nova para começar o monitoramento em " + '"' + "Minhas Viagens" + '"');
-    
+		labelAtencao.setVisible(true);
+		
 		cronometrarExpDiario = false;
 		cronometrarTempoTotal = false;
 		cronometrarAlimDiaria = false;
@@ -315,11 +319,12 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
     		if(item.getMotorista().getCpf().equals(ControlesLogin.cpfLogado)) {
     			if(item.getSituacao().equals("Em andamento")) {
     				viagemAtual = viagem.encontrarViagem(item.getId());
+    				
     			}
     		}
     	});
     	
-    	if(viagemAtual != null) {        	
+    	if(viagemAtual != null) { 
     		labelDestino.setText("Destino: " + viagemAtual.getDestino());
     		labelPlaca.setText("Placa do veículo: " + viagemAtual.getVeiculo().getPlaca());
     		labelPrazo.setText("Prazo de entrega: " + viagemAtual.getFim());
@@ -452,6 +457,11 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 
     void tarefasEmLoop() {
     	// Considere que cada if aqui dentro é uma "função"
+    	
+  	  	if(pausarViagem) {
+  	  		atualizarTempos();
+  	  		
+  	  	}
 
   	  	// "Função" para cronometrar o tempo
   	  	if(cronometrarTempoTotal) {
@@ -583,6 +593,12 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
   		  	  	texto = texto + horas + ":" + minutos + ":" + segundos;	
   		  	  	labelAlimHoje.setText(texto);
   		  	  	
+  		  	  	if(Integer.parseInt(horas) > 1) {
+  		  	  		alimMaxAtingido = true;
+  		  	  	}else {
+  		  	  		alimMaxAtingido = false;
+  		  	  	}
+  		  	  	
   	  		}else {
   		  	  	// Formata o texto e coloca na label
   		  	  	texto = texto + "00:00:01";	//Aqui precisa iniciar em 1s para não ficar atrasado o tempo
@@ -629,6 +645,12 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
   		  	  	texto = texto + horas + ":" + minutos + ":" + segundos;	
   		  	  	labelDescHoje.setText(texto);
   		  	  	
+  		  	  	if(Integer.parseInt(horas) > 1) {
+  		  	  		descMaxAtingido = true;
+  		  	  	}else {
+  		  	  		descMaxAtingido = false;
+  		  	  	}
+  		  	  	
   	  		}else {
   		  	  	// Formata o texto e coloca na label
   		  	  	texto = texto + "00:00:01";	//Aqui precisa iniciar em 1s para não ficar atrasado o tempo
@@ -641,6 +663,20 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
   	  	// Carrega a viagem do motorista
   	  	if(carregarViagem) {
   	  		carregarViagem();
+  	  	}
+  	  	
+  	  	if(alimMaxAtingido) {
+  	  		labelAtencao.setVisible(true);
+  	  		labelAtencao.setText("Seu período de alimentação diária já foi atingido!");
+  	  	}else if(labelAtencao.getText().equals("Seu período de alimentação diária já foi atingido!")){
+  	  		labelAtencao.setVisible(false);
+  	  	}
+  	  	
+  	  	if(descMaxAtingido) {
+  	  		labelAtencao.setVisible(true);
+  	  		labelAtencao.setText("Seu período de descanso diário já foi atingido!");
+  	  	}else if(labelAtencao.getText().equals("Seu período de descanso diário já foi atingido!")){
+  	  		labelAtencao.setVisible(false);
   	  	}
     }
     
