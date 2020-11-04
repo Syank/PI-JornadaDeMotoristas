@@ -159,7 +159,7 @@ public class ControlesLogin implements Initializable{
         	labelDicaFlutuante.setVisible(true);
     	}
     	else if (event.getTarget().toString().contains("tfCpf")) {
-        	labelDicaFlutuante.setText("Cpf");
+        	labelDicaFlutuante.setText("CPF");
         	labelDicaFlutuante.setVisible(true);
     	}
     	else if (event.getTarget().toString().contains("tfNome")) {
@@ -175,11 +175,11 @@ public class ControlesLogin implements Initializable{
         	labelDicaFlutuante.setVisible(true);
     	}
     	else if (event.getTarget().toString().contains("textFieldEmail")) {
-        	labelDicaFlutuante.setText("email");
+        	labelDicaFlutuante.setText("E-mail");
         	labelDicaFlutuante.setVisible(true);
     	}
     	else if (event.getTarget().toString().contains("cbCargos")) {
-        	labelDicaFlutuante.setText("cargo");
+        	labelDicaFlutuante.setText("Cargo");
         	labelDicaFlutuante.setVisible(true);
     	}
     	labelDicaFlutuante.setLayoutX(event.getSceneX());
@@ -219,34 +219,47 @@ public class ControlesLogin implements Initializable{
     	String senha1 = pfSenha1.getText();
     	String senha2 = pfSenha2.getText();
     	String cpf = tfCpf.getText();
-    	String nome = tfNome.getText();
+    	String nome = tfNome.getText().toLowerCase();
     	cargoFuncionario = cbCargos.getSelectionModel().getSelectedItem().getCargo();
-    	
+
     	if(cargoFuncionario.equals("Motorista")) {
-        	motorista = motorista.encontrarMotorista(cpf);
-        	if(motorista != null) {
-        		if(motorista.getEmail().equals(email) && motorista.getNome().equals(nome) && senha1.equals(senha2)) {
-        			motorista.alterarSenhaMot(senha2);
-        			notificar("Sucesso", "Senha alterada", "Sua senha foi alterada com sucesso! Você já pode realizar seu login.");
-        		}
-        	}	
-    	}
-    	else {
-        	funcionario = funcionario.encontrarFuncionario(cpf);
-        	if(funcionario != null) {
-        		if(funcionario.getEmail().equals(email) && funcionario.getNome().equals(nome) && senha1.equals(senha2)) {
-        			funcionario.alterarSenhaFunc(senha2);
-        			notificar("Sucesso", "Senha alterada", "Sua senha foi alterada com sucesso! Você já pode realizar seu login.");
-        		}
-        	}	
+    		motorista = motorista.encontrarMotorista(cpf);
+    		if(motorista != null) {
+    			if(motorista.getEmail().equals(email) && motorista.getNome().toLowerCase().equals(nome) && senha1.equals(senha2)) {
+    				motorista.alterarSenhaMot(senha2);
+    				notificar("Sucesso", "Senha alterada", "Sua senha foi alterada com sucesso! Você já pode realizar seu login.");
+    			}else {
+        			notificar("Falha", "Informação incorreta", "As informações de confirmação exigidas estão incorretas");
+    			}
+    		}else {
+    			notificar("Falha", "Informação incorreta", "Não foi possível encontrar nenhum funcionário com o CPF informado, por "
+    					+ "favor verifique o campo e tente novamente");
+    		}
+    	}else if(cargoFuncionario.equals("Administrador") || cargoFuncionario.equals("Supervisor")){
+    		funcionario = funcionario.encontrarFuncionario(cpf);
+    		if(funcionario != null) {
+    			if(funcionario.getEmail().equals(email) && funcionario.getNome().toLowerCase().equals(nome) && senha1.equals(senha2)) {
+    				funcionario.alterarSenhaFunc(senha2);
+    				notificar("Sucesso", "Senha alterada", "Sua senha foi alterada com sucesso! Você já pode realizar seu login.");
+    			}else {
+        			notificar("Falha", "Informação incorreta", "As informações de confirmação exigidas estão incorretas");
+    			}
+
+    		}else {
+    			notificar("Falha", "Informação incorreta", "Não foi possível encontrar nenhum funcionário com o CPF informado, por "
+    					+ "favor verifique o campo e tente novamente");
+    		}
+    	}else {
+			notificar("Falha", "Informação incorreta", "As informações de confirmação exigidas estão incorretas");
     	}
     }
     
 	public void carregarComboBoxCargos() {
-		cargos.add(new Cargos(0, "Selecione um cargo..."));
 		cargos = funcionario.listarCargos();
+		cargos.add(0, new Cargos(0, "Selecione um cargo..."));
 		cargosList = FXCollections.observableArrayList(cargos);
 		cbCargos.setItems(cargosList);
+    	cbCargos.getSelectionModel().selectFirst();
 	}
     
 	@FXML

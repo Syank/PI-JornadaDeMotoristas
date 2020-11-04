@@ -156,3 +156,8 @@
 	-fx-border-color: #00a8ff;
 	-fx-border-width: 0px 0px 1px 0px;
 }
+
+.bordasMenuRecuperarSenha{
+	-fx-border-color: #0077ae;
+	-fx-border-width: 2px 2px 2px 2px;
+}

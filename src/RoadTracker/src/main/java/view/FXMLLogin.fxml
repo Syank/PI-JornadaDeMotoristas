@@ -74,25 +74,38 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="trocaSenha" disable="true" prefHeight="450.0" prefWidth="750.0" styleClass="sombraMenuAviso" visible="false">
+      <Pane fx:id="trocaSenha" disable="true" prefHeight="450.0" prefWidth="750.0" visible="false">
          <children>
             <Pane prefHeight="450.0" prefWidth="750.0" styleClass="sombraDeAviso" />
-            <Pane layoutX="182.0" layoutY="87.0" prefHeight="291.0" prefWidth="386.0" styleClass="fundoDaJanela">
+            <Pane layoutX="188.0" layoutY="56.0" prefHeight="328.0" prefWidth="386.0">
                <children>
-                  <Button layoutX="142.0" layoutY="239.0" mnemonicParsing="false" onAction="#confirmarTroca" prefHeight="31.0" prefWidth="102.0" styleClass="customizarBotoes" text="Confirmar" textFill="WHITE" />
-                  <TextField fx:id="tfNome" layoutX="30.0" layoutY="74.0" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Nome" styleClass="customizarInputs" />
-                  <TextField fx:id="tfCpf" layoutX="208.0" layoutY="74.0" onKeyTyped="#mascararCpf" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CPF" styleClass="customizarInputs" />
-                  <TextField fx:id="textFieldEmail" layoutX="30.0" layoutY="125.0" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="E-mail" styleClass="customizarInputs" />
-                  <PasswordField fx:id="pfSenha1" layoutX="208.0" layoutY="125.0" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Senha" styleClass="customizarInputs" />
-                  <PasswordField fx:id="pfSenha2" layoutX="208.0" layoutY="177.0" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Confirme a senha" styleClass="customizarInputs" />
-                  <Button layoutX="255.0" layoutY="239.0" mnemonicParsing="false" onAction="#voltar" prefHeight="31.0" prefWidth="78.0" styleClass="customizarBotoes" text="Voltar" textFill="WHITE" />
-                  <ComboBox fx:id="cbCargos" layoutX="29.0" layoutY="178.0" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefWidth="150.0" promptText="Cargo" styleClass="customizarInputs" />
-                  <Label layoutX="104.0" layoutY="24.0" text="Recuperação de Senha" textFill="#157586">
+                  <Button layoutX="218.0" layoutY="283.0" mnemonicParsing="false" onAction="#confirmarTroca" prefHeight="31.0" prefWidth="88.0" styleClass="botaoConfirmar" text="Confirmar" textFill="WHITE" />
+                  <Button layoutX="314.0" layoutY="283.0" mnemonicParsing="false" onAction="#voltar" prefHeight="31.0" prefWidth="58.0" styleClass="botaoCancelar" text="Voltar" textFill="WHITE" />
+                  <Label layoutX="98.0" layoutY="21.0" text="Recuperação de Senha" textFill="#157586">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Label>
+                  <Label layoutX="73.0" layoutY="67.0" prefHeight="52.0" prefWidth="241.0" text="Insira suas informações de login para confirmar sua conta e trocar sua senha" textAlignment="CENTER" wrapText="true" />
+                  <VBox layoutX="24.0" layoutY="136.0" prefHeight="174.0" prefWidth="149.0" spacing="15.0">
+                     <children>
+                        <TextField fx:id="tfNome" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Nome" styleClass="customizarInputs" />
+                        <TextField fx:id="tfCpf" onKeyTyped="#mascararCpf" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="CPF" styleClass="customizarInputs" />
+                        <TextField fx:id="textFieldEmail" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="E-mail" styleClass="customizarInputs" />
+                        <ComboBox fx:id="cbCargos" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" prefWidth="150.0" promptText="Cargo" styleClass="customizarInputs" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="214.0" layoutY="136.0" prefHeight="110.0" prefWidth="149.0" spacing="15.0">
+                     <children>
+                        <PasswordField fx:id="pfSenha1" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Nova senha" styleClass="customizarInputs" />
+                        <PasswordField fx:id="pfSenha2" onMouseEntered="#exibirDicaFlutuante" onMouseExited="#esconderDicaFlutuante" promptText="Confirme a senha" styleClass="customizarInputs" />
+                     </children>
+                  </VBox>
                </children>
+               <styleClass>
+                  <String fx:value="fundoDaJanela" />
+                  <String fx:value="bordasMenuRecuperarSenha" />
+               </styleClass>
             </Pane>
          </children>
       </Pane>
