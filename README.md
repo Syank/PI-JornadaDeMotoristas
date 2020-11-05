@@ -30,8 +30,8 @@
 <p align="justify">A nossa terceira entrega foi um pouco excepcional, pois inicialmente haviamos planejado a conclusão apenas do perfil do motorista. Contudo, devido ao empenho da equipe e o grande aprendizado que tivemos no decorrer das sprints, concluimos que conseguiriamos adiantar a última entrega, que seria o término do perfil do supervisor. Por isso logo abaixo consta os dois cards das entregas, a que planejamos fazer e a última que conseguimos desenvolver antes do previsto.</p>
 <div align="justify">
        <p>
-           <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/Cards/card3.png" width="450"/>
-           <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/Cards/card4.png" width="450"/>
+           <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/Cards/card3.png" width="400"/>
+           <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/Cards/card4.png" width="400"/>
        </p>
 </div>
 <div>
