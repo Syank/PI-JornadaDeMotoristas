@@ -69,7 +69,7 @@
                             <td>Entrega 3</td>
                             <td>O motorista poderá inserir dados sobre a viagem e o supervisor poderá visualizar e alterar dados dos motoristas.</td>
                             <td>19/10/2020 a 08/11/2020</td>
-                            <td>Em breve</td>
+                            <td><a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/sprint_2">Visualizar</a></td>
                      </tr>
                       <tr>
                             <td>Entrega 4</td>
