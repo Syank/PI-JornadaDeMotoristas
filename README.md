@@ -26,8 +26,11 @@
 <p align="justify">Na sprint anterior (sprint 1), foi adicionado ao sistema todas as funcionalidades do perfil do administrador, responsável por inserir, manipular e apagar todas as entidades do sistema. Por isso, para a entrega atual optamos por apertar o passo e finalizar os outros dois perfis que estipulamos que nosso sistema precisaria, restando apenas, para a última entrega, apenas ajustes de UX e atender à pedidos específicos do cliente para que o programa atenda às suas expectativas.</p>
        <h3>Quais são as partes mais trabalhosas? :question: </h3>
 <p align="justify">Diferente do perfil do administrador em si, onde haviam, de certa forma, poucas coisas para se fazer, mas que exigiam bastante tempo, os perfis do motorista e do supervisor tinham diversas itens a se adicionar, mas que eram simples de se fazer, pois a lógica do sistema já havia sido elaborada anteriormente. Então as grandes dificuldades dessa sprint em si foram correlacionar os perfis entre si para que tudo funcionasse em harmonia.</p>
+</br>
+<p align="justify">A nossa terceira entrega foi um pouco excepcional, pois inicialmente haviamos planejado a conclusão apenas do perfil do motorista. Contudo, devido ao empenho da equipe e o grande aprendizado que tivemos no decorrer das sprints, concluimos que conseguiriamos adiantar a última entrega, que seria o término do perfil do supervisor. Por isso logo abaixo consta os dois cards das entregas, a que planejamos fazer e a última que conseguimos desenvolver antes do previsto.</p>
 
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/Cards/card2.png" width="500" height="280"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/Cards/card3.png" width="500" height="280"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/Cards/card4.png" width="500" height="280"/>
 <div>
        <h2><i>Feedback</i> sobre a segunda entrega</h2>
        <p align="justify">Como a última entrega apenas foi avaliada pelos professores, não tivemos um feedback direto por parte do cliente. Em relação ao sistema em si, nenhuma observação foi levantada pelos avaliadores, porém na parte organizacional do GitHub foram apontados alguns pontos que levamos em consideração e já adequamos ao requerido.</p>
@@ -116,20 +119,20 @@
 <h2>User stories do nosso sistema</h2>
 
 <h3>Segunda entrega :clock4:</h3>
-<p align="justify">A nossa terceira entrega foi um pouco excepcional, pois inicialmente haviamos planejado a conclusão apenas do perfil do motorista. Contudo, devido ao empenho da equipe e o grande aprendizado que tivemos no decorrer das sprints, concluimos que conseguiriamos adiantar a última entrega, que seria o término do perfil do supervisor.</p>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/user_stories/2.png" width="600px"/>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/user_stories/2-2.png" width="600px"/>
+<p align="justify">Ressaltando novamente, nesta sprint nossa equipe conseguiu acelerar o desenvolvimento do sistema e finalizar em conjunto a última entrega, por isso, abaixo está as User Stories de ambas as entregas, a que inicialmente planejamos e a futura que conseguimos adiantar.</p>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/user_stories/3.png" width="600px"/>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/user_stories/4.png" width="600px"/>
 </div>
 
 <h2>Amostra de <i>Wireframes</i> da terceira entrega do RoadTracker</h2>
 <div align="center">
        <p>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/wireframes/aviso_dados_alterados.jpeg" width="400"/>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/wireframes/historico_entregas.jpeg" width="400"/>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/wireframes/Motorista/viagem_atual_iniciada.png" width="400"/>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/wireframes/Motorista/listagem_minhas_viagens.png" width="400"/>
        </p>
        <p>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/wireframes/aviso_selecionado.png" width="400"/>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/wireframes/ver_filiais.png" width="400"/>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/wireframes/Supervisor/listagem_motoristas.png" width="400"/>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/wireframes/Supervisor/solicitacao_cadastro_sucesso.png" width="400"/>
        </p>
        </br>
        <p>
@@ -139,16 +142,16 @@
 
 <section id="ModeloC">
         <h3>Modelo conceitual do nosso banco de dados (com ajustes para a sprint)</h3>
-        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/banco_de_dados/RTdbNovo-conceitual.png?raw=true" width="800px">
+        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/banco_de_dados/RTdbNovo-conceitual.png" width="800px">
     
 </section>
 
 <section id="ModeloL">
         <h3>Modelo lógico do nosso banco de dados (com ajustes para a sprint)</h3>
-        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/banco_de_dados/RTdbNovo-logico.png?raw=true" width="800px">
+        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/banco_de_dados/RTdbNovo-logico.png" width="800px">
 
 </section>
 <section id="ModeloF">
         <h3>Modelo físico do nosso banco de dados</h3>
-       <p>Você pode visualizar a parte física (código) do nosso banco de dados clicando aqui.</p>
+       <p>Você pode visualizar a parte física (código) do nosso banco de dados clicando <a href="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/banco_de_dados/RTdbNovo-fisico.sql">aqui</a>.</p>
 </section>
