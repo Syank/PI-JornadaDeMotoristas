@@ -28,9 +28,12 @@
 <p align="justify">Diferente do perfil do administrador em si, onde haviam, de certa forma, poucas coisas para se fazer, mas que exigiam bastante tempo, os perfis do motorista e do supervisor tinham diversas itens a se adicionar, mas que eram simples de se fazer, pois a lógica do sistema já havia sido elaborada anteriormente. Então as grandes dificuldades dessa sprint em si foram correlacionar os perfis entre si para que tudo funcionasse em harmonia.</p>
 </br>
 <p align="justify">A nossa terceira entrega foi um pouco excepcional, pois inicialmente haviamos planejado a conclusão apenas do perfil do motorista. Contudo, devido ao empenho da equipe e o grande aprendizado que tivemos no decorrer das sprints, concluimos que conseguiriamos adiantar a última entrega, que seria o término do perfil do supervisor. Por isso logo abaixo consta os dois cards das entregas, a que planejamos fazer e a última que conseguimos desenvolver antes do previsto.</p>
-
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/Cards/card3.png" width="500" height="280"/>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/Cards/card4.png" width="500" height="280"/>
+<div align="justify">
+       <p>
+           <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/Cards/card3.png" width="450"/>
+           <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/Cards/card4.png" width="450"/>
+       </p>
+</div>
 <div>
        <h2><i>Feedback</i> sobre a segunda entrega</h2>
        <p align="justify">Como a última entrega apenas foi avaliada pelos professores, não tivemos um feedback direto por parte do cliente. Em relação ao sistema em si, nenhuma observação foi levantada pelos avaliadores, porém na parte organizacional do GitHub foram apontados alguns pontos que levamos em consideração e já adequamos ao requerido.</p>
@@ -118,7 +121,7 @@
 <div>
 <h2>User stories do nosso sistema</h2>
 
-<h3>Segunda entrega :clock4:</h3>
+<h3>Terceira entrega :clock4:</h3>
 <p align="justify">Ressaltando novamente, nesta sprint nossa equipe conseguiu acelerar o desenvolvimento do sistema e finalizar em conjunto a última entrega, por isso, abaixo está as User Stories de ambas as entregas, a que inicialmente planejamos e a futura que conseguimos adiantar.</p>
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/user_stories/3.png" width="600px"/>
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/user_stories/4.png" width="600px"/>
