@@ -21,13 +21,13 @@
 
 <h2><i>Card</i> da terceira entrega do nosso sistema</h2>
        <h3>O que entregamos :white_check_mark: </h3>
-<p align="justify">Para esta entrega, sprint 2, desenvolvemos e adicionamos ao sistema os perfis do motorista e do supervisor, finalizando as funcionalidades do sistema. Na parte do motorista, foram adicionados métodos e caminhos para o usuário visualizar suas viagens, inicia-las ou pausa-las, controlar seus tempos, como expediente, descanso e alimentação e envio de avisos ao sistema, onde supervisores e administradores podem acessar e ficarem ciente da situação do motorista. Já pelo supervisor, adicionamos a possibilidade de solicitar cadastros de novos motoristas, solicitações essas que serão aprovadas ou não por algum administrador, a opção de visualizar viagens, motoristas e veículos no sistema e a alteração dos dados destes dois últimos. Os supervisores também conseguem visualizar os avisos e solicitações registradas no sistema.</p>
+<p align="justify">Para esta entrega, <i>sprint</i> 2, desenvolvemos e adicionamos ao sistema os perfis do motorista e do supervisor, finalizando as funcionalidades do sistema. Na parte do motorista, foram adicionados métodos e caminhos para o usuário visualizar suas viagens, iniciá-las ou pausá-las, controlar seus tempos (como expediente, descanso e alimentação) e envio de avisos ao sistema, em que supervisores e administradores podem acessar e ficarem cientes da situação do motorista. Já para o supervisor, adicionamos a possibilidade de solicitar cadastros de novos motoristas, solicitações essas que serão aprovadas ou não por algum administrador, a opção de visualizar viagens, motoristas e veículos no sistema e a alteração dos dados destes dois últimos. Os supervisores também conseguem visualizar os avisos e solicitações registradas no sistema.</p>
        <h3>Por que fizemos essa escolha? :grey_question: </h3>
-<p align="justify">Na sprint anterior (sprint 1), foi adicionado ao sistema todas as funcionalidades do perfil do administrador, responsável por inserir, manipular e apagar todas as entidades do sistema. Por isso, para a entrega atual optamos por apertar o passo e finalizar os outros dois perfis que estipulamos que nosso sistema precisaria, restando apenas, para a última entrega, apenas ajustes de UX e atender à pedidos específicos do cliente para que o programa atenda às suas expectativas.</p>
+<p align="justify">Na <i>sprint</i> anterior (<i>sprint</i> 1), foi adicionado ao sistema todas as funcionalidades do perfil do administrador, que é responsável por inserir, manipular e apagar todas as entidades do sistema. Por isso, para a entrega atual optamos por apertar o passo e finalizar os outros dois perfis que estipulamos que nosso sistema precisaria, restando apenas, para a última entrega, apenas ajustes de UX e atender a pedidos específicos do cliente para que o sistema atenda às suas expectativas.</p>
        <h3>Quais são as partes mais trabalhosas? :question: </h3>
-<p align="justify">Diferente do perfil do administrador em si, onde haviam, de certa forma, poucas coisas para se fazer, mas que exigiam bastante tempo, os perfis do motorista e do supervisor tinham diversas itens a se adicionar, mas que eram simples de se fazer, pois a lógica do sistema já havia sido elaborada anteriormente. Então as grandes dificuldades dessa sprint em si foram correlacionar os perfis entre si para que tudo funcionasse em harmonia.</p>
+<p align="justify">Diferente do perfil do administrador em si, onde havia, de certa forma, poucas coisas para se fazer, mas que exigiam bastante tempo, os perfis do motorista e do supervisor tinham diversas itens a se adicionar, mas que eram simples de se fazer, pois a lógica do sistema já havia sido elaborada anteriormente. Então as grandes dificuldades dessa <i>sprint</i> em si foram correlacionar os perfis entre si para que tudo funcionasse em harmonia.</p>
 </br>
-<p align="justify">A nossa terceira entrega foi um pouco excepcional, pois inicialmente haviamos planejado a conclusão apenas do perfil do motorista. Contudo, devido ao empenho da equipe e o grande aprendizado que tivemos no decorrer das sprints, concluimos que conseguiriamos adiantar a última entrega, que seria o término do perfil do supervisor. Por isso logo abaixo consta os dois cards das entregas, a que planejamos fazer e a última que conseguimos desenvolver antes do previsto.</p>
+<p align="justify">A nossa terceira entrega foi um pouco excepcional, pois inicialmente haviamos planejado a conclusão apenas do perfil do motorista. Contudo, devido ao empenho da equipe e o grande aprendizado que tivemos no decorrer das <i>sprints</i>, concluímos que conseguiríamos adiantar a última entrega, que seria o término do perfil do supervisor. Por isso logo abaixo consta os dois cards das entregas, a que planejamos fazer e a última que conseguimos desenvolver antes do previsto.</p>
 <div align="justify">
        <p>
            <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/Cards/card3.png" width="400"/>
@@ -36,9 +36,9 @@
 </div>
 <div>
        <h2><i>Feedback</i> sobre a segunda entrega</h2>
-       <p align="justify">Como a última entrega apenas foi avaliada pelos professores, não tivemos um feedback direto por parte do cliente. Em relação ao sistema em si, nenhuma observação foi levantada pelos avaliadores, porém na parte organizacional do GitHub foram apontados alguns pontos que levamos em consideração e já adequamos ao requerido.</p>
-       <p align="justify">Em nossa branch master, havia muito conteúdo no README, tornando-o muito extenso e cansativo para se ler.</p>
-       <p align="justify">E na apresentação fomos aconselhados a expor mais informações do projeto, como modelo de dados, backlog total e tecnologias utilizadas.</p>
+       <p align="justify">Como a última entrega apenas foi avaliada pelos professores, não tivemos um <i>feedback</i> por parte do cliente. Em relação ao sistema em si, nenhuma observação foi levantada pelos avaliadores, porém na parte organizacional do GitHub foram apontados alguns pontos que levamos em consideração e já adequamos ao requerido.</p>
+       <p align="justify">Em nossa <i>branch master</i> havia muito conteúdo no README, tornando-o muito extenso e cansativo para se ler.</p>
+       <p align="justify">Na apresentação fomos aconselhados a expor mais informações do projeto, como modelo de dados, backlog total e tecnologias utilizadas, por mais que já tenham sido expostos, para mostrar a evolução do projeto, tornando a apresentação mais completa.</p>
 </div>
 
 <div>
@@ -46,7 +46,7 @@
        <div>
               <img aling="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/Burndown/Sprint%201%20completo.jpg">
               </br>
-              <p align="justify">O gráfico acima exibe nosso progresso na realização das atividades que elaboramos para a terceira entrega. Diferente da entrega anterior, nesta nossa equipe não teve um desenvolvimento tão linear, chegando inclusive em alguns momentos a ficar com o rendimento levemente abaixo do esperado. Talvez algumas das razão desse efeito ter ocorrido seja uma pequena exaustão de todos por terem estado tão comprometidos com o projeto até a entrega ou uma certa indecisão do que fazer adianta, após a conclusão do perfil do administrador.</p>
+              <p align="justify">O gráfico acima exibe nosso progresso na realização das atividades que elaboramos para a terceira entrega. Diferente da entrega anterior, nesta nossa equipe não teve um desenvolvimento tão linear, chegando inclusive em alguns momentos a ficar com o rendimento levemente abaixo do esperado. Talvez uma das razões disso ter ocorrido seja uma pequena exaustão de todos após o empenho da entrega 2, além de fatores externos. De quaisquer maneiras recuperamos o tempo e cumprimos tudo o que havíamos planejado para esta entrega.</p>
        </div>
 </div>
 
@@ -122,7 +122,7 @@
 <h2>User stories do nosso sistema</h2>
 
 <h3>Terceira entrega :clock4:</h3>
-<p align="justify">Ressaltando novamente, nesta sprint nossa equipe conseguiu acelerar o desenvolvimento do sistema e finalizar em conjunto a última entrega, por isso, abaixo está as User Stories de ambas as entregas, a que inicialmente planejamos e a futura que conseguimos adiantar.</p>
+<p align="justify">Ressaltando novamente, nesta <i>sprint</i> nossa equipe conseguiu acelerar o desenvolvimento do sistema e finalizar em conjunto a última entrega, por isso, abaixo estão as <i>User Stories</i> de ambas as entregas.</p>
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/user_stories/3.png" width="600px"/>
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/user_stories/4.png" width="600px"/>
 </div>
@@ -156,5 +156,5 @@
 </section>
 <section id="ModeloF">
         <h3>Modelo físico do nosso banco de dados</h3>
-       <p>Você pode visualizar a parte física (código) do nosso banco de dados clicando <a href="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/banco_de_dados/RTdbNovo-fisico.sql">aqui</a>.</p>
+       <p>Você pode visualizar o modelo físico (código) do nosso banco de dados clicando <a href="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/banco_de_dados/RTdbNovo-fisico.sql">aqui</a>.</p>
 </section>
