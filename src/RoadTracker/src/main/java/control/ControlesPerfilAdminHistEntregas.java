@@ -528,7 +528,7 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     // Função para fechar a janela ao clicar no " x "
     @FXML
     void fecharJanela(ActionEvent event) {
-    	System.exit(0);
+    	Main.trocarTela("Tela Login");
     }
 
     

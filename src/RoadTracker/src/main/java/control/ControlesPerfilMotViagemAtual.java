@@ -452,7 +452,7 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 		cronometrarAlimDiaria = false;
 		cronometrarDescDiario = false;
 		
-    	System.exit(0);
+		Main.trocarTela("Tela Login");
     }
 
     void tarefasEmLoop() {

@@ -373,7 +373,7 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     
     @FXML
     void fecharJanela(ActionEvent event) {
-    	System.exit(0);
+    	Main.trocarTela("Tela Login");
     }
     
     @FXML
