@@ -53,71 +53,44 @@
 <h2>Nosso sistema em funcionamento na terceira entrega</h2>
 
 <div>
-<img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/apresentacao_entrega_2/GIFS%202%C2%B0%20entrega/GIF%20LOGIN.gif" width="400"/>
+<img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/apresentacao_entrega_3/GIFS%203%C2%B0%20entrega/GIF%20motorista.gif" width="400"/>
 
-<p align="justify">A tela de login agora verifica os dados inseridos nos campos para confirmar se a conta existe de verdade no banco de dados, antes de liberar o acesso ao usuário.
+<p align="justify">Como motorista, o usuário tem acesso as suas viagens à serem realizadas e a capacidade de inicia-las e pausa-las de acordo com a necessidade.
 </p>
-<p align="justify">Agora ao posicionar o mouse em cima de um campo, uma dica flutuante irá aparecer para mostrar sobre o que aquele campo se trata.
+<p align="justify">Após iniciar uma viagem, todas as informações da mesma podem ser vistas no respectivo menu, onde o motorista pode controlar suas horas de trabalho, alimentação e descanso.
 </p>
-<p align="justify">Também temos a funcionalidade de mover a janela do programa pela tela, como exemplificado no GIF.
+<p align="justify">Se necessário, o usuário também pode gerar avisos no sistema para informar aos supervisores e administradores algum imprevisto na sua viagem.
 </p>
 </div>
 
 </br></br>
 
 <div>
-<img align="right" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/apresentacao_entrega_2/GIFS%202%C2%B0%20entrega/GIF%20CRUD%20FUNCION%C3%81RIOS.gif" width="410"/>
+<img align="right" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/apresentacao_entrega_3/GIFS%203%C2%B0%20entrega/GIF%20supervisor.gif" width="410"/>
        
-<p align="justify">No momento de se cadastrar um funcionário novo no sistema o administrador pode escolher entre os cargos disponíveis.
+<p align="justify">No perfil do supervisor, o usuário tem acesso as listas de viagens, veículos e de motoristas cadastrados no sistema para saber mais sobre suas informações.
 </p>
-<p align="justify">Ao selecionar o cargo de motorista alguns campos novos com informações extras irão aparecer. Isso ocorre pois o cargo de motorista é o princial do sistema e precisamos coletar mais informações para manter um monitoramento mais preciso.
+<p align="justify">O supervisor tem a capacidade de gerar solicitações de cadastro de novos motoristas aos administradores, bem como editar informações de motoristas e veículos já cadastrados.
 </p>
-<p align="justify">Após cadastrar um funcionário, independente do cargo, é possível utilizar o e-mail e a senha imediatamente no login para entrar no sistema como aquele usuário.
+<p align="justify">Ele também pode visualizar os avisos gerados no sistema por outros supervisores e motoristas.
 </p>
 </div>
 
 </br></br>
 
 <div>
-<img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/apresentacao_entrega_2/GIFS%202%C2%B0%20entrega/GIF%20CRUD%20FILIAIS.gif" width="410"/>
+<img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/apresentacao_entrega_3/GIFS%203%C2%B0%20entrega/GIF%20recupera%C3%A7%C3%A3o%20de%20senha.gif" width="410"/>
        
-<p align="justify">As filiais no sistema possuem um campo para o RNTRC, que é uma licença rodoviária.
+<p align="justify">A funcionalidade de recuperação de senha também foi adicionada a tela inicial do programa, o login.
 </p>
-<p align="justify">Para cadastrar algumas outras entidades é necessário possuir antes uma filial cadastrada no sistema.
+<p align="justify">Para recuperar a senha, o usuário deve fornecer dados para comprovar sua ententicidade, como nome completo, e-mail, seu cargo e seu CPF.
 </p>
-<p align="justify">Após cadastrar uma filial, já se torna possível utilizá-la para cadastrar outras entidades no sistema sem precisar reiniciar o programa para recarregar as informações do banco de dados.
+<p align="justify">Caso todos os dados estejam corretos, a senha é redefinida para a nova que foi fornecida pelo usuário no momento da recuperação e já pode ser utilizada.
 </p>
 </div>
 
 </br></br>
 
-<div>
-<img align="right" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/apresentacao_entrega_2/GIFS%202%C2%B0%20entrega/GIF%20CRUD%20VEICULOS.gif" width="410"/>
-       
-<p align="justify">Os veículos são vinculados a uma filial no momento do seu cadastro no sistema.
-</p>
-<p align="justify">Ao se cadastrar um veículo, os campos que devem ser preenchidos são a respeito do seu rastreador, sua placa, modelo do veículo e filial a qual pertence.
-</p>
-<p align="justify">Assim como necessita-se de uma filial para cadastrar algumas entidades, também necessita-se de um veículo para criar uma nova viagem no sistema.
-</p>
-</div>
-       
-</br></br>
-       
-<div>
-<img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/apresentacao_entrega_2/GIFS%202%C2%B0%20entrega/GIF%20CRUD%20ENTREGAS.gif" width="400"/>
-       
-<p align="justify">Por fim temos as viagens, que necessitam de um motorista e um veículo cadastrados no sistema para serem criadas. Dessa forma as entidades irão se relacionar e caso seja necessário realizar uma busca ela será muito mais efetiva.
-</p>
-<p align="justify">As viagens necessitam que seja especificado a empresa de destino, a carga levada e o prazo máximo para a entrega.
-</p>
-<p align="justify">Dessa forma após criar uma nova viagem, ela irá constar na conta do motorista escolhido. Assim ele poderá realizar as ações que são cabíveis a ele.
-</p>
-</div>
-
-</br>
-<p align="justify">Para todos os CRUDs mostrados acima note que ao tentar realizar qualquer alteração nos dados irá surgir uma caixa para a confirmação da senha do usuário conectado ao sistema, o que garante a segurança dos dados caso alguém tente alterá-los sem permissão.</p>
-       
 <div>
 <h2>User stories do nosso sistema</h2>
 
