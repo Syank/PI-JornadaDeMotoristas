@@ -44,7 +44,7 @@
 <div>
        <h2>Gráfico do <i>burndown</i> do nosso progresso na entrega</h2>
        <div>
-              <img aling="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/Burndown/Sprint%201%20completo.jpg">
+              <img aling="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/Burndown/Sprint%202%20completo.jpg">
               </br>
               <p align="justify">O gráfico acima exibe nosso progresso na realização das atividades que elaboramos para a terceira entrega. Diferente da entrega anterior, nesta nossa equipe não teve um desenvolvimento tão linear, chegando inclusive em alguns momentos a ficar com o rendimento levemente abaixo do esperado. Talvez uma das razões disso ter ocorrido seja uma pequena exaustão de todos após o empenho da entrega 2, além de fatores externos. De quaisquer maneiras recuperamos o tempo e cumprimos tudo o que havíamos planejado para esta entrega.</p>
        </div>
