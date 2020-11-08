@@ -55,7 +55,7 @@
 <div>
 <img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/apresentacao_entrega_3/GIFS%203%C2%B0%20entrega/GIF%20motorista.gif" width="400"/>
 
-<p align="justify">Como motorista, o usuário tem acesso as suas viagens à serem realizadas e a capacidade de inicia-las e pausa-las de acordo com a necessidade.
+<p align="justify">Como motorista, o usuário tem acesso as suas viagens a serem realizadas e a capacidade de inicia-las e pausa-las de acordo com a necessidade.
 </p>
 <p align="justify">Após iniciar uma viagem, todas as informações da mesma podem ser vistas no respectivo menu, onde o motorista pode controlar suas horas de trabalho, alimentação e descanso.
 </p>
