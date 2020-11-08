@@ -83,7 +83,7 @@
        
 <p align="justify">A funcionalidade de recuperação de senha também foi adicionada a tela inicial do programa, o login.
 </p>
-<p align="justify">Para recuperar a senha, o usuário deve fornecer dados para comprovar sua ententicidade, como nome completo, e-mail, seu cargo e seu CPF.
+<p align="justify">Para recuperar a senha, o usuário deve fornecer dados para comprovar sua autenticidade, como nome completo, e-mail, seu cargo e seu CPF.
 </p>
 <p align="justify">Caso todos os dados estejam corretos, a senha é redefinida para a nova que foi fornecida pelo usuário no momento da recuperação e já pode ser utilizada.
 </p>
