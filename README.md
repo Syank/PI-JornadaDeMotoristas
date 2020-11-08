@@ -64,7 +64,7 @@
        
 <p align="justify">No momento de se cadastrar um funcionário novo no sistema o administrador pode escolher entre os cargos disponíveis.
 </p>
-<p align="justify">Ao selecionar o cargo de motorista alguns campos novos com informações extras irão aparecer. Isso ocorre pois o cargo de motorista é o princial do sistema e precisamos coletar mais informações para manter um monitoramento mais preciso.
+<p align="justify">Ao selecionar o cargo de motorista alguns campos novos com informações extras irão aparecer. Isso ocorre pois o cargo de motorista é o principal do sistema e precisamos coletar mais informações para manter um monitoramento mais preciso.
 </p>
 <p align="justify">Após cadastrar um funcionário, independente do cargo, é possível utilizar o e-mail e a senha imediatamente no login para entrar no sistema como aquele usuário.
 </p>
