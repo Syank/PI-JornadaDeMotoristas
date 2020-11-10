@@ -11,28 +11,28 @@
 </head>
 <body>
        <h1>RoadTracker :truck::computer:</h1>
-       <p>Seja bem vindo à <i>branch</i> da segunda entrega do RoadTracker!</p>
+       <p>Seja bem-vindo à <i>branch</i> da segunda entrega do RoadTracker!</p>
        
 <h2>O nosso desafio</h2>
-<p align="justify">Nosso cliente é a empresa IACIT. Foi solicitado para nós desenvolver um sistema para o gerenciamento e controle da jornada de trabalho de motoristas que seja parametrizável visando à disponibilização de funcionalidades de planejamento, acompanhamento, controlando a jornada de trabalho de cada um desses colaboradores. Nosso sistema deverá oferecer um cadastro para motoristas (tendo nome, CPF, matrícula e ID do equipamento do caminhão), um cadastro para os dados do veículo (como a placa, a marca e versão do rastreador e o ID do equipamento), a escala dos motoristas (turno, carga horária, dias de trabalho e de folga), um cadastro de alertas (contendo ocorrência, sigla, ícone, descrição do alerta e regra/parâmetro) e um cadastro de status (cadastrar status e regras de negócio de acordo com cada situação ocorrida durante a jornada, ID dos macros/mensagens, status de início e fim de jornada, tempo de trabalho, espera, refeição e descanso).</p>
+<p align="justify">Nosso cliente é a empresa IACIT. Foi solicitado para nós desenvolvermos um sistema para o gerenciamento e controle da jornada de trabalho de motoristas sendo parametrizável, visando à disponibilização de funcionalidades de planejamento, acompanhamento, controlando a jornada de trabalho de cada um desses colaboradores. Nosso sistema deverá oferecer um cadastro para motoristas (tendo nome, CPF, matrícula e ID do equipamento do caminhão), um cadastro para os dados do veículo (como a placa, a marca e versão do rastreador e o ID do equipamento), a escala dos motoristas (turno, carga horária, dias de trabalho e de folga), um cadastro de alertas (contendo ocorrência, sigla, ícone, descrição do alerta e regra/parâmetro) e um cadastro de status (cadastrar status e regras de negócio de acordo com cada situação ocorrida durante a jornada, ID dos macros/mensagens, status de início e fim de jornada, tempo de trabalho, espera, refeição e descanso).</p>
 
 <h2>O que é o RoadTracker?</h2>
 <p align="justify">Nosso sistema, RoadTracker, tem o objetivo de realizar o controle das jornadas de trabalho de motoristas, pois, muitas vezes, não há o monitoramento e acompanhamento necessário do expediente desses trabalhadores. Todas as filiais de uma empresa devem ser cadastradas, assim como seus motoristas e suas respectivas jornadas de trabalho, viagens a serem realizadas e o veículo que será utilizado em cada uma dessas viagens. Além disso, a filial terá acesso a várias informações sobre o status do motorista durante a viagem!</p>
 
 <h2><i>Card</i> da segunda entrega do nosso sistema</h2>
        <h3>O que entregamos :white_check_mark: </h3>
-<p align="justify">A partir da primeira <i>sprint</i> (<i>sprint</i> 0), configuramos todo o ambiente de trabalho e dependências que o projeto necessita e desenvolvemos um CRUD básico dos funcionários. Agora, para a <i>sprint 1</i>, optamos por finalizar os métodos de CRUD que o perfil do administrador tem, corrigimos pequenos bugs que este perfil tinha e implementamos funcionalidades interessantes que certamente trazem uma experiência de uso melhor aos usuários. Inserimos funcionalidades extras como: verificação de login, verificação de segurança ao alterar dados, mover a janela pela tela e dicas flutuantes nos cadastros.</p>
+<p align="justify">A partir da primeira <i>sprint</i> (<i>sprint</i> 0), configuramos todo o ambiente de trabalho e dependências que o projeto necessita e desenvolvemos um CRUD básico dos funcionários. Agora, para a <i>sprint</i> 1, optamos por finalizar os métodos de CRUD que o perfil do administrador tem, corrigimos pequenos bugs que este perfil tinha e implementamos funcionalidades interessantes que certamente trazem uma experiência de uso melhor aos usuários. Há funcionalidades extras como: verificação de login, verificação de segurança ao alterar dados, mover a janela pela tela e dicas flutuantes nos cadastros.</p>
        <h3>Por que fizemos essa escolha? :grey_question: </h3>
-<p align="justify">O projeto pode ser basicamente separado em três partes, de acordo com os perfis de acesso, sendo eles motorista, supervisor e administrador. Como a entrega anterior já era dentro do perfil do administrador optamos, para a <i>sprint 1</i>, por finalizar todas as funcionalidades que esse perfil tem, assim o usuário já pode ter uma experiência de uso mais concreta do nosso programa, podendo cadastrar todas as entidades, acessar suas informações, editá-las ou apagá-las, se assim desejar.</p>
+<p align="justify">O projeto pode ser basicamente separado em três partes, de acordo com os perfis de acesso, sendo eles motorista, supervisor e administrador. Como a entrega anterior já era dentro do perfil do administrador optamos, para a sprint 1, por finalizar todas as funcionalidades que esse perfil tem, assim o usuário já pode ter uma experiência de uso mais concreta do nosso programa, podendo cadastrar todas as entidades, acessar suas informações, editá-las ou apagá-las, se assim desejar.</p>
        <h3>Quais são as partes mais trabalhosas? :question: </h3>
-<p align="justify">As partes mais trabalhosas foram as correções que se mostraram serem necessárias realizar no sistema do banco de dados, de como as entidades se relacionam entre si e adaptar essas mudanças ao código Java. Além disso as telas de cadastro e alteração de viagens se mostrou mais trabalhosa, pois envolvia um novo componente: o <i>DatePicker</i>. Ainda não havíamos o utilizado, portanto nós tivemos que pesquisar um pouco mais para aprender a utilizá-lo.</p>
+<p align="justify">As partes mais trabalhosas foram as correções que se mostraram necessárias no banco de dados, de como as entidades se relacionam entre si e adaptar essas mudanças ao código Java. Além disso, as telas de cadastro e alteração de viagens se mostraram mais trabalhosas, pois envolvia um novo componente: o DatePicker. Ainda não havíamos o utilizado, portanto tivemos que pesquisar um pouco mais para aprender a utilizá-lo.</p>
 
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/Cards/card2.png" width="500" height="280"/>
 <div>
        <h2><i>Feedback</i> sobre a primeira entrega</h2>
-       <p align="justify">Após nossa primeira entrega, recebemos um <i>feedback</i> positivo em relação ao cliente, a empresa IACIT, contudo por parte da avaliação técnica dos professores, em nosso repositório ainda faltavam alguns elementos para serem adicionados, sendo eles: a divisão das entregas por <i>branches</i>, o esforço que tivemos na <i>sprint</i> e nossa justificativa de priorização. Sendo assim detalhamos ainda mais as nossas entregas agregando as sugestões ao nosso projeto. Também fomos aconselhados a realizar o <i>login</i> através de um e-mail e não através do CPF.</p>
-       <p align="justify">Com essas observações levantadas pelos professores, separamos as entregas por <i>branches</i>. Agora temos uma <i>branch</i> para cada entrega, sendo a <i>branch master</i> a que possui o nosso projeto na sua totalidade. Adicionamos o esforço que tivemos e a justificativa ao nosso README. Estes dois últimos estão na seção logo acima dessa.</p>
-       <p align="justify">Tivemos algumas sugestões quanto às nossas <i>user stories</i>. Adicionamos identificações a cada <i>story</i> e melhoramos a descrição de cada uma, para que ficasse melhor explicado para todos. Além disso revisamos a ligação entre as <i>user stories</i> e o banco de dados para que tudo estivesse interligado corretamente.</p>
+       <p align="justify">Após nossa primeira entrega, recebemos um feedback positivo em relação ao cliente, a empresa IACIT, contudo por parte da avaliação técnica dos professores, em nosso repositório ainda faltavam alguns elementos para serem adicionados, sendo eles: a divisão das entregas por <i>branches</i>, o esforço que tivemos na <i>sprint</i> e nossa justificativa de priorização. Sendo assim, detalhamos ainda mais as nossas entregas agregando as sugestões ao nosso projeto. Também, fomos aconselhados a realizar o login através de um <i>e-mail</i> e não através do CPF.</p>
+       <p align="justify">Agora, temos uma <i>branch</i> para cada entrega, sendo a <i>master</i> a que possui o nosso projeto na sua totalidade. Adicionamos o esforço que tivemos e a justificativa ao nosso README. Estes dois últimos estão na seção logo acima dessa.</p>
+       <p align="justify">Tivemos, também, algumas sugestões quanto às nossas <i>user stories</i>. Adicionamos identificações a cada <i>story</i> e melhoramos a descrição de cada uma, para que ficasse melhor explicado para todos. Além disso revisamos o relacionamento entre as <i>user stories</i> e o banco de dados para que tudo estivesse interligado corretamente.</p>
 </div>
 
 <div>
@@ -40,7 +40,7 @@
        <div>
               <img aling="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/Burndown/Sprint%201%20completo.jpg">
               </br>
-              <p align="justify">O gráfico acima exibe nosso progresso na realização das atividades que elaboramos para a segunda entrega. Nele é possível ver que desde o começo nossa equipe esteve dedicada à entrega e sempre esteve adiantada no cronograma. Tal feito nos permitiu adicionar funcionalidades extras ao sistema que inicialmente não havíamos planejado, tudo para melhorar a experiência do usuário.</p>
+              <p align="justify">O gráfico acima exibe nosso progresso na realização das atividades que elaboramos para a segunda entrega. Nele, é possível ver que desde o começo nossa equipe esteve dedicada à entrega e sempre esteve adiantada no cronograma. Tal feito nos permitiu adicionar funcionalidades extras ao sistema que inicialmente não havíamos planejado, tudo para melhorar a experiência do usuário.</p>
        </div>
 </div>
 
@@ -51,10 +51,9 @@
 
 <p align="justify">A tela de login agora verifica os dados inseridos nos campos para confirmar se a conta existe de verdade no banco de dados, antes de liberar o acesso ao usuário.
 </p>
-<p align="justify">Agora ao posicionar o mouse em cima de um campo, uma dica flutuante irá aparecer para mostrar sobre o que aquele campo se trata.
+<p align="justify">Agora, ao posicionar o mouse em cima de um campo, uma dica flutuante irá aparecer para mostrar sobre o que aquele campo se trata.
 </p>
-<p align="justify">Também temos a funcionalidade de mover a janela do programa pela tela, como exemplificado no GIF.
-</p>
+<p align="justify">Também, temos a funcionalidade de mover a janela do programa pela tela, como exemplificado no GIF.
 </div>
 
 </br></br>
@@ -64,7 +63,7 @@
        
 <p align="justify">No momento de se cadastrar um funcionário novo no sistema o administrador pode escolher entre os cargos disponíveis.
 </p>
-<p align="justify">Ao selecionar o cargo de motorista alguns campos novos com informações extras irão aparecer. Isso ocorre pois o cargo de motorista é o principal do sistema e precisamos coletar mais informações para manter um monitoramento mais preciso.
+<p align="justify">Ao selecionar o cargo de motorista, alguns campos novos com informações extras irão aparecer.  Este cargo é o principal do sistema e é necessário coletar mais informações para manter um monitoramento mais preciso.
 </p>
 <p align="justify">Após cadastrar um funcionário, independente do cargo, é possível utilizar o e-mail e a senha imediatamente no login para entrar no sistema como aquele usuário.
 </p>
@@ -77,9 +76,9 @@
        
 <p align="justify">As filiais no sistema possuem um campo para o RNTRC, que é uma licença rodoviária.
 </p>
-<p align="justify">Para cadastrar algumas outras entidades é necessário possuir antes uma filial cadastrada no sistema.
+<p align="justify">Para cadastrar algumas outras entidades é necessário possuir antes uma filial no sistema.
 </p>
-<p align="justify">Após cadastrar uma filial, já se torna possível utilizá-la para cadastrar outras entidades no sistema sem precisar reiniciar o programa para recarregar as informações do banco de dados.
+<p align="justify">Após cadastrar uma filial, já se torna possível utilizá-la no sistema sem precisar reiniciar o sistema para recarregar as informações do banco de dados.
 </p>
 </div>
 
@@ -92,7 +91,7 @@
 </p>
 <p align="justify">Ao se cadastrar um veículo, os campos que devem ser preenchidos são a respeito do seu rastreador, sua placa, modelo do veículo e filial a qual pertence.
 </p>
-<p align="justify">Assim como necessita-se de uma filial para cadastrar algumas entidades, também necessita-se de um veículo para criar uma nova viagem no sistema.
+<p align="justify">Assim como necessita-se de uma filial para cadastrar algumas entidades, também, necessita-se de um veículo para criar uma nova viagem no sistema.
 </p>
 </div>
        
@@ -101,11 +100,11 @@
 <div>
 <img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/apresentacao_entrega_2/GIFS%202%C2%B0%20entrega/GIF%20CRUD%20ENTREGAS.gif" width="400"/>
        
-<p align="justify">Por fim temos as viagens, que necessitam de um motorista e um veículo cadastrados no sistema para serem criadas. Dessa forma as entidades irão se relacionar e caso seja necessário realizar uma busca ela será muito mais efetiva.
+<p align="justify">Por fim temos as viagens, que necessitam de um motorista e um veículo cadastrados no sistema para serem criadas. Dessa forma, as entidades irão se relacionar e caso seja necessário realizar uma busca, ela será muito mais efetiva.
 </p>
-<p align="justify">As viagens necessitam que seja especificado a empresa de destino, a carga levada e o prazo máximo para a entrega.
+<p align="justify">As viagens necessitam que seja especificada a empresa de destino, a carga levada e o prazo máximo para a entrega.
 </p>
-<p align="justify">Dessa forma após criar uma nova viagem, ela irá constar na conta do motorista escolhido. Assim ele poderá realizar as ações que são cabíveis a ele.
+<p align="justify">Dessa forma, após criar uma viagem, ela irá constar na conta do motorista escolhido. Assim, ele poderá realizar as ações que são cabíveis a ele.
 </p>
 </div>
 
@@ -116,7 +115,7 @@
 <h2>User stories do nosso sistema</h2>
 
 <h3>Segunda entrega :clock4:</h3>
-<p align="justify">A nossa segunda entrega será focada no término do perfil do administrador, ou seja, haverá o cadastro de viagens, filiais e veículos além da leitura de avisos enviados pelos motoristas. Os usuários passarão a necessitar de um cadastro para acessar o sistema, ou seja, o login funcionará.</p>
+<p align="justify">A nossa segunda entrega será focada no término do perfil do administrador, ou seja, haverá o cadastro de viagens, filiais e veículos além da leitura de avisos enviados pelos motoristas. Os usuários necessitarão de um cadastro para acessar o sistema, ou seja, o login funcionará.</p>
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/user_stories/2.png" width="600px"/>
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/user_stories/2-2.png" width="600px"/>
 </div>
@@ -133,7 +132,7 @@
        </p>
        </br>
        <p>
-              Estas são apenas algumas das <i>wireframes</i> do nosso projeto, você pode visualizar todos clicando <a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/master/doc/wireframes">aqui</a>.
+       Estas são apenas algumas das <i>wireframes</i> do nosso projeto, você pode visualizar todas clicando <a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/master/doc/wireframes">aqui</a>.
        </p>
 </div>
 
