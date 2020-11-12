@@ -1,9 +1,6 @@
 package view;
 	
 import java.io.IOException;
-
-import javax.persistence.EntityManager;
-
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.ConnectionFactory;
+
 
 
 public class Main extends Application {

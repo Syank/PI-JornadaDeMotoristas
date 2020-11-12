@@ -6,11 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.swing.JOptionPane;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,9 +28,7 @@ import model.Funcionario;
 import model.Motorista;
 import model.Viagem;
 import view.Cargos;
-import view.Funcionarios;
 import view.Main;
-import view.Viagens;
 
 
 public class ControlesLogin implements Initializable{
