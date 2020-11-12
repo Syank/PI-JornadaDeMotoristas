@@ -1,6 +1,9 @@
 package view;
 	
 import java.io.IOException;
+
+import javax.persistence.EntityManager;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.ConnectionFactory;
 
 
 public class Main extends Application {
@@ -38,40 +42,40 @@ public class Main extends Application {
 		primaryStage.initStyle(StageStyle.UNDECORATED);  // Tira a borda padrão do SO da janela
 		
 		// Carrega as telas
-		Pane fxmlTela1 = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
+		Pane fxmlTela1 = FXMLLoader.load(getClass().getResource("/FXMLLogin.fxml"));
 		tela1 = new Scene(fxmlTela1);
 	
-		Pane fxmlTela2 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminEntidades.fxml"));
+		Pane fxmlTela2 = FXMLLoader.load(getClass().getResource("/FXMLPerfilAdminEntidades.fxml"));
 		tela2 = new Scene(fxmlTela2);
 
-		Pane fxmlTela3 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminCadastrarEntidades.fxml"));
+		Pane fxmlTela3 = FXMLLoader.load(getClass().getResource("/FXMLPerfilAdminCadastrarEntidades.fxml"));
 		tela3 = new Scene(fxmlTela3);
 		
-		Pane fxmlTela4 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminEntregas.fxml"));
+		Pane fxmlTela4 = FXMLLoader.load(getClass().getResource("/FXMLPerfilAdminEntregas.fxml"));
 		tela4 = new Scene(fxmlTela4);
 
-		Pane fxmlTela5 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminBoasVindas.fxml"));
+		Pane fxmlTela5 = FXMLLoader.load(getClass().getResource("/FXMLPerfilAdminBoasVindas.fxml"));
 		tela5 = new Scene(fxmlTela5);
 
-		Pane fxmlTela6 = FXMLLoader.load(getClass().getResource("FXMLPerfilAdminAvisos.fxml"));
+		Pane fxmlTela6 = FXMLLoader.load(getClass().getResource("/FXMLPerfilAdminAvisos.fxml"));
 		tela6 = new Scene(fxmlTela6);
 		
-		Pane fxmlTela7 = FXMLLoader.load(getClass().getResource("FXMLPerfilMotViagens.fxml"));
+		Pane fxmlTela7 = FXMLLoader.load(getClass().getResource("/FXMLPerfilMotViagens.fxml"));
 		tela7 = new Scene(fxmlTela7);
 		
-		Pane fxmlTela8 = FXMLLoader.load(getClass().getResource("FXMLPerfilMotViagemAtual.fxml"));
+		Pane fxmlTela8 = FXMLLoader.load(getClass().getResource("/FXMLPerfilMotViagemAtual.fxml"));
 		tela8 = new Scene(fxmlTela8);
 		
-		Pane fxmlTela9 = FXMLLoader.load(getClass().getResource("FXMLPerfilMotAvisos.fxml"));
+		Pane fxmlTela9 = FXMLLoader.load(getClass().getResource("/FXMLPerfilMotAvisos.fxml"));
 		tela9 = new Scene(fxmlTela9);
 		
-		Pane fxmlTela10 = FXMLLoader.load(getClass().getResource("FXMLPerfilSuperEntidades.fxml"));
+		Pane fxmlTela10 = FXMLLoader.load(getClass().getResource("/FXMLPerfilSuperEntidades.fxml"));
 		tela10 = new Scene(fxmlTela10);
 		
-		Pane fxmlTela11 = FXMLLoader.load(getClass().getResource("FXMLPerfilSuperEntregas.fxml"));
+		Pane fxmlTela11 = FXMLLoader.load(getClass().getResource("/FXMLPerfilSuperEntregas.fxml"));
 		tela11 = new Scene(fxmlTela11);
 		
-		Pane fxmlTela12 = FXMLLoader.load(getClass().getResource("FXMLPerfilSuperAvisos.fxml"));
+		Pane fxmlTela12 = FXMLLoader.load(getClass().getResource("/FXMLPerfilSuperAvisos.fxml"));
 		tela12 = new Scene(fxmlTela12);
 		
 		// Aplicando o método de mover tela para todas as telas

@@ -6,12 +6,15 @@
  * User Manual available at https://docs.gradle.org/6.3/userguide/java_library_plugin.html
  */
 
+
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
     id 'eclipse'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.7'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+	id 'java'
 }
 
 
@@ -39,7 +42,6 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
-    
         
 	// https://mvnrepository.com/artifact/org.hibernate/hibernate-core
 	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.21.Final'
@@ -48,9 +50,21 @@ dependencies {
 	compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final'
 
 	// https://mvnrepository.com/artifact/org.postgresql/postgresql
-	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.16'
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.0.0'
 	
 	// https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
 	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.21.Final'
 	
+	// https://mvnrepository.com/artifact/org.apache.openjpa/openjpa-all
+	compile group: 'org.apache.openjpa', name: 'openjpa-all', version: '3.1.2'
+	
 }
+
+
+shadowJar {
+   archiveBaseName.set('roadtracker')
+   archiveClassifier.set('')
+   archiveVersion.set('')
+
+}
+
