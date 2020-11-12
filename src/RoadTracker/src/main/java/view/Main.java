@@ -30,6 +30,8 @@ public class Main extends Application {
 	private static Scene tela10;
 	private static Scene tela11;
 	private static Scene tela12;
+	
+	private static Scene tela0;  // Tela de erro de inicialização
 
 	private static double offSetX;
 	private static double offSetY;
@@ -40,6 +42,9 @@ public class Main extends Application {
 
 		primaryStage.setTitle("RoadTracker");  // Muda o título da janela
 		primaryStage.initStyle(StageStyle.UNDECORATED);  // Tira a borda padrão do SO da janela
+		
+		
+		try {
 		
 		// Carrega as telas
 		Pane fxmlTela1 = FXMLLoader.load(getClass().getResource("/FXMLLogin.fxml"));
@@ -110,6 +115,14 @@ public class Main extends Application {
 		primaryStage.setScene(tela1);
 		primaryStage.show();
 		
+		
+		}catch(Exception erro) {
+			Pane fxmlTela0 = FXMLLoader.load(getClass().getResource("/FXMLErroDeInicializacao.fxml"));
+			tela0 = new Scene(fxmlTela0);
+			
+			primaryStage.setScene(tela0);
+			primaryStage.show();
+		}
 	}
 	
 	public static void trocarTela(String escolha){
