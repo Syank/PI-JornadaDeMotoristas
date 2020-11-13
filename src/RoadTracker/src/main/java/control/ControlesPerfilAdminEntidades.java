@@ -403,7 +403,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		   	int seguranca = 0;
 	    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
 		   	cbFilial.getSelectionModel().selectFirst();
-	    	while(!motorista.getNome().equals(cbFilial.getSelectionModel().getSelectedItem().getNome())) {
+	    	while(!motorista.getFilial().getNome().equals(cbFilial.getSelectionModel().getSelectedItem().getNome())) {
+	    		System.out.println(cbFilial.getSelectionModel().getSelectedItem().getNome());
 	    		cbFilial.getSelectionModel().selectNext();
 	    		seguranca++;
 	    		if(seguranca > 100) {
@@ -465,7 +466,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		   	int seguranca = 0;
 		   	cbFilial.getSelectionModel().selectFirst();
 	    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
-	    	while(!funcionario.getNome().equals(cbFilial.getSelectionModel().getSelectedItem().getNome())) {
+	    	while(!funcionario.getFilial().getNome().equals(cbFilial.getSelectionModel().getSelectedItem().getNome())) {
 	    		cbFilial.getSelectionModel().selectNext();
 	    		seguranca++;
 	    		if(seguranca > 100) {
