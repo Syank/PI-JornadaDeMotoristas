@@ -203,6 +203,14 @@ public class ControlesLogin implements Initializable{
     	trocaSenha.setDisable(false);
     	paneLogin.setVisible(false);
     	paneLogin.setDisable(true);
+    	inputSenha.setText("");
+    	inputUsuario.setText("");
+    	tfCpf.setText("");
+    	tfNome.setText("");
+    	pfSenha1.setText("");
+    	pfSenha2.setText("");
+    	textFieldEmail.setText("");
+    	cbCargos.getSelectionModel().selectFirst();
     }
     
     @FXML
