@@ -1,5 +1,8 @@
 package view;
 	
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -162,12 +165,136 @@ public class Main extends Application {
 		}
 	}
 	
+	
 	public static void minimizar() {
 		stage.setIconified(true);
 	}
 	
 	
-	public static void main(String[] args) {
+	private static void descriptografar(String arquivo) throws IOException {	
+		FileReader txt = new FileReader(arquivo);
+		BufferedReader leitor = new BufferedReader(txt);
+		
+		Object texto[] = leitor.lines().toArray();
+		String novoTexto = "";
+		
+		FileWriter escritor = new FileWriter(arquivo);
+		
+		for(int linha = 0; linha < texto.length; linha++) {
+			novoTexto += texto[linha] + "\n";
+		}
+		
+		char[] criptografado = novoTexto.toCharArray();
+		
+		char[] descriptografado = criptografado;
+		for(int caracter = 0; caracter < descriptografado.length; caracter ++) {
+			char c = descriptografado[caracter];
+			
+			if(c == '\n') {
+				escritor.write(String.valueOf(c));
+			}else {
+				escritor.write(String.valueOf((char) (c - 5)));
+
+			}
+		}
+		
+		
+		leitor.close();
+		txt.close();
+		escritor.close();
+	}
+	
+	private static void criptografar(String arquivo) throws IOException {
+		FileReader txt = new FileReader(arquivo);
+		BufferedReader leitor = new BufferedReader(txt);
+		
+		Object texto[] = leitor.lines().toArray();
+		
+		String novoTexto = "";
+		
+		FileWriter escritor = new FileWriter(arquivo);
+		
+		for(int linha = 0; linha < texto.length; linha++) {
+			novoTexto += texto[linha] + "\n";
+		}
+
+		char[] criptografado = novoTexto.toCharArray();
+		for(int caracter = 0; caracter < criptografado.length; caracter ++) {
+			char c = criptografado[caracter];
+			
+			if(c == '\n') {
+				escritor.write(String.valueOf(c));
+			}else {
+				escritor.write(String.valueOf((char) (c + 5)));
+			}
+		}
+		
+
+		leitor.close();
+		txt.close();
+		escritor.close();
+	}
+	
+	
+	private static String alterarValor(String linha, String novoValor) {
+		String fecharLinha = '"' + "/>";
+		int localParaAlterar = linha.indexOf("value=" + '"') + 7;
+		
+		String novaLinha = linha.substring(0, localParaAlterar);
+		novaLinha += novoValor + fecharLinha;
+		
+		return novaLinha;
+	}
+	
+	
+	private static void configurarBanco(String persistence, String infos) throws IOException {
+		descriptografar(infos);
+		
+		FileReader persistenceFile = new FileReader(persistence);
+		FileReader infosFile = new FileReader(infos);
+		BufferedReader persistenceReader = new BufferedReader(persistenceFile);
+		BufferedReader infosReader = new BufferedReader(infosFile);
+		Object[] textoPersistence = persistenceReader.lines().toArray();
+		FileWriter novoPersistence = new FileWriter(persistence);
+		
+		String urlCripto = infosReader.readLine();
+		String userCripto = infosReader.readLine();
+		String passCripto = infosReader.readLine();
+		
+		
+		
+		for(int linha = 0; linha < textoPersistence.length; linha++) {
+			String line = (String) textoPersistence[linha];
+			
+			if(line.contains(".url\" value=\"")) {
+				line = alterarValor(line, urlCripto);
+			}
+			if(line.contains(".user\" value=")) {
+				line = alterarValor(line, userCripto);
+			}
+			if(line.contains(".password\" value=")) {
+				line = alterarValor(line, passCripto);
+			}
+			
+			novoPersistence.write(line + "\n");
+		}
+
+		
+		
+		infosFile.close();
+		infosReader.close();
+		persistenceReader.close();
+		persistenceFile.close();
+		novoPersistence.close();
+		
+		criptografar(infos);
+		
+	}
+	
+	public static void main(String[] args) throws IOException {
+		// Comente a função configurarBanco() abaixo e coloque seus dados manualmente no persistence para se conectar
+		//no seu banco local, para se conectar no banco online, descomente a função
+		//configurarBanco("src/main/java/META-INF/persistence.xml", "src/main/resources/specialCase.txt");
 		launch(args);
 	}
 }
