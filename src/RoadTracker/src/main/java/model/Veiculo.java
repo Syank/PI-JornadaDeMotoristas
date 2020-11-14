@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.ForeignKey;
@@ -20,10 +21,15 @@ import view.Veiculos;
 public class Veiculo {
 	
 	@Id
+	@Column(length=8)
 	private String placa;
+	@Column(length=20)
 	private String modelo_veiculo;
+	@Column(length=20)
 	private int id_rastreador;
+	@Column(length=20)
 	private String marca_rastreador;
+	@Column(length=20)
 	private String modelo_rastreador;
 
 	@ManyToOne
@@ -31,9 +37,6 @@ public class Veiculo {
 	private Filial filial = new Filial();
 	@OneToMany(mappedBy = "veiculo")
 	private List<Viagem> viagens = new ArrayList<Viagem>();
-	
-	
-
 	
 	public String getPlaca() {
 		return placa;

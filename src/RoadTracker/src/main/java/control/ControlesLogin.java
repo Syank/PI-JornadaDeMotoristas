@@ -127,6 +127,9 @@ public class ControlesLogin implements Initializable{
                 	ControlesPerfilAdminHistEntregas.atualizarInfos = true;
                 	ControlesPerfilAdminAvisos.carregarInfos = true;
     			}
+    			else {
+    				notificar("Falha", "Senha incorreta.", "A senha está incorreta. Tente novamente.");
+    			}
     		}
     		else if (cpfFunc.equals("Não encontrado")) {
 	    		if(motorista.getSenha().equals(senhaDada)) {
@@ -139,6 +142,9 @@ public class ControlesLogin implements Initializable{
 		        	ControlesPerfilMotViagemAtual.carregarViagem = true;
 		        	ControlesPerfilMotViagens.carregarTableView = true;
 	    		}
+	    		else {
+    				notificar("Falha", "Senha incorreta.", "A senha está incorreta. Tente novamente.");
+    			}
     		}
     	}
     }
@@ -228,31 +234,48 @@ public class ControlesLogin implements Initializable{
     	if(cargoFuncionario.equals("Motorista")) {
     		motorista = motorista.encontrarMotorista(cpf);
     		if(motorista != null) {
-    			if(motorista.getEmail().equals(email) && motorista.getNome().toLowerCase().equals(nome) && senha1.equals(senha2)) {
-    				motorista.alterarSenhaMot(senha2);
-    				notificar("Sucesso", "Senha alterada", "Sua senha foi alterada com sucesso! Você já pode realizar seu login.");
-    			}else {
-        			notificar("Falha", "Informação incorreta", "As informações de confirmação exigidas estão incorretas");
+    			if (senha1.equals(senha2)) {
+	    			if(motorista.getEmail().equals(email) && motorista.getNome().toLowerCase().equals(nome) && senha1.equals(senha2) && motorista.getCpf().equals(cpf)) {
+	    				motorista.alterarSenhaMot(senha2);
+	    				notificar("Sucesso", "Senha alterada", "Sua senha foi alterada com sucesso! Você já pode realizar seu login.");
+	    				limparCampos();
+	    			}
+	    			else {
+	        			notificar("Falha", "Informação incorreta", "As informações de confirmação exigidas estão incorretas");
+	    			}
     			}
-    		}else {
+    			else {
+    				notificar("Falha", "Senhas não correspondem", "As senhas digitadas não estão iguais. Digite novamente.");
+    			}
+    		}
+    		else {
     			notificar("Falha", "Informação incorreta", "Não foi possível encontrar nenhum funcionário com o CPF informado, por "
     					+ "favor verifique o campo e tente novamente");
     		}
-    	}else if(cargoFuncionario.equals("Administrador") || cargoFuncionario.equals("Supervisor")){
+    	}
+    	else if(cargoFuncionario.equals("Administrador") || cargoFuncionario.equals("Supervisor")){
     		funcionario = funcionario.encontrarFuncionario(cpf);
     		if(funcionario != null) {
-    			if(funcionario.getEmail().equals(email) && funcionario.getNome().toLowerCase().equals(nome) && senha1.equals(senha2)) {
-    				funcionario.alterarSenhaFunc(senha2);
-    				notificar("Sucesso", "Senha alterada", "Sua senha foi alterada com sucesso! Você já pode realizar seu login.");
-    			}else {
-        			notificar("Falha", "Informação incorreta", "As informações de confirmação exigidas estão incorretas");
+    			if (senha1.equals(senha2)) {
+	    			if(funcionario.getEmail().equals(email) && funcionario.getNome().toLowerCase().equals(nome) && senha1.equals(senha2) && funcionario.getCpf().equals(cpf)) {
+	    				funcionario.alterarSenhaFunc(senha2);
+	    				notificar("Sucesso", "Senha alterada", "Sua senha foi alterada com sucesso! Você já pode realizar seu login.");
+	    				limparCampos();
+	    			}
+	    			else {
+	        			notificar("Falha", "Informação incorreta", "As informações de confirmação exigidas estão incorretas");
+	    			}
     			}
-
-    		}else {
+    			else {
+    				notificar("Falha", "Senhas não correspondem", "As senhas digitadas não estão iguais. Digite novamente.");
+    			}
+    		}
+    		else {
     			notificar("Falha", "Informação incorreta", "Não foi possível encontrar nenhum funcionário com o CPF informado, por "
     					+ "favor verifique o campo e tente novamente");
     		}
-    	}else {
+    	}
+    	else {
 			notificar("Falha", "Informação incorreta", "As informações de confirmação exigidas estão incorretas");
     	}
     }
@@ -379,6 +402,15 @@ public class ControlesLogin implements Initializable{
 				}
 			}
 		}
+	}
+	
+	void limparCampos () {
+		textFieldEmail.setText("");
+		pfSenha1.setText("");
+		pfSenha2.setText("");
+		tfCpf.setText("");
+		tfNome.setText("");
+		cbCargos.getSelectionModel().selectLast();
 	}
 
 	@Override

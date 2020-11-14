@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
@@ -21,10 +23,15 @@ public class Filial {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	/* @Column(name="id_filial") */
 	private Integer id;
+	@Column(length=50)
 	private String nome;
+	@Column(length=30)
 	private String cidade;
+	@Column(length=2)
 	private String estado;
+	@Column(length=18)
 	private String cnpj;
+	@Column(length=8)
 	private String rntrc;
 	
 	//uma filial possui um ou mais funcionarios

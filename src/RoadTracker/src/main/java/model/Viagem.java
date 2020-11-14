@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.ForeignKey;
@@ -25,11 +26,17 @@ public class Viagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
+	@Column(length=10)
 	private String inicio;
+	@Column(length=10)
 	private String fim;
+	@Column(length=8)
 	private String total;
+	@Column(length=30)
 	private String destino;
+	@Column(length=20)
 	private String carga;
+	@Column(length=12)
 	private String situacao;
 
 	@ManyToOne

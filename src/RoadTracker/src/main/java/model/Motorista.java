@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.ForeignKey;
@@ -21,13 +23,19 @@ import view.Funcionarios;
 @Table(name = "motoristas")
 public class Motorista {
 	@Id
+	@Column(length=14, nullable=false)
 	private String cpf;
-	
+	@Column(length=50, nullable=false)
 	private String nome;
+	@Column(length=50, nullable=false)
 	private String email;
+	@Column(length=32, nullable=false)
 	private String senha;
+	@Column(length=10, nullable=false)
 	private String salario;
+	@Column(length=4, nullable=false)
 	private String cargaHoraria;
+	@Column(length=11, nullable=false)
 	private String turno;
 	private boolean seg;
 	private boolean ter;
@@ -36,11 +44,15 @@ public class Motorista {
 	private boolean sex;
 	private boolean sab;
 	private boolean dom;
+	@Column(length=13)
 	private String cargo;
-	
+	@Column(length=2)
 	private String dia_atual;
+	@Column(length=5)
 	private String trabalhado_hoje;
+	@Column(length=5)
 	private String descansado_hoje;
+	@Column(length=5)
 	private String alimentacao_hoje;
 	
 	// Mapeamento
@@ -54,7 +66,7 @@ public class Motorista {
 	//@OneToMany(mappedBy = "funcionario")
 	//private List<Viagem> viagens = new ArrayList<Viagem>();
 	
-	
+	@Column(length=14)
 	public String getCpf() {
 		return cpf;
 	}

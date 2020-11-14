@@ -50,7 +50,8 @@ dependencies {
 	compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final'
 
 	// https://mvnrepository.com/artifact/org.postgresql/postgresql
-	compile group: 'org.postgresql', name: 'postgresql', version: '42.0.0'
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.16'
+	// para criar o .jar a versão é 42.0.0 (substituir e dar refresh gradle project)
 	
 	// https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
 	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.21.Final'

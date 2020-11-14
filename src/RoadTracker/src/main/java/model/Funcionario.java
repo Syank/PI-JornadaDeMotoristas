@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.ForeignKey;
@@ -21,10 +22,15 @@ import view.Funcionarios;
 public class Funcionario {
 	
 	@Id
+	@Column(length=14)
 	private String cpf;
+	@Column(length=50)
 	private String nome;
+	@Column(length=50)
 	private String email;
+	@Column(length=32)
 	private String senha;
+	@Column(length=13)
 	private String cargo;
 	
 	//um ou mais funcionários correspondem a uma filial

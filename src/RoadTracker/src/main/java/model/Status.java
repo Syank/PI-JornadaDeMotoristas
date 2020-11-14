@@ -2,6 +2,7 @@ package model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.ForeignKey;
@@ -20,9 +21,13 @@ public class Status {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
+	@Column(length=20)
 	private String tipo;
+	@Column(length=10)
 	private String inicio;
+	@Column(length=10)
 	private String fim;
+	@Column(length=8)
 	private String total;
 
 	

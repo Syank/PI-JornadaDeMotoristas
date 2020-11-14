@@ -304,7 +304,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 							notificar("Sucesso de cadastro", "Funcionário cadastrado",
 									"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
 							ControlesPerfilAdminEntidades.atualizarInfos = true;
-						} else {
+						}
+						else {
 							notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
 									"Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
 						}
@@ -319,7 +320,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 					notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
 							"O CPF informado já está sendo utilizado por outro funcionário, "
 									+ "por favor verifique o campo ou exclua o funcionário com o CPF em questão");
-
 				}
         	}
         	else {
