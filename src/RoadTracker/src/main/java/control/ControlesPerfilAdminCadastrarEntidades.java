@@ -362,6 +362,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 							if (cadastro) {
 								notificar("Sucesso de cadastro", "Funcionário cadastrado",
 										"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+								limparCamposCadastrarFuncionarios();
 								ControlesPerfilAdminEntidades.atualizarInfos = true;
 							}
 							else {
@@ -452,6 +453,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	if(nome.length() > 1 && cidade.length() > 1 && estado.length() > 1 && cnpjValido && rntrc.length() > 1) {
     		f.cadastrarFilial(nome, cidade, estado, cnpj, rntrc);
     		notificar("Sucesso de cadastro", "Filial cadastrada", "A filial " + nome + " foi cadastrada com sucesso!");
+    		limparCamposCadastrarFiliais();
     		ControlesPerfilAdminEntidades.atualizarInfos = true;
     		ControlesPerfilAdminHistEntregas.atualizarInfos = true;
     	}else{
@@ -539,6 +541,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         	if(placaValida && modelo_veiculo.length() >= 1 && rastreadorValido && marca_rastreador.length() >= 1 && modelo_rastreador.length() >= 1) {
         		veic.cadastrarVeiculo(placa, modelo_veiculo, id_rastreador, marca_rastreador, modelo_rastreador, filial);
         		notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
+        		limparCamposCadastrarVeículos();
         		ControlesPerfilAdminEntidades.atualizarInfos = true;
         	}
         }
@@ -587,6 +590,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     					   cpfFuncionario, placaVeiculo, 
     					   textFieldCarga.getText());
         		notificar("Sucesso de cadastro", "Viagem cadastrada", "A viagem foi cadastrada no sistema com sucesso!");
+        		limparCamposCadastrarViagens();
         		ControlesPerfilAdminHistEntregas.atualizarInfos = true;
         	}
         	
@@ -913,10 +917,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 		paneAvisosFalha.setDisable(true);
 		paneAvisosFalha.setVisible(false);
 		
-		limparCamposCadastrarFuncionarios();
-		limparCamposCadastrarFiliais();
-		limparCamposCadastrarViagens();
-    	limparCamposCadastrarVeículos();
     }
     
     @FXML
