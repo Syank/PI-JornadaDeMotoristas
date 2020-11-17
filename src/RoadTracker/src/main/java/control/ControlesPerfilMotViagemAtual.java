@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import model.Logs;
 import model.Motorista;
 import model.Viagem;
 import view.Main;
@@ -302,6 +303,12 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 		
 		atualizarTempos();
 		viagem.finalizarViagem(tempoTotal);
+		
+		Logs log = new Logs();
+		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de viagem:"
+				+ "\nDestino: " + labelDestino.getText()
+				+ "\nCarga: " + labelCarga.getText()
+				+ "\nExpediente total: " + tempoTotal);
 		
 		ControlesPerfilMotViagens.carregarTableView = true;
     }

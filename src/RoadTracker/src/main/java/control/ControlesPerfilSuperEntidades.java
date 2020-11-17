@@ -28,6 +28,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Aviso;
 import model.Filial;
+import model.Logs;
 import model.Motorista;
 import model.Veiculo;
 import model.Viagem;
@@ -539,6 +540,47 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 						cbFilial.getValue().getId(), cbTurno.getValue().getTurno(),
 						cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(), cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
 
+				
+				String diasDeTrabalho = "";
+
+				if(cbDom.isSelected()) {
+					diasDeTrabalho += "Domingo";
+				}
+				if(cbSeg.isSelected()) {
+					diasDeTrabalho += ", Segunda-Feira";
+				}
+				if(cbTer.isSelected()) {
+					diasDeTrabalho += ", Terça-Feira";
+				}
+				if(cbQua.isSelected()) {
+					diasDeTrabalho += ", Quarta-Feira";
+				}
+				if(cbQui.isSelected()) {
+					diasDeTrabalho += ", Quinta-Feira";
+				}
+				if(cbSex.isSelected()) {
+					diasDeTrabalho += ", Sexta-Feira";
+				}
+				if(cbSab.isSelected()) {
+					diasDeTrabalho += " e Sábado";
+				}
+				if(!cbDom.isSelected()) {
+					diasDeTrabalho = diasDeTrabalho.substring(2); // Tira ", " caso não trabalhe domingo
+				}
+				
+				
+	    		Logs log = new Logs();
+        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de motorista:"
+        				+ "\nNome: " + tfNome.getText()
+        				+ "\nCPF: " + motorista.getCpf()
+        				+ "\nE-mail: " + textFieldEmail.getText()
+        				+ "\nFilial: " + cbFilial.getSelectionModel().getSelectedItem().getNome()
+        				+ "\nSalário: R$ " + textFieldSalarioMotorista.getText()
+        				+ "\nCarga Horária: " + tfCargaHoraria.getText()
+        				+ "\nDias de trabalho: " + diasDeTrabalho);
+				
+				
+				
 				notificar("Sucesso", "Alteração de dados",
 						"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
 				atualizarTableViewEComboBox = true;
@@ -748,6 +790,15 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 
 			notificar("Sucesso", "Dados alterados",
 					"Os dados do veículo de placa " + textFieldPlacaVeiculo.getText() + " foram alterados com sucesso!");
+			
+	 		Logs log = new Logs();
+    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de veículo:"
+    				+ "\nPlaca: " + textFieldPlacaVeiculo.getText()
+    				+ "\nFilial: " + comboBoxFilialVeiculo.getSelectionModel().getSelectedItem().getNome()
+    				+ "\nModelo do veículo: " + textFieldModeloVeiculo.getText()
+    				+ "\nMarca do rastreador: " + textFieldMarcaRastreador.getText()
+    				+ "\nModelo do rastreador: " + textFieldModeloRastreador.getText()
+    				+ "\nID do rastreador: " + textFieldIDRastreador.getText());
 
 			desabilitarEdicao();
 			atualizarTableViewEComboBox = true;

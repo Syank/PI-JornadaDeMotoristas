@@ -262,6 +262,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	String senha2 = pfSenha2.getText();
     	String cargo = cbCargo.getValue().getCargo();
     	int filial = cbFilial.getValue().getId();
+    	String nomeFilial = cbFilial.getValue().getNome();
     	String email = textFieldEmail.getText();
     	
     	// Verifica se o CPF é válido
@@ -304,6 +305,15 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 							if (cadastro) {
 								notificar("Sucesso de cadastro", "Funcionário cadastrado",
 										"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+								
+					    		Logs log = new Logs();
+				        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de funcionário:"
+				        				+ "\nNome: " + nome
+				        				+ "\nCPF: " + cpf
+				        				+ "\nE-mail: " + email
+				        				+ "\nFilial: " + nomeFilial
+				        				+ "\nCargo: " + cargo);
+				        		
 								limparCamposCadastrarFuncionariosFiliais();
 								ControlesPerfilAdminEntidades.atualizarInfos = true;
 							}
@@ -372,6 +382,46 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 									if (cadastro) {
 										notificar("Sucesso de cadastro", "Funcionário cadastrado",
 												"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+										
+										
+										
+										String diasDeTrabalho = "";
+
+										if(dom) {
+											diasDeTrabalho += "Domingo";
+										}
+										if(seg) {
+											diasDeTrabalho += ", Segunda-Feira";
+										}
+										if(ter) {
+											diasDeTrabalho += ", Terça-Feira";
+										}
+										if(qua) {
+											diasDeTrabalho += ", Quarta-Feira";
+										}
+										if(qui) {
+											diasDeTrabalho += ", Quinta-Feira";
+										}
+										if(sex) {
+											diasDeTrabalho += ", Sexta-Feira";
+										}
+										if(sab) {
+											diasDeTrabalho += " e Sábado";
+										}
+										if(!dom) {
+											diasDeTrabalho = diasDeTrabalho.substring(2); // Tira ", " caso não trabalhe domingo
+										}
+										
+							    		Logs log = new Logs();
+						        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de motorista:"
+						        				+ "\nNome: " + nome
+						        				+ "\nCPF: " + cpf
+						        				+ "\nE-mail: " + email
+						        				+ "\nFilial: " + nomeFilial
+						        				+ "\nSalário: R$ " + salario
+						        				+ "\nCarga Horária: " + cargaHoraria
+						        				+ "\nDias de trabalho: " + diasDeTrabalho);
+										
 										limparCamposCadastrarFuncionarios();
 										ControlesPerfilAdminEntidades.atualizarInfos = true;
 									}
@@ -474,6 +524,15 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	if(nome.length() > 1 && cidade.length() > 1 && estado.length() > 1 && cnpjValido && rntrc.length() > 1) {
     		f.cadastrarFilial(nome, cidade, estado, cnpj, rntrc);
     		notificar("Sucesso de cadastro", "Filial cadastrada", "A filial " + nome + " foi cadastrada com sucesso!");
+    		
+    		Logs log = new Logs();
+    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de filial:"
+    				+ "\nNome: " + nome
+    				+ "\nCNPJ: " + cnpj
+    				+ "\nRNTRC: " + rntrc
+    				+ "\nEstado: " + estado
+    				+ "\nCidade: " + cidade);
+    		
     		limparCamposCadastrarFiliais();
     		ControlesPerfilAdminEntidades.atualizarInfos = true;
     		ControlesPerfilAdminHistEntregas.atualizarInfos = true;
@@ -534,6 +593,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
             String marca_rastreador = textFieldMarcaRastreador.getText();
             String modelo_rastreador = textFieldModeloRastreador.getText();
         	int filial = comboBoxEscolherFilialVeiculos.getValue().getId();
+        	String nomeFilial = comboBoxEscolherFilialVeiculos.getValue().getNome(); 
         	
         	placaValida = true;
         	rastreadorValido = true;
@@ -562,6 +622,16 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         	//primeiro verifica se nenhum campo está nulo (NÃO VERIFICA SE FOI SELECIONADO UMA FILIAL)
         	if(placaValida && modelo_veiculo.length() >= 1 && rastreadorValido && marca_rastreador.length() >= 1 && modelo_rastreador.length() >= 1) {
         		veic.cadastrarVeiculo(placa, modelo_veiculo, id_rastreador, marca_rastreador, modelo_rastreador, filial);
+        		
+        		Logs log = new Logs();
+        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de veículo:"
+        				+ "\nPlaca: " + placa
+        				+ "\nFilial: " + nomeFilial
+        				+ "\nModelo do veículo: " + modelo_veiculo
+        				+ "\nMarca do rastreador: " + marca_rastreador
+        				+ "\nModelo do rastreador: " + modelo_rastreador
+        				+ "\nID do rastreador: " + id_rastreador);
+        		
         		notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
         		limparCamposCadastrarVeículos();
         		ControlesPerfilAdminEntidades.atualizarInfos = true;
@@ -612,6 +682,15 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     					   cpfFuncionario, placaVeiculo, 
     					   textFieldCarga.getText());
         		notificar("Sucesso de cadastro", "Viagem cadastrada", "A viagem foi cadastrada no sistema com sucesso!");
+        		
+	    		Logs log = new Logs();
+        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de viagem:"
+        				+ "\nDestino: " + tfEmpresaDestino.getText()
+        				+ "\nCarga: " + textFieldCarga.getText()
+        				+ "\nPrazo: " + prazo
+        				+ "\nMotorista responsável: " + cpfFuncionario
+        				+ "\nPlaca do veículo atribuído: " + placaVeiculo);
+        		
         		limparCamposCadastrarViagens();
         		ControlesPerfilAdminHistEntregas.atualizarInfos = true;
         	}

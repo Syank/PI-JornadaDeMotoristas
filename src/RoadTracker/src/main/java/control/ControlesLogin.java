@@ -35,6 +35,8 @@ public class ControlesLogin implements Initializable{
 	
 	public static String senha;
 	public static String cpfLogado;
+	public static String nomeLogado;
+	
     @FXML
     private TextField inputUsuario;
     @FXML
@@ -110,6 +112,7 @@ public class ControlesLogin implements Initializable{
     			if(funcionario.getSenha().equals(senhaDada)) {
     				senha = senhaDada;
     				cpfLogado = funcionario.getCpf();
+    				nomeLogado = funcionario.getNome();
     				
     				if (funcionario.getCargo().equals("Supervisor")) {
     					Main.trocarTela("Tela Inicial Supervisor");
@@ -135,6 +138,7 @@ public class ControlesLogin implements Initializable{
 	    		if(motorista.getSenha().equals(senhaDada)) {
 	    			senha = senhaDada;
 	    			cpfLogado = motorista.getCpf();
+	    			nomeLogado = motorista.getNome();
 		        	Main.trocarTela("Viagem Selecionada");
 		        	inputUsuario.setText("");
 		        	inputSenha.setText("");

@@ -308,6 +308,45 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 				if (motoristaExcluido != null) {
 					notificar("Sucesso", "Funcionário excluído",
 							"O funcionário foi excluído dos registros do banco de dados com sucesso");
+					
+					
+					String diasDeTrabalho = "";
+
+					if(cbDom.isSelected()) {
+						diasDeTrabalho += "Domingo";
+					}
+					if(cbSeg.isSelected()) {
+						diasDeTrabalho += ", Segunda-Feira";
+					}
+					if(cbTer.isSelected()) {
+						diasDeTrabalho += ", Terça-Feira";
+					}
+					if(cbQua.isSelected()) {
+						diasDeTrabalho += ", Quarta-Feira";
+					}
+					if(cbQui.isSelected()) {
+						diasDeTrabalho += ", Quinta-Feira";
+					}
+					if(cbSex.isSelected()) {
+						diasDeTrabalho += ", Sexta-Feira";
+					}
+					if(cbSab.isSelected()) {
+						diasDeTrabalho += " e Sábado";
+					}
+					if(!cbDom.isSelected()) {
+						diasDeTrabalho = diasDeTrabalho.substring(2); // Tira ", " caso não trabalhe domingo
+					}
+					
+		    		Logs log = new Logs();
+	        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Exclusão de motorista:"
+	        				+ "\nNome: " + tfNome.getText()
+	        				+ "\nCPF: " + motorista.getCpf()
+	        				+ "\nE-mail: " + textFieldEmail.getText()
+	        				+ "\nFilial: " + cbFilial.getSelectionModel().getSelectedItem().getNome()
+	        				+ "\nSalário: R$ " + textFieldSalarioMotorista.getText()
+	        				+ "\nCarga Horária: " + tfCargaHoraria.getText()
+	        				+ "\nDias de trabalho: " + diasDeTrabalho);
+					
 					atualizarInfos = true;
 					
 					paneFuncionarioSelecionado.setVisible(false);
@@ -324,6 +363,15 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 				if (funcionarioExcluido != null) {
 					notificar("Sucesso", "Funcionário excluído",
 							"O funcionário foi excluído dos registros do banco de dados com sucesso");
+					
+		    		Logs log = new Logs();
+	        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de funcionário:"
+	        				+ "\nNome: " + tfNome.getText()
+	        				+ "\nCPF: " + motorista.getCpf()
+	        				+ "\nE-mail: " + textFieldEmail.getText()
+	        				+ "\nFilial: " + cbFilial.getSelectionModel().getSelectedItem().getNome()
+	        				+ "\nCargo: " + cbCargo.getValue().getCargo());
+					
 					atualizarInfos = true;
 					
 					paneFuncionarioSelecionado.setVisible(false);
@@ -514,7 +562,46 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 														textFieldSalarioMotorista.getText(), tfCargaHoraria.getText(), 
 														cbFilial.getValue().getId(), cbTurno.getValue().getTurno(),
 														cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(), cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
-					
+						
+						
+						String diasDeTrabalho = "";
+
+						if(cbDom.isSelected()) {
+							diasDeTrabalho += "Domingo";
+						}
+						if(cbSeg.isSelected()) {
+							diasDeTrabalho += ", Segunda-Feira";
+						}
+						if(cbTer.isSelected()) {
+							diasDeTrabalho += ", Terça-Feira";
+						}
+						if(cbQua.isSelected()) {
+							diasDeTrabalho += ", Quarta-Feira";
+						}
+						if(cbQui.isSelected()) {
+							diasDeTrabalho += ", Quinta-Feira";
+						}
+						if(cbSex.isSelected()) {
+							diasDeTrabalho += ", Sexta-Feira";
+						}
+						if(cbSab.isSelected()) {
+							diasDeTrabalho += " e Sábado";
+						}
+						if(!cbDom.isSelected()) {
+							diasDeTrabalho = diasDeTrabalho.substring(2); // Tira ", " caso não trabalhe domingo
+						}
+						
+			    		Logs log = new Logs();
+		        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de motorista:"
+		        				+ "\nNome: " + tfNome.getText()
+		        				+ "\nCPF: " + motorista.getCpf()
+		        				+ "\nE-mail: " + textFieldEmail.getText()
+		        				+ "\nFilial: " + cbFilial.getSelectionModel().getSelectedItem().getNome()
+		        				+ "\nSalário: R$ " + textFieldSalarioMotorista.getText()
+		        				+ "\nCarga Horária: " + tfCargaHoraria.getText()
+		        				+ "\nDias de trabalho: " + diasDeTrabalho);
+						
+						
 						notificar("Sucesso", "Alteração de dados",
 								"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
 						atualizarInfos = true;
@@ -525,6 +612,15 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 							textFieldEmail.getText());
 					notificar("Sucesso", "Alteração de dados",
 							"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+					
+		    		Logs log = new Logs();
+	        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de funcionário:"
+	        				+ "\nNome: " + tfNome.getText()
+	        				+ "\nCPF: " + motorista.getCpf()
+	        				+ "\nE-mail: " + textFieldEmail.getText()
+	        				+ "\nFilial: " + cbFilial.getSelectionModel().getSelectedItem().getNome()
+	        				+ "\nCargo: " + cbCargo.getValue().getCargo());
+					
 					atualizarInfos = true;
 				}
 			}
@@ -647,6 +743,15 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			
 			if (filialExcluida) {
 				notificar("Sucesso", "Filial excluída", "A filial foi excluída dos registros do banco de dados com sucesso!");
+				
+	    		Logs log = new Logs();
+	    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de filial:"
+	    				+ "\nNome: " + filial.encontrarFilial(idFilial).getNome()
+	    				+ "\nCNPJ: " + textFieldCnpj.getText()
+	    				+ "\nRNTRC: " + textFieldRntrc.getText()
+	    				+ "\nEstado: " + comboBoxEstados.getSelectionModel().getSelectedItem().getEstado()
+	    				+ "\nCidade: " + textFieldCidadeFilial.getText());
+				
 				atualizarInfos = true;
 				
 				paneFilialSelecionada.setVisible(false);
@@ -684,6 +789,15 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			desabilitarEdicao();
 			notificar("Sucesso", "Filial atualizada",
 					"Os dados da filial " + textFieldNomeFilial.getText() + " foram alterados com sucesso!");
+			
+    		Logs log = new Logs();
+    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de filial:"
+    				+ "\nNome: " + textFieldNomeFilial.getText()
+    				+ "\nCNPJ: " + textFieldCnpj.getText()
+    				+ "\nRNTRC: " + textFieldRntrc.getText()
+    				+ "\nEstado: " + estado
+    				+ "\nCidade: " + textFieldCidadeFilial.getText());
+			
 			atualizarInfos = true;
 		}
 		else {
@@ -878,6 +992,16 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			
 			if (veiculoExcluido) {
 				notificar("Sucesso", "Veículo excluído", "O veículo foi excluído com sucesso do banco de dados!");
+				
+        		Logs log = new Logs();
+        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Exclusão de veículo:"
+        				+ "\nPlaca: " + textFieldPlacaVeiculo.getText()
+        				+ "\nFilial: " + comboBoxFilialVeiculo.getSelectionModel().getSelectedItem().getNome()
+        				+ "\nModelo do veículo: " + textFieldModeloVeiculo.getText()
+        				+ "\nMarca do rastreador: " + textFieldMarcaRastreador.getText()
+        				+ "\nModelo do rastreador: " + textFieldModeloRastreador.getText()
+        				+ "\nID do rastreador: " + textFieldIDRastreador.getText());
+				
 				atualizarInfos = true;
 				
 				paneVeiculos.setVisible(true);
@@ -912,6 +1036,16 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 
 			notificar("Sucesso", "Dados alterados",
 					"Os dados do veículo de placa " + textFieldPlacaVeiculo.getText() + " foram alterados com sucesso!");
+			
+			
+    		Logs log = new Logs();
+    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de veículo:"
+    				+ "\nPlaca: " + textFieldPlacaVeiculo.getText()
+    				+ "\nFilial: " + comboBoxFilialVeiculo.getSelectionModel().getSelectedItem().getNome()
+    				+ "\nModelo do veículo: " + textFieldModeloVeiculo.getText()
+    				+ "\nMarca do rastreador: " + textFieldMarcaRastreador.getText()
+    				+ "\nModelo do rastreador: " + textFieldModeloRastreador.getText()
+    				+ "\nID do rastreador: " + textFieldIDRastreador.getText());
 
 			desabilitarEdicao();
 			atualizarInfos = true;

@@ -158,6 +158,15 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
         							  comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca(), 
         							  textFieldCarga.getText(), Integer.parseInt(textFieldId.getText()));
         	
+    		Logs log = new Logs();
+    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de viagem:"
+    				+ "\nDestino: " + textFieldDestino.getText()
+    				+ "\nCarga: " + textFieldCarga.getText()
+    				+ "\nPrazo: " + prazo
+    				+ "\nMotorista responsável: " + comboBoxMotorista.getSelectionModel().getSelectedItem().getCpf()
+    				+ "\nPlaca do veículo atribuído: " + comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca());
+        	
+        	
         	textFieldDestino.setDisable(false);
         	textFieldCarga.setDisable(false);
         	comboBoxMotorista.setDisable(false);
@@ -198,6 +207,28 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 	    	
 	    	if (viagemExcluida) {
 				notificar("Sucesso", "Viagem excluída", "A viagem foi excluída com sucesso do banco de dados!");
+				
+	        	int dia = datePickerPrazo.getValue().getDayOfMonth();
+	        	int mes = datePickerPrazo.getValue().getMonthValue();
+	        	int ano = datePickerPrazo.getValue().getYear();
+	        	
+	        	String prazo;
+	        	
+	        	if(dia < 10) {
+	            	prazo = ("0" + String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+	        	}
+	        	else {
+	            	prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+	        	}
+				
+	    		Logs log = new Logs();
+	    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de viagem:"
+	    				+ "\nDestino: " + textFieldDestino.getText()
+	    				+ "\nCarga: " + textFieldCarga.getText()
+	    				+ "\nPrazo: " + prazo
+	    				+ "\nMotorista responsável: " + comboBoxMotorista.getSelectionModel().getSelectedItem().getCpf()
+	    				+ "\nPlaca do veículo atribuído: " + comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca());
+				
 				atualizarInfos = true;
 	    	}
 	    	else {
