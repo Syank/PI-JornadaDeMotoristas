@@ -296,31 +296,38 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 
     		// Primeiro verifica se o cpf não está sendo usado, depois verifica se o email não está sendo usado
         	if (cargo.equals("Administrador") || cargo.equals("Supervisor")) {
-            	if(funcionario.encontrarFuncionario(cpf) == null) {
-					if (senha.equals(senha2)) {
-						boolean cadastro = funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, email);
-
-						if (cadastro) {
-							notificar("Sucesso de cadastro", "Funcionário cadastrado",
-									"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
-							ControlesPerfilAdminEntidades.atualizarInfos = true;
+        		if (!nome.isBlank() && !cpf.isBlank() && !senha.isBlank() && !senha2.isBlank() && !cargo.isBlank() && !email.isBlank()) {
+	            	if(funcionario.encontrarFuncionario(cpf) == null) {
+						if (senha.equals(senha2)) {
+							boolean cadastro = funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, email);
+	
+							if (cadastro) {
+								notificar("Sucesso de cadastro", "Funcionário cadastrado",
+										"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+								limparCamposCadastrarFuncionariosFiliais();
+								ControlesPerfilAdminEntidades.atualizarInfos = true;
+							}
+							else {
+								notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
+										"Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
+							}
+	
 						}
 						else {
 							notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
-									"Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
+									"Não foi possível realizar a ação de cadastro, os campos da senha estão incorretos.");
 						}
-
 					}
-					else {
+	            	else {
 						notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
-								"Não foi possível realizar a ação de cadastro, os campos da senha estão incorretos.");
+								"O CPF informado já está sendo utilizado por outro funcionário, "
+										+ "por favor verifique o campo ou exclua o funcionário com o CPF em questão");
 					}
-				}
-            	else {
+        		}
+        		else {
 					notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
-							"O CPF informado já está sendo utilizado por outro funcionário, "
-									+ "por favor verifique o campo ou exclua o funcionário com o CPF em questão");
-				}
+							"Preencha todos os campos para cadastrar o funcionário.");
+        		}
         	}
         	else {
         		String salario = textFieldSalario.getText();
@@ -344,43 +351,56 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         			}
         		}
         		
-        		if (Float.parseFloat(salario) < 1701.38) {
-        			//verifica se o salário é menor que o piso
-        			notificar("Falha de cadastro", "Salário baixo", "O salário informado é inválido, "
-            				+ "por favor confira o campo e insira um salário maior");
-        		}
-        		else if (Integer.parseInt(cargaHoraria) > 8) {
-        			notificar("Falha de cadastro", "Carga horária", "A carga horária diária é 8 horas (sem aviso prévio). Verifique o valor e tente novamente.");
-        		}
-        		else {
-        			// Primeiro verifica se o cpf não está sendo usado, depois verifica se o email não está sendo usado
-	        		if(motorista.encontrarMotorista(cpf) == null) {
-						if (senha.equals(senha2)) {
-							boolean cadastro = motorista.cadastrarMotorista(cpf, nome, email, senha, salario, cargaHoraria,
-									filial, turno, seg, ter, qua, qui, sex, sab, dom, cargo);
-	
-							if (cadastro) {
-								notificar("Sucesso de cadastro", "Funcionário cadastrado",
-										"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
-								limparCamposCadastrarFuncionarios();
-								ControlesPerfilAdminEntidades.atualizarInfos = true;
-							}
-							else {
-								notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
-										"Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
-							}
-						}
-						else {
-							notificar("Falha de cadastro", "Falha ao cadastrar",
-									"As senhas estão incorretas, tente novamente");
-						}
-	            		
+        		if (!nome.isBlank() && !cpf.isBlank() && !senha.isBlank() && !senha2.isBlank() && !cargo.isBlank() && !email.isBlank() && !salario.isBlank() && !cargaHoraria.isBlank()) {
+	        		if (Float.parseFloat(salario) < 1701.38) {
+	        			//verifica se o salário é menor que o piso
+	        			notificar("Falha de cadastro", "Salário baixo", "O salário informado é inválido, "
+	            				+ "por favor confira o campo e insira um salário maior");
+	        		}
+	        		else if (Integer.parseInt(cargaHoraria) > 8) {
+	        			notificar("Falha de cadastro", "Carga horária", "A carga horária diária é 8 horas (sem aviso prévio). Verifique o valor e tente novamente.");
 	        		}
 	        		else {
-	            		notificar("Falha de cadastro", "Falha ao cadastrar funcionário", 
-	            				"O CPF informado já está sendo utilizado por outro motorista, "
-	            				+ "por favor verifique o campo ou exclua o motorista com o CPF em questão");
+	        			// Primeiro verifica se o cpf não está sendo usado, depois verifica se o email não está sendo usado
+		        		if(motorista.encontrarMotorista(cpf) == null) {
+							if (senha.equals(senha2)) {
+								
+								if (seg || ter || qua || qui || sex || sab || dom) {
+									boolean cadastro = motorista.cadastrarMotorista(cpf, nome, email, senha, salario, cargaHoraria,
+											filial, turno, seg, ter, qua, qui, sex, sab, dom, cargo);
+									
+									if (cadastro) {
+										notificar("Sucesso de cadastro", "Funcionário cadastrado",
+												"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
+										limparCamposCadastrarFuncionarios();
+										ControlesPerfilAdminEntidades.atualizarInfos = true;
+									}
+									else {
+										notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
+												"Não foi possível realizar a ação de cadastro, confira os campos e tente novamente.");
+									}
+								}
+								else {
+									notificar("Falha de cadastro", "Nenhum dia da semana selecionado",
+											"O motorista, para ser cadastrado, precisa trabalhar ao menos um dia. Tente novamente.");
+								}
+							}
+							else {
+								notificar("Falha de cadastro", "Falha ao cadastrar",
+										"As senhas estão incorretas, tente novamente");
+							}
+		            		
+		        		}
+		        		else {
+		            		notificar("Falha de cadastro", "Falha ao cadastrar funcionário", 
+		            				"O CPF informado já está sendo utilizado por outro motorista, "
+		            				+ "por favor verifique o campo ou exclua o motorista com o CPF em questão");
+		        		}
 	        		}
+        		}
+        		else {
+					notificar("Falha de cadastro", "Falha ao cadastrar funcionário",
+							"Preencha todos os campos para cadastrar o funcionário.");
         		}
         	}
     	}
@@ -388,7 +408,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     		if(!cpfValido) {
         		notificar("Falha de cadastro", "CPF inválido", "O CPF informado é inválido, "
         				+ "por favor confira o campo");
-    		}else if (!emailValido) {
+    		}
+    		else if (!emailValido) {
         		notificar("Falha de cadastro", "E-mail inválido", "O e-mail informado é inválido ou já está sendo utilizado "
         				+ "por outro usuário");
     		}
@@ -456,9 +477,10 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     		limparCamposCadastrarFiliais();
     		ControlesPerfilAdminEntidades.atualizarInfos = true;
     		ControlesPerfilAdminHistEntregas.atualizarInfos = true;
-    	}else{
+    	}
+    	else{
     		notificar("Falha de cadastro", "Falha ao cadastrar a filial", "Verifique os campos");	
-    		}
+    	}
     	
     	
     	
@@ -926,7 +948,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	if(escolha.equals("Motorista")) {
     		paneInfosExtrasMotorista.setDisable(false);
     		paneInfosExtrasMotorista.setVisible(true);
-    	}else {
+    	}
+    	else {
     		paneInfosExtrasMotorista.setDisable(true);
     		paneInfosExtrasMotorista.setVisible(false);
     	}
@@ -954,6 +977,17 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	cbSabado.setSelected(false);
     	textFieldSalario.setText("");
     	cbTurno.getSelectionModel().clearSelection();
+    	cbFilial.getSelectionModel().clearSelection();
+    	cbCargo.getSelectionModel().selectLast();
+    	textFieldEmail.setText("");
+    }
+    public void limparCamposCadastrarFuncionariosFiliais() {
+     	tfNome.setText("");
+    	tfCpf.setText("");
+    	pfSenha1.setText("");
+    	pfSenha2.setText("");
+    	cbFilial.getSelectionModel().clearSelection();
+    	cbCargo.getSelectionModel().selectLast();
     	textFieldEmail.setText("");
     }
     public void limparCamposCadastrarVeículos() {
@@ -993,7 +1027,5 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 		carregarComboBoxMotoristas();
 		carregarComboBoxVeiculos();
 		carregarComboBoxEstados();
-		
-		
 	}
 }
