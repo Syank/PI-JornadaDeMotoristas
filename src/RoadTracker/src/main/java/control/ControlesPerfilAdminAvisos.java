@@ -61,7 +61,21 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     private DatePicker dataDoAviso;
     @FXML
     private Pane paneAvisoSelecionado;
-    
+    @FXML
+    private Pane paneSelecionarOpcao;
+    @FXML
+    private Pane paneVisualizarLogs;
+    @FXML
+    private TableView<?> tabelaLogs;
+    @FXML
+    private TableColumn<?, ?> colunaRegistroLog;
+    @FXML
+    private TableColumn<?, ?> colunaFuncionarioLog;
+    @FXML
+    private TableColumn<?, ?> colunaDataLog;
+    @FXML
+    private Button btSelecionarLog;
+
 	private List<Avisos> listaAvisos = new ArrayList<>();
 	private ObservableList<Avisos> obsListAvisos;
 	
@@ -142,6 +156,22 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		paneVisualizarAvisos.setVisible(false);
     }
     
+    @FXML
+    void abrirTelaLogs(MouseEvent event) {
+    	paneSelecionarOpcao.setVisible(false);
+    	paneVisualizarLogs.setVisible(true);
+    }
+    
+    @FXML
+    void abrirAvisos(MouseEvent event) {
+    	paneSelecionarOpcao.setVisible(false);
+    	paneVisualizarAvisos.setVisible(true);
+    }
+    @FXML
+    void selecionarLog(ActionEvent event) {
+
+    }
+    
     public void carregarInfoAviso() {
     	Aviso aviso = new Aviso();
     	aviso = aviso.encontrarAviso(idAviso);
@@ -153,7 +183,8 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		// Esse try é um remendo no código pois corrigir isso envolveria mudar muitas classes
 		try {
 			remetente.setText(aviso.getMotorista().getCpf());
-		}catch(Exception erro) {
+		}
+		catch(Exception erro) {
 			remetente.setText(aviso.getEmissor());
 		}
 

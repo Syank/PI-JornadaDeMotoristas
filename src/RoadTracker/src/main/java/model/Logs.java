@@ -32,12 +32,6 @@ public class Logs {
 	@Column(columnDefinition="TEXT")
 	private String registro;
 
-	
-	
-	
-	
-	
-	
 	public Integer getId() {
 		return id;
 	}

@@ -116,7 +116,8 @@ public class Main extends Application {
 		primaryStage.show();
 		
 		
-		}catch(Exception erro) {
+		}
+		catch(Exception erro) {
 			Pane fxmlTela0 = FXMLLoader.load(getClass().getResource("/FXMLErroDeInicializacao.fxml"));
 			tela0 = new Scene(fxmlTela0);
 			
