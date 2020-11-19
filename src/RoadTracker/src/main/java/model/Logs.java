@@ -72,11 +72,6 @@ public class Logs {
 		this.registro = registro;
 	}
 	
-	
-	
-	
-	
-	
 	public void registrarLog(String nome, String cpf, String registro) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
@@ -115,6 +110,25 @@ public class Logs {
 		finally {
 			con.close();
 		}
+	}
+	
+	public Logs encontrarLog(int id) {
+		EntityManager con = new ConnectionFactory().getConnection();
+
+		Logs log  = null;
+
+		try {
+			log = con.find(model.Logs.class, id);
+		}
+		catch (Exception e) {
+			System.err.println(e);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+
+		return log;
 	}
 	
 }

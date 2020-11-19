@@ -28,6 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import model.Aviso;
+import model.Logs;
 import view.Avisos;
 import view.Main;
 
@@ -66,7 +67,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     @FXML
     private Pane paneVisualizarLogs;
     @FXML
-    private TableView<?> tabelaLogs;
+    private TableView<Logs> tabelaLogs;
     @FXML
     private TableColumn<?, ?> colunaRegistroLog;
     @FXML
@@ -75,11 +76,23 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     private TableColumn<?, ?> colunaDataLog;
     @FXML
     private Button btSelecionarLog;
+    @FXML
+    private Pane paneLogSelecionado;
+    @FXML
+    private TextField campoIDlog;
+    @FXML
+    private TextArea msgLog;
+    @FXML
+    private DatePicker dataDoLog;
+    @FXML
+    private TextField responsavel;
 
 	private List<Avisos> listaAvisos = new ArrayList<>();
 	private ObservableList<Avisos> obsListAvisos;
 	
 	private int idAviso;
+	
+	private int idLog;
 
     @FXML
     void abrirTelaCadEnt(MouseEvent event) {
@@ -117,12 +130,21 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     @FXML
     void voltar(ActionEvent event) {
     	carregarInfos = true;
+    	paneSelecionarOpcao.setVisible(true);
+    	
     	if (paneAvisoSelecionado.isVisible()) {
-    		paneVisualizarAvisos.setVisible(true);
 			paneVisualizarAvisos.setDisable(false);
 			paneAvisoSelecionado.setVisible(false);
 			paneAvisoSelecionado.setDisable(true);
-    	}else if (paneVisualizarAvisos.isVisible()) {
+    	}
+    	else if (paneLogSelecionado.isVisible()) {
+			paneVisualizarLogs.setVisible(false);
+			paneVisualizarLogs.setDisable(true);
+    	}
+    	else if (paneVisualizarAvisos.isVisible() || paneVisualizarLogs.isVisible()) {
+        	paneSelecionarOpcao.setVisible(true);
+        	paneVisualizarAvisos.setVisible(false);
+        	paneVisualizarLogs.setVisible(false);
     		Main.trocarTela("Tela Boas Vindas");
     	}
     }
@@ -169,7 +191,26 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     }
     @FXML
     void selecionarLog(ActionEvent event) {
+		Logs logSelecionado = tabelaLogs.getSelectionModel().getSelectedItem();
+		idLog = logSelecionado.getId();
+		carregarInfoLog();
+		paneLogSelecionado.setDisable(false);
+		paneLogSelecionado.setVisible(true);
+		paneVisualizarLogs.setDisable(true);
+		paneVisualizarLogs.setVisible(false);
+    }
+    
+    public void carregarInfoLog() {
+    	Logs log = new Logs();
+    	log = log.encontrarLog(idLog);
+		
+		campoIDlog.setText(String.valueOf(log.getId()));
+		msgLog.setText(log.getRegistro());
+		responsavel.setText(log.getCpf());
 
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    	LocalDate localDate = LocalDate.parse(log.getData(), formatter);
+    	dataDoLog.setValue(localDate);
     }
     
     public void carregarInfoAviso() {
@@ -196,7 +237,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     public void voltarAvisos() {
 		paneAvisoSelecionado.setVisible(false);
 		paneAvisoSelecionado.setDisable(true);
-		paneVisualizarAvisos.setVisible(true);
+		paneVisualizarAvisos.setVisible(false);
 		paneVisualizarAvisos.setDisable(false);
     }
     
