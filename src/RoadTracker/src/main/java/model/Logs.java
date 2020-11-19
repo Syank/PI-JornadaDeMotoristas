@@ -1,15 +1,22 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
+
+import view.Registros;
 
 @Entity
 @Table(name="logs")
@@ -20,40 +27,25 @@ public class Logs {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 	
-	@Column(length=14)
-	private String cpf;
-	
-	@Column(length=50)
-	private String nome;
-	
 	@Column(length=10)
 	private String data;
 	
 	@Column(columnDefinition="TEXT")
 	private String registro;
-
+	
+	@Column(length=8)
+	private String horario;
+	
+	@ManyToOne
+	@JoinColumn(name = "funcionario", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_id")) //coluna da tabela pai
+	private Funcionario funcionario = new Funcionario();
+	
 	public Integer getId() {
 		return id;
 	}
-
+	
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public String getData() {
@@ -72,6 +64,22 @@ public class Logs {
 		this.registro = registro;
 	}
 	
+	public String getHorario() {
+		return horario;
+	}
+
+	public void setHorario(String horario) {
+		this.horario = horario;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
 	public void registrarLog(String nome, String cpf, String registro) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
@@ -90,13 +98,11 @@ public class Logs {
     	
     	String data = (diaCerto + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
     	
-    	
-		this.setNome(nome);
-		this.setCpf(cpf);
+    	funcionario.setCpf(cpf);
+		this.setFuncionario(funcionario);
+		
 		this.setData(data);
 		this.setRegistro(registro);
-		
-    	
 		
 		try {
 			con.getTransaction().begin();
@@ -129,6 +135,49 @@ public class Logs {
 		}
 
 		return log;
+	}
+	
+	public List<Logs> consultarLogs(){
+		EntityManager con = new ConnectionFactory().getConnection();
+		List<Logs> filiais = null;
+		try {
+			filiais = con.createQuery("from Filial f").getResultList();
+		}
+		catch (Exception e) {
+			System.err.println(e);
+		}
+		finally {
+			con.close();
+		}
+
+		return filiais;
+	}
+	
+	public List<Logs> consultarTodosLogs(){
+		EntityManager con = new ConnectionFactory().getConnection();
+		List<Logs> logs = null;
+		try {
+			logs = con.createQuery("from Logs l").getResultList();
+		}
+		catch (Exception e) {
+			System.err.println(e);
+		}
+		finally {
+			con.close();
+		}
+
+		return logs;
+	}
+	
+	public List<Registros> listarLogs(){	
+		List<Registros> logsArmazenados = new ArrayList<>();
+		for (Logs l: this.consultarTodosLogs()) {
+			Registros registro = new Registros(l.getFuncionario().getNome(), l.getFuncionario().getCpf(), l.getData(), l.getRegistro(), l.getId());
+			logsArmazenados.add(registro);
+		}
+		
+		return logsArmazenados;
+		
 	}
 	
 }

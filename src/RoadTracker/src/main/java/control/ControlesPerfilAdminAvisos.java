@@ -31,6 +31,7 @@ import model.Aviso;
 import model.Logs;
 import view.Avisos;
 import view.Main;
+import view.Registros;
 
 public class ControlesPerfilAdminAvisos implements Initializable{
 
@@ -67,7 +68,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     @FXML
     private Pane paneVisualizarLogs;
     @FXML
-    private TableView<Logs> tabelaLogs;
+    private TableView<Registros> tabelaLogs;
     @FXML
     private TableColumn<?, ?> colunaRegistroLog;
     @FXML
@@ -89,6 +90,9 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 
 	private List<Avisos> listaAvisos = new ArrayList<>();
 	private ObservableList<Avisos> obsListAvisos;
+	
+	private List<Registros> listaLogs = new ArrayList<>();
+	private ObservableList<Registros> obsListLogs;
 	
 	private int idAviso;
 	
@@ -191,7 +195,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     }
     @FXML
     void selecionarLog(ActionEvent event) {
-		Logs logSelecionado = tabelaLogs.getSelectionModel().getSelectedItem();
+		Registros logSelecionado = tabelaLogs.getSelectionModel().getSelectedItem();
 		idLog = logSelecionado.getId();
 		carregarInfoLog();
 		paneLogSelecionado.setDisable(false);
@@ -206,7 +210,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		
 		campoIDlog.setText(String.valueOf(log.getId()));
 		msgLog.setText(log.getRegistro());
-		responsavel.setText(log.getCpf());
+		responsavel.setText(log.getFuncionario().getCpf());
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     	LocalDate localDate = LocalDate.parse(log.getData(), formatter);
@@ -241,7 +245,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		paneVisualizarAvisos.setDisable(false);
     }
     
-	public void carregarTableViews() {
+	public void carregarTableViewsAvisos() {
 		Aviso aviso = new Aviso();
 		
 		listaAvisos = aviso.listarAvisos();
@@ -254,6 +258,20 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		
 		tabelaAvisos.setItems(obsListAvisos);
 	}
+	
+	public void carregarTableViewsLogs() {
+		Logs logs = new Logs();
+		
+		listaLogs = logs.listarLogs();
+		
+		obsListLogs = FXCollections.observableArrayList(listaLogs);
+		
+		colunaRegistroLog.setCellValueFactory(new PropertyValueFactory<>("mensagem"));
+		colunaDataAviso.setCellValueFactory(new PropertyValueFactory<>("data"));
+		colunaRemetente.setCellValueFactory(new PropertyValueFactory<>("funcionario"));
+		
+		tabelaLogs.setItems(obsListLogs);
+	}
     
 	
 	
@@ -262,7 +280,8 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     	// Considere que cada if aqui dentro é uma "função"
     	
     	if(carregarInfos) {
-    		carregarTableViews();
+    		carregarTableViewsAvisos();
+    		carregarTableViewsLogs();
     		carregarInfos = false;
     	}
     	

@@ -14,6 +14,7 @@
     <class>model.Veiculo</class>
     <class>model.Viagem</class>
     <class>model.Aviso</class>
+    <class>model.Logs</class>
     <properties>
       <!-- Propriedades JDBC -->
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
