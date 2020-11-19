@@ -556,6 +556,9 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 					else if (Integer.parseInt(tfCargaHoraria.getText()) > 12) {
 	        			notificar("Falha", "Carga horária", "A carga horária diária previamente acordada pode ser no máximo de 12 horas. Verifique o valor e tente novamente.");
 	        		}
+					else if (pfSenha.getText().isEmpty() || textFieldEmail.getText().isBlank()) {
+						notificar("Falha", "Campo vazio", "A senha e o e-mail não podem ficar vazios. Preencha os campos.");
+					}
 					else {
 						motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
 														textFieldEmail.getText(), pfSenha.getText(), 
@@ -606,22 +609,28 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 								"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
 						atualizarInfos = true;
 					}
-				}else {
-					funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(),
-							cbCargo.getValue().getCargo(), cbFilial.getValue().getId(),
-							textFieldEmail.getText());
-					notificar("Sucesso", "Alteração de dados",
-							"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
-					
-		    		Logs log = new Logs();
-	        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de funcionário:"
-	        				+ "\nNome: " + tfNome.getText()
-	        				+ "\nCPF: " + motorista.getCpf()
-	        				+ "\nE-mail: " + textFieldEmail.getText()
-	        				+ "\nFilial: " + cbFilial.getSelectionModel().getSelectedItem().getNome()
-	        				+ "\nCargo: " + cbCargo.getValue().getCargo());
-					
-					atualizarInfos = true;
+				}
+				else {
+					if (pfSenha.getText().isEmpty() || textFieldEmail.getText().isBlank()) {
+						notificar("Falha", "Campo vazio", "A senha e o e-mail não podem ficar vazios. Preencha os campos.");
+					}
+					else {
+						funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(),
+								cbCargo.getValue().getCargo(), cbFilial.getValue().getId(),
+								textFieldEmail.getText());
+						notificar("Sucesso", "Alteração de dados",
+								"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+						
+			    		Logs log = new Logs();
+		        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de funcionário:"
+		        				+ "\nNome: " + tfNome.getText()
+		        				+ "\nCPF: " + motorista.getCpf()
+		        				+ "\nE-mail: " + textFieldEmail.getText()
+		        				+ "\nFilial: " + cbFilial.getSelectionModel().getSelectedItem().getNome()
+		        				+ "\nCargo: " + cbCargo.getValue().getCargo());
+						
+						atualizarInfos = true;
+					}
 				}
 			}
 			else {

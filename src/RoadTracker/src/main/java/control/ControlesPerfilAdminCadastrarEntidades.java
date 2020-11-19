@@ -255,14 +255,22 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 
     @FXML
     void cadastrarFuncionario(MouseEvent event) {
+    	int filial;
+    	String nomeFilial;
     	// Todos os funcionários
     	String nome = tfNome.getText();
     	String cpf = tfCpf.getText();
     	String senha = pfSenha1.getText();
     	String senha2 = pfSenha2.getText();
     	String cargo = cbCargo.getValue().getCargo();
-    	int filial = cbFilial.getValue().getId();
-    	String nomeFilial = cbFilial.getValue().getNome();
+    	try {
+        	filial = cbFilial.getValue().getId();
+        	nomeFilial = cbFilial.getValue().getNome();
+    	}
+    	catch (Exception e) {
+    		filial = 0;
+    		nomeFilial = "Nulo";
+    	}
     	String email = textFieldEmail.getText();
     	
     	// Verifica se o CPF é válido
@@ -297,7 +305,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 
     		// Primeiro verifica se o cpf não está sendo usado, depois verifica se o email não está sendo usado
         	if (cargo.equals("Administrador") || cargo.equals("Supervisor")) {
-        		if (!nome.isBlank() && !cpf.isBlank() && !senha.isBlank() && !senha2.isBlank() && !cargo.isBlank() && !email.isBlank()) {
+        		if (!nome.isBlank() && !cpf.isBlank() && !senha.isBlank() && !senha2.isBlank() && !cargo.isBlank() && !email.isBlank()  && filial != 0) {
 	            	if(funcionario.encontrarFuncionario(cpf) == null) {
 						if (senha.equals(senha2)) {
 							boolean cadastro = funcionario.cadastrarFuncionario(nome, cpf, senha, cargo, filial, email);
@@ -361,7 +369,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         			}
         		}
         		
-        		if (!nome.isBlank() && !cpf.isBlank() && !senha.isBlank() && !senha2.isBlank() && !cargo.isBlank() && !email.isBlank() && !salario.isBlank() && !cargaHoraria.isBlank()) {
+        		if (!nome.isBlank() && !cpf.isBlank() && !senha.isBlank() && !senha2.isBlank() && !cargo.isBlank() && !email.isBlank() && !salario.isBlank() && !cargaHoraria.isBlank() && filial != 0) {
 	        		if (Float.parseFloat(salario) < 1701.38) {
 	        			//verifica se o salário é menor que o piso
 	        			notificar("Falha de cadastro", "Salário baixo", "O salário informado é inválido, "

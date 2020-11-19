@@ -533,6 +533,9 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 			else if (Integer.parseInt(tfCargaHoraria.getText()) > 12) {
 				notificar("Falha", "Carga horária", "A carga horária diária previamente acordada pode ser no máximo de 12 horas. Verifique o valor e tente novamente.");
 			}
+			else if (pfSenha.getText().isEmpty() || textFieldEmail.getText().isBlank()) {
+				notificar("Falha", "Campo vazio", "A senha e o e-mail não podem ficar vazios. Preencha os campos.");
+			}
 			else {
 				motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
 						textFieldEmail.getText(), pfSenha.getText(), 
