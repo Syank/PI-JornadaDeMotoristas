@@ -1,4 +1,4 @@
-/* RTdbNovo-logico: */
+/* rtracker: */
 
 CREATE TABLE filiais (
     id SERIAL PRIMARY KEY,
@@ -80,6 +80,14 @@ CREATE TABLE status (
     total VARCHAR(8),
     fk_motoristas_cpf VARCHAR(14)
 );
+
+CREATE TABLE logs (
+    id SERIAL PRIMARY KEY,
+    registro TEXT,
+    horario VARCHAR(8),
+    data VARCHAR(10),
+    fk_funcionarios_filiais_cpf VARCHAR(14)
+);
  
 ALTER TABLE funcionarios_filiais ADD CONSTRAINT FK_funcionarios_filiais_2
     FOREIGN KEY (fk_filiais_id)
@@ -114,4 +122,9 @@ ALTER TABLE viagens ADD CONSTRAINT FK_viagens_3
 ALTER TABLE status ADD CONSTRAINT FK_status_2
     FOREIGN KEY (fk_motoristas_cpf)
     REFERENCES motoristas (cpf)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE logs ADD CONSTRAINT FK_logs_2
+    FOREIGN KEY (fk_funcionarios_filiais_cpf)
+    REFERENCES funcionarios_filiais (cpf)
     ON DELETE RESTRICT;
