@@ -142,13 +142,17 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 			paneAvisoSelecionado.setDisable(true);
     	}
     	else if (paneLogSelecionado.isVisible()) {
-			paneVisualizarLogs.setVisible(false);
-			paneVisualizarLogs.setDisable(true);
+    		paneLogSelecionado.setVisible(false);
+    		paneLogSelecionado.setDisable(true);
+			paneVisualizarLogs.setVisible(true);
+			paneVisualizarLogs.setDisable(false);
     	}
     	else if (paneVisualizarAvisos.isVisible() || paneVisualizarLogs.isVisible()) {
         	paneSelecionarOpcao.setVisible(true);
         	paneVisualizarAvisos.setVisible(false);
         	paneVisualizarLogs.setVisible(false);
+    	}
+    	else if (paneSelecionarOpcao.isVisible()) {
     		Main.trocarTela("Tela Boas Vindas");
     	}
     }
@@ -267,8 +271,8 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		obsListLogs = FXCollections.observableArrayList(listaLogs);
 		
 		colunaRegistroLog.setCellValueFactory(new PropertyValueFactory<>("mensagem"));
-		colunaDataAviso.setCellValueFactory(new PropertyValueFactory<>("data"));
-		colunaRemetente.setCellValueFactory(new PropertyValueFactory<>("funcionario"));
+		colunaDataAviso.setCellValueFactory(new PropertyValueFactory<>("dia"));
+		colunaRemetente.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		
 		tabelaLogs.setItems(obsListLogs);
 	}

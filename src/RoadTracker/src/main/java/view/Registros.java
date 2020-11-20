@@ -3,14 +3,14 @@ package view;
 public class Registros {
 	private String nome;
 	private String cpf;
-	private String data;
+	private String dia;
 	private String mensagem;
 	private int id;
 
-	public Registros(String nome, String cpf, String data, String mensagem, int id) {
+	public Registros(String nome, String cpf, String dia, String mensagem, int id) {
 		this.nome = nome;
 		this.cpf = cpf;
-		this.data = data;
+		this.dia = dia;
 		this.mensagem = mensagem;
 		this.setId(id);
 	}
@@ -27,11 +27,11 @@ public class Registros {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public String getData() {
-		return data;
+	public String getDia() {
+		return dia;
 	}
-	public void setData(String data) {
-		this.data = data;
+	public void setDia(String dia) {
+		this.dia = dia;
 	}
 	public String getMensagem() {
 		return mensagem;

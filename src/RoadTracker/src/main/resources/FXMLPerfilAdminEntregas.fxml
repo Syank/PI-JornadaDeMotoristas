@@ -78,7 +78,7 @@
                      </image>
                   </ImageView>
                   <HBox prefHeight="56.0" prefWidth="40.0" />
-                  <Label text="Avisos" textFill="WHITE" />
+                  <Label text="Avisos e logs" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="BOTTOM_LEFT" prefHeight="45.0" prefWidth="250.0">
