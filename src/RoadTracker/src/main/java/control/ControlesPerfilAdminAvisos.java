@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -163,7 +164,18 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     
     @FXML
     void excluir(ActionEvent event) {
-    	Aviso aviso = new Aviso();
+    	Aviso aviso = new Aviso().encontrarAviso(idAviso);
+    	
+    	Map<String, String> dicionarioAviso = aviso.dadosAviso();
+    	
+    	Logs log = new Logs();
+    	log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Exclusão de aviso:"
+    					+ "\nID: " + dicionarioAviso.get("ID")
+    					+ "\nCódigo: " + dicionarioAviso.get("Código")
+    					+ "\nData: " + dicionarioAviso.get("Data")
+    					+ "\nAviso emitido pelo colaborador de CPF: " + dicionarioAviso.get("Emissor")
+    					+ "\n\nMensagem do aviso:"
+    					+ "\n" + '"' + dicionarioAviso.get("Mensagem") + '"');
     	
     	aviso.excluirAviso(Integer.parseInt(campoIDAviso.getText()));
     	

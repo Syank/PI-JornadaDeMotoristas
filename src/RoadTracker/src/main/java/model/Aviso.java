@@ -2,7 +2,9 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -259,4 +261,17 @@ public class Aviso {
 		}
 		return false;
 	}
+	
+	public Map<String, String> dadosAviso(){
+		Map<String, String> dicionarioDeDados = new HashMap<String, String>();
+		
+		dicionarioDeDados.put("Mensagem", this.getMensagem());
+		dicionarioDeDados.put("Data", this.getData());
+		dicionarioDeDados.put("ID", String.valueOf(this.getId()));
+		dicionarioDeDados.put("Emissor", this.getEmissor());
+		dicionarioDeDados.put("Código", this.getNomenclatura());
+		
+		return dicionarioDeDados;
+	}
+	
 }
