@@ -2,7 +2,9 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -469,6 +471,50 @@ public class Motorista {
 		}
 		
 
+	}
+	
+	public Map<String, String> dadosMotorista(){
+		Map<String, String> dicionarioDeDados = new HashMap<String, String>();
+		
+		
+		String diasDeTrabalho = "";
+
+		if(this.getDom()) {
+			diasDeTrabalho += "Domingo";
+		}
+		if(this.getSeg()) {
+			diasDeTrabalho += ", Segunda-Feira";
+		}
+		if(this.getTer()) {
+			diasDeTrabalho += ", Terça-Feira";
+		}
+		if(this.getQua()) {
+			diasDeTrabalho += ", Quarta-Feira";
+		}
+		if(this.getQui()) {
+			diasDeTrabalho += ", Quinta-Feira";
+		}
+		if(this.getSex()) {
+			diasDeTrabalho += ", Sexta-Feira";
+		}
+		if(getSab()) {
+			diasDeTrabalho += " e Sábado";
+		}
+		if(!this.getDom()) {
+			diasDeTrabalho = diasDeTrabalho.substring(2); // Tira ", " caso não trabalhe domingo
+		}
+		
+		
+		dicionarioDeDados.put("Nome", this.getNome());
+		dicionarioDeDados.put("E-mail", this.getEmail());
+		dicionarioDeDados.put("CPF", this.getCpf());
+		dicionarioDeDados.put("Filial", this.getFilial().getNome());
+		dicionarioDeDados.put("Salario", this.getSalario());
+		dicionarioDeDados.put("Carga Horaria", this.getCargaHoraria());
+		dicionarioDeDados.put("Dias de trabalho", diasDeTrabalho);
+
+		
+		return dicionarioDeDados;
 	}
 	
 }

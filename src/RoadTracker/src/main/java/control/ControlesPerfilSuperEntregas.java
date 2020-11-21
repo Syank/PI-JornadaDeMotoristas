@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -26,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import model.Logs;
 import model.Motorista;
 import model.Veiculo;
 import model.Viagem;
@@ -157,8 +159,9 @@ public class ControlesPerfilSuperEntregas implements Initializable {
     @FXML
     private void salvarAlteracoes(ActionEvent event) {
     	if(confirmado) {
-    	   	Viagem viagem = new Viagem();
-        	
+    	   	Viagem viagem = new Viagem().encontrarViagem(idViagem);
+    	   	
+    	   	Map<String, String> dicionarioViagem = viagem.dadosViagem();
         	
         	int dia = datePickerPrazo.getValue().getDayOfMonth();
         	int mes = datePickerPrazo.getValue().getMonthValue();
@@ -176,6 +179,15 @@ public class ControlesPerfilSuperEntregas implements Initializable {
         							  comboBoxMotorista.getSelectionModel().getSelectedItem().getCpf(), 
         							  comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca(), 
         							  textFieldCarga.getText(), Integer.parseInt(textFieldId.getText()));
+        	
+    		Logs log = new Logs();
+    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de viagem:"
+    				+ "\nDestino: " + dicionarioViagem.get("Destino") +" -> " + textFieldDestino.getText()
+    				+ "\nCarga: " + dicionarioViagem.get("Carga") +" -> " + textFieldCarga.getText()
+    				+ "\nPrazo: " + dicionarioViagem.get("Prazo") +" -> " + prazo
+    				+ "\nMotorista responsável: " + dicionarioViagem.get("Motorista responsável") +" -> " + comboBoxMotorista.getSelectionModel().getSelectedItem().getNome()
+    				+ "\nPlaca do veículo atribuído: " + dicionarioViagem.get("Placa do veículo atribuído") +" -> " + comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca());
+        	
         	
         	textFieldDestino.setDisable(false);
         	textFieldCarga.setDisable(false);

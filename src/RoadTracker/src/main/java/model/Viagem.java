@@ -2,7 +2,9 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -367,5 +369,17 @@ public class Viagem {
 		}
 	}
 	
-
+	public Map<String, String> dadosViagem(){
+		Map<String, String> dicionarioDeDados = new HashMap<String, String>();
+		
+		dicionarioDeDados.put("Destino", this.getDestino());
+		dicionarioDeDados.put("Carga", this.getCarga());
+		dicionarioDeDados.put("Prazo", this.getFim());
+		dicionarioDeDados.put("Motorista responsável", this.getMotorista().getNome());
+		dicionarioDeDados.put("Placa do veículo atribuído", this.getVeiculo().getPlaca());
+		
+		return dicionarioDeDados;
+	}
+	
+	
 }

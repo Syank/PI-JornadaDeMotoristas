@@ -3,6 +3,7 @@ package control;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -537,6 +538,8 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 				notificar("Falha", "Campo vazio", "A senha e o e-mail não podem ficar vazios. Preencha os campos.");
 			}
 			else {
+				Map<String, String> dicionarioMotorista = motorista.dadosMotorista();
+				
 				motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
 						textFieldEmail.getText(), pfSenha.getText(), 
 						textFieldSalarioMotorista.getText(), tfCargaHoraria.getText(), 
@@ -573,14 +576,15 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 				
 				
 	    		Logs log = new Logs();
-        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de motorista:"
-        				+ "\nNome: " + tfNome.getText()
-        				+ "\nCPF: " + motorista.getCpf()
-        				+ "\nE-mail: " + textFieldEmail.getText()
-        				+ "\nFilial: " + cbFilial.getSelectionModel().getSelectedItem().getNome()
-        				+ "\nSalário: R$ " + textFieldSalarioMotorista.getText()
-        				+ "\nCarga Horária: " + tfCargaHoraria.getText()
-        				+ "\nDias de trabalho: " + diasDeTrabalho);
+	    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de motorista:" 
+	    				+ "\nNome: " + dicionarioMotorista.get("Nome") + " -> " + tfNome.getText()
+	    				+ "\nCPF: " + dicionarioMotorista.get("CPF") + " -> " +  motorista.getCpf()
+	    				+ "\nE-mail: " + dicionarioMotorista.get("E-mail") + " -> " +  textFieldEmail.getText()
+	    				+ "\nFilial: " + dicionarioMotorista.get("Filial") + " -> " +  cbFilial.getSelectionModel().getSelectedItem().getNome()
+	    				+ "\nSalário: R$ " + dicionarioMotorista.get("Salario") + " -> " + "R$ " + textFieldSalarioMotorista.getText()
+	    				+ "\nCarga Horária: " +  dicionarioMotorista.get("Carga Horaria") + " -> " + tfCargaHoraria.getText()
+	    				+ "\nDias de trabalho: " + dicionarioMotorista.get("Dias de trabalho") + " -> " +  diasDeTrabalho);
+				
 				
 				
 				
@@ -784,7 +788,9 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	}
 	@FXML
 	void salvarDadosAlteradosVeiculo(ActionEvent event) {
-		Veiculo veiculo = new Veiculo();
+		Veiculo veiculo = new Veiculo().encontrarVeiculo(placaVeiculo);
+		
+		Map<String, String> dicionarioVeiculo = veiculo.dadosVeiculo();
 		
 		if(confirmado) {
 			veiculo.alterarDadosVeiculo(textFieldPlacaVeiculo.getText(), textFieldModeloVeiculo.getText(),
@@ -796,12 +802,12 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 			
 	 		Logs log = new Logs();
     		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de veículo:"
-    				+ "\nPlaca: " + textFieldPlacaVeiculo.getText()
-    				+ "\nFilial: " + comboBoxFilialVeiculo.getSelectionModel().getSelectedItem().getNome()
-    				+ "\nModelo do veículo: " + textFieldModeloVeiculo.getText()
-    				+ "\nMarca do rastreador: " + textFieldMarcaRastreador.getText()
-    				+ "\nModelo do rastreador: " + textFieldModeloRastreador.getText()
-    				+ "\nID do rastreador: " + textFieldIDRastreador.getText());
+    				+ "\nPlaca: " + dicionarioVeiculo.get("Placa") + " -> " + textFieldPlacaVeiculo.getText()
+    				+ "\nFilial: " + dicionarioVeiculo.get("Filial") + " -> " + comboBoxFilialVeiculo.getSelectionModel().getSelectedItem().getNome()
+    				+ "\nModelo do veículo: " + dicionarioVeiculo.get("Modelo do veículo") + " -> " + textFieldModeloVeiculo.getText()
+    				+ "\nMarca do rastreador: " + dicionarioVeiculo.get("Marca do rastreador") + " -> " + textFieldMarcaRastreador.getText()
+    				+ "\nModelo do rastreador: " + dicionarioVeiculo.get("Modelo do rastreador") + " -> " + textFieldModeloRastreador.getText()
+    				+ "\nID do rastreador: " + dicionarioVeiculo.get("ID do rastreador") + " -> " + textFieldIDRastreador.getText());
 
 			desabilitarEdicao();
 			atualizarTableViewEComboBox = true;

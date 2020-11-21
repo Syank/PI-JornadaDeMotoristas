@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -138,7 +139,9 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     @FXML
     private void salvarAlteracoes(ActionEvent event) {
     	if(confirmado) {
-    	   	Viagem viagem = new Viagem();
+    	   	Viagem viagem = new Viagem().encontrarViagem(idViagem);
+    	   	
+    	   	Map<String, String> dicionarioViagem = viagem.dadosViagem();
         	
         	int dia = datePickerPrazo.getValue().getDayOfMonth();
         	int mes = datePickerPrazo.getValue().getMonthValue();
@@ -160,11 +163,11 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
         	
     		Logs log = new Logs();
     		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de viagem:"
-    				+ "\nDestino: " + textFieldDestino.getText()
-    				+ "\nCarga: " + textFieldCarga.getText()
-    				+ "\nPrazo: " + prazo
-    				+ "\nMotorista responsável: " + comboBoxMotorista.getSelectionModel().getSelectedItem().getCpf()
-    				+ "\nPlaca do veículo atribuído: " + comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca());
+    				+ "\nDestino: " + dicionarioViagem.get("Destino") +" -> " + textFieldDestino.getText()
+    				+ "\nCarga: " + dicionarioViagem.get("Carga") +" -> " + textFieldCarga.getText()
+    				+ "\nPrazo: " + dicionarioViagem.get("Prazo") +" -> " + prazo
+    				+ "\nMotorista responsável: " + dicionarioViagem.get("Motorista responsável") +" -> " + comboBoxMotorista.getSelectionModel().getSelectedItem().getNome()
+    				+ "\nPlaca do veículo atribuído: " + dicionarioViagem.get("Placa do veículo atribuído") +" -> " + comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca());
         	
         	
         	textFieldDestino.setDisable(false);
@@ -197,7 +200,10 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     private void excluirViagem(ActionEvent event) {
     	
 		if (confirmado) {
-	    	Viagem viagem = new Viagem();
+	    	Viagem viagem = new Viagem().encontrarViagem(idViagem);
+    	   	
+    	   	Map<String, String> dicionarioViagem = viagem.dadosViagem();
+    	   	
 	    	boolean viagemExcluida = viagem.excluirViagem(Integer.parseInt(textFieldId.getText()));
 	    	desabilitarEdicao();
 	    	
@@ -222,12 +228,12 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 	        	}
 				
 	    		Logs log = new Logs();
-	    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de viagem:"
-	    				+ "\nDestino: " + textFieldDestino.getText()
-	    				+ "\nCarga: " + textFieldCarga.getText()
-	    				+ "\nPrazo: " + prazo
-	    				+ "\nMotorista responsável: " + comboBoxMotorista.getSelectionModel().getSelectedItem().getCpf()
-	    				+ "\nPlaca do veículo atribuído: " + comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca());
+	    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Exclusão de viagem:"
+	    				+ "\nDestino: " + dicionarioViagem.get("Destino")
+	    				+ "\nCarga: " + dicionarioViagem.get("Carga")
+	    				+ "\nPrazo: " + dicionarioViagem.get("Prazo")
+	    				+ "\nMotorista responsável: " + dicionarioViagem.get("Motorista responsável")
+	    				+ "\nPlaca do veículo atribuído: " + dicionarioViagem.get("Placa do veículo atribuído"));
 				
 				atualizarInfos = true;
 	    	}

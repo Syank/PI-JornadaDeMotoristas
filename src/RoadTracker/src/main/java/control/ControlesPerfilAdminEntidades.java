@@ -3,6 +3,7 @@ package control;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -37,27 +38,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	private String funcao;
 	public static boolean atualizarInfos = false;
 	public List<Veiculo> listaDePlacaVeiculos = new ArrayList<>();
-	
-	// LOGS
-		// Motorista
-		private String nomeMotoristaLog;
-		private String cpfMotoristaLog;
-		private String senhaMotoristaLog;
-		private String cargaHorariaMotoristaLog;
-		private boolean trabalhaDomingoLog;
-		private boolean trabalhaSegundaLog;
-		private boolean trabalhaTercaLog;
-		private boolean trabalhaQuartaLog;
-		private boolean trabalhaQuintaLog;
-		private boolean trabalhaSextaLog;
-		private boolean trabalhaSabadoLog;
-		private String diasDeTrabalhoLog = "";
-		private String emailMotoristaLog;
-		private String salarioMotoristaLog;
-		private int filialMotoristaLog;
-		
-		// Administradores e supervisores
-		// ...
 	
 	// Elementos das panes de avisos
 	private boolean confirmado = false;
@@ -323,48 +303,22 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		
 		if (confirmado) {
 			if(cargoFuncionario.equals("Motorista")) {
+				Map<String, String> dicionarioMotorista = motorista.dadosMotorista();
+				
 				motoristaExcluido = motorista.excluirMotorista(cpfFuncionario);
 				if (motoristaExcluido != null) {
 					notificar("Sucesso", "Funcionário excluído",
 							"O funcionário foi excluído dos registros do banco de dados com sucesso");
 					
-					
-					String diasDeTrabalho = "";
-
-					if(cbDom.isSelected()) {
-						diasDeTrabalho += "Domingo";
-					}
-					if(cbSeg.isSelected()) {
-						diasDeTrabalho += ", Segunda-Feira";
-					}
-					if(cbTer.isSelected()) {
-						diasDeTrabalho += ", Terça-Feira";
-					}
-					if(cbQua.isSelected()) {
-						diasDeTrabalho += ", Quarta-Feira";
-					}
-					if(cbQui.isSelected()) {
-						diasDeTrabalho += ", Quinta-Feira";
-					}
-					if(cbSex.isSelected()) {
-						diasDeTrabalho += ", Sexta-Feira";
-					}
-					if(cbSab.isSelected()) {
-						diasDeTrabalho += " e Sábado";
-					}
-					if(!cbDom.isSelected()) {
-						diasDeTrabalho = diasDeTrabalho.substring(2); // Tira ", " caso não trabalhe domingo
-					}
-					
 		    		Logs log = new Logs();
 	        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Exclusão de motorista:"
-	        				+ "\nNome: " + tfNome.getText()
-	        				+ "\nCPF: " + motorista.getCpf()
-	        				+ "\nE-mail: " + textFieldEmail.getText()
-	        				+ "\nFilial: " + cbFilial.getSelectionModel().getSelectedItem().getNome()
-	        				+ "\nSalário: R$ " + textFieldSalarioMotorista.getText()
-	        				+ "\nCarga Horária: " + tfCargaHoraria.getText()
-	        				+ "\nDias de trabalho: " + diasDeTrabalho);
+	        				+ "\nNome: " + dicionarioMotorista.get("Nome")
+	        				+ "\nCPF: " + dicionarioMotorista.get("CPF")
+	        				+ "\nE-mail: " + dicionarioMotorista.get("E-mail")
+	        				+ "\nFilial: " + dicionarioMotorista.get("Filial")
+	        				+ "\nSalário: R$ " + dicionarioMotorista.get("Salario")
+	        				+ "\nCarga Horária: " + dicionarioMotorista.get("Carga Horaria")
+	        				+ "\nDias de trabalho: " + dicionarioMotorista.get("Dias de trabalho"));
 					
 					atualizarInfos = true;
 					
@@ -378,18 +332,20 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 				}
 			}
 			else {
+				Map<String, String> dicionarioFuncionario = funcionario.dadosFuncionario();
+				
 				funcionarioExcluido = funcionario.removerFuncionario(funcionario.getCpf());
 				if (funcionarioExcluido != null) {
 					notificar("Sucesso", "Funcionário excluído",
 							"O funcionário foi excluído dos registros do banco de dados com sucesso");
 					
 		    		Logs log = new Logs();
-	        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de funcionário:"
-	        				+ "\nNome: " + tfNome.getText()
-	        				+ "\nCPF: " + motorista.getCpf()
-	        				+ "\nE-mail: " + textFieldEmail.getText()
-	        				+ "\nFilial: " + cbFilial.getSelectionModel().getSelectedItem().getNome()
-	        				+ "\nCargo: " + cbCargo.getValue().getCargo());
+	        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Exclusão de funcionário:"
+	        				+ "\nNome: " + dicionarioFuncionario.get("Nome")
+	        				+ "\nCPF: " + dicionarioFuncionario.get("CPF")
+	        				+ "\nE-mail: " + dicionarioFuncionario.get("E-mail")
+	        				+ "\nFilial: " + dicionarioFuncionario.get("Filial")
+	        				+ "\nCargo: " + dicionarioFuncionario.get("Cargo"));
 					
 					atualizarInfos = true;
 					
@@ -506,76 +462,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	    			}
 	    		}
 	    	});
-	    	
-			// Carregando variáveis para o log
-			nomeMotoristaLog = motorista.getNome();
-			cpfMotoristaLog = motorista.getCpf();
-			senhaMotoristaLog = motorista.getSenha();
-			cargaHorariaMotoristaLog = motorista.getCargaHoraria();
-			trabalhaDomingoLog = motorista.getDom();
-			trabalhaSegundaLog = motorista.getSeg();
-			trabalhaTercaLog = motorista.getTer();
-			trabalhaQuartaLog = motorista.getQua();
-			trabalhaQuintaLog = motorista.getQui();
-			trabalhaSextaLog = motorista.getSex();
-			trabalhaSabadoLog = motorista.getSab();
-			emailMotoristaLog = motorista.getEmail();
-			salarioMotoristaLog = motorista.getSalario();
-			filialMotoristaLog = motorista.getFilial().getId();
-			
-			String diasDeTrabalho = "";
-
-			if(cbDom.isSelected()) {
-				diasDeTrabalho += "Domingo";
-			}
-			if(cbSeg.isSelected()) {
-				diasDeTrabalho += ", Segunda-Feira";
-			}
-			if(cbTer.isSelected()) {
-				diasDeTrabalho += ", Terça-Feira";
-			}
-			if(cbQua.isSelected()) {
-				diasDeTrabalho += ", Quarta-Feira";
-			}
-			if(cbQui.isSelected()) {
-				diasDeTrabalho += ", Quinta-Feira";
-			}
-			if(cbSex.isSelected()) {
-				diasDeTrabalho += ", Sexta-Feira";
-			}
-			if(cbSab.isSelected()) {
-				diasDeTrabalho += " e Sábado";
-			}
-			if(!cbDom.isSelected()) {
-				diasDeTrabalho = diasDeTrabalho.substring(2); // Tira ", " caso não trabalhe domingo
-			}
-			
-			String diasDeTrabalhoLog = "";
-
-			if(trabalhaDomingoLog) {
-				diasDeTrabalhoLog += "Domingo";
-			}
-			if(trabalhaSegundaLog) {
-				diasDeTrabalhoLog += ", Segunda-Feira";
-			}
-			if(trabalhaTercaLog) {
-				diasDeTrabalhoLog += ", Terça-Feira";
-			}
-			if(trabalhaQuartaLog) {
-				diasDeTrabalhoLog += ", Quarta-Feira";
-			}
-			if(trabalhaQuintaLog) {
-				diasDeTrabalhoLog += ", Quinta-Feira";
-			}
-			if(trabalhaSextaLog) {
-				diasDeTrabalhoLog += ", Sexta-Feira";
-			}
-			if(trabalhaSabadoLog) {
-				diasDeTrabalhoLog += " e Sábado";
-			}
-			if(trabalhaDomingoLog) {
-				diasDeTrabalhoLog = diasDeTrabalhoLog.substring(2); // Tira ", " caso não trabalhe domingo
-			}
 			
 			atualizarInfos = true;
 			
@@ -654,6 +540,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 						notificar("Falha", "Campo vazio", "A senha e o e-mail não podem ficar vazios. Preencha os campos.");
 					}
 					else {
+						Map<String, String> dicionarioMotorista = motorista.dadosMotorista();
+						
 						motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
 														textFieldEmail.getText(), pfSenha.getText(), 
 														textFieldSalarioMotorista.getText(), tfCargaHoraria.getText(), 
@@ -689,22 +577,14 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 						}
 						
 			    		Logs log = new Logs();
-			    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Antes:" 
-			    				+ "\nNome: " + nomeMotoristaLog
-			    				+ "\nCPF: " + cpfMotoristaLog
-			    				+ "\nE-mail: " + emailMotoristaLog
-			    				+ "\nFilial: " + Integer.toString(filialMotoristaLog)
-			    				+ "\nSalário: R$ " + salarioMotoristaLog
-			    				+ "\nCarga Horária: " + cargaHorariaMotoristaLog
-			    				+ "\nDias de trabalho: " + diasDeTrabalhoLog
-			    				+ "\n\nDepois:"
-			    				+ "\nNome: " + tfNome.getText()
-			    				+ "\nCPF: " + motorista.getCpf()
-			    				+ "\nE-mail: " + textFieldEmail.getText()
-			    				+ "\nFilial: " + Integer.toString(cbFilial.getSelectionModel().getSelectedItem().getId())
-			    				+ "\nSalário: R$ " + textFieldSalarioMotorista.getText()
-			    				+ "\nCarga Horária: " + tfCargaHoraria.getText()
-			    				+ "\nDias de trabalho: " + diasDeTrabalho);
+			    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de motorista:" 
+			    				+ "\nNome: " + dicionarioMotorista.get("Nome") + " -> " + tfNome.getText()
+			    				+ "\nCPF: " + dicionarioMotorista.get("CPF") + " -> " +  motorista.getCpf()
+			    				+ "\nE-mail: " + dicionarioMotorista.get("E-mail") + " -> " +  textFieldEmail.getText()
+			    				+ "\nFilial: " + dicionarioMotorista.get("Filial") + " -> " +  cbFilial.getSelectionModel().getSelectedItem().getNome()
+			    				+ "\nSalário: R$ " + dicionarioMotorista.get("Salario") + " -> " + "R$ " + textFieldSalarioMotorista.getText()
+			    				+ "\nCarga Horária: " +  dicionarioMotorista.get("Carga Horaria") + " -> " + tfCargaHoraria.getText()
+			    				+ "\nDias de trabalho: " + dicionarioMotorista.get("Dias de trabalho") + " -> " +  diasDeTrabalho);
 						
 						
 						notificar("Sucesso", "Alteração de dados",
@@ -717,6 +597,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 						notificar("Falha", "Campo vazio", "A senha e o e-mail não podem ficar vazios. Preencha os campos.");
 					}
 					else {
+						Map<String, String> dicionarioFuncionario = funcionario.dadosFuncionario();
+						
 						funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(),
 								cbCargo.getValue().getCargo(), cbFilial.getValue().getId(),
 								textFieldEmail.getText());
@@ -725,11 +607,11 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 						
 			    		Logs log = new Logs();
 		        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de funcionário:"
-		        				+ "\nNome: " + tfNome.getText()
-		        				+ "\nCPF: " + motorista.getCpf()
-		        				+ "\nE-mail: " + textFieldEmail.getText()
-		        				+ "\nFilial: " + cbFilial.getSelectionModel().getSelectedItem().getNome()
-		        				+ "\nCargo: " + cbCargo.getValue().getCargo());
+		        				+ "\nNome: " + dicionarioFuncionario.get("Nome") + " -> " + tfNome.getText()
+		        				+ "\nCPF: " + dicionarioFuncionario.get("CPF") + " -> " + funcionario.getCpf()
+		        				+ "\nE-mail: " + dicionarioFuncionario.get("E-mail") + " -> " + textFieldEmail.getText()
+		        				+ "\nFilial: " + dicionarioFuncionario.get("Filial") + " -> " + cbFilial.getSelectionModel().getSelectedItem().getNome()
+		        				+ "\nCargo: " + dicionarioFuncionario.get("Cargo") + " -> " + cbCargo.getValue().getCargo());
 						
 						atualizarInfos = true;
 					}
@@ -849,19 +731,22 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	@FXML
 	void excluirFilial(ActionEvent event) {
 		if (confirmado) {
-			Filial filial = new Filial();
+			Filial filial = new Filial().encontrarFilial(idFilial);
+			
+			Map<String, String> dicionarioFilial = filial.dadosFilial();
+			
 			boolean filialExcluida = filial.excluirFilial(idFilial);
 			
 			if (filialExcluida) {
 				notificar("Sucesso", "Filial excluída", "A filial foi excluída dos registros do banco de dados com sucesso!");
 				
 	    		Logs log = new Logs();
-	    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de filial:"
-	    				+ "\nNome: " + filial.encontrarFilial(idFilial).getNome()
-	    				+ "\nCNPJ: " + textFieldCnpj.getText()
-	    				+ "\nRNTRC: " + textFieldRntrc.getText()
-	    				+ "\nEstado: " + comboBoxEstados.getSelectionModel().getSelectedItem().getEstado()
-	    				+ "\nCidade: " + textFieldCidadeFilial.getText());
+	    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Exclusão de filial:"
+	    				+ "\nNome: " + dicionarioFilial.get("Nome")
+	    				+ "\nCNPJ: " + dicionarioFilial.get("CNPJ")
+	    				+ "\nRNTRC: " + dicionarioFilial.get("RNTRC")
+	    				+ "\nEstado: " + dicionarioFilial.get("Estado")
+	    				+ "\nCidade: " + dicionarioFilial.get("Cidade"));
 				
 				atualizarInfos = true;
 				
@@ -889,10 +774,13 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	}
 	@FXML
 	void salvarDadosAlteradosFilial(ActionEvent event) {
-		Filial filial = new Filial();
+		Filial filial = new Filial().encontrarFilial(idFilial);
+		
 		
 		if(confirmado) {
 			String estado = comboBoxEstados.getSelectionModel().getSelectedItem().getEstado();
+			
+			Map<String, String> dicionarioFilial = filial.dadosFilial();
 			
 			filial.alterarDadosFilial(textFieldNomeFilial.getText(), textFieldCidadeFilial.getText(),
 									  estado, textFieldCnpj.getText(), textFieldRntrc.getText(), 
@@ -903,11 +791,11 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			
     		Logs log = new Logs();
     		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de filial:"
-    				+ "\nNome: " + textFieldNomeFilial.getText()
-    				+ "\nCNPJ: " + textFieldCnpj.getText()
-    				+ "\nRNTRC: " + textFieldRntrc.getText()
-    				+ "\nEstado: " + estado
-    				+ "\nCidade: " + textFieldCidadeFilial.getText());
+    				+ "\nNome: " + dicionarioFilial.get("Nome") + " -> " + textFieldNomeFilial.getText()
+    				+ "\nCNPJ: " + dicionarioFilial.get("CNPJ") + " -> " + textFieldCnpj.getText()
+    				+ "\nRNTRC: " + dicionarioFilial.get("RNTRC") + " -> " + textFieldRntrc.getText()
+    				+ "\nEstado: " + dicionarioFilial.get("Estado") + " -> " + estado
+    				+ "\nCidade: " + dicionarioFilial.get("Cidade") + " -> " + textFieldCidadeFilial.getText());
 			
 			atualizarInfos = true;
 		}
@@ -1097,7 +985,10 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	@FXML
 	void excluirVeiculo(ActionEvent event) {
 		if (confirmado) {
-			Veiculo veiculo = new Veiculo();
+			Veiculo veiculo = new Veiculo().encontrarVeiculo(placaVeiculo);
+			
+			Map<String, String> dicionarioVeiculo = veiculo.dadosVeiculo();
+			
 			boolean veiculoExcluido = veiculo.excluirVeiculo(placaVeiculo);
 			desabilitarEdicao();
 			
@@ -1106,12 +997,12 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 				
         		Logs log = new Logs();
         		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Exclusão de veículo:"
-        				+ "\nPlaca: " + textFieldPlacaVeiculo.getText()
-        				+ "\nFilial: " + comboBoxFilialVeiculo.getSelectionModel().getSelectedItem().getNome()
-        				+ "\nModelo do veículo: " + textFieldModeloVeiculo.getText()
-        				+ "\nMarca do rastreador: " + textFieldMarcaRastreador.getText()
-        				+ "\nModelo do rastreador: " + textFieldModeloRastreador.getText()
-        				+ "\nID do rastreador: " + textFieldIDRastreador.getText());
+        				+ "\nPlaca: " + dicionarioVeiculo.get("Placa")
+        				+ "\nFilial: " + dicionarioVeiculo.get("Filial")
+        				+ "\nModelo do veículo: " + dicionarioVeiculo.get("Modelo do veículo")
+        				+ "\nMarca do rastreador: " + dicionarioVeiculo.get("Marca do rastreador")
+        				+ "\nModelo do rastreador: " + dicionarioVeiculo.get("Modelo do rastreador")
+        				+ "\nID do rastreador: " + dicionarioVeiculo.get("ID do rastreador"));
 				
 				atualizarInfos = true;
 				
@@ -1138,7 +1029,9 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	}
 	@FXML
 	void salvarDadosAlteradosVeiculo(ActionEvent event) {
-		Veiculo veiculo = new Veiculo();
+		Veiculo veiculo = new Veiculo().encontrarVeiculo(placaVeiculo);
+		
+		Map<String, String> dicionarioVeiculo = veiculo.dadosVeiculo();
 		
 		if(confirmado) {
 			veiculo.alterarDadosVeiculo(textFieldPlacaVeiculo.getText(), textFieldModeloVeiculo.getText(),
@@ -1151,12 +1044,12 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			
     		Logs log = new Logs();
     		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de veículo:"
-    				+ "\nPlaca: " + textFieldPlacaVeiculo.getText()
-    				+ "\nFilial: " + comboBoxFilialVeiculo.getSelectionModel().getSelectedItem().getNome()
-    				+ "\nModelo do veículo: " + textFieldModeloVeiculo.getText()
-    				+ "\nMarca do rastreador: " + textFieldMarcaRastreador.getText()
-    				+ "\nModelo do rastreador: " + textFieldModeloRastreador.getText()
-    				+ "\nID do rastreador: " + textFieldIDRastreador.getText());
+    				+ "\nPlaca: " + dicionarioVeiculo.get("Placa") + " -> " + textFieldPlacaVeiculo.getText()
+    				+ "\nFilial: " + dicionarioVeiculo.get("Filial") + " -> " + comboBoxFilialVeiculo.getSelectionModel().getSelectedItem().getNome()
+    				+ "\nModelo do veículo: " + dicionarioVeiculo.get("Modelo do veículo") + " -> " + textFieldModeloVeiculo.getText()
+    				+ "\nMarca do rastreador: " + dicionarioVeiculo.get("Marca do rastreador") + " -> " + textFieldMarcaRastreador.getText()
+    				+ "\nModelo do rastreador: " + dicionarioVeiculo.get("Modelo do rastreador") + " -> " + textFieldModeloRastreador.getText()
+    				+ "\nID do rastreador: " + dicionarioVeiculo.get("ID do rastreador") + " -> " + textFieldIDRastreador.getText());
 
 			desabilitarEdicao();
 			atualizarInfos = true;

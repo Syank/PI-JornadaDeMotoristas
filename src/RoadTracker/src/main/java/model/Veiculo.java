@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -222,5 +224,19 @@ public class Veiculo {
 
 		return veiculo;
 	}
+	
+	public Map<String, String> dadosVeiculo(){
+		Map<String, String> dicionarioDeDados = new HashMap<String, String>();
+		
+		dicionarioDeDados.put("Placa", this.getPlaca());
+		dicionarioDeDados.put("Filial", this.getFilial().getNome());
+		dicionarioDeDados.put("Modelo do veículo", this.getModelo_veiculo());
+		dicionarioDeDados.put("Marca do rastreador", this.getMarca_rastreador());
+		dicionarioDeDados.put("Modelo do rastreador", this.getModelo_rastreador());
+		dicionarioDeDados.put("ID do rastreador", String.valueOf(this.getId_rastreador()));
+		
+		return dicionarioDeDados;
+	}
+	
 	
 }

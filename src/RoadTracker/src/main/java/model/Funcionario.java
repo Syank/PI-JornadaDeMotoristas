@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -281,4 +283,16 @@ public class Funcionario {
 		return cpf;
 	}
 	
+	
+	public Map<String, String> dadosFuncionario(){
+		Map<String, String> dicionarioDeDados = new HashMap<String, String>();
+		
+		dicionarioDeDados.put("Cargo", this.getCargo());
+		dicionarioDeDados.put("Nome", this.getNome());
+		dicionarioDeDados.put("E-mail", this.getEmail());
+		dicionarioDeDados.put("CPF", this.getCpf());
+		dicionarioDeDados.put("Filial", this.getFilial().getNome());
+		
+		return dicionarioDeDados;
+	}
 }

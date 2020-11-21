@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -97,6 +98,10 @@ public class Logs {
     	}
     	
     	String data = (diaCerto + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+    	
+    	String horario = String.valueOf(Calendar.HOUR_OF_DAY) + ":" + String.valueOf(Calendar.MINUTE) + ":" + String.valueOf(Calendar.SECOND);
+    	
+    	this.setHorario(horario);
     	
     	funcionario.setCpf(cpf);
 		this.setFuncionario(funcionario);

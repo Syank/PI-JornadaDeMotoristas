@@ -87,6 +87,10 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     private DatePicker dataDoLog;
     @FXML
     private TextField responsavel;
+    @FXML
+    private TextField horario;
+    @FXML
+    private Label labelDicaFlutuante;
 
 	private List<Avisos> listaAvisos = new ArrayList<>();
 	private ObservableList<Avisos> obsListAvisos;
@@ -188,12 +192,14 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     
     @FXML
     void abrirTelaLogs(MouseEvent event) {
+    	carregarTableViewsLogs();
     	paneSelecionarOpcao.setVisible(false);
     	paneVisualizarLogs.setVisible(true);
     }
     
     @FXML
     void abrirAvisos(MouseEvent event) {
+		carregarInfos = true;
     	paneSelecionarOpcao.setVisible(false);
     	paneVisualizarAvisos.setVisible(true);
     }
@@ -215,6 +221,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		campoIDlog.setText(String.valueOf(log.getId()));
 		msgLog.setText(log.getRegistro());
 		responsavel.setText(log.getFuncionario().getCpf());
+		horario.setText(log.getHorario());
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     	LocalDate localDate = LocalDate.parse(log.getData(), formatter);
@@ -278,6 +285,40 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 	}
     
 	
+	
+	@FXML
+	void esconderDicaFlutuante(MouseEvent event) {
+		labelDicaFlutuante.setVisible(false);
+
+	}
+
+	@FXML
+	void exibirDicaFlutuante(MouseEvent event) {
+		if(event.getTarget().toString().contains("horario")) {
+			labelDicaFlutuante.setText("Horário");
+			labelDicaFlutuante.setVisible(true);
+		}
+		else if (event.getTarget().toString().contains("responsavel")) {
+			labelDicaFlutuante.setText("Emissor");
+			labelDicaFlutuante.setVisible(true);
+		}
+		else if (event.getTarget().toString().contains("campoIDlog")) {
+			labelDicaFlutuante.setText("ID do registro");
+			labelDicaFlutuante.setVisible(true);
+		}
+		else if (event.getTarget().toString().contains("campoIDAviso")) {
+			labelDicaFlutuante.setText("ID do registro");
+			labelDicaFlutuante.setVisible(true);
+		}
+		else if (event.getTarget().toString().contains("remetente")) {
+			labelDicaFlutuante.setText("Emissor");
+			labelDicaFlutuante.setVisible(true);
+		}
+
+		labelDicaFlutuante.setLayoutX(event.getSceneX());
+		labelDicaFlutuante.setLayoutY(event.getSceneY());
+
+	}
 	
 	
     void tarefasEmLoop() {

@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -200,6 +202,18 @@ public class Filial {
 		}
 
 		return filial;
+	}
+	
+	public Map<String, String> dadosFilial(){
+		Map<String, String> dicionarioDeDados = new HashMap<String, String>();
+		
+		dicionarioDeDados.put("CNPJ", this.getCnpj());
+		dicionarioDeDados.put("Nome", this.getNome());
+		dicionarioDeDados.put("RNTRC", this.getRntrc());
+		dicionarioDeDados.put("Estado", this.getEstado());
+		dicionarioDeDados.put("Cidade", this.getCidade());
+		
+		return dicionarioDeDados;
 	}
 	
 }
