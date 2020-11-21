@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.swing.JOptionPane;
 
+import control.ComparadorDeId;
 import view.Registros;
 
 @Entity
@@ -163,6 +164,7 @@ public class Logs {
 		List<Logs> logs = null;
 		try {
 			logs = con.createQuery("from Logs l").getResultList();
+			logs.sort(new ComparadorDeId());
 		}
 		catch (Exception e) {
 			System.err.println(e);

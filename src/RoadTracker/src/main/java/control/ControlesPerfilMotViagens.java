@@ -19,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import model.Motorista;
 import model.Viagem;
 import view.Main;
 import view.Viagens;
@@ -165,6 +166,10 @@ public class ControlesPerfilMotViagens implements Initializable {
     	listaDeViagens.forEach(item -> {
     		if(item.getMotorista().getCpf().equals(ControlesLogin.cpfLogado)) {
     			listaDeViagensMotorista.add(item);
+    			
+    			if(item.getSituacao().equals("Atrasado")) {
+    				new Motorista().encontrarMotorista(ControlesLogin.cpfLogado).incrementarMetadados("VgmAtr");
+    			}
     		}
     	});
     		

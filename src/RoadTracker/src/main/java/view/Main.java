@@ -1,6 +1,7 @@
 package view;
 	
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -164,6 +167,14 @@ public class Main extends Application {
 			case "Tela Supervisor Avisos":
 				stage.setScene(tela12);
 		}
+	}
+	
+	public static String escolherCaminho() {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+		
+        File selectedDirectory = directoryChooser.showDialog(stage);
+
+        return selectedDirectory.getAbsolutePath();
 	}
 	
 	

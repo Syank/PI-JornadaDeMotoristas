@@ -60,6 +60,11 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.apache.openjpa/openjpa-all
 	compile group: 'org.apache.openjpa', name: 'openjpa-all', version: '3.1.2'
 	
+	// https://mvnrepository.com/artifact/com.itextpdf/itextpdf
+	compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13.2'
+
+	
+	
 }
 
 

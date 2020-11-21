@@ -55,6 +55,8 @@ public class Motorista {
 	private String descansado_hoje;
 	@Column(length=5)
 	private String alimentacao_hoje;
+	@Column(columnDefinition="TEXT")
+	private String metadados = "VgmAtt:0 VgmFin:0 VgmAtr:0";
 	
 	// Mapeamento
 	@ManyToOne
@@ -200,6 +202,12 @@ public class Motorista {
 	}
 	public void setAlimentacao_hoje(String alimentacao_hoje) {
 		this.alimentacao_hoje = alimentacao_hoje;
+	}
+	public String getMetadados() {
+		return metadados;
+	}
+	public void setMetadados(String metadados) {
+		this.metadados = metadados;
 	}
 	// Métodos
 	public boolean cadastrarMotorista(String cpf, String nome, String email, String senha, String salario, String cargaHoraria, int idFilial,
@@ -516,5 +524,58 @@ public class Motorista {
 		
 		return dicionarioDeDados;
 	}
+	
+	
+	
+	/**
+	 * Os metadados que devem ser passados como parâmetro são (em string)
+	 * VgmAtt
+	 * VgmFin
+	 * VgmAtr
+	 * 
+	 * @param metadado
+	 */
+	public void incrementarMetadados(String metadado) {
+		String[] metadados = this.metadados.split(" ");
+		
+		for(int i = 0; i < metadados.length; i++) {
+			if(metadados[i].contains(metadado)) {
+				metadados[i] = metadados[i].substring(0, 6) + String.valueOf(Integer.parseInt(metadados[i].substring(7)) + 1);
+			}
+		}
+		
+		
+		String reconstruir = "";
+		for(int i = 0; i < metadados.length; i++) {
+			reconstruir = metadados[i] + " ";
+		}
+		
+		this.metadados = reconstruir;
+		
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		try {
+			con.getTransaction().begin();
+			con.merge(this);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+	}
+	
+	public String[][] obterDicionarioMetadados() {
+		String[][] dic = {{"VgmAtt", "Viagens atribuídas"},
+				          {"VgmFin", "Viagens finalizadas"},
+				          {"VgmAtr", "Viagens atrasadas"}};
+
+		return dic;
+	}
+
 	
 }

@@ -314,6 +314,14 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 								notificar("Sucesso de cadastro", "Funcionário cadastrado",
 										"O " + cargo + " " + nome + " foi cadastrado com sucesso!");
 								
+								if(cargo.equals("Administrador")) {
+									new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("AdmCad");
+								}else {
+									new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("SupCad");
+								}
+						
+				        		new Filial().encontrarFilial(filial).incrementarMetadados("FncAss");
+								
 					    		Logs log = new Logs();
 				        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de funcionário:"
 				        				+ "\nNome: " + nome
@@ -419,6 +427,9 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 										if(!dom) {
 											diasDeTrabalho = diasDeTrabalho.substring(2); // Tira ", " caso não trabalhe domingo
 										}
+										
+										new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("MotCad");
+										new Filial().encontrarFilial(filial).incrementarMetadados("FncAss");
 										
 							    		Logs log = new Logs();
 						        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de motorista:"
@@ -533,6 +544,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     		f.cadastrarFilial(nome, cidade, estado, cnpj, rntrc);
     		notificar("Sucesso de cadastro", "Filial cadastrada", "A filial " + nome + " foi cadastrada com sucesso!");
     		
+    		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("FilCad");
+    		
     		Logs log = new Logs();
     		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de filial:"
     				+ "\nNome: " + nome
@@ -640,6 +653,8 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         				+ "\nModelo do rastreador: " + modelo_rastreador
         				+ "\nID do rastreador: " + id_rastreador);
         		
+        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("VeiCad");
+        		
         		notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
         		limparCamposCadastrarVeículos();
         		ControlesPerfilAdminEntidades.atualizarInfos = true;
@@ -698,6 +713,9 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         				+ "\nPrazo: " + prazo
         				+ "\nMotorista responsável: " + cpfFuncionario
         				+ "\nPlaca do veículo atribuído: " + placaVeiculo);
+        		
+        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("VgmCad");
+        		new Motorista().encontrarMotorista(cpfFuncionario).incrementarMetadados("VgmAtt");
         		
         		limparCamposCadastrarViagens();
         		ControlesPerfilAdminHistEntregas.atualizarInfos = true;

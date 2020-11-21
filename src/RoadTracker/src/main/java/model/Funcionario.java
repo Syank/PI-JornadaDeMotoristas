@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.IntFunction;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,6 +35,13 @@ public class Funcionario {
 	private String senha;
 	@Column(length=13)
 	private String cargo;
+	@Column(columnDefinition="TEXT")
+	private String metadados = "MotCad:0 MotAlt:0 MotExc:0 "
+					   		 + "SupCad:0 SupAlt:0 SupExc:0 "
+							 + "AdmCad:0 AdmAlt:0 AdmExc:0 "
+							 + "VgmCad:0 VgmAlt:0 VgmExc:0 "
+							 + "VeiCad:0 VeiAlt:0 VeiExc:0 "
+							 + "FilCad:0 FilAlt:0 FilExc:0 ";
 	
 	//um ou mais funcionários correspondem a uma filial
 	@ManyToOne
@@ -82,6 +90,16 @@ public class Funcionario {
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
+	public String getMetadados() {
+		return metadados;
+	}
+	public void setMetadados(String metadados) {
+		this.metadados = metadados;
+	}
+	
+	
+	
+	
 	
 	public boolean cadastrarFuncionario(String nome, String cpf, String senha, String cargo, int filial_func, String email) {
 
@@ -295,4 +313,85 @@ public class Funcionario {
 		
 		return dicionarioDeDados;
 	}
+	
+	
+	
+	/** Os metadados que devem ser passados como parâmetro são (em string)
+	 * MotCad MotAlt MotExc 
+	 * SupCad SupAlt SupExc 
+	 * AdmCad AdmAlt AdmExc
+	 * VgmCad VgmAlt VgmExc
+	 * VeiCad VeiAlt VeiExc
+	 * FilCad FilAlt FilExc 
+	 * 
+	 * @param metadado
+	 */
+	public void incrementarMetadados(String metadado) {
+		String[] metadados = this.metadados.split(" ");
+		
+		for(int i = 0; i < metadados.length; i++) {
+			if(metadados[i].contains(metadado)) {
+				metadados[i] = metadados[i].substring(0, 6) + String.valueOf(Integer.parseInt(metadados[i].substring(7)) + 1);
+			}
+		}
+		
+		
+		String reconstruir = "";
+		for(int i = 0; i < metadados.length; i++) {
+			reconstruir = metadados[i] + " ";
+		}
+		
+		this.metadados = reconstruir;
+		
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		try {
+			con.getTransaction().begin();
+			con.merge(this);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+	}
+	
+	
+	public String[][] obterDicionarioMetadadosAdm() {
+		String[][] dic = {{"MotCad", "Motoristas cadastrados"},
+				          {"MotAlt", "Motoristas alterados"},
+				          {"MotExc", "Motoristas excluídos"},
+				          {"SupCad", "Supervisores cadastrados"},
+				          {"SupAlt", "Supervisores alterados"},
+				          {"SupExc", "Supervisores excluídos"},
+				          {"AdmCad", "Administradores cadastrados"},
+				          {"AdmAlt", "Administradores alterados"},
+				          {"AdmExc", "Administradores excluídos"},
+				          {"VgmCad", "Viagens cadastradas"},
+				          {"VgmAlt", "Viagens alteradas"},
+				          {"VgmExc", "Viagens excluídas"},
+				          {"VeiCad", "Veículos cadastrados"},
+				          {"VeiAlt", "Veículos alterados"},
+				          {"VeiExc", "Veículos excluídos"},
+				          {"FilCad", "Filiais cadastradas"},
+				          {"FilAlt", "Filiais alteradas"},
+				          {"FilExc", "Filiais excluídas"}};
+
+		
+		return dic;
+	}
+	
+	public String[][] obterDicionarioMetadadosSup() {
+		String[][] dic = {{"MotCad", "Motoristas cadastrados"},
+				          {"MotAlt", "Motoristas alterados"},
+				          {"VeiAlt", "Veículos alterados"}};
+
+		return dic;
+	}
+	
+	
 }

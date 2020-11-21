@@ -170,6 +170,8 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
     				+ "\nPlaca do veículo atribuído: " + dicionarioViagem.get("Placa do veículo atribuído") +" -> " + comboBoxVeiculo.getSelectionModel().getSelectedItem().getPlaca());
         	
         	
+    		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("VgmAlt");
+    		
         	textFieldDestino.setDisable(false);
         	textFieldCarga.setDisable(false);
         	comboBoxMotorista.setDisable(false);
@@ -234,6 +236,8 @@ public class ControlesPerfilAdminHistEntregas implements Initializable {
 	    				+ "\nPrazo: " + dicionarioViagem.get("Prazo")
 	    				+ "\nMotorista responsável: " + dicionarioViagem.get("Motorista responsável")
 	    				+ "\nPlaca do veículo atribuído: " + dicionarioViagem.get("Placa do veículo atribuído"));
+	    		
+        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("VgmExc");
 				
 				atualizarInfos = true;
 	    	}

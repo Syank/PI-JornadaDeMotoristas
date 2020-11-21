@@ -85,6 +85,7 @@ public class ControlesLogin implements Initializable{
 	private static Funcionario funcionario = new Funcionario();
 	private List<Cargos> cargos = new ArrayList<>();
 	private ObservableList<Cargos> cargosList;
+	
     
     @FXML
     void verificarLogin(ActionEvent event) {

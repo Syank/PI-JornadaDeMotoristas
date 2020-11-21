@@ -310,6 +310,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 					notificar("Sucesso", "Funcionário excluído",
 							"O funcionário foi excluído dos registros do banco de dados com sucesso");
 					
+					new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("MotExc");
+					
 		    		Logs log = new Logs();
 	        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Exclusão de motorista:"
 	        				+ "\nNome: " + dicionarioMotorista.get("Nome")
@@ -346,6 +348,13 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	        				+ "\nE-mail: " + dicionarioFuncionario.get("E-mail")
 	        				+ "\nFilial: " + dicionarioFuncionario.get("Filial")
 	        				+ "\nCargo: " + dicionarioFuncionario.get("Cargo"));
+	        		
+	        		if(dicionarioFuncionario.get("Cargo").equals("Administrador")) {
+		        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("AdmExc");
+	        		}else {
+		        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("SupExc");
+	        		}
+
 					
 					atualizarInfos = true;
 					
@@ -586,7 +595,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			    				+ "\nCarga Horária: " +  dicionarioMotorista.get("Carga Horaria") + " -> " + tfCargaHoraria.getText()
 			    				+ "\nDias de trabalho: " + dicionarioMotorista.get("Dias de trabalho") + " -> " +  diasDeTrabalho);
 						
-						
+		        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("MotAlt");
+
 						notificar("Sucesso", "Alteração de dados",
 								"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
 						atualizarInfos = true;
@@ -612,6 +622,12 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		        				+ "\nE-mail: " + dicionarioFuncionario.get("E-mail") + " -> " + textFieldEmail.getText()
 		        				+ "\nFilial: " + dicionarioFuncionario.get("Filial") + " -> " + cbFilial.getSelectionModel().getSelectedItem().getNome()
 		        				+ "\nCargo: " + dicionarioFuncionario.get("Cargo") + " -> " + cbCargo.getValue().getCargo());
+		        		
+		        		if(dicionarioFuncionario.get("Cargo").equals("Administrador")) {
+			        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("AdmAlt");
+		        		}else {
+			        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("SupAlt");
+		        		}
 						
 						atualizarInfos = true;
 					}
@@ -748,6 +764,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	    				+ "\nEstado: " + dicionarioFilial.get("Estado")
 	    				+ "\nCidade: " + dicionarioFilial.get("Cidade"));
 				
+        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("FilExc");
+	    		
 				atualizarInfos = true;
 				
 				paneFilialSelecionada.setVisible(false);
@@ -796,6 +814,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     				+ "\nRNTRC: " + dicionarioFilial.get("RNTRC") + " -> " + textFieldRntrc.getText()
     				+ "\nEstado: " + dicionarioFilial.get("Estado") + " -> " + estado
     				+ "\nCidade: " + dicionarioFilial.get("Cidade") + " -> " + textFieldCidadeFilial.getText());
+    		
+    		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("FilAlt");
 			
 			atualizarInfos = true;
 		}
@@ -1003,6 +1023,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
         				+ "\nMarca do rastreador: " + dicionarioVeiculo.get("Marca do rastreador")
         				+ "\nModelo do rastreador: " + dicionarioVeiculo.get("Modelo do rastreador")
         				+ "\nID do rastreador: " + dicionarioVeiculo.get("ID do rastreador"));
+        		
+        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("VeiExc");
 				
 				atualizarInfos = true;
 				
@@ -1051,6 +1073,8 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     				+ "\nModelo do rastreador: " + dicionarioVeiculo.get("Modelo do rastreador") + " -> " + textFieldModeloRastreador.getText()
     				+ "\nID do rastreador: " + dicionarioVeiculo.get("ID do rastreador") + " -> " + textFieldIDRastreador.getText());
 
+    		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("VeiAlt");
+    		
 			desabilitarEdicao();
 			atualizarInfos = true;
 			

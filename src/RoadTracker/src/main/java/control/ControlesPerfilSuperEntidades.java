@@ -29,6 +29,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Aviso;
 import model.Filial;
+import model.Funcionario;
 import model.Logs;
 import model.Motorista;
 import model.Veiculo;
@@ -499,6 +500,8 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 				+ "Dias de trabalho: " + diasDeTrabalho + "\n"
 				+ "Pertencendo a Filial " + nomeFilial + ", de ID igual a: " + String.valueOf(idFilial);
 		
+		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("MotCad");
+		
 		boolean retorno = aviso.solicitarCadastro(ControlesLogin.cpfLogado, solicitacao);
 		if (retorno) {
 			notificar("Sucesso", "Sucesso!", "O cadastro foi solicitado com sucesso.");
@@ -585,7 +588,7 @@ public class ControlesPerfilSuperEntidades implements Initializable{
 	    				+ "\nCarga Horária: " +  dicionarioMotorista.get("Carga Horaria") + " -> " + tfCargaHoraria.getText()
 	    				+ "\nDias de trabalho: " + dicionarioMotorista.get("Dias de trabalho") + " -> " +  diasDeTrabalho);
 				
-				
+	    		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("MotAlt");
 				
 				
 				notificar("Sucesso", "Alteração de dados",
@@ -809,6 +812,8 @@ public class ControlesPerfilSuperEntidades implements Initializable{
     				+ "\nModelo do rastreador: " + dicionarioVeiculo.get("Modelo do rastreador") + " -> " + textFieldModeloRastreador.getText()
     				+ "\nID do rastreador: " + dicionarioVeiculo.get("ID do rastreador") + " -> " + textFieldIDRastreador.getText());
 
+    		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("VeiAlt");
+    		
 			desabilitarEdicao();
 			atualizarTableViewEComboBox = true;
 			

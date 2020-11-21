@@ -27,14 +27,16 @@ public class Filial {
 	private Integer id;
 	@Column(length=50)
 	private String nome;
-	@Column(length=30)
+	@Column(length=50)
 	private String cidade;
 	@Column(length=2)
 	private String estado;
-	@Column(length=18)
+	@Column(length=19)
 	private String cnpj;
-	@Column(length=8)
+	@Column(length=14)
 	private String rntrc;
+	@Column(columnDefinition="TEXT")
+	private String metadados = "FncAss:0 VeiAss:0 ";
 	
 	//uma filial possui um ou mais funcionarios
 	@OneToMany(mappedBy = "filial") //nome do campo na tabela filha
@@ -83,6 +85,12 @@ public class Filial {
 		this.rntrc = rntrc;
 	}
 	
+	public String getMetadados() {
+		return metadados;
+	}
+	public void setMetadados(String metadados) {
+		this.metadados = metadados;
+	}
 	public void cadastrarFilial(String nome, String cidade, String estado, String cnpj, String rntrc) {
 
 		EntityManager con = new ConnectionFactory().getConnection();
@@ -216,4 +224,49 @@ public class Filial {
 		return dicionarioDeDados;
 	}
 	
+	public String[][] obterDicionarioMetadados() {
+		String[][] dic = {{"FncAss", "Funcionários associados"},
+				          {"VeiAss", "Veículos associados"}};
+
+		return dic;
+	}
+	
+	
+	/**FncAss, VeiAss
+	 * 
+	 * @param metadado
+	 */
+	public void incrementarMetadados(String metadado) {
+		String[] metadados = this.metadados.split(" ");
+		
+		for(int i = 0; i < metadados.length; i++) {
+			if(metadados[i].contains(metadado)) {
+				metadados[i] = metadados[i].substring(0, 6) + String.valueOf(Integer.parseInt(metadados[i].substring(7)) + 1);
+			}
+		}
+		
+		
+		String reconstruir = "";
+		for(int i = 0; i < metadados.length; i++) {
+			reconstruir = metadados[i] + " ";
+		}
+		
+		this.metadados = reconstruir;
+		
+		EntityManager con = new ConnectionFactory().getConnection();
+		
+		try {
+			con.getTransaction().begin();
+			con.merge(this);
+			con.getTransaction().commit();
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: "+ e, "Erro", JOptionPane.ERROR_MESSAGE);
+			con.getTransaction().rollback();
+		}
+		finally {
+			con.close();
+		}
+		
+	}
 }
