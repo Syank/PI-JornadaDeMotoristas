@@ -38,6 +38,27 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	public static boolean atualizarInfos = false;
 	public List<Veiculo> listaDePlacaVeiculos = new ArrayList<>();
 	
+	// LOGS
+		// Motorista
+		private String nomeMotoristaLog;
+		private String cpfMotoristaLog;
+		private String senhaMotoristaLog;
+		private String cargaHorariaMotoristaLog;
+		private boolean trabalhaDomingoLog;
+		private boolean trabalhaSegundaLog;
+		private boolean trabalhaTercaLog;
+		private boolean trabalhaQuartaLog;
+		private boolean trabalhaQuintaLog;
+		private boolean trabalhaSextaLog;
+		private boolean trabalhaSabadoLog;
+		private String diasDeTrabalhoLog = "";
+		private String emailMotoristaLog;
+		private String salarioMotoristaLog;
+		private int filialMotoristaLog;
+		
+		// Administradores e supervisores
+		// ...
+	
 	// Elementos das panes de avisos
 	private boolean confirmado = false;
 	@FXML
@@ -220,8 +241,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
     								   "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", "DF"};
 	
 	private int idFilial;
-	
-
 
 	// ------------------------------
 
@@ -462,9 +481,11 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 			
 			if (motorista.getTurno().equals("Matutino")) {
 				cbTurno.getSelectionModel().select(0);
-			} else if (motorista.getTurno().equals("Vespertino")) {
+			}
+			else if (motorista.getTurno().equals("Vespertino")) {
 				cbTurno.getSelectionModel().select(1);
-			} else {
+			}
+			else {
 				cbTurno.getSelectionModel().select(2);
 			}
 			
@@ -485,8 +506,81 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	    			}
 	    		}
 	    	});
+	    	
+			// Carregando variáveis para o log
+			nomeMotoristaLog = motorista.getNome();
+			cpfMotoristaLog = motorista.getCpf();
+			senhaMotoristaLog = motorista.getSenha();
+			cargaHorariaMotoristaLog = motorista.getCargaHoraria();
+			trabalhaDomingoLog = motorista.getDom();
+			trabalhaSegundaLog = motorista.getSeg();
+			trabalhaTercaLog = motorista.getTer();
+			trabalhaQuartaLog = motorista.getQua();
+			trabalhaQuintaLog = motorista.getQui();
+			trabalhaSextaLog = motorista.getSex();
+			trabalhaSabadoLog = motorista.getSab();
+			emailMotoristaLog = motorista.getEmail();
+			salarioMotoristaLog = motorista.getSalario();
+			filialMotoristaLog = motorista.getFilial().getId();
 			
-		}else {
+			String diasDeTrabalho = "";
+
+			if(cbDom.isSelected()) {
+				diasDeTrabalho += "Domingo";
+			}
+			if(cbSeg.isSelected()) {
+				diasDeTrabalho += ", Segunda-Feira";
+			}
+			if(cbTer.isSelected()) {
+				diasDeTrabalho += ", Terça-Feira";
+			}
+			if(cbQua.isSelected()) {
+				diasDeTrabalho += ", Quarta-Feira";
+			}
+			if(cbQui.isSelected()) {
+				diasDeTrabalho += ", Quinta-Feira";
+			}
+			if(cbSex.isSelected()) {
+				diasDeTrabalho += ", Sexta-Feira";
+			}
+			if(cbSab.isSelected()) {
+				diasDeTrabalho += " e Sábado";
+			}
+			if(!cbDom.isSelected()) {
+				diasDeTrabalho = diasDeTrabalho.substring(2); // Tira ", " caso não trabalhe domingo
+			}
+			
+			String diasDeTrabalhoLog = "";
+
+			if(trabalhaDomingoLog) {
+				diasDeTrabalhoLog += "Domingo";
+			}
+			if(trabalhaSegundaLog) {
+				diasDeTrabalhoLog += ", Segunda-Feira";
+			}
+			if(trabalhaTercaLog) {
+				diasDeTrabalhoLog += ", Terça-Feira";
+			}
+			if(trabalhaQuartaLog) {
+				diasDeTrabalhoLog += ", Quarta-Feira";
+			}
+			if(trabalhaQuintaLog) {
+				diasDeTrabalhoLog += ", Quinta-Feira";
+			}
+			if(trabalhaSextaLog) {
+				diasDeTrabalhoLog += ", Sexta-Feira";
+			}
+			if(trabalhaSabadoLog) {
+				diasDeTrabalhoLog += " e Sábado";
+			}
+			if(trabalhaDomingoLog) {
+				diasDeTrabalhoLog = diasDeTrabalhoLog.substring(2); // Tira ", " caso não trabalhe domingo
+			}
+			
+			atualizarInfos = true;
+			
+		}
+		else {
 			labelSituacaoMotorista.setVisible(false);
 			boxInfoExtraMotorista1.setVisible(false);
 			boxInfoExtraMotorista1.setDisable(true);
@@ -595,14 +689,22 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 						}
 						
 			    		Logs log = new Logs();
-		        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de motorista:"
-		        				+ "\nNome: " + tfNome.getText()
-		        				+ "\nCPF: " + motorista.getCpf()
-		        				+ "\nE-mail: " + textFieldEmail.getText()
-		        				+ "\nFilial: " + cbFilial.getSelectionModel().getSelectedItem().getNome()
-		        				+ "\nSalário: R$ " + textFieldSalarioMotorista.getText()
-		        				+ "\nCarga Horária: " + tfCargaHoraria.getText()
-		        				+ "\nDias de trabalho: " + diasDeTrabalho);
+			    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Antes:" 
+			    				+ "\nNome: " + nomeMotoristaLog
+			    				+ "\nCPF: " + cpfMotoristaLog
+			    				+ "\nE-mail: " + emailMotoristaLog
+			    				+ "\nFilial: " + Integer.toString(filialMotoristaLog)
+			    				+ "\nSalário: R$ " + salarioMotoristaLog
+			    				+ "\nCarga Horária: " + cargaHorariaMotoristaLog
+			    				+ "\nDias de trabalho: " + diasDeTrabalhoLog
+			    				+ "\n\nDepois:"
+			    				+ "\nNome: " + tfNome.getText()
+			    				+ "\nCPF: " + motorista.getCpf()
+			    				+ "\nE-mail: " + textFieldEmail.getText()
+			    				+ "\nFilial: " + Integer.toString(cbFilial.getSelectionModel().getSelectedItem().getId())
+			    				+ "\nSalário: R$ " + textFieldSalarioMotorista.getText()
+			    				+ "\nCarga Horária: " + tfCargaHoraria.getText()
+			    				+ "\nDias de trabalho: " + diasDeTrabalho);
 						
 						
 						notificar("Sucesso", "Alteração de dados",

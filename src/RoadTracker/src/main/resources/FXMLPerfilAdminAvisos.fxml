@@ -191,11 +191,12 @@
       </Pane>
       <Pane fx:id="paneLogSelecionado" disable="true" layoutX="262.0" layoutY="103.0" prefHeight="337.0" prefWidth="493.0" visible="false">
          <children>
-            <TextField fx:id="campoIDlog" disable="true" layoutX="301.0" layoutY="23.0" promptText="ID do aviso" styleClass="customizarInputs" />
+            <TextField fx:id="campoIDlog" disable="true" layoutX="301.0" layoutY="23.0" promptText="ID do log" styleClass="customizarInputs" />
             <TextArea fx:id="msgLog" editable="false" layoutX="28.0" layoutY="64.0" prefHeight="179.0" prefWidth="422.0" wrapText="true" />
             <Label layoutX="30.0" layoutY="36.0" text="Alterações:" />
             <DatePicker fx:id="dataDoLog" disable="true" layoutX="301.0" layoutY="251.0" prefHeight="27.0" prefWidth="149.0" styleClass="customizarInputs" />
-            <TextField fx:id="responsavel" disable="true" layoutX="142.0" layoutY="251.0" promptText="Remetente" styleClass="customizarInputs" />
+            <TextField fx:id="responsavel" disable="true" layoutX="30.0" layoutY="251.0" promptText="Remetente" styleClass="customizarInputs" />
+            <TextField fx:id="horario" disable="true" layoutX="189.0" layoutY="251.0" prefHeight="27.0" prefWidth="102.0" promptText="Horário" styleClass="customizarInputs" />
          </children>
       </Pane>
    </children>
