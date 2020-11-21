@@ -271,8 +271,8 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		obsListLogs = FXCollections.observableArrayList(listaLogs);
 		
 		colunaRegistroLog.setCellValueFactory(new PropertyValueFactory<>("mensagem"));
-		colunaDataAviso.setCellValueFactory(new PropertyValueFactory<>("dia"));
-		colunaRemetente.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		colunaDataLog.setCellValueFactory(new PropertyValueFactory<>("dia"));
+		colunaFuncionarioLog.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		
 		tabelaLogs.setItems(obsListLogs);
 	}
