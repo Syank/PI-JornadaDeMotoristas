@@ -656,24 +656,37 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         		}
         	});
         	
-        	//primeiro verifica se nenhum campo está nulo (NÃO VERIFICA SE FOI SELECIONADO UMA FILIAL)
-        	if(placaValida && modelo_veiculo.length() >= 1 && rastreadorValido && marca_rastreador.length() >= 1 && modelo_rastreador.length() >= 1) {
-        		veic.cadastrarVeiculo(placa, modelo_veiculo, id_rastreador, marca_rastreador, modelo_rastreador, filial);
-        		
-        		Logs log = new Logs();
-        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de veículo:"
-        				+ "\nPlaca: " + placa
-        				+ "\nFilial: " + nomeFilial
-        				+ "\nModelo do veículo: " + modelo_veiculo
-        				+ "\nMarca do rastreador: " + marca_rastreador
-        				+ "\nModelo do rastreador: " + modelo_rastreador
-        				+ "\nID do rastreador: " + id_rastreador);
-        		
-        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("VeiCad");
-        		
-        		notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
-        		limparCamposCadastrarVeículos();
-        		ControlesPerfilAdminEntidades.atualizarInfos = true;
+        	if (placaValida) {
+        		if (rastreadorValido) {
+                	//primeiro verifica se nenhum campo está nulo (NÃO VERIFICA SE FOI SELECIONADO UMA FILIAL)
+                	if(modelo_veiculo.length() >= 1 && marca_rastreador.length() >= 1 && modelo_rastreador.length() >= 1) {
+                		veic.cadastrarVeiculo(placa, modelo_veiculo, id_rastreador, marca_rastreador, modelo_rastreador, filial);
+                		
+                		Logs log = new Logs();
+                		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de veículo:"
+                				+ "\nPlaca: " + placa
+                				+ "\nFilial: " + nomeFilial
+                				+ "\nModelo do veículo: " + modelo_veiculo
+                				+ "\nMarca do rastreador: " + marca_rastreador
+                				+ "\nModelo do rastreador: " + modelo_rastreador
+                				+ "\nID do rastreador: " + id_rastreador);
+                		
+                		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("VeiCad");
+                		
+                		notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
+                		limparCamposCadastrarVeículos();
+                		ControlesPerfilAdminEntidades.atualizarInfos = true;
+                	}
+                	else {
+                		notificar("Falha de cadastro", "Veículo não foi cadastrado", "O veículo com a placa " + placa + " não pôde ser cadastrado. Verifique se todos os campos estão completos.");
+                	}
+        		}
+        		else {
+            		notificar("Falha de cadastro", "Veículo não foi cadastrado", "O rastreador informado já está em uso por outro veículo.");
+        		}
+        	}
+        	else {
+        		notificar("Falha de cadastro", "Veículo não foi cadastrado", "A placa inserida já existe no sistema.");
         	}
         }
         catch (NullPointerException falha) {
