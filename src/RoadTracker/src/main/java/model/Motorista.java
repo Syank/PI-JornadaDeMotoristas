@@ -47,13 +47,13 @@ public class Motorista {
 	private boolean dom;
 	@Column(length=13)
 	private String cargo;
-	@Column(length=2)
+	@Column(length=3)
 	private String dia_atual;
-	@Column(length=5)
+	@Column(length=10)
 	private String trabalhado_hoje;
-	@Column(length=5)
+	@Column(length=10)
 	private String descansado_hoje;
-	@Column(length=5)
+	@Column(length=10)
 	private String alimentacao_hoje;
 	@Column(columnDefinition="TEXT")
 	private String metadados = "VgmAtt:0 VgmFin:0 VgmAtr:0";

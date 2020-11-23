@@ -29,17 +29,17 @@ public class Logs {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 	
-	@Column(length=10)
+	@Column(length=15)
 	private String data;
 	
 	@Column(columnDefinition="TEXT")
 	private String registro;
 	
-	@Column(length=8)
+	@Column(length=10)
 	private String horario;
 	
 	@ManyToOne
-	@JoinColumn(name = "funcionario", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_id")) //coluna da tabela pai
+	@JoinColumn(name = "funcionario", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_cpf")) //coluna da tabela pai
 	private Funcionario funcionario = new Funcionario();
 	
 	public Integer getId() {

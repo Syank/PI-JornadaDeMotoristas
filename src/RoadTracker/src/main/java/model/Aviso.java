@@ -30,9 +30,9 @@ public class Aviso {
 	@Column(columnDefinition="TEXT")
 	private String mensagem;
 	private boolean resolvido;
-	@Column(length=10)
-	private String data;
 	@Column(length=15)
+	private String data;
+	@Column(length=40)
 	private String nomenclatura;
 	@Column(length=14)
 	private String emissor;

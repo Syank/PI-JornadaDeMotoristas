@@ -28,11 +28,11 @@ public class Viagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
-	@Column(length=10)
+	@Column(length=15)
 	private String inicio;
-	@Column(length=10)
+	@Column(length=15)
 	private String fim;
-	@Column(length=8)
+	@Column(length=15)
 	private String total;
 	@Column(length=30)
 	private String destino;
