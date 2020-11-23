@@ -525,6 +525,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     @FXML
     void cadastrarFilial(ActionEvent event) {
     	Filial f = new Filial();
+    	List<Filial> fils = new ArrayList<>();
     	
     	String nome = tfNomeFilial.getText();
     	String cidade = tfCidadeFilial.getText();
@@ -537,27 +538,41 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     		if(cnpj.charAt(2) == '.' && cnpj.charAt(6) == '.' && cnpj.charAt(10) == '/' && cnpj.charAt(16) == '-') {
     			cnpjValido = true;
     		}
-    	}	
-       	System.out.println(cnpjValido);
+    	}
+       	
+       	boolean cnpjRntrcRepetido = false;
+       	fils = f.consultarTodasFiliais();
+       	for (Filial fi : fils) {
+			if (fi.getCnpj().equals(cnpj) || fi.getRntrc().equals(rntrc)) {
+				cnpjRntrcRepetido = true;
+				break;
+			}
+		}
+       	
     	
     	//primeiro verifica se nenhum campo está nulo
     	if(nome.length() > 1 && cidade.length() > 1 && estado.length() > 1 && cnpjValido && rntrc.length() > 1) {
-    		f.cadastrarFilial(nome, cidade, estado, cnpj, rntrc);
-    		notificar("Sucesso de cadastro", "Filial cadastrada", "A filial " + nome + " foi cadastrada com sucesso!");
-    		
-    		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("FilCad");
-    		
-    		Logs log = new Logs();
-    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de filial:"
-    				+ "\nNome: " + nome
-    				+ "\nCNPJ: " + cnpj
-    				+ "\nRNTRC: " + rntrc
-    				+ "\nEstado: " + estado
-    				+ "\nCidade: " + cidade);
-    		
-    		limparCamposCadastrarFiliais();
-    		ControlesPerfilAdminEntidades.atualizarInfos = true;
-    		ControlesPerfilAdminHistEntregas.atualizarInfos = true;
+    		if (!cnpjRntrcRepetido) {
+        		f.cadastrarFilial(nome, cidade, estado, cnpj, rntrc);
+        		notificar("Sucesso de cadastro", "Filial cadastrada", "A filial " + nome + " foi cadastrada com sucesso!");
+        		
+        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("FilCad");
+        		
+        		Logs log = new Logs();
+        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de filial:"
+        				+ "\nNome: " + nome
+        				+ "\nCNPJ: " + cnpj
+        				+ "\nRNTRC: " + rntrc
+        				+ "\nEstado: " + estado
+        				+ "\nCidade: " + cidade);
+        		
+        		limparCamposCadastrarFiliais();
+        		ControlesPerfilAdminEntidades.atualizarInfos = true;
+        		ControlesPerfilAdminHistEntregas.atualizarInfos = true;
+    		}
+    		else {
+    			notificar("Falha de cadastro", "Falha ao cadastrar a filial", "O RNTRC ou o CNPJ já pertencem a uma filial. Confira os campos.");
+    		}
     	}
     	else{
     		notificar("Falha de cadastro", "Falha ao cadastrar a filial", "Verifique os campos");	
@@ -701,9 +716,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         	List<Viagem> viagens = new ArrayList<>();
         	viagens = viagem.consultarTodasViagens();
         	
-        	System.out.println(dtHoje);
-        	System.out.println(placaVeiculo);
-        	
         	boolean viagemRepetida = false;
         	for (Viagem v : viagens) {
 				if (v.getFim().equals(prazo) && v.getVeiculo().getPlaca().equals(placaVeiculo) && !v.getSituacao().equals("Finalizado")) {
@@ -715,14 +727,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         	
         	String cpfFuncionario = comboBoxMotoristaViagem.getSelectionModel().getSelectedItem().getCpf();
         	
-        	Motorista mot = new Motorista();
-        	
-        	mot = mot.encontrarMotorista(cpfFuncionario);
-        	
-        	// vou verificar o dia de folga do motorista
-        	
-        	//Não verifica se as combobox estao vazias
-//        	if () {
 	        	if (!viagemRepetida) {
 	        		if(!prazoValido) {
 	            		notificar("Falha de cadastro", "Prazo incorreto", "Você escolheu uma data de entrega que é anterior a data de hoje");	
@@ -756,10 +760,6 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 	        	else {
 					notificar("Falha de cadastro", "Viagem no mesmo dia", "Já existe uma viagem para esse dia que ainda não está terminada com esse mesmo veículo.");
 	        	}
-        	}
-//        	else {
-//        		notificar("Falha de cadastro", "Viagem no dia de folga", "O dia escolhido para a viagem é dia de folga do motorista.");
-//        	}
     	}
     	catch (NullPointerException falha) {
     		notificar("Falha de cadastro", "Falha ao cadastrar a viagem", "Preencha todos os campos.");	
