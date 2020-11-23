@@ -38,9 +38,15 @@ public class Logs {
 	@Column(length=10)
 	private String horario;
 	
-	@ManyToOne
-	@JoinColumn(name = "funcionario", nullable = false, foreignKey = @ForeignKey(name = "fk_funcionarios_cpf")) //coluna da tabela pai
-	private Funcionario funcionario = new Funcionario();
+	@Column(length=20)
+	private String cpfEmissor;
+	
+	@Column(length=50)
+	private String nomeEmissor;
+
+	
+	
+	
 	
 	public Integer getId() {
 		return id;
@@ -74,14 +80,25 @@ public class Logs {
 		this.horario = horario;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
+	public String getCpfEmissor() {
+		return cpfEmissor;
 	}
 
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setCpfEmissor(String cpfEmissor) {
+		this.cpfEmissor = cpfEmissor;
 	}
 
+	public String getNomeEmissor() {
+		return nomeEmissor;
+	}
+
+	public void setNomeEmissor(String nomeEmissor) {
+		this.nomeEmissor = nomeEmissor;
+	}
+
+	
+	
+	
 	public void registrarLog(String nome, String cpf, String registro) {
 		EntityManager con = new ConnectionFactory().getConnection();
 		
@@ -104,8 +121,9 @@ public class Logs {
     	
     	this.setHorario(horario);
     	
-    	funcionario.setCpf(cpf);
-		this.setFuncionario(funcionario);
+		this.setCpfEmissor(cpf);
+		this.setNomeEmissor(nome);
+		
 		
 		this.setData(data);
 		this.setRegistro(registro);
@@ -179,7 +197,7 @@ public class Logs {
 	public List<Registros> listarLogs(){	
 		List<Registros> logsArmazenados = new ArrayList<>();
 		for (Logs l: this.consultarTodosLogs()) {
-			Registros registro = new Registros(l.getFuncionario().getNome(), l.getFuncionario().getCpf(), l.getData(), l.getRegistro(), l.getId());
+			Registros registro = new Registros(l.getNomeEmissor(), l.getCpfEmissor(), l.getData(), l.getRegistro(), l.getId());
 			logsArmazenados.add(registro);
 		}
 		

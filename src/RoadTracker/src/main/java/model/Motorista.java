@@ -540,14 +540,14 @@ public class Motorista {
 		
 		for(int i = 0; i < metadados.length; i++) {
 			if(metadados[i].contains(metadado)) {
-				metadados[i] = metadados[i].substring(0, 6) + String.valueOf(Integer.parseInt(metadados[i].substring(7)) + 1);
+				metadados[i] = metadados[i].substring(0, 6) + ":" + String.valueOf(Integer.parseInt(metadados[i].substring(7)) + 1);
 			}
 		}
 		
 		
 		String reconstruir = "";
 		for(int i = 0; i < metadados.length; i++) {
-			reconstruir = metadados[i] + " ";
+			reconstruir = reconstruir + metadados[i] + " ";
 		}
 		
 		this.metadados = reconstruir;

@@ -25,6 +25,8 @@ public class GeradorDePDF {
 	        
 	        documento.open();
 	        
+	        
+	        
 	        // Adicionando metadados
 	        documento.addAuthor(ControlesLogin.nomeLogado);
 
@@ -295,7 +297,7 @@ public class GeradorDePDF {
 	        		for(int i = 0; i < arrayLogs.length; i++) {
 	        			Logs log = (Logs) arrayLogs[i];
 
-	        			texto = texto + "\nCPF do emissor do registro: " + log.getFuncionario().getCpf()
+	        			texto = texto + "\nCPF do emissor do registro: " + log.getCpfEmissor()
 	        					+ "\n    - Data da emissão: " + log.getData()
 	        					+ "\n    - Horário da emissão: " + log.getHorario()
 	        					+ "\n    - ID do registro: " + String.valueOf(log.getId())
@@ -309,7 +311,7 @@ public class GeradorDePDF {
 	        		for(int i = 0; i < arrayLogs.length; i++) {
 	        			Logs log = (Logs) arrayLogs[i];
 
-	        			texto = texto + "\nCPF do emissor do registro: " + log.getFuncionario().getCpf()
+	        			texto = texto + "\nCPF do emissor do registro: " + log.getCpfEmissor()
 	        					+ "\n    - Data da emissão: " + log.getData()
 	        					+ "\n    - Horário da emissão: " + log.getHorario()
 	        					+ "\n    - ID do registro: " + String.valueOf(log.getId())
@@ -323,7 +325,7 @@ public class GeradorDePDF {
 	        		for(int i = 0; i < arrayLogs.length; i++) {
 	        			Logs log = (Logs) arrayLogs[i];
 
-	        			texto = texto + "\nCPF do emissor do registro: " + log.getFuncionario().getCpf()
+	        			texto = texto + "\nCPF do emissor do registro: " + log.getCpfEmissor()
 	        					+ "\n    - Data da emissão: " + log.getData()
 	        					+ "\n    - Horário da emissão: " + log.getHorario()
 	        					+ "\n    - ID do registro: " + String.valueOf(log.getId())
@@ -340,7 +342,7 @@ public class GeradorDePDF {
 	        	    	LocalDate data = LocalDate.parse(log.getData(), formatter);
 	        	    	
 	        	    	if(data.until(LocalDate.now(), ChronoUnit.DAYS) <= 1) {
-		        			texto = texto + "\nCPF do emissor do registro: " + log.getFuncionario().getCpf()
+		        			texto = texto + "\nCPF do emissor do registro: " + log.getCpfEmissor()
 		        					+ "\n    - Data da emissão: " + log.getData()
 		        					+ "\n    - Horário da emissão: " + log.getHorario()
 		        					+ "\n    - ID do registro: " + String.valueOf(log.getId())
@@ -355,7 +357,7 @@ public class GeradorDePDF {
 	        	    	LocalDate data = LocalDate.parse(log.getData(), formatter);
 	        	    	
 	        	    	if(data.until(LocalDate.now(), ChronoUnit.DAYS) <= 7) {
-		        			texto = texto + "\nCPF do emissor do registro: " + log.getFuncionario().getCpf()
+		        			texto = texto + "\nCPF do emissor do registro: " + log.getCpfEmissor()
 		        					+ "\n    - Data da emissão: " + log.getData()
 		        					+ "\n    - Horário da emissão: " + log.getHorario()
 		        					+ "\n    - ID do registro: " + String.valueOf(log.getId())
@@ -370,7 +372,7 @@ public class GeradorDePDF {
 	        	    	LocalDate data = LocalDate.parse(log.getData(), formatter);
 	        	    	
 	        	    	if(data.until(LocalDate.now(), ChronoUnit.DAYS) <= 31) {
-		        			texto = texto + "\nCPF do emissor do registro: " + log.getFuncionario().getCpf()
+		        			texto = texto + "\nCPF do emissor do registro: " + log.getCpfEmissor()
 		        					+ "\n    - Data da emissão: " + log.getData()
 		        					+ "\n   - Horário da emissão: " + log.getHorario()
 		        					+ "\n    - ID do registro: " + String.valueOf(log.getId())
@@ -382,7 +384,7 @@ public class GeradorDePDF {
 	        		for(int i = 0; i < arrayLogs.length; i++) {
 	        			Logs log = (Logs) arrayLogs[i];
 
-	        			texto = texto + "\nCPF do emissor do registro: " + log.getFuncionario().getCpf()
+	        			texto = texto + "\nCPF do emissor do registro: " + log.getCpfEmissor()
 	        					+ "\n    - Data da emissão: " + log.getData()
 	        					+ "\n    - Horário da emissão: " + log.getHorario()
 	        					+ "\n    - ID do registro: " + String.valueOf(log.getId())

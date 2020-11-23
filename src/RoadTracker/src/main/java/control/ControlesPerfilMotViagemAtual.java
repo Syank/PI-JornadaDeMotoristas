@@ -306,7 +306,7 @@ public class ControlesPerfilMotViagemAtual implements Initializable {
 		viagem.finalizarViagem(tempoTotal);
 		
 		Logs log = new Logs();
-		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de viagem:"
+		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Término de viagem:"
 				+ "\nDestino: " + labelDestino.getText()
 				+ "\nCarga: " + labelCarga.getText()
 				+ "\nExpediente total: " + tempoTotal);

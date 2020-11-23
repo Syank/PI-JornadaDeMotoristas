@@ -52,9 +52,6 @@ public class Funcionario {
 	//um funcionario possui um ou mais avisos
 //	@OneToMany(mappedBy = "funcionario") //nome do campo na tabela filha
 //	private List<Aviso> avisos = new ArrayList<Aviso>();
-	
-	@OneToMany(mappedBy = "funcionario") //nome do campo na tabela filha
-	private List<Logs> logs = new ArrayList<Logs>();
 
 	
 	public Filial getFilial() {
@@ -334,7 +331,7 @@ public class Funcionario {
 		
 		for(int i = 0; i < metadados.length; i++) {
 			if(metadados[i].contains(metadado)) {
-				metadados[i] = metadados[i].substring(0, 6) + String.valueOf(Integer.parseInt(metadados[i].substring(7)) + 1);
+				metadados[i] = metadados[i].substring(0, 6) + ":" + String.valueOf(Integer.parseInt(metadados[i].substring(7)) + 1);
 			}
 		}
 		

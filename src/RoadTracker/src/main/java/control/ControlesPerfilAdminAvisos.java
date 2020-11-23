@@ -278,6 +278,12 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     void abrirTelaCadEnt(MouseEvent event) {
     	carregarInfos = true;
     	voltarAvisos();
+    	
+    	paneGerarRelatorio.setVisible(false);
+    	paneGerarRelatorio.setDisable(true);
+    	paneSelecionarOpcao.setDisable(false);
+    	paneSelecionarOpcao.setVisible(true);
+    	
     	Main.trocarTela("Tela Cadastrar Funcionarios");
 
     }
@@ -286,6 +292,12 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     void abrirTelaFunc(MouseEvent event) {
     	carregarInfos = true;
     	voltarAvisos();
+    	
+    	paneGerarRelatorio.setVisible(false);
+    	paneGerarRelatorio.setDisable(true);
+    	paneSelecionarOpcao.setDisable(false);
+    	paneSelecionarOpcao.setVisible(true);
+    	
     	Main.trocarTela("Tela Funcionarios");
 
     }
@@ -294,6 +306,12 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     void abrirTelaHistEntregas(MouseEvent event) {
     	carregarInfos = true;
     	voltarAvisos();
+    	
+    	paneGerarRelatorio.setVisible(false);
+    	paneGerarRelatorio.setDisable(true);
+    	paneSelecionarOpcao.setDisable(false);
+    	paneSelecionarOpcao.setVisible(true);
+    	
     	Main.trocarTela("Tela Historico de Entregas");
 
     }
@@ -384,6 +402,9 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		paneAvisoSelecionado.setVisible(true);
 		paneVisualizarAvisos.setDisable(true);
 		paneVisualizarAvisos.setVisible(false);
+		paneSelecionarOpcao.setVisible(false);
+		paneSelecionarOpcao.setDisable(true);
+		
     }
     
     @FXML
@@ -418,7 +439,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		
 		campoIDlog.setText(String.valueOf(log.getId()));
 		msgLog.setText(log.getRegistro());
-		responsavel.setText(log.getFuncionario().getCpf());
+		responsavel.setText(log.getCpfEmissor());
 		horario.setText(log.getHorario());
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -451,7 +472,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		paneAvisoSelecionado.setVisible(false);
 		paneAvisoSelecionado.setDisable(true);
 		paneVisualizarAvisos.setVisible(false);
-		paneVisualizarAvisos.setDisable(false);
+		paneVisualizarAvisos.setDisable(true);
     }
     
 	public void carregarTableViewsAvisos() {
