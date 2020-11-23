@@ -528,6 +528,15 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	@FXML
 	void alterarDados(ActionEvent event) {
 			if(confirmado) {
+				
+				Funcionario funcs = new Funcionario();
+				Motorista mots = new Motorista();
+				
+				List<Funcionario> fs = new ArrayList<>();
+				List<Motorista> ms = new ArrayList<>();
+				
+				boolean emailRepetido = false;
+		       	
 				if(cargoFuncionario.equals("Motorista")) {
 					
 					String salario = textFieldSalarioMotorista.getText();
@@ -538,6 +547,15 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	        				salario = salario.replace(',', '.');
 	        			}
 	        		}
+	        		
+	        		ms = mots.consultarTodosMotoristas();
+	        		
+	        		for (Motorista m : ms) {
+			       		if (m.getEmail().equals(textFieldEmail.getText())) {
+			       			emailRepetido = true;
+							break;
+			       		}
+			       	}
 					
 					if (Float.parseFloat(salario) < 1701.38) {
 						notificar("Falha", "Salário baixo", "O salário digitado é muito baixo. Escreva um salário válido.");
@@ -549,87 +567,106 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 						notificar("Falha", "Campo vazio", "A senha e o e-mail não podem ficar vazios. Preencha os campos.");
 					}
 					else {
-						Map<String, String> dicionarioMotorista = motorista.dadosMotorista();
-						
-						motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
-														textFieldEmail.getText(), pfSenha.getText(), 
-														textFieldSalarioMotorista.getText(), tfCargaHoraria.getText(), 
-														cbFilial.getValue().getId(), cbTurno.getValue().getTurno(),
-														cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(), cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
-						
-						
-						String diasDeTrabalho = "";
+						if (!emailRepetido) {
+							Map<String, String> dicionarioMotorista = motorista.dadosMotorista();
+							
+							motorista.alterarDadosMotorista(motorista.getCpf(), tfNome.getText(), 
+															textFieldEmail.getText(), pfSenha.getText(), 
+															textFieldSalarioMotorista.getText(), tfCargaHoraria.getText(), 
+															cbFilial.getValue().getId(), cbTurno.getValue().getTurno(),
+															cbSeg.isSelected(), cbTer.isSelected(), cbQua.isSelected(), cbQui.isSelected(), cbSex.isSelected(), cbSab.isSelected(), cbDom.isSelected());
+							
+							
+							String diasDeTrabalho = "";
 
-						if(cbDom.isSelected()) {
-							diasDeTrabalho += "Domingo";
-						}
-						if(cbSeg.isSelected()) {
-							diasDeTrabalho += ", Segunda-Feira";
-						}
-						if(cbTer.isSelected()) {
-							diasDeTrabalho += ", Terça-Feira";
-						}
-						if(cbQua.isSelected()) {
-							diasDeTrabalho += ", Quarta-Feira";
-						}
-						if(cbQui.isSelected()) {
-							diasDeTrabalho += ", Quinta-Feira";
-						}
-						if(cbSex.isSelected()) {
-							diasDeTrabalho += ", Sexta-Feira";
-						}
-						if(cbSab.isSelected()) {
-							diasDeTrabalho += " e Sábado";
-						}
-						if(!cbDom.isSelected()) {
-							diasDeTrabalho = diasDeTrabalho.substring(2); // Tira ", " caso não trabalhe domingo
-						}
-						
-			    		Logs log = new Logs();
-			    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de motorista:" 
-			    				+ "\nNome: " + dicionarioMotorista.get("Nome") + " -> " + tfNome.getText()
-			    				+ "\nCPF: " + dicionarioMotorista.get("CPF") + " -> " +  motorista.getCpf()
-			    				+ "\nE-mail: " + dicionarioMotorista.get("E-mail") + " -> " +  textFieldEmail.getText()
-			    				+ "\nFilial: " + dicionarioMotorista.get("Filial") + " -> " +  cbFilial.getSelectionModel().getSelectedItem().getNome()
-			    				+ "\nSalário: R$ " + dicionarioMotorista.get("Salario") + " -> " + "R$ " + textFieldSalarioMotorista.getText()
-			    				+ "\nCarga Horária: " +  dicionarioMotorista.get("Carga Horaria") + " -> " + tfCargaHoraria.getText()
-			    				+ "\nDias de trabalho: " + dicionarioMotorista.get("Dias de trabalho") + " -> " +  diasDeTrabalho);
-						
-		        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("MotAlt");
+							if(cbDom.isSelected()) {
+								diasDeTrabalho += "Domingo";
+							}
+							if(cbSeg.isSelected()) {
+								diasDeTrabalho += ", Segunda-Feira";
+							}
+							if(cbTer.isSelected()) {
+								diasDeTrabalho += ", Terça-Feira";
+							}
+							if(cbQua.isSelected()) {
+								diasDeTrabalho += ", Quarta-Feira";
+							}
+							if(cbQui.isSelected()) {
+								diasDeTrabalho += ", Quinta-Feira";
+							}
+							if(cbSex.isSelected()) {
+								diasDeTrabalho += ", Sexta-Feira";
+							}
+							if(cbSab.isSelected()) {
+								diasDeTrabalho += " e Sábado";
+							}
+							if(!cbDom.isSelected()) {
+								diasDeTrabalho = diasDeTrabalho.substring(2); // Tira ", " caso não trabalhe domingo
+							}
+							
+				    		Logs log = new Logs();
+				    		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de motorista:" 
+				    				+ "\nNome: " + dicionarioMotorista.get("Nome") + " -> " + tfNome.getText()
+				    				+ "\nCPF: " + dicionarioMotorista.get("CPF") + " -> " +  motorista.getCpf()
+				    				+ "\nE-mail: " + dicionarioMotorista.get("E-mail") + " -> " +  textFieldEmail.getText()
+				    				+ "\nFilial: " + dicionarioMotorista.get("Filial") + " -> " +  cbFilial.getSelectionModel().getSelectedItem().getNome()
+				    				+ "\nSalário: R$ " + dicionarioMotorista.get("Salario") + " -> " + "R$ " + textFieldSalarioMotorista.getText()
+				    				+ "\nCarga Horária: " +  dicionarioMotorista.get("Carga Horaria") + " -> " + tfCargaHoraria.getText()
+				    				+ "\nDias de trabalho: " + dicionarioMotorista.get("Dias de trabalho") + " -> " +  diasDeTrabalho);
+							
+			        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("MotAlt");
 
-						notificar("Sucesso", "Alteração de dados",
-								"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
-						atualizarInfos = true;
+							notificar("Sucesso", "Alteração de dados",
+									"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+							atualizarInfos = true;
+						}
+						else {
+							notificar("Falha", "E-mail já cadastrado.", "Já existe um motorista com o e-mail digitado.");
+						}
 					}
 				}
 				else {
+			       	fs = funcs.consultarTodosFuncionarios();
+			       	
+			       	for (Funcionario f : fs) {
+						if (f.getEmail().equals(textFieldEmail.getText())) {
+							emailRepetido = true;
+							break;
+						}
+					}
+					
 					if (pfSenha.getText().isEmpty() || textFieldEmail.getText().isBlank()) {
 						notificar("Falha", "Campo vazio", "A senha e o e-mail não podem ficar vazios. Preencha os campos.");
 					}
 					else {
-						Map<String, String> dicionarioFuncionario = funcionario.dadosFuncionario();
-						
-						funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(),
-								cbCargo.getValue().getCargo(), cbFilial.getValue().getId(),
-								textFieldEmail.getText());
-						notificar("Sucesso", "Alteração de dados",
-								"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
-						
-			    		Logs log = new Logs();
-		        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de funcionário:"
-		        				+ "\nNome: " + dicionarioFuncionario.get("Nome") + " -> " + tfNome.getText()
-		        				+ "\nCPF: " + dicionarioFuncionario.get("CPF") + " -> " + funcionario.getCpf()
-		        				+ "\nE-mail: " + dicionarioFuncionario.get("E-mail") + " -> " + textFieldEmail.getText()
-		        				+ "\nFilial: " + dicionarioFuncionario.get("Filial") + " -> " + cbFilial.getSelectionModel().getSelectedItem().getNome()
-		        				+ "\nCargo: " + dicionarioFuncionario.get("Cargo") + " -> " + cbCargo.getValue().getCargo());
-		        		
-		        		if(dicionarioFuncionario.get("Cargo").equals("Administrador")) {
-			        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("AdmAlt");
-		        		}else {
-			        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("SupAlt");
-		        		}
-						
-						atualizarInfos = true;
+						if (!emailRepetido) {
+							Map<String, String> dicionarioFuncionario = funcionario.dadosFuncionario();
+							
+							funcionario.alterarDadosFuncionario(tfNome.getText(), funcionario.getCpf(), pfSenha.getText(),
+									cbCargo.getValue().getCargo(), cbFilial.getValue().getId(),
+									textFieldEmail.getText());
+							notificar("Sucesso", "Alteração de dados",
+									"Os dados do funcionário " + tfNome.getText() + " foram alterados no banco de dados com sucesso");
+							
+				    		Logs log = new Logs();
+			        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Alteração de dados de funcionário:"
+			        				+ "\nNome: " + dicionarioFuncionario.get("Nome") + " -> " + tfNome.getText()
+			        				+ "\nCPF: " + dicionarioFuncionario.get("CPF") + " -> " + funcionario.getCpf()
+			        				+ "\nE-mail: " + dicionarioFuncionario.get("E-mail") + " -> " + textFieldEmail.getText()
+			        				+ "\nFilial: " + dicionarioFuncionario.get("Filial") + " -> " + cbFilial.getSelectionModel().getSelectedItem().getNome()
+			        				+ "\nCargo: " + dicionarioFuncionario.get("Cargo") + " -> " + cbCargo.getValue().getCargo());
+			        		
+			        		if(dicionarioFuncionario.get("Cargo").equals("Administrador")) {
+				        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("AdmAlt");
+			        		}
+			        		else {
+				        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("SupAlt");
+			        		}
+							atualizarInfos = true;
+						}
+						else {
+							notificar("Falha", "E-mail já existente", "O e-mail inserido já está cadastrado no sistema.");
+						}
 					}
 				}
 			}
