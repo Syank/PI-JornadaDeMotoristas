@@ -17,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import model.Funcionario;
 import model.Logs;
 import model.Motorista;
 import model.Viagem;

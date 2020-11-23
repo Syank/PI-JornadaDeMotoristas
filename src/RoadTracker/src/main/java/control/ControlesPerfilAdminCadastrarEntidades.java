@@ -1,6 +1,7 @@
 package control;
 
 import java.net.URL;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -673,10 +674,20 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     void cadastrarViagem(ActionEvent event) {
     	Viagem viagem = new Viagem();
     	
+    	String placaVeiculo = comboBoxVeiculoViagem.getSelectionModel().getSelectedItem().getPlaca();
+    	
     	try {
         	int ano = datePickerPrazoEntrega.getValue().getYear();
         	int dia = datePickerPrazoEntrega.getValue().getDayOfMonth();
         	int mes = datePickerPrazoEntrega.getValue().getMonthValue();
+        	
+        	String prazo;
+        	if(dia < 10) {
+            	prazo = ("0" + String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+        	}
+        	else {
+            	prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
+        	}
         	
     		Date diaHoje = new Date();
     		int anoH = diaHoje.getYear() + 1900;
@@ -687,45 +698,70 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
         	LocalDate dtPicker = LocalDate.of(ano, mes, dia);
         	boolean prazoValido = dtPicker.isAfter(dtHoje) || dtPicker.isEqual(dtHoje);
         	
-        	String prazo;
-        	if(dia < 10) {
-            	prazo = ("0" + String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
-        	}
-        	else {
-            	prazo = (String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(ano));
-        	}
+        	List<Viagem> viagens = new ArrayList<>();
+        	viagens = viagem.consultarTodasViagens();
+        	
+        	System.out.println(dtHoje);
+        	System.out.println(placaVeiculo);
+        	
+        	boolean viagemRepetida = false;
+        	for (Viagem v : viagens) {
+				if (v.getFim().equals(prazo) && v.getVeiculo().getPlaca().equals(placaVeiculo) && !v.getSituacao().equals("Finalizado")) {
+					viagemRepetida = true;
+					break;
+				}
+			}
+        	
         	
         	String cpfFuncionario = comboBoxMotoristaViagem.getSelectionModel().getSelectedItem().getCpf();
-        	String placaVeiculo = comboBoxVeiculoViagem.getSelectionModel().getSelectedItem().getPlaca();
         	
+        	Motorista mot = new Motorista();
+        	
+        	mot = mot.encontrarMotorista(cpfFuncionario);
+        	
+        	// vou verificar o dia de folga do motorista
         	
         	//Não verifica se as combobox estao vazias
-        	if(prazoValido && prazo.length() > 1 && placaVeiculo.length() > 1 && tfEmpresaDestino.getText().length() > 1 && textFieldCarga.getText().length() > 1) {
-        		viagem.cadastrarViagem(prazo, tfEmpresaDestino.getText(), 
-    					   cpfFuncionario, placaVeiculo, 
-    					   textFieldCarga.getText());
-        		notificar("Sucesso de cadastro", "Viagem cadastrada", "A viagem foi cadastrada no sistema com sucesso!");
-        		
-	    		Logs log = new Logs();
-        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de viagem:"
-        				+ "\nDestino: " + tfEmpresaDestino.getText()
-        				+ "\nCarga: " + textFieldCarga.getText()
-        				+ "\nPrazo: " + prazo
-        				+ "\nMotorista responsável: " + cpfFuncionario
-        				+ "\nPlaca do veículo atribuído: " + placaVeiculo);
-        		
-        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("VgmCad");
-        		new Motorista().encontrarMotorista(cpfFuncionario).incrementarMetadados("VgmAtt");
-        		
-        		limparCamposCadastrarViagens();
-        		ControlesPerfilAdminHistEntregas.atualizarInfos = true;
+//        	if () {
+	        	if (!viagemRepetida) {
+	        		if(!prazoValido) {
+	            		notificar("Falha de cadastro", "Prazo incorreto", "Você escolheu uma data de entrega que é anterior a data de hoje");	
+	            	}
+	        		else {
+			        	if(prazoValido && prazo.length() > 1 && placaVeiculo.length() > 1 && tfEmpresaDestino.getText().length() > 1 && textFieldCarga.getText().length() > 1) {
+			        		viagem.cadastrarViagem(prazo, tfEmpresaDestino.getText(), 
+			    					   cpfFuncionario, placaVeiculo, 
+			    					   textFieldCarga.getText());
+			        		notificar("Sucesso de cadastro", "Viagem cadastrada", "A viagem foi cadastrada no sistema com sucesso!");
+			        		
+				    		Logs log = new Logs();
+			        		log.registrarLog(ControlesLogin.nomeLogado, ControlesLogin.cpfLogado, "Cadastro de viagem:"
+			        				+ "\nDestino: " + tfEmpresaDestino.getText()
+			        				+ "\nCarga: " + textFieldCarga.getText()
+			        				+ "\nPrazo: " + prazo
+			        				+ "\nMotorista responsável: " + cpfFuncionario
+			        				+ "\nPlaca do veículo atribuído: " + placaVeiculo);
+			        		
+			        		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("VgmCad");
+			        		new Motorista().encontrarMotorista(cpfFuncionario).incrementarMetadados("VgmAtt");
+			        		
+			        		limparCamposCadastrarViagens();
+			        		ControlesPerfilAdminHistEntregas.atualizarInfos = true;
+			        	}
+			        	else {
+			        		notificar("Falha de cadastro", "Campo incorreto", "Algum campo está incompleto. Tente novamente.");	
+			        	}
+	        		}
+	        	}
+	        	else {
+					notificar("Falha de cadastro", "Viagem no mesmo dia", "Já existe uma viagem para esse dia que ainda não está terminada com esse mesmo veículo.");
+	        	}
         	}
-        	
-        	if(!prazoValido) {
-        		notificar("Falha de cadastro", "Prazo incorreto", "Você escolheu uma data de entrega que é anterior a data de hoje");	
-        	}
-        	
-    	}catch (NullPointerException falha) {
+//        	else {
+//        		notificar("Falha de cadastro", "Viagem no dia de folga", "O dia escolhido para a viagem é dia de folga do motorista.");
+//        	}
+    	}
+    	catch (NullPointerException falha) {
     		notificar("Falha de cadastro", "Falha ao cadastrar a viagem", "Preencha todos os campos.");	
     	}
 
@@ -1123,7 +1159,11 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	
     }
     
-
+//    @FXML
+//    void tamanhoRntrc(KeyEvent event) {
+//
+//    }
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		carregarComboBoxCargos();
