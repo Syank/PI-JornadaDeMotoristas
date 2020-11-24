@@ -326,6 +326,8 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		paneGerarRelatorio.setDisable(true);
 		paneVisualizarLogs.setVisible(false);
 		paneVisualizarLogs.setDisable(true);
+		paneLogSelecionado.setVisible(false);
+		paneLogSelecionado.setDisable(true);
 		
 		paneSelecionarOpcao.setDisable(false);
 		paneSelecionarOpcao.setVisible(true);
@@ -361,12 +363,6 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     		paneSelecionarOpcao.setDisable(false);
     		paneGerarRelatorio.setVisible(false);
     		paneGerarRelatorio.setDisable(true);
-    	}
-    	else if (paneVisualizarLogs.isVisible()) {
-    		paneSelecionarOpcao.setVisible(true);
-    		paneSelecionarOpcao.setDisable(false);
-        	paneVisualizarLogs.setVisible(false);
-        	paneVisualizarLogs.setDisable(true);
     	}
     	else if (paneSelecionarOpcao.isVisible()) {
     		Main.trocarTela("Tela Boas Vindas");
