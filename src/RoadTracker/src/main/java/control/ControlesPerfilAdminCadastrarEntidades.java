@@ -582,6 +582,18 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
     	
     }
     
+    @FXML
+    public void mascararRntrc(KeyEvent event) {
+    	String texto = tfRntrc.getText();
+    	
+    	if(texto.length() > 8) {
+    		texto = texto.substring(0, 8);
+    	}
+    	
+    	tfRntrc.setText(texto);
+    	tfRntrc.end();
+    }
+    
     // ----------------------------------------
     
     
@@ -618,6 +630,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
 		}
 
     }
+    
     @FXML
     void cadastrarVeiculo(ActionEvent event) {
         	

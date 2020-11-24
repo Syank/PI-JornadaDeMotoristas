@@ -336,7 +336,7 @@ public class Funcionario {
 		
 		String reconstruir = "";
 		for(int i = 0; i < metadados.length; i++) {
-			reconstruir = metadados[i] + " ";
+			reconstruir = reconstruir + metadados[i] + " ";
 		}
 		
 		this.metadados = reconstruir;

@@ -1020,6 +1020,19 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 		
 		
 	}
+	
+	
+    @FXML
+    public void mascararRntrc(KeyEvent event) {
+    	String texto = textFieldRntrc.getText();
+    	
+    	if(texto.length() > 8) {
+    		texto = texto.substring(0, 8);
+    	}
+    	
+    	textFieldRntrc.setText(texto);
+    	textFieldRntrc.end();
+    }
 	// -------------------------------------
 
 	// Métodos veiculo
