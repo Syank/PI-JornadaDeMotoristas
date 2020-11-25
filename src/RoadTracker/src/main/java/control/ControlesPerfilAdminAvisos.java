@@ -353,6 +353,7 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     	}
     	else if (paneVisualizarAvisos.isVisible() || paneVisualizarLogs.isVisible()) {
         	paneSelecionarOpcao.setVisible(true);
+        	paneSelecionarOpcao.setDisable(false);
         	paneVisualizarAvisos.setVisible(false);
         	paneVisualizarLogs.setVisible(false);
         	paneVisualizarLogs.setDisable(true);
@@ -416,7 +417,10 @@ public class ControlesPerfilAdminAvisos implements Initializable{
     void abrirTelaLogs(MouseEvent event) {
     	carregarTableViewsLogs();
     	paneSelecionarOpcao.setVisible(false);
+    	paneSelecionarOpcao.setDisable(true);
     	paneVisualizarLogs.setVisible(true);
+    	paneVisualizarLogs.setDisable(false);
+    	
     }
     
     @FXML
