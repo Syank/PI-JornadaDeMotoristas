@@ -75,7 +75,7 @@
                             <td>Entrega 4</td>
                             <td>O supervisor poderá visualizar e alterar dados dos veículos e viagens. Todos os usuários poderão recuperar suas senhas.</td>
                             <td>09/11/2020 a 29/11/2020</td>
-                            <td>Em breve</td>
+                            <td><a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/sprint_3">Visualizar</td>
                      </tr>
               </tbody>
        </table>
