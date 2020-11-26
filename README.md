@@ -68,21 +68,15 @@
 <div>
 <h2>User stories do nosso sistema</h2>
 
-<h3>Terceira entrega :clock4:</h3>
-<p align="justify">Ressaltando, novamente, nesta <i>sprint</i>, nossa equipe conseguiu acelerar o desenvolvimento do sistema e finalizar em conjunto a última entrega, por isso, abaixo estão as <i>User Stories</i> de ambas as entregas.</p>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_1/doc/user_stories/3.png" width="600px"/>
-<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/user_stories/4.png" width="600px"/>
+<h3>Quarta entrega :clock4:</h3>
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_3/doc/user_stories/4.png" width="600px"/>
 </div>
 
-<h2>Amostra de <i>Wireframes</i> da terceira entrega do RoadTracker</h2>
+<h2>Amostra de <i>Wireframes</i> da quarta entrega do RoadTracker</h2>
 <div align="center">
        <p>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/wireframes/Motorista/viagem_atual_iniciada.png" width="400"/>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/wireframes/Motorista/listagem_minhas_viagens.png" width="400"/>
-       </p>
-       <p>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/wireframes/Supervisor/listagem_motoristas.png" width="400"/>
-       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/wireframes/Supervisor/solicitacao_cadastro_sucesso.png" width="400"/>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_3/doc/wireframes/Administrador/tela_logs.png" width="400"/>
+       <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_3/doc/wireframes/Administrador/gerar_relatorio.bmp" width="400"/>
        </p>
        </br>
        <p>
@@ -90,18 +84,7 @@
        </p>
 </div>
 
-<section id="ModeloC">
-        <h3>Modelo conceitual do nosso banco de dados (com ajustes para a sprint)</h3>
-        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/banco_de_dados/RTdbNovo-conceitual.png" width="800px">
-    
-</section>
-
-<section id="ModeloL">
-        <h3>Modelo lógico do nosso banco de dados (com ajustes para a sprint)</h3>
-        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/banco_de_dados/RTdbNovo-logico.png" width="800px">
-
-</section>
-<section id="ModeloF">
+<section id="Modelo">
         <h3>Modelo físico do nosso banco de dados</h3>
-       <p>Você pode visualizar o modelo físico (código) do nosso banco de dados clicando <a href="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_2/doc/banco_de_dados/RTdbNovo-fisico.sql">aqui</a>.</p>
+       <p>Não houveram mudanças no banco de dados, mas você pode vê-lo clicando <a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/sprint_3/doc/banco_de_dados">aqui</a>.</p>
 </section>
