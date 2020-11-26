@@ -436,7 +436,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
 		   	cbFilial.getSelectionModel().selectFirst();
 	    	while(!motorista.getFilial().getNome().equals(cbFilial.getSelectionModel().getSelectedItem().getNome())) {
-	    		System.out.println(cbFilial.getSelectionModel().getSelectedItem().getNome());
 	    		cbFilial.getSelectionModel().selectNext();
 	    		seguranca++;
 	    		if(seguranca > 100) {
@@ -472,7 +471,6 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	    		}
 	    	});
 			
-			atualizarInfos = true;
 			
 		}
 		else {
@@ -501,7 +499,7 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	
 			// Filial		
 		   	int seguranca = 0;
-		   	cbFilial.getSelectionModel().selectFirst();
+		   	cbFilial.getSelectionModel().selectFirst();	   	
 	    	// O while abaixo pode ser um pouco confuso, mas basicamente ele verifica se o que está selecionado na combobox é igual ao funcionário da viagem
 	    	while(!funcionario.getFilial().getNome().equals(cbFilial.getSelectionModel().getSelectedItem().getNome())) {
 	    		cbFilial.getSelectionModel().selectNext();
@@ -535,6 +533,9 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 				List<Funcionario> fs = new ArrayList<>();
 				List<Motorista> ms = new ArrayList<>();
 				
+				Map<String, String> dadosMotorista = new Motorista().encontrarMotorista(tfCpf.getText()).dadosMotorista();
+				Map<String, String> dadosFuncionario = new Funcionario().encontrarFuncionario(tfCpf.getText()).dadosFuncionario();
+				
 				boolean emailRepetido = false;
 		       	
 				if(cargoFuncionario.equals("Motorista")) {
@@ -551,7 +552,9 @@ public class ControlesPerfilAdminEntidades implements Initializable {
 	        		ms = mots.consultarTodosMotoristas();
 	        		
 	        		for (Motorista m : ms) {
-			       		if (m.getEmail().equals(textFieldEmail.getText())) {
+			       		if (m.getEmail().equals(textFieldEmail.getText()) && 
+			       				(!textFieldEmail.getText().equals(dadosMotorista.get("E-mail")) ||
+			       						!textFieldEmail.getText().equals(dadosFuncionario.get("E-mail")))) {
 			       			emailRepetido = true;
 							break;
 			       		}
