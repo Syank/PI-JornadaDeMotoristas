@@ -482,6 +482,14 @@ public class ControlesPerfilAdminAvisos implements Initializable{
 		paneAvisoSelecionado.setDisable(true);
 		paneVisualizarAvisos.setVisible(false);
 		paneVisualizarAvisos.setDisable(true);
+    	paneSelecionarOpcao.setVisible(true);
+    	paneSelecionarOpcao.setDisable(false);
+    	paneVisualizarLogs.setVisible(false);
+    	paneVisualizarLogs.setDisable(true);
+    	paneLogSelecionado.setDisable(true);
+    	paneLogSelecionado.setVisible(false);
+    	paneGerarRelatorio.setVisible(false);
+    	paneGerarRelatorio.setDisable(true);
     }
     
 	public void carregarTableViewsAvisos() {
