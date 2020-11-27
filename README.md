@@ -1,6 +1,6 @@
 <head>
-       <p><img src="https://img.shields.io/badge/status%20do%20projeto-em%20progresso-yellow?style=for-the-badge&logo=appveyor"></p>
-       <p><img src="https://img.shields.io/badge/Sprint%20atual-Sprint%203-blue?style=for-the-badge&logo=appveyor"></p>
+       <p><img src="https://img.shields.io/badge/status%20do%20projeto-concluído-green?style=for-the-badge&logo=appveyor"></p>
+       <p><img src="https://img.shields.io/badge/Sprint%20atual-Projeto%20concluído-green?style=for-the-badge&logo=appveyor"></p>
        <p>
        <img src="https://img.shields.io/badge/dependências-JavaFX%3A%2014.0.2.1-green">
        <img src="https://img.shields.io/badge/dependências-JDK%3A%2014.0.2.1-green">
@@ -99,22 +99,74 @@
 </section>
     
 <section id="sistema_ate_o_momento">
-        <h3>Nosso sistema em funcionamento até o momento</h3>
-        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_1/Sistema%20Sprint%200.gif">
+        <h3>Nosso sistema em funcionamento</h3>
+       
+<div>
+       <h4>Tela de login e recuperação de senha</h4>
+<img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_4/GIFS%20entrega%20final/GIF%20Senha.gif" width="400"/>
+
+<p align="justify">Ao realizar o login, o sistema automáticamente detectará o tipo de conta do usuário e o redirecionará para o seu perfil.
+</p>
+<p align="justify">Caso não se lembre da senha, o usuário poderá alterá-la, clicando em <i>"Esqueceu sua senha? Clique aqui"</i>.
+</p>
+<p align="justify">Para alterar a senha, é necessário fornecer os dados da conta em questão e, caso os dados estejam corretos, a senha será trocada, podendo ser utilizada no mesmo momento.
+</p>
+</div>
+
+<div>
+       <h4 align="right">Perfil de administradores</h4>
+<img align="right" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_4/GIFS%20entrega%20final/GIF%20Administrador.gif" width="400"/>
+
+<p align="justify">Administradores tem todo acesso ao sistema e seu banco de dados, podendo criar, alterar ou excluír qualquer entidade.
+</p>
+<p align="justify">Somente para eles é disponibilizada a funcionalidade de visualizar o registro de atividades que todos os usuários geram ao utilizar o sistema.
+</p>
+<p align="justify">Com isso, também podem, em seu perfil, solicitar ao software que gere um arquivo PDF com esses dados de auditoria, podendo inclusive escolher quais dados quer que constem na requisição.
+</p>
+</div>
+</br></br>
+<div>
+       <h4>Perfil dos supervisores</h4>
+<img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_4/GIFS%20entrega%20final/GIF%20Supervisor.gif" width="400"/>
+
+<p align="justify">Supervisores tem acesso à lista de motoristas cadastrados no sistema, de veículos e de viagens, dentre esses, pode modificar os dados apenas dos dois primeiros.
+</p>
+<p align="justify">Eles podem solicitar o cadastro, aos administradores, de novos motoristas no sistema.
+</p>
+<p align="justify">Para este perfil também conta a funcionalidade de visualização de avisos, onde podem visualizar os que estão no sistema e ter uma noção maior de como as viagens e funcionários se encotram.
+</p>
+</div>
+
+<div>
+       <h4 align="right">Perfil dos motoristas</h4>
+<img align="right" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_4/GIFS%20entrega%20final/GIF%20Motorista.gif" width="400"/>
+
+<p align="justify">Ao entrar com uma conta de motorista, o usuário logo notará a tela inicial, onde são exibidas as informações da viagem atual e os controles para regular seus tempos.
+</p>
+<p align="justify">O motorista tem acesso a uma lista que contém todas as viagens que foram atribuídas a ele, podendo iniciá-las ou pausá-las.
+</p>
+<p align="justify">Caso surja alguma complicação durante seu trabalho, ele poderá emitir avisos ao sistema, que serão visivéis aos administradores e supervisores, cabendo a eles a responsabilidade de auxiliar o funcionário.
+</p>
+</div>
+
+</br></br>
+
+<p align="justify">
+       Para fins de auditoria, todas as atividades que qualquer usuário realiza no sistema ou dados das entidades são armazenadas no banco de dados e podem ser acessadas somente pelos administradores, podendo eles optarem por requisitarem por arquivos que contenham essas informações, ajustáveis de acordo com suas necessidades.
+</p>       
+
+
+
 </section>
 <section id="Wireframes">
     <h3>Wireframes do RoadTracker </h3>
         <p>
     <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/login.jpeg" width="400px">
-    <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/boas_vindas.jpeg" width="400px" >
+    <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/gerar_relatorio.bmp" width="400px" >
        </p>
         <p>
-               <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/escolher_entidade.png" width="400px">
-               <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/cadastro_motoristas.png" width="400px">
+               <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Motorista/viagem_atual.png" width="400px">
+               <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Supervisor/inicio_sup.png" width="400px">
        </p>
-        <p>
-               <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/cadastro_motoristas_sucesso.png" width="400px">
-               <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/wireframes/Administrador/listagem_funcionarios.png" width="400px">
-        </p>
        <h4><a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/master/doc/wireframes">Visualizar todos os <i>wireframes</i> do sistema</a></h4>
  </section>
