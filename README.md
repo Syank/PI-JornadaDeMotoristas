@@ -34,10 +34,11 @@
 <p align="justify">Podemos dizer que a parte mais complexa desta entrega foi a elaboração de um programa instalador do nosso sistema, pois algumas bibliotecas eram incluídas na exportação do projeto. Isso permite que o nosso projeto possua portabilidade e não exige que o usuário final tenha pré-instalado <i>softwares</i> de terceiros para ter acesso ao RoadTracker.</p>
 </br>
 <p align="justify">Com tudo isso em mente, o desempenho da equipe durante a entrega não poderia ter sido melhor já que todos os requisitos foram cumpridos. Contudo, por na entrega 3 termos adiantado as funcionalidades dessa, não há um <i>card</i> disponível. Pode-se concluir que a <b>complexidade desta entrega foi 75/100.</b></p>
-
+<img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/Cards/cardfinal.png" width=550px height=300px>
 <div>
        <h2><i>Feedback</i> sobre a terceira entrega</h2>
        <p align="justify">Durante a apresentação da terceira entrega, o cliente nos fez o pedido para que implementássemos no sistema a funcionalidade de registro de atividades e informações dos usuários e entidades para fins de auditoria. Levando isso em consideração, adicionamos essa funcionalidade ao sistema e agora tudo o que o usuário fizer que altere algum dado no banco de dados será devidamente registrado e, disponível apenas aos administradores, também é possível solicitar a criação de um arquivo PDF, parametrizável, com essas informações.</p>
+
 </div>
 
 <div>
