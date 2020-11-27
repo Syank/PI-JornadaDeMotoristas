@@ -44,7 +44,7 @@
        </ul>
 </section>
 <section id="branches_entregas">
-       <h3>Branches de cada entrega</h3>
+       <h3><i>Branches</i> de cada entrega</h3>
        <table>
               <thead>
                      <th width=100px>Entregas</th>
@@ -80,6 +80,12 @@
               </tbody>
        </table>
        <h4><a href="https://docs.google.com/spreadsheets/d/1HuQ9GrWlmToOBW_bJGg-9X_d5m0Zey0G/edit#gid=1949042978">Visualizar <i>burndown</i> de cada sprint</a></h4>
+       <p align="justify">
+              :articulated_lorry: Para instalar o RoadTracker, clique <a href="https://drive.google.com/file/d/1fA-FX0-etznHQP1P7XiAMuUqErzwXtAw/view?usp=sharing">aqui</a>.
+       </p>
+       <p align="justify">
+              :wink: Precisa de alguma ajuda? Confira o nosso <a href="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/manual_de_uso/Manual%20de%20uso%20RoadTracker.pdf">manual do usuário</a>.
+       </p>
 </section>
 
 <section id="cards">
@@ -152,9 +158,6 @@
 <p align="justify">
        Para fins de auditoria, todas as atividades que qualquer usuário realiza no sistema ou dados das entidades são armazenadas no banco de dados e podem ser acessadas somente pelos administradores. Sendo assim, eles podem solicitar arquivos que contenham essas todas essas informações, que são ajustáveis de acordo com suas necessidades.
 </p>       
-<p align="justify">
-       Para instalar o RoadTracker, clique <a href="https://drive.google.com/file/d/1fA-FX0-etznHQP1P7XiAMuUqErzwXtAw/view?usp=sharing">aqui</a>.
-</p>
 
 </section>
 <section id="Wireframes">
