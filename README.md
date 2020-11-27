@@ -35,12 +35,12 @@
 <section id="integrantes">
             <h3>Integrantes da equipe :girl::boy:</h3>
        <ul>
-            <li><p><a href="https://www.linkedin.com/in/rafael-furtado-613a9712a/" target = "_blank">Rafael Furtado Rodrigues dos Santos</a>  (Scrum Master)</p>
-            <li><p><a href="https://www.linkedin.com/in/b%C3%A1rbara-port-402158198/" target = "_blank">Bárbara dos Santos Port</a> (Product Owner)</p>
-            <li><p><a href="https://www.linkedin.com/in/ana-clara-godoy-2973381b2/" target = "_blank">Ana Clara Ferreira de Godoy</a> (Development Team)</p>
-            <li><p><a href="https://www.linkedin.com/in/giovanni-santos-546412154/" target = "_blank">Giovanni dos Santos Alves</a> (Development Team)</p>
-            <li><p><a href="https://www.linkedin.com/in/ana-carolina-lima-099955136/" target = "_blank">Ana Carolina da Silva Lima</a> (Development Team)</p>
-            <li><p><a href="https://www.linkedin.com/in/anna-yukimi-yamada-6ba23b149/" target = "_blank">Anna Yukimi Yamada</a> (Development Team)</p>
+            <li><p><a href="https://www.linkedin.com/in/rafael-furtado-613a9712a/" target = "_blank">Rafael Furtado Rodrigues dos Santos</a>  (<i>Scrum Master</i>)</p>
+            <li><p><a href="https://www.linkedin.com/in/b%C3%A1rbara-port-402158198/" target = "_blank">Bárbara dos Santos Port</a> (<i>Product Owner</i>)</p>
+            <li><p><a href="https://www.linkedin.com/in/ana-clara-godoy-2973381b2/" target = "_blank">Ana Clara Ferreira de Godoy</a> (<i>Development Team</i>)</p>
+            <li><p><a href="https://www.linkedin.com/in/giovanni-santos-546412154/" target = "_blank">Giovanni dos Santos Alves</a> (<i>Development Team</i>)</p>
+            <li><p><a href="https://www.linkedin.com/in/ana-carolina-lima-099955136/" target = "_blank">Ana Carolina da Silva Lima</a> (<i>Development Team</i>)</p>
+            <li><p><a href="https://www.linkedin.com/in/anna-yukimi-yamada-6ba23b149/" target = "_blank">Anna Yukimi Yamada</a> (<i>Development Team</i>)</p>
        </ul>
 </section>
 <section id="branches_entregas">
@@ -105,11 +105,11 @@
        <h4>Tela de login e recuperação de senha</h4>
 <img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_4/GIFS%20entrega%20final/GIF%20Senha.gif" width="400"/>
 
-<p align="justify">Ao realizar o login, o sistema automáticamente detectará o tipo de conta do usuário e o redirecionará para o seu perfil.
+<p align="justify">Ao realizar o login, o sistema automaticamente detectará o tipo de conta do usuário e o redirecionará para o seu nível de acesso.
 </p>
 <p align="justify">Caso não se lembre da senha, o usuário poderá alterá-la, clicando em <i>"Esqueceu sua senha? Clique aqui"</i>.
 </p>
-<p align="justify">Para alterar a senha, é necessário fornecer os dados da conta em questão e, caso os dados estejam corretos, a senha será trocada, podendo ser utilizada no mesmo momento.
+<p align="justify">Para a alteração, é necessário fornecer os dados da conta em questão e, caso os dados estejam corretos, a senha será trocada, podendo ser utilizada no mesmo momento.
 </p>
 </div>
 
@@ -117,11 +117,11 @@
        <h4 align="right">Perfil de administradores</h4>
 <img align="right" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_4/GIFS%20entrega%20final/GIF%20Administrador.gif" width="400"/>
 
-<p align="justify">Administradores tem todo acesso ao sistema e seu banco de dados, podendo criar, alterar ou excluír qualquer entidade.
+<p align="justify">Administradores têm todo acesso ao sistema e ao banco de dados, podendo criar, alterar ou excluir qualquer entidade.
 </p>
 <p align="justify">Somente para eles é disponibilizada a funcionalidade de visualizar o registro de atividades que todos os usuários geram ao utilizar o sistema.
 </p>
-<p align="justify">Com isso, também podem, em seu perfil, solicitar ao software que gere um arquivo PDF com esses dados de auditoria, podendo inclusive escolher quais dados quer que constem na requisição.
+<p align="justify">Com isso, também podem, em seu perfil, solicitar ao <i>software</i> que gere um arquivo PDF com esses dados de auditoria, podendo inclusive escolher quais dados constem nele.
 </p>
 </div>
 </br></br>
@@ -129,11 +129,11 @@
        <h4>Perfil dos supervisores</h4>
 <img align="left" src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/apresentacao_entrega_4/GIFS%20entrega%20final/GIF%20Supervisor.gif" width="400"/>
 
-<p align="justify">Supervisores tem acesso à lista de motoristas cadastrados no sistema, de veículos e de viagens, dentre esses, pode modificar os dados apenas dos dois primeiros.
+<p align="justify">Supervisores tem acesso à lista de motoristas, de veículos e de viagens cadastrados no sistema. Dentre esses, pode modificar os dados apenas dos dois primeiros.
 </p>
 <p align="justify">Eles podem solicitar o cadastro, aos administradores, de novos motoristas no sistema.
 </p>
-<p align="justify">Para este perfil também conta a funcionalidade de visualização de avisos, onde podem visualizar os que estão no sistema e ter uma noção maior de como as viagens e funcionários se encotram.
+<p align="justify">Para este perfil também conta a funcionalidade de visualização de avisos, em que podem visualizar os que estão no sistema e ter uma noção maior de como as viagens e funcionários se encontram.
 </p>
 </div>
 
@@ -145,14 +145,12 @@
 </p>
 <p align="justify">O motorista tem acesso a uma lista que contém todas as viagens que foram atribuídas a ele, podendo iniciá-las ou pausá-las.
 </p>
-<p align="justify">Caso surja alguma complicação durante seu trabalho, ele poderá emitir avisos ao sistema, que serão visivéis aos administradores e supervisores, cabendo a eles a responsabilidade de auxiliar o funcionário.
+<p align="justify">Caso surja alguma complicação durante seu trabalho, ele poderá emitir avisos ao sistema, que serão visíveis aos administradores e supervisores, cabendo a eles a responsabilidade de auxiliar o funcionário.
 </p>
 </div>
-
-</br></br>
-
+</br>
 <p align="justify">
-       Para fins de auditoria, todas as atividades que qualquer usuário realiza no sistema ou dados das entidades são armazenadas no banco de dados e podem ser acessadas somente pelos administradores, podendo eles optarem por requisitarem por arquivos que contenham essas informações, ajustáveis de acordo com suas necessidades.
+       Para fins de auditoria, todas as atividades que qualquer usuário realiza no sistema ou dados das entidades são armazenadas no banco de dados e podem ser acessadas somente pelos administradores. Sendo assim, eles podem solicitar arquivos que contenham essas todas essas informações, que são ajustáveis de acordo com suas necessidades.
 </p>       
 <p align="justify">
        Para instalar o RoadTracker, clique <a href="https://drive.google.com/file/d/1fA-FX0-etznHQP1P7XiAMuUqErzwXtAw/view?usp=sharing">aqui</a>.
