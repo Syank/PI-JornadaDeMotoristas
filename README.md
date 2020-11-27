@@ -154,8 +154,9 @@
 <p align="justify">
        Para fins de auditoria, todas as atividades que qualquer usuário realiza no sistema ou dados das entidades são armazenadas no banco de dados e podem ser acessadas somente pelos administradores, podendo eles optarem por requisitarem por arquivos que contenham essas informações, ajustáveis de acordo com suas necessidades.
 </p>       
-
-
+<p align="justify">
+       Para instalar o RoadTracker, clique <a href="https://drive.google.com/file/d/1fA-FX0-etznHQP1P7XiAMuUqErzwXtAw/view?usp=sharing">aqui</a>.
+</p>
 
 </section>
 <section id="Wireframes">
