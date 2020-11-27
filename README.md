@@ -13,6 +13,12 @@
         <nav>
             <p><h1>RoadTracker :truck::computer:</h1></p>
             <p>Seja bem-vindo ao repositório do RoadTracker!</p>
+              <p align="justify">
+                     :articulated_lorry: Para instalar o RoadTracker, clique <a href="https://drive.google.com/file/d/1fA-FX0-etznHQP1P7XiAMuUqErzwXtAw/view?usp=sharing">aqui</a>.
+              </p>
+              <p align="justify">
+                     :wink: Precisa de alguma ajuda? Confira o nosso <a href="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/manual_de_uso/Manual%20de%20uso%20RoadTracker.pdf">manual do usuário</a>.
+              </p>
             <p><h2>O nosso desafio</h2></p>
             <p align="justify">Nosso cliente é a empresa IACIT. Foi solicitado para nós desenvolvermos um sistema para o gerenciamento e controle da jornada de trabalho de motoristas sendo parametrizável, visando à disponibilização de funcionalidades de planejamento, acompanhamento, controlando a jornada de trabalho de cada um desses colaboradores. Nosso sistema deverá oferecer um cadastro para motoristas (tendo nome, CPF, matrícula e ID do equipamento do caminhão), um cadastro para os dados do veículo (como a placa, a marca e versão do rastreador e o ID do equipamento), a escala dos motoristas (turno, carga horária, dias de trabalho e de folga), um cadastro de alertas (contendo ocorrência, sigla, ícone, descrição do alerta e regra/parâmetro) e um cadastro de status (cadastrar status e regras de negócio de acordo com cada situação ocorrida durante a jornada, ID dos macros/mensagens, status de início e fim de jornada, tempo de trabalho, espera, refeição e descanso).</p>
 <ul>
@@ -80,12 +86,6 @@
               </tbody>
        </table>
        <h4><a href="https://docs.google.com/spreadsheets/d/1HuQ9GrWlmToOBW_bJGg-9X_d5m0Zey0G/edit#gid=1949042978">Visualizar <i>burndown</i> de cada sprint</a></h4>
-       <p align="justify">
-              :articulated_lorry: Para instalar o RoadTracker, clique <a href="https://drive.google.com/file/d/1fA-FX0-etznHQP1P7XiAMuUqErzwXtAw/view?usp=sharing">aqui</a>.
-       </p>
-       <p align="justify">
-              :wink: Precisa de alguma ajuda? Confira o nosso <a href="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/manual_de_uso/Manual%20de%20uso%20RoadTracker.pdf">manual do usuário</a>.
-       </p>
 </section>
 
 <section id="cards">
