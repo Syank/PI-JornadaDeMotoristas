@@ -61,14 +61,14 @@
 <p align="justify">Ao final dele é possível ver com mais detalhes a nova funcionalidade de registro de atividades e a geração do PDF.
 </p>
 </div>
-
 </br></br>
 
 </br></br></br>
-
+<p align="justify">Confira o nosso <a href="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/manual_de_uso/Manual%20de%20uso%20RoadTracker.pdf">manual do usuário</a>.</p>
+</br>
 <div>
 <h2>User stories do nosso sistema</h2>
-
+       <p align="justify">Foi necessário adicionar mais dois <i>cards</i>, pois o cliente solicitou a geração de relatórios de desempenho, o registro de <i>logs</i> (para posterior auditoria) e um manual do usuário.</p>
 <h3>Quarta entrega :clock4:</h3>
 <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/sprint_3/doc/user_stories/4.png" width="600px"/>
 </div>
