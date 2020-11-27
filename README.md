@@ -84,8 +84,18 @@
        Estas são apenas algumas das <i>wireframes</i> do nosso projeto, você pode visualizar todos clicando <a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/master/doc/wireframes">aqui</a>.
        </p>
 </div>
+<section id="ModeloC">
+        <h3>Modelo conceitual do nosso banco de dados</h3>
+        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/banco_de_dados/RTdbNovo-conceitual.png" width="800px">
+    
+</section>
 
+<section id="ModeloL">
+        <h3>Modelo lógico do nosso banco de dados</h3>
+        <img src="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/banco_de_dados/RTdbNovo-logico.png" width="800px">
+
+</section>
 <section id="Modelo">
         <h3>Modelo físico do nosso banco de dados</h3>
-       <p>Você pode vê-lo clicando <a href="https://github.com/Syank/PI-JornadaDeMotoristas/tree/sprint_3/doc/banco_de_dados">aqui</a>.</p>
+       <p>Você pode vê-lo clicando <a href="https://github.com/Syank/PI-JornadaDeMotoristas/blob/master/doc/banco_de_dados/RTdbNovo-fisico.sql">aqui</a>.</p>
 </section>
