@@ -36,7 +36,8 @@ public class Filial {
 	@Column(length=14)
 	private String rntrc;
 	@Column(columnDefinition="TEXT")
-	private String metadados = "FncAss:0 VeiAss:0 ";
+	private String metadados = "FncAss:0 "
+			+ "VeiAss:0 ";
 	
 	//uma filial possui um ou mais funcionarios
 	@OneToMany(mappedBy = "filial") //nome do campo na tabela filha
@@ -248,7 +249,7 @@ public class Filial {
 		
 		String reconstruir = "";
 		for(int i = 0; i < metadados.length; i++) {
-			reconstruir = metadados[i] + " ";
+			reconstruir += metadados[i] + " ";
 		}
 		
 		this.metadados = reconstruir;

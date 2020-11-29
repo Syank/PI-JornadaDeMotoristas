@@ -685,6 +685,7 @@ public class ControlesPerfilAdminCadastrarEntidades implements Initializable {
                 				+ "\nID do rastreador: " + id_rastreador);
                 		
                 		new Funcionario().encontrarFuncionario(ControlesLogin.cpfLogado).incrementarMetadados("VeiCad");
+                		new Filial().encontrarFilial(filial).incrementarMetadados("VeiAss");
                 		
                 		notificar("Sucesso de cadastro", "Veículo cadastrado", "O veículo com a placa " + placa + " foi cadastrado com sucesso!");
                 		limparCamposCadastrarVeículos();
